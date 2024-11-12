@@ -1,18 +1,20 @@
 <nav class="navbar navbar-expand-lg bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="">BeHealth</a>
+    <a class="navbar-brand fw-bold text-white" routerLink="">BeHealth</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
       </div>
+      <div class="navbar-nav ms-auto">
+        @if (authService.isAuthenticated()) {
+          <a routerLink="/sign-out" class="nav-link text-white">Sign Out</a>
+        } @else {
+          <a routerLink="/sign-in" class="nav-link text-white">Sign In</a>
+          <a routerLink="/sign-up" class="nav-link text-white">Sign Up</a>
+        }
+      </div>
     </div>
-    @if (authService.isAuthenticated()) {
-      <a routerLink="/sign-out" class="nav-link">Sign Out</a>
-    } @else {
-      <a routerLink="/sign-up" class="nav-link">Sign Up</a>
-      <a routerLink="/sign-in" class="nav-link">Sign In</a>
-    }
   </div>
 </nav>
