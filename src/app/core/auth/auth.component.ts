@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthSignInComponent} from './components/auth-sign-in/auth-sign-in.component';
 import {AuthSignUpComponent} from './components/auth-sign-up/auth-sign-up.component';
-import {Authentification} from './utils/authentification';
+import {AuthCred} from './utils/auth-cred';
 import {AuthService} from './services/auth.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class AuthComponent {
   constructor(private _authService: AuthService) {
   }
 
-  trySignIn(auth: Authentification) {
+  trySignIn(auth: AuthCred) {
     this._authService.signIn(auth)
       .subscribe({
         next: (userCredentials) => {
