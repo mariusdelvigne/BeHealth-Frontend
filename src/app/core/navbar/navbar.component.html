@@ -8,6 +8,10 @@
       <div class="navbar-nav">
       </div>
     </div>
-    <a routerLink="auth" class="nav-link">Sign In</a>
+    @if (authService.isAuthenticated()) {
+      <a routerLink="/sign-out" class="nav-link">Sign Out</a>
+    } @else {
+      <a routerLink="/sign-in" class="nav-link">Sign In</a>
+    }
   </div>
 </nav>

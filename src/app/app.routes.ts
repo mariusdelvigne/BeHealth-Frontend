@@ -1,8 +1,19 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from './core/home/home.component';
-import {AuthComponent} from './core/auth/auth.component';
+import {AuthSignInComponent} from './core/auth/components/auth-sign-in/auth-sign-in.component';
+import {AuthSignOutComponent} from './core/auth/components/auth-sign-out/auth-sign-out.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'auth', component: AuthComponent },
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'sign-in',
+    component: AuthSignInComponent,
+  },
+  {
+    path: 'sign-out',
+    component: AuthSignOutComponent,
+  }
 ]
