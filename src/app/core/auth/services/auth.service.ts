@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {Authentification} from '../utils/authentification';
+/*import {Authentification} from '../utils/authentification';*/
 import {Observable} from 'rxjs';
-import {UserCredentials} from '../utils/user-credentials';
+/*import {UserCredentials} from '../utils/user-credentials';*/
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class AuthService {
 
     request.subscribe({
       next: response => {
-        this._isAuthenticated = true;
-        this._authData = response;
+/*        this._isAuthenticated = true;
+        this._authData = response;*/
       }
     });
 
