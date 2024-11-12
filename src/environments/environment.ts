@@ -4,4 +4,5 @@ export const environment = {
 
 export const apis = {
   AUTH_URL: "",
+  USERS_URL: "",
 };

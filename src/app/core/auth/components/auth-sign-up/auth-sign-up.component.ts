@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {UserCreateCommand} from '../../utils/user-create-command';
 
 @Component({
   selector: 'app-auth-sign-up',
@@ -21,4 +22,8 @@ export class AuthSignUpComponent {
     gender: new FormControl('', Validators.required),
     mail: new FormControl('', Validators.required),
   });
+
+  emitSignUp() {
+/*    this.userData.emit(this.form.value);*/
+  }
 }
