@@ -1,2 +1,6 @@
-<app-auth-sign-in></app-auth-sign-in>
-<app-auth-sign-up></app-auth-sign-up>
+@if (!userConnected) {
+  <app-auth-sign-in (auth)="trySignIn($event)"></app-auth-sign-in>
+  <app-auth-sign-up></app-auth-sign-up>
+} @else {
+ <button (click)="trySignOut()">Sign out</button>
+}

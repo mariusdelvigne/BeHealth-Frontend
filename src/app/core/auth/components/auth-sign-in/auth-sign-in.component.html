@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (submit)="emitSignIn()">
   <div class="d-flex justify-content-center align-items-center flex-column">
     <label>
       Username :<input class="form-control" type="text" placeholder="Username" formControlName="username">
