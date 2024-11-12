@@ -10,6 +10,7 @@ import {UserCredentials} from '../utils/user-credentials';
 })
 export class AuthService {
   private static URL: string = `${environment.API_URL}/${apis.AUTH_URL}`;
+  userCredentials: any;
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -18,10 +19,8 @@ export class AuthService {
 
     request.subscribe({
       next: response => {
-        alert("Log in successful");
-      },
-      error: error => {
-        alert(error.message);
+        this._isAuthenticated = true;
+        this._authData = response;
       }
     });
 
