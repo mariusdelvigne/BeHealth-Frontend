@@ -3,6 +3,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {UserService} from '../../../../shared/services/user.service';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-auth-sign-up',
@@ -12,7 +13,22 @@ import {Router} from '@angular/router';
         ReactiveFormsModule
     ],
   templateUrl: './auth-sign-up.component.html',
-  styleUrl: './auth-sign-up.component.css'
+  styleUrl: './auth-sign-up.component.css',
+  animations: [
+    trigger('colorChange', [
+      state('grey', style({
+        backgroundColor: 'rgba(173, 181, 189, 0.3)',
+        border: '3px solid rgba(173, 181, 189, 0.5)',
+      })),
+      state('blue', style({
+        backgroundColor: 'rgba(13, 110, 253, 0.3)',
+        border: '3px solid rgba(13, 110, 253, 0.5)',
+      })),
+      transition('grey <=> blue', [
+        animate('1s ease-out')
+      ])
+    ])
+  ]
 })
 export class AuthSignUpComponent {
   form: FormGroup = new FormGroup({
@@ -21,12 +37,11 @@ export class AuthSignUpComponent {
     name: new FormControl('', Validators.required),
     surname: new FormControl('', Validators.required),
     birthDate: new FormControl('', Validators.required),
-    gender: new FormControl('', Validators.required),
+    gender: new FormControl('Male', Validators.required),
     mail: new FormControl('', Validators.required),
   });
 
-  constructor(private _authService: AuthService, private _userService: UserService, private _router: Router) {
-  }
+  constructor(private _authService: AuthService, private _userService: UserService, private _router: Router) { }
 
   goHome() {
     this._router.navigate(['/']);
@@ -41,11 +56,18 @@ export class AuthSignUpComponent {
         };
         alert("Sign up successful");
         this._authService.signIn(auth)
-        this.goHome()
+          .subscribe({
+            next: _ => this.goHome(),
+          });
       },
       error: (error) => {
         alert(error.message);
       }
     });
   }
+
+  get colorChange() {
+    return this.form.invalid ? 'grey' : 'blue';
+  }
+
 }
