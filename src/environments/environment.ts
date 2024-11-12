@@ -3,4 +3,5 @@ export const environment = {
 };
 
 export const apis = {
+  AUTH_URL: "",
 };
