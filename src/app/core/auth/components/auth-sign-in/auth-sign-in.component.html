@@ -1,11 +1,13 @@
 <form [formGroup]="form">
-  <label>
-    Username :<input type="text" placeholder="Username" formControlName="username">
-  </label>
+  <div class="d-flex justify-content-center align-items-center flex-column">
+    <label>
+      Username :<input class="form-control" type="text" placeholder="Username" formControlName="username">
+    </label>
 
-  <label>
-    Password :<input type="text" placeholder="Password" formControlName="password">
-  </label>
+    <label>
+      Password :<input class="form-control" type="text" placeholder="Password" formControlName="password">
+    </label>
 
-  <input type="submit" value="Sign in" [disabled]="form.invalid">
+    <input class="btn btn-primary" type="submit" value="Sign in" [disabled]="form.invalid">
+  </div>
 </form>

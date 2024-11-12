@@ -1,36 +1,38 @@
 <form [formGroup]="form">
-  <label>
-    Username :<input type="text" placeholder="Username" formControlName="username">
-  </label>
+  <div class="d-flex justify-content-center align-items-center flex-column">
+    <label>
+      Username :<input class="form-control input-width" type="text" placeholder="Username" formControlName="username">
+    </label>
 
-  <label>
-    Password :<input type="text" placeholder="Password" formControlName="password">
-  </label>
+    <label>
+      Password :<input class="form-control" type="text" placeholder="Password" formControlName="password">
+    </label>
 
-  <label>
-    Name :<input type="text" placeholder="Name" formControlName="name">
-  </label>
+    <label>
+      Name :<input class="form-control" type="text" placeholder="Name" formControlName="name">
+    </label>
 
-  <label>
-    Surname :<input type="text" placeholder="Surname" formControlName="surname">
-  </label>
+    <label>
+      Surname :<input class="form-control" type="text" placeholder="Surname" formControlName="surname">
+    </label>
 
-  <label>
-    Birth Date :<input type="datetime-local" formControlName="birthDate">
-  </label>
+    <label>
+      Birth Date :<input class="form-control" type="datetime-local" formControlName="birthDate">
+    </label>
 
-  <label>
-    Gender :
-    <select formControlName="gender">
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-      <option value="Other">Other</option>
-    </select>
-  </label>
+    <label>
+      Gender :
+      <select class="form-control" formControlName="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
 
-  <label>
-    Mail :<input type="email" placeholder="Mail" formControlName="mail">
-  </label>
+    <label>
+      Mail :<input class="form-control" type="email" placeholder="Mail" formControlName="mail">
+    </label>
 
-  <input type="submit" value="Sign up" [disabled]="form.invalid">
+    <input class="btn btn-primary" type="submit" value="Sign up" [disabled]="form.invalid">
+  </div>
 </form>
