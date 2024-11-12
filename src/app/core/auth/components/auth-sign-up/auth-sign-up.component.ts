@@ -1,6 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {UserCreateCommand} from '../../utils/user-create-command';
+import {UserService} from '../../../../shared/services/user.service';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-auth-sign-up',
@@ -23,7 +25,27 @@ export class AuthSignUpComponent {
     mail: new FormControl('', Validators.required),
   });
 
+  constructor(private _authService: AuthService, private _userService: UserService, private _router: Router) {
+  }
+
+  goHome() {
+    this._router.navigate(['/']);
+  }
+
   emitSignUp() {
-/*    this.userData.emit(this.form.value);*/
+    this._userService.signUp(this.form.value).subscribe({
+      next: () => {
+        const auth = {
+          username: this.form.value.username,
+          password: this.form.value.password,
+        };
+        alert("Sign up successful");
+        this._authService.signIn(auth)
+        this.goHome()
+      },
+      error: (error) => {
+        alert(error.message);
+      }
+    });
   }
 }
