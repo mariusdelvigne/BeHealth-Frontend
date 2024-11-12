@@ -1,0 +1,36 @@
+<form [formGroup]="form">
+  <label>
+    Username :<input type="text" placeholder="Username" formControlName="username">
+  </label>
+
+  <label>
+    Password :<input type="text" placeholder="Password" formControlName="password">
+  </label>
+
+  <label>
+    Name :<input type="text" placeholder="Name" formControlName="name">
+  </label>
+
+  <label>
+    Surname :<input type="text" placeholder="Surname" formControlName="surname">
+  </label>
+
+  <label>
+    Birth Date :<input type="datetime-local" formControlName="birthDate">
+  </label>
+
+  <label>
+    Gender :
+    <select formControlName="gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+  </label>
+
+  <label>
+    Mail :<input type="email" placeholder="Mail" formControlName="mail">
+  </label>
+
+  <input type="submit" value="Sign up" [disabled]="form.invalid">
+</form>
