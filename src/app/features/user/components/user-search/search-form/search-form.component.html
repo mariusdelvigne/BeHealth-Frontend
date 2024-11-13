@@ -1,0 +1,8 @@
+<form [formGroup]="formSearch" (submit)="searchUser()">
+  <div>
+    <label>
+      Username : <input type="text" formControlName="username">
+      <input type="submit" [disabled]="formSearch.invalid">
+    </label>
+  </div>
+</form>
