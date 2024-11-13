@@ -17,7 +17,7 @@ export class UserSearchService {
   }
 
   getUserByUsername(query: UserSearchQuery): Observable<any> {
-    console.log(UserSearchService.urlSearchUser + "/" + query.username)
-    return this._http.get<any>(UserSearchService.urlSearchUser + "/" + query.username);
+    console.log(UserSearchService.urlSearchUser + "/" + query.username + "/usernames")
+    return this._http.get<any>(UserSearchService.urlSearchUser + "/" + query.username + "/usernames");
   }
 }

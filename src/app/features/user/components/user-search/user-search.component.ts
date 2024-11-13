@@ -19,23 +19,14 @@ import {UserSearchQuery} from '../../utils/user-search-query';
 })
 export class UserSearchComponent{
   @Input()
-  user: UserOutput = new class implements UserOutput {
-    birthdate: string = "";
-    gender: string = "";
-    id: number = 0;
-    mail: string = "";
-    name: string = "";
-    role: string = "";
-    surname: string = "";
-    username: string = "";
-  };
+  user: UserOutput[] = []
 
   constructor(private _userSearchService: UserSearchService) {
   }
 
   searchUserByName(query: UserSearchQuery) {
     this._userSearchService.getUserByUsername(query).subscribe(users => {
-      this.user = users;
+      this.user = users.userGetByNames;
     })
   }
 }

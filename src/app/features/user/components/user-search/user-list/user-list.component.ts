@@ -14,14 +14,5 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 })
 export class UserListComponent {
   @Input()
-  user: UserOutput = new class implements UserOutput {
-    birthdate: string = "";
-    gender: string = "";
-    id: number = 0;
-    mail: string = "";
-    name: string = "";
-    role: string = "";
-    surname: string = "";
-    username: string = "";
-  }
+  users: UserOutput[] = []
 }

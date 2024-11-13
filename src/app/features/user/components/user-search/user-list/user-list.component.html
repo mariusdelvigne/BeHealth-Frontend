@@ -1,20 +1,22 @@
-@if (user.id != 0) {
-  <ul style="list-style-type: none; padding: 0;">
-    <li style="margin-bottom: 1em; border: 1px solid #ddd; padding: 1em; border-radius: 8px;">
-      <strong># ID :</strong> {{ user.id }}
-      <ul style="list-style-type: none; padding: 0; margin-top: 0.5em;">
-        <li><strong>Username:</strong> {{ user.username }}</li>
-        <li><strong>Email:</strong> {{ user.mail }}</li>
-        <li><strong>Role:</strong> {{ user.role }}</li>
-        <li><strong>Birthdate:</strong> {{ user.birthdate }}</li>
-        <li><strong>Gender:</strong> {{ user.gender }}</li>
-        <li><strong>Name:</strong> {{ user.name }}</li>
-        <li><strong>Surname:</strong> {{ user.surname }}</li>
-      </ul>
-    </li>
-  </ul>
+@if (users.length) {
+    <ul style="list-style-type: none; padding: 0;">
+        @for (user of users; track $index) {
+            <li style="margin-bottom: 1em; border: 1px solid #ddd; padding: 1em; border-radius: 8px;">
+                <strong># ID :</strong> {{ user.id }}
+                <ul style="list-style-type: none; padding: 0; margin-top: 0.5em;">
+                    <li><strong>Username:</strong> {{ user.username }}</li>
+                    <li><strong>Email:</strong> {{ user.mail }}</li>
+                    <li><strong>Role:</strong> {{ user.role }}</li>
+                    <li><strong>Birthdate:</strong> {{ user.birthdate }}</li>
+                    <li><strong>Gender:</strong> {{ user.gender }}</li>
+                    <li><strong>Name:</strong> {{ user.name }}</li>
+                    <li><strong>Surname:</strong> {{ user.surname }}</li>
+                </ul>
+            </li>
+        }
+    </ul>
 } @else {
-  <h2>User</h2>
+    <h2>User</h2>
 }
 
 
