@@ -17,7 +17,7 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
 export class PlanSearchComponent implements OnInit {
   plans: PlanSearchOutput[] = [];
   form: FormGroup = new FormGroup({
-    name: new FormControl(''),
+/*    name: new FormControl(''),*/
     category: new FormControl(''),
   });
 

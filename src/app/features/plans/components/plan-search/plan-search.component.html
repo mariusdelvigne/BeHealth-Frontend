@@ -1,15 +1,17 @@
 <form [formGroup]="form" (submit)="emitSearchPlan()">
-  <textarea class="form-control-lg col-sm-4 w-auto m-3" formControlName="name" placeholder="Title"></textarea>
+<!--  <textarea class="form-control-lg col-sm-4 w-auto m-3" formControlName="name" placeholder="Title"></textarea>-->
 
-  <div class="form-control-lg col-sm-4 w-auto m-3">
-    <select formControlName="category" class="form-control">
-      <option value="sport">Sport</option>
-      <option value="food">Food</option>
-      <option value="sleep">Sleep</option>
-    </select>
+  <div class="row">
+    <div class="form-control-lg col-sm-4 w-auto m-3">
+      <select formControlName="category" class="form-control">
+        <option value="sport" selected>Sport</option>
+        <option value="food">Food</option>
+        <option value="sleep">Sleep</option>
+      </select>
+    </div>
+
+    <input class="btn btn-primary col-sm-4 w-25 mt-3 mb-3" type="submit" [disabled]="form.invalid" value="Filter">
   </div>
-
-  <input class="btn btn-primary col-sm-4 offset-sm-3 w-25 mt-3 mb-3" type="submit" [disabled]="form.invalid" value="Filter">
 
 </form>
 
