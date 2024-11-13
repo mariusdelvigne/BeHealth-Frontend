@@ -1,0 +1,9 @@
+<div>
+  <h2>Search user by username</h2>
+  <div>
+    <app-search-form (userSearch)="searchUserByName($event)"></app-search-form>
+  </div>
+  <div>
+    <app-user-list [user]="user"></app-user-list>
+  </div>
+</div>
