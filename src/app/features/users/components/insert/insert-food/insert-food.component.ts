@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {UserFoodService} from '../../../../../shared/services/user-food.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-insert-food',
@@ -36,7 +35,7 @@ export class InsertFoodComponent {
     eatenDatetime: new FormControl('', Validators.required),
   });
 
-  constructor(private _userFoodService: UserFoodService, private _router: Router) { }
+  constructor(private _userFoodService: UserFoodService) { }
 
   emitUserFood() {
     this._userFoodService.create(this.form.value).subscribe({

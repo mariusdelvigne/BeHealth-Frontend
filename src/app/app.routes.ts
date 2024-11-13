@@ -7,6 +7,7 @@ import {InsertComponent} from './features/users/components/insert/insert.compone
 import {InsertFoodComponent} from './features/users/components/insert/insert-food/insert-food.component';
 import {InsertSportComponent} from './features/users/components/insert/insert-sport/insert-sport.component';
 import {PlanCreateComponent} from './features/plans/components/plan-create/plan-create.component';
+import {InsertSleepComponent} from './features/users/components/insert/insert-sleep/insert-sleep.component';
 
 export const routes: Routes = [
   {
@@ -36,9 +37,12 @@ export const routes: Routes = [
       {
         path: 'sport',
         component: InsertSportComponent,
+      },
+      {
+        path: 'sleep',
+        component: InsertSleepComponent,
       }
     ]
-  },
   },
   {
     path: 'plan-create',

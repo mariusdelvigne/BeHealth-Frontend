@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {UserSportService} from '../../../../../shared/services/user-sport.service';
+import {UserSleepService} from '../../../../../shared/services/user-sleep.service';
 
 @Component({
-  selector: 'app-insert-sport',
+  selector: 'app-insert-sleep',
   standalone: true,
-    imports: [
-        FormsModule,
-        ReactiveFormsModule
-    ],
-  templateUrl: './insert-sport.component.html',
-  styleUrl: './insert-sport.component.css',
+  imports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  templateUrl: './insert-sleep.component.html',
+  styleUrl: './insert-sleep.component.css',
   animations: [
     trigger('colorChange', [
       state('grey', style({
@@ -28,17 +28,16 @@ import {UserSportService} from '../../../../../shared/services/user-sport.servic
     ])
   ]
 })
-export class InsertSportComponent {
+export class InsertSleepComponent {
   form: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
     startDatetime: new FormControl('', Validators.required),
     endDatetime: new FormControl('', Validators.required),
   });
 
-  constructor(private _userSportService: UserSportService) { }
+  constructor(private _userSleepService: UserSleepService) { }
 
-  emitUserSport() {
-    this._userSportService.create(this.form.value).subscribe({
+  emitUserSleep() {
+    this._userSleepService.create(this.form.value).subscribe({
       next: response => alert(response),
     });
   }
