@@ -5,6 +5,7 @@ import {AuthSignOutComponent} from './core/auth/components/auth-sign-out/auth-si
 import {AuthSignUpComponent} from './core/auth/components/auth-sign-up/auth-sign-up.component';
 import {InsertComponent} from './features/users/components/insert/insert.component';
 import {InsertFoodComponent} from './features/users/components/insert/insert-food/insert-food.component';
+import {InsertSportComponent} from './features/users/components/insert/insert-sport/insert-sport.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
       {
         path: 'food',
         component: InsertFoodComponent,
+      },
+      {
+        path: 'sport',
+        component: InsertSportComponent,
       }
     ]
   },

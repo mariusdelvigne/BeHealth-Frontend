@@ -16,7 +16,6 @@ export class UserFoodService {
 
   public create(userFoodCreate: UserFoodCreateCommand): Observable<UserFoodCreateOutput> {
     let userId = this._authService.getId();
-    console.log(UserFoodService.URL + `/${userId}/foods`)
     return this._httpClient.post<UserFoodCreateOutput>(UserFoodService.URL + `/${userId}/foods`, userFoodCreate,
       {
         withCredentials: true,
