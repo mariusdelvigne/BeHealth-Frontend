@@ -15,8 +15,8 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
 export class PlanCreateComponent {
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
-    privacy: new FormControl('', Validators.required),
+    category: new FormControl('sport'),
+    privacy: new FormControl('Private', Validators.required),
     description: new FormControl('', Validators.required),
     durationInDays: new FormControl('', Validators.required),
   });
@@ -25,6 +25,7 @@ export class PlanCreateComponent {
   }
 
   emitCreatePlan() {
+    console.log(this.form.value);
     this._planService.create(this.form.value, this._authService.getId()).subscribe({
       next: () => {
         alert("Plan created successfully.");
