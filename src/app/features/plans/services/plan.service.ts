@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {PlanCreateCommand} from '../utils/plan-create-command';
 import {PlanCreateOutput} from '../utils/plan-create-output';
 import {Observable} from 'rxjs';
+import {PlanSearchOutput} from "../utils/plan-search-output";
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,21 @@ export class PlanService {
 
   public create(planCreateCommand: PlanCreateCommand, userId: number): Observable<PlanCreateOutput> {
     return this._htppClient.post<PlanCreateOutput>(`${PlanService.URL}/${userId}/plans`, planCreateCommand, {withCredentials: true});
+  }
+
+  public getAllPlans(): Observable<PlanSearchOutput> {
+    return this._htppClient.get<PlanSearchOutput>(`${PlanService.URL}/plans`, {withCredentials: true});
+  }
+
+  public getAllPlansByPrivacy(privacy: string): Observable<PlanSearchOutput> {
+    return this._htppClient.get<PlanSearchOutput>(`${PlanService.URL}/plans/privacy/${privacy}`, {withCredentials: true});
+  }
+
+  public getAllPlansByCreatorId(userId: number): Observable<PlanSearchOutput> {
+    return this._htppClient.get<PlanSearchOutput>(`${PlanService.URL}/${userId}/plans`, {withCredentials: true});
+  }
+
+  public getAllPlansByCategory(category: string): Observable<PlanSearchOutput> {
+    return this._htppClient.get<PlanSearchOutput>(`${PlanService.URL}/plans/category/${category}`, {withCredentials: true});
   }
 }
