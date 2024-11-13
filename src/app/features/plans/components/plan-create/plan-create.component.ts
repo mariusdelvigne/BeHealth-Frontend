@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {PlanService} from '../../services/plan.service';
+import {AuthService} from '../../../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-plan-create',
@@ -19,4 +21,17 @@ export class PlanCreateComponent {
     durationInDays: new FormControl('', Validators.required),
   });
 
+  constructor(private _planService: PlanService, private  _authService: AuthService) {
+  }
+
+  emitCreatePlan() {
+    this._planService.create(this.form.value, this._authService.getId()).subscribe({
+      next: () => {
+        alert("Plan created successfully.");
+      },
+      error: (error) => {
+        alert(error.message);
+      }
+    })
+  }
 }
