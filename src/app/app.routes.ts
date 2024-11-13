@@ -4,6 +4,7 @@ import {AuthSignInComponent} from './core/auth/components/auth-sign-in/auth-sign
 import {AuthSignOutComponent} from './core/auth/components/auth-sign-out/auth-sign-out.component';
 import {AuthSignUpComponent} from './core/auth/components/auth-sign-up/auth-sign-up.component';
 import {PlanCreateComponent} from './features/plans/components/plan-create/plan-create.component';
+import {PlanSearchComponent} from './features/plans/components/plan-search/plan-search.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,9 @@ export const routes: Routes = [
   {
     path: 'plan-create',
     component: PlanCreateComponent,
+  },
+  {
+    path: 'plan-search',
+    component: PlanSearchComponent,
   }
 ]

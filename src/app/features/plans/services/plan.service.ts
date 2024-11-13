@@ -18,19 +18,19 @@ export class PlanService {
     return this._htppClient.post<PlanCreateOutput>(`${PlanService.URL}/${userId}/plans`, planCreateCommand, {withCredentials: true});
   }
 
-  public getAllPlans(): Observable<PlanSearchOutput> {
-    return this._htppClient.get<PlanSearchOutput>(`${PlanService.URL}/plans`, {withCredentials: true});
+  public getAllPlans(): Observable<any> {
+    return this._htppClient.get<any>(`${PlanService.URL}/plans`, {withCredentials: true});
   }
 
-  public getAllPlansByPrivacy(privacy: string): Observable<PlanSearchOutput> {
-    return this._htppClient.get<PlanSearchOutput>(`${PlanService.URL}/plans/privacy/${privacy}`, {withCredentials: true});
+  public getAllPlansByPrivacy(privacy: string): Observable<any> {
+    return this._htppClient.get<any>(`${PlanService.URL}/plans/privacy/${privacy}`, {withCredentials: true});
   }
 
-  public getAllPlansByCreatorId(userId: number): Observable<PlanSearchOutput> {
-    return this._htppClient.get<PlanSearchOutput>(`${PlanService.URL}/${userId}/plans`, {withCredentials: true});
+  public getAllPlansByCreatorId(userId: number): Observable<any> {
+    return this._htppClient.get<PlanSearchOutput[]>(`${PlanService.URL}/${userId}/plans`, {withCredentials: true});
   }
 
-  public getAllPlansByCategory(category: string): Observable<PlanSearchOutput> {
-    return this._htppClient.get<PlanSearchOutput>(`${PlanService.URL}/plans/category/${category}`, {withCredentials: true});
+  public getAllPlansByCategory(category: string): Observable<any> {
+    return this._htppClient.get<any>(`${PlanService.URL}/plans/category/${category}`, {withCredentials: true});
   }
 }
