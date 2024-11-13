@@ -1,12 +1,12 @@
 <form [formGroup]="form" (submit)="emitSignIn()" class="m-3 p-3 rounded" [@colorChange]="colorChange">
   <div class="row">
-    <label for="username" class="col-sm-2 col-form-label fw-bold mt-3">Username</label>
+    <label for="username" class="col-sm-2 col-form-label fw-bold">Username</label>
     <div class="col-sm-10">
       <input class="form-control w-100" type="text" placeholder="Username" formControlName="username" id="username">
     </div>
   </div>
   <div class="row">
-    <label for="password" class="col-sm-2 col-form-label fw-bold mt-3">Password</label>
+    <label for="password" class="col-sm-2 col-form-label fw-bold">Password</label>
     <div class="col-sm-10">
       <input class="form-control w-100" type="password" placeholder="Password" formControlName="password" id="password">
     </div>
