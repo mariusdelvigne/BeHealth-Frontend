@@ -3,6 +3,7 @@ import {HomeComponent} from './core/home/home.component';
 import {AuthSignInComponent} from './core/auth/components/auth-sign-in/auth-sign-in.component';
 import {AuthSignOutComponent} from './core/auth/components/auth-sign-out/auth-sign-out.component';
 import {AuthSignUpComponent} from './core/auth/components/auth-sign-up/auth-sign-up.component';
+import {PlanCreateComponent} from './features/plans/components/plan-create/plan-create.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'sign-out',
     component: AuthSignOutComponent,
+  },
+  {
+    path: 'plan-create',
+    component: PlanCreateComponent,
   }
 ]
