@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {UserOutput} from '../../../utils/user-output';
+import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
@@ -14,5 +14,5 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 })
 export class UserListComponent {
   @Input()
-  users: UserOutput[] = []
+  users: UserSearchOutput[] = []
 }

@@ -3,7 +3,7 @@ import {HomeComponent} from './core/home/home.component';
 import {AuthSignInComponent} from './core/auth/components/auth-sign-in/auth-sign-in.component';
 import {AuthSignOutComponent} from './core/auth/components/auth-sign-out/auth-sign-out.component';
 import {AuthSignUpComponent} from './core/auth/components/auth-sign-up/auth-sign-up.component';
-import {UserSearchComponent} from './features/user/components/user-search/user-search.component';
+import {UserSearchComponent} from './features/users/components/user-search/user-search.component';
 import {PlanCreateComponent} from './features/plans/components/plan-create/plan-create.component';
 import {InsertComponent} from './features/users/components/insert/insert.component';
 import {InsertFoodComponent} from './features/users/components/insert/insert-food/insert-food.component';

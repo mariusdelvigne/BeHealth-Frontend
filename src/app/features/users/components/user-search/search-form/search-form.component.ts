@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {UserSearchQuery} from '../../../utils/user-search-query';
+import {UserSearchQuery} from '../../../../../shared/utils/user-search-query';
 
 @Component({
   selector: 'app-search-form',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {apis, environment} from '../../../../environments/environment';
+import {apis, environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserSearchQuery} from '../utils/user-search-query';
@@ -17,7 +17,7 @@ export class UserSearchService {
   }
 
   getUserByUsername(query: UserSearchQuery): Observable<any> {
-    console.log(UserSearchService.urlSearchUser + "/" + query.username + "/usernames")
+    // console.log(UserSearchService.urlSearchUser + "/" + query.username + "/usernames")
     return this._http.get<any>(UserSearchService.urlSearchUser + "/" + query.username + "/usernames");
   }
 }
