@@ -6,6 +6,7 @@ import {AuthSignUpComponent} from './core/auth/components/auth-sign-up/auth-sign
 import {InsertComponent} from './features/users/components/insert/insert.component';
 import {InsertFoodComponent} from './features/users/components/insert/insert-food/insert-food.component';
 import {InsertSportComponent} from './features/users/components/insert/insert-sport/insert-sport.component';
+import {PlanCreateComponent} from './features/plans/components/plan-create/plan-create.component';
 
 export const routes: Routes = [
   {
@@ -38,4 +39,9 @@ export const routes: Routes = [
       }
     ]
   },
+  },
+  {
+    path: 'plan-create',
+    component: PlanCreateComponent,
+  }
 ]
