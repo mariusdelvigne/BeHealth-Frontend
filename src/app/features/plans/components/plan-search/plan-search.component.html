@@ -18,17 +18,17 @@
 @for (plan of plans; track $index) {
   <div class="container text-center">
     <div class="row bg-info">
-      <textarea class="form-control-lg col-sm-4 w-auto m-3">{{ plan.name }}</textarea>
+      <textarea class="form-control-lg col-sm-4 w-auto m-3" disabled>{{ plan.name }}</textarea>
 
-      <textarea class="form-control-lg col-sm-4 w-auto m-3">{{ plan.privacy }}</textarea>
+      <textarea class="form-control-lg col-sm-4 w-auto m-3" disabled>{{ plan.privacy }}</textarea>
 
-      <textarea class="form-control-lg col-sm-4 w-auto m-3">{{ plan.category }}</textarea>
+      <textarea class="form-control-lg col-sm-4 w-auto m-3" disabled>{{ plan.category }}</textarea>
 
-      <textarea class="form-control-lg col-sm-4 w-auto m-3">{{ plan.durationInDays }}</textarea>
+      <textarea class="form-control-lg col-sm-4 w-auto m-3" disabled>{{ plan.durationInDays }}</textarea>
     </div>
 
     <div class="row">
-      <textarea class="form-control-lg" style="min-height: 25vh">{{ plan.description }}</textarea>
+      <textarea class="form-control-lg" style="min-height: 25vh" disabled>{{ plan.description }}</textarea>
     </div>
   </div>
 }
