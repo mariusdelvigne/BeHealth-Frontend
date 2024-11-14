@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {PlanCreateCommand} from '../utils/plan-create-command';
 import {PlanCreateOutput} from '../utils/plan-create-output';
 import {Observable} from 'rxjs';
@@ -18,19 +18,34 @@ export class PlanService {
     return this._htppClient.post<PlanCreateOutput>(`${PlanService.URL}/${userId}/plans`, planCreateCommand, {withCredentials: true});
   }
 
-  public getAllPlans(): Observable<any> {
-    return this._htppClient.get<any>(`${PlanService.URL}/plans`, {withCredentials: true});
+/*  public getPlansPublic(): Observable<any> {
+    return this._htppClient.get<any>(`${PlanService.URL}/plans/privacy/public`, {withCredentials: true});
   }
 
-  public getAllPlansByPrivacy(privacy: string): Observable<any> {
-    return this._htppClient.get<any>(`${PlanService.URL}/plans/privacy/${privacy}`, {withCredentials: true});
+  public getPlansPublicFilterByCategory(category: string): Observable<any> {
+    return this._htppClient.get<any>(`${PlanService.URL}/plans/privacy/public?category=${category}`, {withCredentials: true});
   }
 
-  public getAllPlansByCreatorId(userId: number): Observable<any> {
-    return this._htppClient.get<PlanSearchOutput[]>(`${PlanService.URL}/${userId}/plans`, {withCredentials: true});
+  public getPlansPublicFilterByNameContaining(name: string): Observable<any> {
+    return this._htppClient.get<any>(`${PlanService.URL}/plans/privacy/public?name=${name}`, {withCredentials: true});
   }
 
-  public getAllPlansByCategory(category: string): Observable<any> {
-    return this._htppClient.get<any>(`${PlanService.URL}/plans/category/${category}`, {withCredentials: true});
+  public getPlansPublicFilterByCategoryByNameContaining(name: string): Observable<any> {
+    return this._htppClient.get<any>(`${PlanService.URL}/plans/privacy/public?name=${name}?`, {withCredentials: true});
+  }*/
+
+  getPlansPublicFilter(name?: string, category?: string) {
+    let params = new HttpParams();
+    if (name) {
+      params = params.set('name', name);
+    }
+    if (category) {
+      params = params.set('category', category);
+    }
+
+    return this._htppClient.get<any>(
+      `${PlanService.URL}/plans/privacy/public/filter`,
+      {params: params, withCredentials: true
+    });
   }
 }

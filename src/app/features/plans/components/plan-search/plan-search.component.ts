@@ -17,7 +17,7 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
 export class PlanSearchComponent implements OnInit {
   plans: PlanSearchOutput[] = [];
   form: FormGroup = new FormGroup({
-/*    name: new FormControl(''),*/
+    name: new FormControl(''),
     category: new FormControl(''),
   });
 
@@ -25,7 +25,7 @@ export class PlanSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-      this._planService.getAllPlans().subscribe({
+      this._planService.getPlansPublicFilter().subscribe({
         next: (plans) => {
           this.plans = plans.plans;
         },
@@ -36,6 +36,8 @@ export class PlanSearchComponent implements OnInit {
   }
 
   emitSearchPlan() {
-    this._planService.getAllPlansByCategory(this.form.value.category).subscribe(plans => this.plans = plans.plans);
+    this._planService.getPlansPublicFilter(
+      this.form.value.name, this.form.value.category)
+      .subscribe(plans => this.plans = plans.plans);
   }
 }
