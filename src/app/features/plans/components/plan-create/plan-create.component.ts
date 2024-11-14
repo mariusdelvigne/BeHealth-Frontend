@@ -16,7 +16,7 @@ export class PlanCreateComponent {
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     category: new FormControl('sport'),
-    privacy: new FormControl('Private', Validators.required),
+    privacy: new FormControl('private', Validators.required),
     description: new FormControl('', Validators.required),
     durationInDays: new FormControl('', Validators.required),
   });
