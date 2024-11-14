@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PlanService} from '../../services/plan.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-plan-create',
@@ -10,7 +11,22 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
     ReactiveFormsModule
   ],
   templateUrl: './plan-create.component.html',
-  styleUrl: './plan-create.component.css'
+  styleUrl: './plan-create.component.css',
+  animations: [
+    trigger('colorChange', [
+      state('grey', style({
+        backgroundColor: 'rgba(173, 181, 189, 0.3)',
+        border: '3px solid rgba(173, 181, 189, 0.5)',
+      })),
+      state('blue', style({
+        backgroundColor: 'rgba(13, 110, 253, 0.3)',
+        border: '3px solid rgba(13, 110, 253, 0.5)',
+      })),
+      transition('grey <=> blue', [
+        animate('1s ease-out')
+      ])
+    ])
+  ]
 })
 export class PlanCreateComponent {
   form: FormGroup = new FormGroup({
@@ -34,5 +50,9 @@ export class PlanCreateComponent {
         alert(error.message);
       }
     })
+  }
+
+  get colorChange() {
+    return this.form.invalid ? 'grey' : 'blue';
   }
 }
