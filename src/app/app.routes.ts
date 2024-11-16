@@ -11,6 +11,8 @@ import {InsertFoodComponent} from './features/users/components/insert/insert-foo
 import {InsertSportComponent} from './features/users/components/insert/insert-sport/insert-sport.component';
 import {InsertSleepComponent} from './features/users/components/insert/insert-sleep/insert-sleep.component';
 import {InsertPeriodComponent} from './features/users/components/insert/insert-period/insert-period.component';
+import {ProfileCheckComponent} from './features/profile/components/profile-check/profile-check.component';
+import {ProfileDeleteComponent} from './features/profile/components/profile-delete/profile-delete.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +42,14 @@ export const routes: Routes = [
   {
     path: 'plan-search',
     component: PlanSearchComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileCheckComponent,
+  },
+  {
+    path: 'profile-delete',
+    component: ProfileDeleteComponent,
   },
   {
     path: 'insert',
