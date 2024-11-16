@@ -41,7 +41,7 @@ export class PlanSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-      this._planService.getPlansPublicFilter().subscribe({
+      this._planService.getPlansFiltered().subscribe({
         next: (plans) => {
           this.plans = plans.plans;
         },
@@ -52,8 +52,8 @@ export class PlanSearchComponent implements OnInit {
   }
 
   emitSearchPlan() {
-    this._planService.getPlansPublicFilter(
-      this.form.value.name, this.form.value.category)
+    this._planService.getPlansFiltered(
+      "public", this.form.value.name, this.form.value.category)
       .subscribe(plans => this.plans = plans.plans);
   }
 
