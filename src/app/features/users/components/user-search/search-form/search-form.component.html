@@ -1,8 +1,14 @@
-<form [formGroup]="formSearch" (submit)="searchUser()">
-  <div>
-    <label>
-      Username : <input type="text" formControlName="username">
-      <input type="submit" [disabled]="formSearch.invalid">
+<form [formGroup]="formSearch" (submit)="searchUser()" class="d-flex justify-content-center mt-3">
+  <div class="form-group">
+    <label class="d-flex align-items-center">
+      <div class="input-group">
+        <input type="text" formControlName="username" class="form-control" placeholder="Search">
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-outline-secondary" [disabled]="formSearch.invalid" (click)="onButtonClick($event)">
+            Search
+          </button>
+        </div>
+      </div>
     </label>
   </div>
 </form>
