@@ -1,19 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PlanSearchOutput} from '../../utils/plan-search-output';
 import {PlanService} from '../../services/plan.service';
-import {AuthService} from '../../../../core/auth/services/auth.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
-  selector: 'app-plan-search',
+  selector: 'app-plan-search-public',
   standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule
   ],
-  templateUrl: './plan-search.component.html',
-  styleUrl: './plan-search.component.css',
+  templateUrl: './plan-search-public.component.html',
+  styleUrl: './plan-search-public.component.css',
   animations: [
     trigger('colorChange', [
       state('grey', style({
@@ -30,14 +29,14 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ])
   ]
 })
-export class PlanSearchComponent implements OnInit {
+export class PlanSearchPublicComponent implements OnInit {
   plans: PlanSearchOutput[] = [];
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
     category: new FormControl(''),
   });
 
-  constructor(private _planService: PlanService, private _authService: AuthService) {
+  constructor(private _planService: PlanService) {
   }
 
   ngOnInit() {

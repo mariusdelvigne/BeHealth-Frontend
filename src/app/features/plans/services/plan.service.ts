@@ -20,7 +20,7 @@ export class PlanService {
     return this._htppClient.post<PlanCreateOutput>(`${PlanService.URL_USERS}/${userId}/plans`, planCreateCommand, {withCredentials: true});
   }
 
-  getPlansFiltered(privacy?: string, name?: string, category?: string) {
+  public getPlansFiltered(privacy?: string, name?: string, category?: string) {
     let params = new HttpParams();
     if (privacy) {
       params = params.set('privacy', privacy);
@@ -36,5 +36,9 @@ export class PlanService {
       `${PlanService.URL_PLANS}`,
       {params: params, withCredentials: true
     });
+  }
+
+  public getPlansByUserId(userId: number) {
+    return this._htppClient.get<any>(`${PlanService.URL_PLANS}/users/${userId}`);
   }
 }
