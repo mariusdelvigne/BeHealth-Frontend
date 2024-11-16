@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {UserFoodService} from '../../../../../shared/services/user-food.service';
+import {debounceTime} from 'rxjs';
 
 @Component({
   selector: 'app-insert-food',
@@ -28,14 +29,24 @@ import {UserFoodService} from '../../../../../shared/services/user-food.service'
     ])
   ]
 })
-export class InsertFoodComponent {
+export class InsertFoodComponent implements OnInit {
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     quantityInG: new FormControl('', [Validators.required, Validators.min(1)]),
     eatenDatetime: new FormControl('', Validators.required),
   });
 
+  foods: any[] = [];
+
   constructor(private _userFoodService: UserFoodService) { }
+
+  ngOnInit() {
+    this.form.get('name')?.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(value => {
+        this.updateFoodList(value);
+      });
+  }
 
   emitUserFood() {
     this._userFoodService.create(this.form.value).subscribe({
@@ -47,4 +58,10 @@ export class InsertFoodComponent {
     return this.form.invalid ? 'grey' : 'blue';
   }
 
+  updateFoodList(name: string) {
+    this._userFoodService.getAllStartingWith(name)
+      .subscribe({
+        next: response => this.foods = response.foods,
+      });
+  }
 }

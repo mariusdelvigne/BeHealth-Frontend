@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {apis, environment} from '../../../environments/environment';
 import {UserFoodCreateCommand} from '../utils/user-food-create-command';
 import {Observable} from 'rxjs';
@@ -20,5 +20,13 @@ export class UserFoodService {
       {
         withCredentials: true,
       });
+  }
+
+  public getAllStartingWith(text: string): Observable<any> {
+    const params = new HttpParams().set('text', text);
+    return this._httpClient.get<any>('http://localhost:5114/foods', {
+      withCredentials: true,
+      params: params,
+    });
   }
 }
