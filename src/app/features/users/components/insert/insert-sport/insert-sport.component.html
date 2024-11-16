@@ -1,9 +1,14 @@
-<form [formGroup]="form" (submit)="emitUserSport()" class="m-3 p-3 rounded" [@colorChange]="colorChange">
+<form [formGroup]="form" (submit)="emitUserSport()" class="m-3 p-3 rounded" [@colorChange]="colorChange" autocomplete="off">
   <h3>Insert a sport</h3>
   <div class="row">
     <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
     <div class="col-sm-10">
-      <input class="form-control w-100" type="text" placeholder="Name" formControlName="name" id="name">
+      <input class="form-control w-100" type="text" placeholder="Name" list="sportList" formControlName="name" id="name">
+      <datalist id="sportList">
+        @for (sport of sports; track sport.id) {
+          <option [value]="sport.name"></option>
+        }
+      </datalist>
     </div>
   </div>
   <div class="row">
