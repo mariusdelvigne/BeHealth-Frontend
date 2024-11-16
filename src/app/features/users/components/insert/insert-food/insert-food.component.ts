@@ -3,6 +3,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {UserFoodService} from '../../../../../shared/services/user-food.service';
 import {debounceTime} from 'rxjs';
+import {FoodService} from '../../../../../shared/services/food.service';
 
 @Component({
   selector: 'app-insert-food',
@@ -38,7 +39,7 @@ export class InsertFoodComponent implements OnInit {
 
   foods: any[] = [];
 
-  constructor(private _userFoodService: UserFoodService) { }
+  constructor(private _userFoodService: UserFoodService, private _foodService: FoodService) { }
 
   ngOnInit() {
     this.form.get('name')?.valueChanges
@@ -59,7 +60,7 @@ export class InsertFoodComponent implements OnInit {
   }
 
   updateFoodList(name: string) {
-    this._userFoodService.getAllStartingWith(name)
+    this._foodService.getAllStartingWith(name)
       .subscribe({
         next: response => this.foods = response.foods,
       });

@@ -6,4 +6,5 @@ export const apis = {
   AUTH_URL: "sessions",
   USERS_URL: "users",
   PLANS_URL: "plans",
+  FOOD_URL: "foods",
 };
