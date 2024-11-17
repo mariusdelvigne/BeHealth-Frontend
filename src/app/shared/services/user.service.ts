@@ -16,4 +16,11 @@ export class UserService {
   public signUp(userCreateCommand: UserCreateCommand): Observable<UserCreateOutput> {
     return this._httpClient.post<UserCreateOutput>(UserService.URL, userCreateCommand, {withCredentials: true});
   }
+
+  public getById(userId: number): Observable<any> {
+    console.log(`${UserService.URL}/${userId}`)
+    return this._httpClient.get<any>(`${UserService.URL}/${userId}`, {
+      withCredentials: true,
+    });
+  }
 }
