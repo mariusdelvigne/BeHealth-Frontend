@@ -11,8 +11,9 @@ import {InsertFoodComponent} from './features/users/components/insert/insert-foo
 import {InsertSportComponent} from './features/users/components/insert/insert-sport/insert-sport.component';
 import {InsertSleepComponent} from './features/users/components/insert/insert-sleep/insert-sleep.component';
 import {InsertPeriodComponent} from './features/users/components/insert/insert-period/insert-period.component';
-import {ProfileCheckComponent} from './features/profile/components/profile-check/profile-check.component';
-import {ProfileDeleteComponent} from './features/profile/components/profile-delete/profile-delete.component';
+import {AccountInformationComponent} from './features/profile/components/account/account-information/account-information.component';
+import {AccountDeleteComponent} from './features/profile/components/account/account-delete/account-delete.component';
+import {AccountComponent} from './features/profile/components/account/account.component';
 
 export const routes: Routes = [
   {
@@ -44,12 +45,18 @@ export const routes: Routes = [
     component: PlanSearchComponent,
   },
   {
-    path: 'profile',
-    component: ProfileCheckComponent,
-  },
-  {
-    path: 'profile-delete',
-    component: ProfileDeleteComponent,
+    path: 'account',
+    component: AccountComponent,
+    children: [
+      {
+        path: '',
+        component: AccountInformationComponent,
+      },
+      {
+        path: 'delete',
+        component: AccountDeleteComponent,
+      }
+    ]
   },
   {
     path: 'insert',
