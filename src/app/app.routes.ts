@@ -5,12 +5,15 @@ import {AuthSignOutComponent} from './core/auth/components/auth-sign-out/auth-si
 import {AuthSignUpComponent} from './core/auth/components/auth-sign-up/auth-sign-up.component';
 import {UserSearchComponent} from './features/users/components/user-search/user-search.component';
 import {PlanCreateComponent} from './features/plans/components/plan-create/plan-create.component';
-import {PlanSearchComponent} from './features/plans/components/plan-search/plan-search.component';
+import {PlanSearchPublicComponent} from './features/plans/components/plan-search-public/plan-search-public.component';
 import {InsertComponent} from './features/users/components/insert/insert.component';
 import {InsertFoodComponent} from './features/users/components/insert/insert-food/insert-food.component';
 import {InsertSportComponent} from './features/users/components/insert/insert-sport/insert-sport.component';
 import {InsertSleepComponent} from './features/users/components/insert/insert-sleep/insert-sleep.component';
 import {InsertPeriodComponent} from './features/users/components/insert/insert-period/insert-period.component';
+import {ProfileCheckComponent} from './features/profile/components/profile-check/profile-check.component';
+import {ProfileDeleteComponent} from './features/profile/components/profile-delete/profile-delete.component';
+import {PlanSearchPrivateComponent} from './features/plans/components/plan-search-private/plan-search-private.component';
 
 export const routes: Routes = [
   {
@@ -38,8 +41,16 @@ export const routes: Routes = [
     component: PlanCreateComponent,
   },
   {
-    path: 'plan-search',
-    component: PlanSearchComponent,
+    path: 'plan-search-public',
+    component: PlanSearchPublicComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileCheckComponent,
+  },
+  {
+    path: 'profile-delete',
+    component: ProfileDeleteComponent,
   },
   {
     path: 'insert',
@@ -62,5 +73,9 @@ export const routes: Routes = [
         component: InsertPeriodComponent,
       }
     ]
+  },
+  {
+      path: 'plan-search-private',
+      component: PlanSearchPrivateComponent,
   }
 ]

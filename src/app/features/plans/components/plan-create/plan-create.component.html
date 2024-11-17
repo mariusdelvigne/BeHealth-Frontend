@@ -2,7 +2,7 @@
   <form class="m-3 p-3 rounded" [formGroup]="form" (submit)="emitCreatePlan()" [@colorChange]="colorChange">
     <div class="row mt-3 mb-2">
       <div class="col-2">
-        <textarea class="form-control" formControlName="name" placeholder="Title"></textarea>
+        <input class="form-control h-100" formControlName="name" placeholder="Title">
       </div>
       <div class="col-2">
         <select class="form-control h-100" formControlName="privacy">

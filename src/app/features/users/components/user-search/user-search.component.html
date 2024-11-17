@@ -1,9 +1,9 @@
-<div>
-  <h2>Search user by username</h2>
-  <div>
+<div class="container mt-4">
+  <h2 class="custom-title">Search user by username</h2>
+  <div class="mt-4">
     <app-search-form (userSearch)="searchUserByName($event)"></app-search-form>
   </div>
-  <div>
+  <div class="mt-4">
     <app-user-list [users]="user"></app-user-list>
   </div>
 </div>

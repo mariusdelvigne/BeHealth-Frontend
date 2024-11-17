@@ -1,0 +1,45 @@
+<div class="container text-center">
+  <form class="m-3 p-3 rounded" [formGroup]="form" (submit)="emitSearchPlan()" [@colorChange]="colorChange">
+    <div class="row mt-3 mb-2">
+      <div class="col-2">
+        <input class="form-control" formControlName="name" placeholder="Title">
+      </div>
+
+      <div class="col-2">
+        <select formControlName="category" class="form-control">
+          <option value="sport" selected>Sport</option>
+          <option value="food">Food</option>
+          <option value="sleep">Sleep</option>
+        </select>
+      </div>
+
+      <div class="col-8">
+        <input class="btn btn-primary w-100" type="submit" [disabled]="form.invalid" value="Filter">
+      </div>
+    </div>
+
+  </form>
+
+  @for (plan of plans; track $index) {
+    <div class="container text-center">
+      <div class="row mt-3 mb-2">
+        <div class="col-2">
+          <input class="form-control" [value]="plan.name" disabled>
+        </div>
+        <div class="col-2">
+          <input class="form-control" [value]="plan.privacy" disabled>
+        </div>
+        <div class="col-2">
+          <input class="form-control" [value]="plan.category" disabled>
+        </div>
+        <div class="col-2">
+          <input class="form-control" [value]="plan.durationInDays" disabled>
+        </div>
+      </div>
+
+      <div class="row mt-3 mb-2">
+        <input class="form-control" [value]="plan.description" style="min-height: 25vh" disabled>
+      </div>
+    </div>
+  }
+</div>

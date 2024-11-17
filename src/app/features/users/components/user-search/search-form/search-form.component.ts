@@ -12,7 +12,14 @@ import {UserSearchQuery} from '../../../../../shared/utils/user-search-query';
   styleUrl: './search-form.component.css'
 })
 export class SearchFormComponent {
-  formSearch: FormGroup = new FormGroup({
+
+  onButtonClick(event: Event) {
+    const button = event.target as HTMLButtonElement;
+    button.classList.add('btn-clicked');
+    setTimeout(() => button.classList.remove('btn-clicked'), 300);
+  }
+
+    formSearch: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required])
   })
   @Output()
