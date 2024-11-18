@@ -41,7 +41,6 @@ export class PlanCreateComponent {
   }
 
   emitCreatePlan() {
-    console.log(this.form.value);
     this._planService.create(this.form.value, this._authService.getId()).subscribe({
       next: () => {
         alert("Plan created successfully.");

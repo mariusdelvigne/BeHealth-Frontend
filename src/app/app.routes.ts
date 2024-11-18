@@ -14,6 +14,7 @@ import {InsertPeriodComponent} from './features/users/components/insert/insert-p
 import {ProfileCheckComponent} from './features/profile/components/profile-check/profile-check.component';
 import {ProfileDeleteComponent} from './features/profile/components/profile-delete/profile-delete.component';
 import {PlanSearchMineComponent} from './features/plans/components/plan-search-mine/plan-search-mine.component';
+import {ProgramCreateComponent} from './features/programs/components/program-create/program-create.component';
 
 export const routes: Routes = [
   {
@@ -39,10 +40,6 @@ export const routes: Routes = [
   {
     path: 'plan-create',
     component: PlanCreateComponent,
-  },
-  {
-    path: 'plan-search-public',
-    component: PlanSearchPublicComponent,
   },
   {
     path: 'profile',
@@ -75,7 +72,15 @@ export const routes: Routes = [
     ]
   },
   {
-      path: 'plan-search-mine',
-      component: PlanSearchMineComponent,
+    path: 'plan-search-mine',
+    component: PlanSearchMineComponent,
+  },
+  {
+    path: 'plan-search-public',
+    component: PlanSearchPublicComponent,
+  },
+  {
+    path: 'program-create',
+    component: ProgramCreateComponent,
   }
 ]
