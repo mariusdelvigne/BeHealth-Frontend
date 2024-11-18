@@ -1,24 +1,29 @@
 @if (sleepPlans.length) {
   <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-borderless">
       <thead>
       <tr>
         <th>Name</th>
-        <th>Privacy</th>
         <th>Duration (days)</th>
       </tr>
       </thead>
       <tbody>
         @for (sleepPlan of sleepPlans; track $index) {
-          <tr>
-            <td>{{ sleepPlan.name }}</td>
-            <td>{{ sleepPlan.privacy }}</td>
+          <tr (dblclick)="selectPlan(sleepPlan)" [ngClass]="{ 'selected': isSelected(sleepPlan) }">
+            <td (mouseenter)="showTooltip($event, sleepPlan.description)" (mouseleave)="hideTooltip()">{{ sleepPlan.name }}</td>
             <td>{{ sleepPlan.durationInDays }}</td>
           </tr>
         }
       </tbody>
     </table>
+    <div class="position-absolute">
+      @for (selectedPlan of selectedPlans; track $index) {
+        <button class="btn-info" disabled>{{ selectedPlan.name}}</button>
+      }
+    </div>
   </div>
+
+  <div id="tooltip" class="tooltip-custom" hidden></div>
 } @else {
   <h2>No Sports Found</h2>
 }

@@ -4,7 +4,6 @@
       <thead>
       <tr>
         <th>Name</th>
-        <th>Privacy</th>
         <th>Duration (days)</th>
       </tr>
       </thead>
@@ -12,7 +11,6 @@
         @for (sportPlan of sportPlans; track $index) {
           <tr (dblclick)="selectPlan(sportPlan)" [ngClass]="{ 'selected': isSelected(sportPlan) }">
             <td (mouseenter)="showTooltip($event, sportPlan.description)" (mouseleave)="hideTooltip()">{{ sportPlan.name }}</td>
-            <td>{{ sportPlan.privacy }}</td>
             <td>{{ sportPlan.durationInDays }}</td>
           </tr>
         }
