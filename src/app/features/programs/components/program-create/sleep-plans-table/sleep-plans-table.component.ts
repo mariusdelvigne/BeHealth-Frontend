@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PlanService} from '../../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
 
@@ -16,7 +16,8 @@ import {NgClass} from '@angular/common';
 })
 export class SleepPlansTableComponent implements OnInit{
   sleepPlans: any;
-  selectedPlans: any[] = [];
+  selectedSleepPlan: any;
+  @Output() emitSleepPlan = new EventEmitter();
 
   constructor(private _planService: PlanService) {
   }
@@ -32,37 +33,12 @@ export class SleepPlansTableComponent implements OnInit{
     })
   }
 
-  showTooltip(event: MouseEvent, text: string): void {
-    const tooltip = document.getElementById('tooltip');
-    if (tooltip) {
-      tooltip.innerText = "description : " + text;
-
-      // Lay the tooltip near the cursor
-      tooltip.style.left = `${event.pageX}px`;
-      tooltip.style.top = `${event.pageY - 10}px`;
-
-      tooltip.hidden = false;
-    }
-  }
-
-  hideTooltip(): void {
-    const tooltip = document.getElementById('tooltip');
-    if (tooltip) {
-      tooltip.hidden = true;
-    }
-  }
-
   selectPlan(plan: any) {
-    const index = this.selectedPlans.indexOf(plan);
-    if (index == -1) {
-      this.selectedPlans.push(plan);
-
-    } else {
-      this.selectedPlans.splice(index, 1);
-    }
+    this.selectedSleepPlan = plan;
+    this.emitSleepPlan.emit(plan);
   }
 
-  isSelected(sportPlan: any) {
-    return this.selectedPlans.includes(sportPlan);
+  isSelected(sleepPlan: any) {
+    return this.selectedSleepPlan == sleepPlan;
   }
 }

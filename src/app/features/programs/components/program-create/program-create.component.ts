@@ -25,6 +25,9 @@ export class ProgramCreateComponent {
     privacy: new FormControl('private', Validators.required),
     description: new FormControl('', Validators.required),
   });
+  selectedSportPlan: any = null;
+  selectedSleepPlan: any = null;
+  selectedFoodPlan: any = null;
 
   constructor(private _programService: ProgramService, private _authService: AuthService) {
   }
@@ -38,5 +41,17 @@ export class ProgramCreateComponent {
         alert(error.message);
       }
     })
+  }
+
+  setSelectedSportPlan(sportPlan: any) {
+    this.selectedSportPlan = sportPlan;
+  }
+
+  setSelectedSleepPlan(sleepPlan: any) {
+    this.selectedSleepPlan = sleepPlan;
+  }
+
+  setSelectedFoodPlan(foodPlan: any) {
+    this.selectedFoodPlan = foodPlan;
   }
 }

@@ -11,26 +11,38 @@
 
 
   <div class="d-flex mt-2 gap-1">
-    <div class="flex-fill border border-warning border-3 rounded position-relative" style="height: 45vh">
+    <div class="flex-fill border border-warning border-3 rounded overflow-auto" style="height: 45vh">
       <h4 class="text-center bg-warning text-white p-1">Food</h4>
       <div class="overflow-auto">
-        <app-food-plans-table></app-food-plans-table>
+        <app-food-plans-table (emitFoodPlan)="setSelectedFoodPlan($event)"></app-food-plans-table>
       </div>
     </div>
 
-    <div class="flex-fill border border-danger border-3 rounded" style="height: 300px">
+    <div class="flex-fill border border-danger border-3 rounded overflow-auto" style="height: 300px">
       <h4 class="text-center bg-danger text-white p-1">Sport</h4>
       <div class="overflow-auto">
-        <app-sport-plans-table></app-sport-plans-table>
+        <app-sport-plans-table (emitSportPlan)="setSelectedSportPlan($event)"></app-sport-plans-table>
       </div>
     </div>
 
-    <div class="flex-fill border border-primary border-3 rounded" style="height: 300px">
+    <div class="flex-fill border border-primary border-3 rounded overflow-auto" style="height: 300px">
       <h4 class="text-center bg-primary text-white p-1">Sleep</h4>
       <div class="overflow-auto">
-        <app-sleep-plans-table></app-sleep-plans-table>
+        <app-sleep-plans-table (emitSleepPlan)="setSelectedSleepPlan($event)"></app-sleep-plans-table>
       </div>
     </div>
+  </div>
+
+  <div class="row">
+    @if (selectedFoodPlan) {
+      <button class="col col-4 btn-info bg-warning rounded" disabled>{{ selectedFoodPlan.name }}</button>
+    }
+    @if (selectedSportPlan) {
+      <button class="col col-4 btn-info bg-danger rounded" disabled>{{ selectedSportPlan.name }}</button>
+    }
+    @if (selectedSleepPlan) {
+      <button class="col col-4 btn-info bg-primary rounded" disabled>{{ selectedSleepPlan.name }}</button>
+    }
   </div>
 
   <input type="submit" class="btn btn-secondary w-100 mt-3" value="Create" [disabled]="form.invalid">
