@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlanSearchPrivateComponent } from './plan-search-private.component';
+import { PlanSearchMineComponent } from './plan-search-mine.component';
 
 describe('PlanSearchMineComponent', () => {
-  let component: PlanSearchPrivateComponent;
-  let fixture: ComponentFixture<PlanSearchPrivateComponent>;
+  let component: PlanSearchMineComponent;
+  let fixture: ComponentFixture<PlanSearchMineComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlanSearchPrivateComponent]
+      imports: [PlanSearchMineComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PlanSearchPrivateComponent);
+    fixture = TestBed.createComponent(PlanSearchMineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

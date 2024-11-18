@@ -13,7 +13,7 @@ import {InsertSleepComponent} from './features/users/components/insert/insert-sl
 import {InsertPeriodComponent} from './features/users/components/insert/insert-period/insert-period.component';
 import {ProfileCheckComponent} from './features/profile/components/profile-check/profile-check.component';
 import {ProfileDeleteComponent} from './features/profile/components/profile-delete/profile-delete.component';
-import {PlanSearchPrivateComponent} from './features/plans/components/plan-search-private/plan-search-private.component';
+import {PlanSearchMineComponent} from './features/plans/components/plan-search-mine/plan-search-mine.component';
 
 export const routes: Routes = [
   {
@@ -75,7 +75,7 @@ export const routes: Routes = [
     ]
   },
   {
-      path: 'plan-search-private',
-      component: PlanSearchPrivateComponent,
+      path: 'plan-search-mine',
+      component: PlanSearchMineComponent,
   }
 ]

@@ -10,10 +10,10 @@ import {PlanSearchOutput} from '../../utils/plan-search-output';
     imports: [
         ReactiveFormsModule
     ],
-  templateUrl: './plan-search-private.component.html',
-  styleUrl: './plan-search-private.component.css'
+  templateUrl: './plan-search-mine.component.html',
+  styleUrl: './plan-search-mine.component.css'
 })
-export class PlanSearchPrivateComponent implements OnInit{
+export class PlanSearchMineComponent implements OnInit{
   plans: PlanSearchOutput[] = [];
 
   constructor(private _planService: PlanService, private _authService: AuthService) {

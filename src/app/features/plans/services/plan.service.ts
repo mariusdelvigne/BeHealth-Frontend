@@ -20,17 +20,15 @@ export class PlanService {
     return this._htppClient.post<PlanCreateOutput>(`${PlanService.URL_USERS}/${userId}/plans`, planCreateCommand, {withCredentials: true});
   }
 
-  public getPlansFiltered(privacy?: string, name?: string, category?: string) {
+  public getPlansFiltered(privacy?: string, name?: string, category?: string): Observable<any> {
     let params = new HttpParams();
-    if (privacy) {
+
+    if (privacy)
       params = params.set('privacy', privacy);
-    }
-    if (name) {
+    if (name)
       params = params.set('name', name);
-    }
-    if (category) {
+    if (category)
       params = params.set('category', category);
-    }
 
     return this._htppClient.get<any>(
       `${PlanService.URL_PLANS}`,

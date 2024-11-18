@@ -8,4 +8,5 @@ export const apis = {
   PLANS_URL: "plans",
   FOOD_URL: "foods",
   SPORT_URL: "sports",
+  PROGRAMS_URL: "programs",
 };
