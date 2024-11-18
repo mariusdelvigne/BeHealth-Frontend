@@ -1,0 +1,21 @@
+.tooltip-custom {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px 10px;
+  pointer-events: none; /* Empêche les interactions */
+}
+
+tr.selected {
+  td {
+    background-color: #007bff;
+  }
+}
+
+.btn-info {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px 10px;
+}

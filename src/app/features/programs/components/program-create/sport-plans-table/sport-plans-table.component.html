@@ -1,6 +1,6 @@
 @if (sportPlans.length) {
   <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-borderless">
       <thead>
       <tr>
         <th>Name</th>
@@ -10,15 +10,23 @@
       </thead>
       <tbody>
         @for (sportPlan of sportPlans; track $index) {
-          <tr>
-            <td>{{ sportPlan.name }}</td>
+          <tr (dblclick)="selectPlan(sportPlan)" [ngClass]="{ 'selected': isSelected(sportPlan) }">
+            <td (mouseenter)="showTooltip($event, sportPlan.description)" (mouseleave)="hideTooltip()">{{ sportPlan.name }}</td>
             <td>{{ sportPlan.privacy }}</td>
             <td>{{ sportPlan.durationInDays }}</td>
           </tr>
         }
       </tbody>
     </table>
+
+    <div class="position-absolute">
+      @for (selectedPlan of selectedPlans; track $index) {
+        <button class="btn-info" disabled>{{ selectedPlan.name}}</button>
+      }
+    </div>
   </div>
+
+  <div id="tooltip" class="tooltip-custom" hidden></div>
 } @else {
   <h2>No Sports Found</h2>
 }
