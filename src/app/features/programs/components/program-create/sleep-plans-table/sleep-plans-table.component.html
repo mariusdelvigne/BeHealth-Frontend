@@ -1,0 +1,24 @@
+@if (sleepPlans.length) {
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Privacy</th>
+        <th>Duration (days)</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (sleepPlan of sleepPlans; track $index) {
+          <tr>
+            <td>{{ sleepPlan.name }}</td>
+            <td>{{ sleepPlan.privacy }}</td>
+            <td>{{ sleepPlan.durationInDays }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+} @else {
+  <h2>No Sports Found</h2>
+}

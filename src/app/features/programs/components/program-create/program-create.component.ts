@@ -4,13 +4,17 @@ import {ProgramService} from '../../services/program.service';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {FoodService} from '../../../../shared/services/food.service';
 import {FoodPlansTableComponent} from './food-plans-table/food-plans-table.component';
+import {SportPlansTableComponent} from './sport-plans-table/sport-plans-table.component';
+import {SleepPlansTableComponent} from './sleep-plans-table/sleep-plans-table.component';
 
 @Component({
   selector: 'app-program-create',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    FoodPlansTableComponent
+    FoodPlansTableComponent,
+    SportPlansTableComponent,
+    SleepPlansTableComponent
   ],
   templateUrl: './program-create.component.html',
   styleUrl: './program-create.component.css'
