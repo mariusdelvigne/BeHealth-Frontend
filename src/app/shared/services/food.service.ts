@@ -11,8 +11,12 @@ export class FoodService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  public getAllStartingWith(text: string): Observable<any> {
-    const params = new HttpParams().set('text', text);
+  public getAllStartingWith(text?: string): Observable<any> {
+    let params = new HttpParams();
+
+    if (text)
+      params = params.set('text', text);
+
     return this._httpClient.get<any>(FoodService.URL, {
       withCredentials: true,
       params: params,
