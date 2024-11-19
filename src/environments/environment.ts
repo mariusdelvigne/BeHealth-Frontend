@@ -10,4 +10,5 @@ export const apis = {
   SPORT_URL: "",
   PLANS_URL: "",
   PROGRAMS_URL: "",
+  BMICALCULATOR_URL: "",
 };

@@ -15,6 +15,7 @@ import {ProfileCheckComponent} from './features/profile/components/profile-check
 import {ProfileDeleteComponent} from './features/profile/components/profile-delete/profile-delete.component';
 import {PlanSearchMineComponent} from './features/plans/components/plan-search-mine/plan-search-mine.component';
 import {ProgramCreateComponent} from './features/programs/components/program-create/program-create.component';
+import {BmiCalculatorComponent} from './features/bmiCalculator/components/bmi-calculator/bmi-calculator.component';
 
 export const routes: Routes = [
   {
@@ -50,6 +51,10 @@ export const routes: Routes = [
     component: ProfileDeleteComponent,
   },
   {
+    path: 'bmi-calculator',
+    component: BmiCalculatorComponent,
+  },
+  {
     path: 'insert',
     component: InsertComponent,
     children: [
@@ -83,4 +88,5 @@ export const routes: Routes = [
     path: 'program-create',
     component: ProgramCreateComponent,
   }
+
 ]
