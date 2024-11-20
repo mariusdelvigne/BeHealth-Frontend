@@ -10,5 +10,6 @@ export const apis = {
   SPORT_URL: "",
   PLANS_URL: "",
   PROGRAMS_URL: "",
-  BMICALCULATOR_URL: "",
+  BMI_CALCULATOR_URL: "",
+  NUTRITION_CALCULATOR_URL: "",
 };

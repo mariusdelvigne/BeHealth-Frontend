@@ -13,13 +13,16 @@ import {InsertSleepComponent} from './features/users/components/insert/insert-sl
 import {InsertPeriodComponent} from './features/users/components/insert/insert-period/insert-period.component';
 import {PlanSearchMineComponent} from './features/plans/components/plan-search-mine/plan-search-mine.component';
 import {ProgramCreateComponent} from './features/programs/components/program-create/program-create.component';
-import {BmiCalculatorComponent} from './features/bmiCalculator/components/bmi-calculator/bmi-calculator.component';
 import {AccountInformationComponent} from './features/account/components/account/account-information/account-information.component';
 import {AccountDeleteComponent} from './features/account/components/account/account-delete/account-delete.component';
 import {AccountComponent} from './features/account/components/account/account.component';
 import {
   ProgramSearchPublicComponent
 } from './features/programs/components/program-search-public/program-search-public.component';
+import {BmiCalculatorComponent} from './features/bmi-calculate/components/bmi-calculator/bmi-calculator.component';
+import {
+  NutritionCalculatorComponent
+} from './features/nutrition-calculate/components/nutrition-calculator/nutrition-calculator.component';
 
 export const routes: Routes = [
   {
@@ -105,5 +108,13 @@ export const routes: Routes = [
   {
     path: 'program-search-public',
     component: ProgramSearchPublicComponent,
+  },
+  {
+    path: 'bmi-calculator',
+    component: BmiCalculatorComponent,
+  },
+  {
+    path: 'nutrition-calculator',
+    component: NutritionCalculatorComponent,
   }
 ]

@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {BmiCalculatorService} from '../../services/bmi-calculator.service';
-import {formatNumber} from '@angular/common';
 
 @Component({
   selector: 'app-bmi-calculator',
