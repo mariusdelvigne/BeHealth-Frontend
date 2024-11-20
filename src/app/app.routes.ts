@@ -66,7 +66,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile-delete',
-    component: ProfileDeleteComponent,
+    component: AccountDeleteComponent,
   },
   {
     path: 'insert',
