@@ -11,11 +11,12 @@ import {InsertFoodComponent} from './features/users/components/insert/insert-foo
 import {InsertSportComponent} from './features/users/components/insert/insert-sport/insert-sport.component';
 import {InsertSleepComponent} from './features/users/components/insert/insert-sleep/insert-sleep.component';
 import {InsertPeriodComponent} from './features/users/components/insert/insert-period/insert-period.component';
-import {ProfileCheckComponent} from './features/profile/components/profile-check/profile-check.component';
-import {ProfileDeleteComponent} from './features/profile/components/profile-delete/profile-delete.component';
 import {PlanSearchMineComponent} from './features/plans/components/plan-search-mine/plan-search-mine.component';
 import {ProgramCreateComponent} from './features/programs/components/program-create/program-create.component';
 import {BmiCalculatorComponent} from './features/bmiCalculator/components/bmi-calculator/bmi-calculator.component';
+import {AccountInformationComponent} from './features/account/components/account/account-information/account-information.component';
+import {AccountDeleteComponent} from './features/account/components/account/account-delete/account-delete.component';
+import {AccountComponent} from './features/account/components/account/account.component';
 
 export const routes: Routes = [
   {
@@ -43,12 +44,22 @@ export const routes: Routes = [
     component: PlanCreateComponent,
   },
   {
-    path: 'profile',
-    component: ProfileCheckComponent,
-  },
-  {
-    path: 'profile-delete',
-    component: ProfileDeleteComponent,
+    path: 'account',
+    component: AccountComponent,
+    children: [
+      {
+        path: '',
+        component: AccountInformationComponent,
+      },
+      {
+        path: 'modify',
+        component: AccountInformationComponent,
+      },
+      {
+        path: 'delete',
+        component: AccountDeleteComponent,
+      }
+    ]
   },
   {
     path: 'bmi-calculator',
@@ -88,5 +99,4 @@ export const routes: Routes = [
     path: 'program-create',
     component: ProgramCreateComponent,
   }
-
 ]
