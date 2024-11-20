@@ -17,6 +17,9 @@ import {BmiCalculatorComponent} from './features/bmiCalculator/components/bmi-ca
 import {AccountInformationComponent} from './features/account/components/account/account-information/account-information.component';
 import {AccountDeleteComponent} from './features/account/components/account/account-delete/account-delete.component';
 import {AccountComponent} from './features/account/components/account/account.component';
+import {
+  ProgramSearchPublicComponent
+} from './features/programs/components/program-search-public/program-search-public.component';
 
 export const routes: Routes = [
   {
@@ -62,8 +65,8 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'bmi-calculator',
-    component: BmiCalculatorComponent,
+    path: 'profile-delete',
+    component: ProfileDeleteComponent,
   },
   {
     path: 'insert',
@@ -98,5 +101,9 @@ export const routes: Routes = [
   {
     path: 'program-create',
     component: ProgramCreateComponent,
+  },
+  {
+    path: 'program-search-public',
+    component: ProgramSearchPublicComponent,
   }
 ]

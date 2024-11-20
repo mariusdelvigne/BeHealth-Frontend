@@ -11,7 +11,7 @@
 
 
   <div class="d-flex mt-2 gap-1">
-    <div class="flex-fill border border-warning border-3 rounded overflow-auto" style="height: 45vh">
+    <div class="flex-fill border border-warning border-3 rounded overflow-auto" style="height: 300px">
       <h4 class="text-center bg-warning text-white p-1">Food</h4>
       <div class="overflow-auto">
         <app-food-plans-table (emitFoodPlan)="setSelectedFoodPlan($event)"></app-food-plans-table>
@@ -35,13 +35,13 @@
 
   <div class="row">
     @if (selectedFoodPlan) {
-      <button class="col col-4 btn-info bg-warning rounded" disabled>{{ selectedFoodPlan.name }}</button>
+      <button class="col col-4 p-2 mt-2 bg-warning rounded text-light border-warning" disabled>{{ selectedFoodPlan.name }}</button>
     }
     @if (selectedSportPlan) {
-      <button class="col col-4 btn-info bg-danger rounded" disabled>{{ selectedSportPlan.name }}</button>
+      <button class="col col-4 p-2 mt-2 bg-danger rounded text-light border-danger" disabled>{{ selectedSportPlan.name }}</button>
     }
     @if (selectedSleepPlan) {
-      <button class="col col-4 btn-info bg-primary rounded" disabled>{{ selectedSleepPlan.name }}</button>
+      <button class="col col-4 p-2 mt-2 bg-primary rounded text-light border-primary" disabled>{{ selectedSleepPlan.name }}</button>
     }
   </div>
 
