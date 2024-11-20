@@ -1,8 +1,7 @@
 export interface NutritionCalculatorOutput {
   foodsName: string;
-  servingsQuantity: number;
   servingsWeights: number;
-  calories: string;
+  calories: number;
   totalFats: number;
   saturedFats: number;
   cholesterol: number;
