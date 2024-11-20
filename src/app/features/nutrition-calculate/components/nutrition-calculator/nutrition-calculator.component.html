@@ -1,0 +1,24 @@
+<div class="container text-center">
+  <h3>Calcul Nutriments</h3>
+  <form class="m-3 p-3 rounded" [formGroup]="form" [@colorChange]="colorChange">
+    <div class="row mt-3 mb-2">
+      <div class="col-2">
+        <label>
+          Food
+          <input type="text" class="form-control h-100" formControlName="foodName">
+        </label>
+      </div>
+
+      <div class="col-2">
+        <label>
+          Quantity (grams)
+          <input type="number" class="form-control h-100" formControlName="quantityInGrams">
+        </label>
+      </div>
+
+      <div class="col-4">
+        <input class="btn btn-primary h-100 w-50" type="submit" [disabled]="form.invalid" value="Calcul Nutriments">
+      </div>
+    </div>
+  </form>
+</div>
