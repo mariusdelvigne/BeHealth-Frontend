@@ -5,6 +5,7 @@ import {routes} from './app.routes';
 import {provideHttpClient} from '@angular/common/http';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideToastr} from 'ngx-toastr';
+import {provideEcharts} from 'ngx-echarts';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     provideAnimations(),
-    provideToastr()
+    provideToastr(),
+    provideEcharts(),
   ]
 };
