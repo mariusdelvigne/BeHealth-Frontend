@@ -15,6 +15,9 @@ import {ProfileCheckComponent} from './features/profile/components/profile-check
 import {ProfileDeleteComponent} from './features/profile/components/profile-delete/profile-delete.component';
 import {PlanSearchMineComponent} from './features/plans/components/plan-search-mine/plan-search-mine.component';
 import {ProgramCreateComponent} from './features/programs/components/program-create/program-create.component';
+import {
+  ProgramSearchPublicComponent
+} from './features/programs/components/program-search-public/program-search-public.component';
 
 export const routes: Routes = [
   {
@@ -82,5 +85,9 @@ export const routes: Routes = [
   {
     path: 'program-create',
     component: ProgramCreateComponent,
+  },
+  {
+    path: 'program-search-public',
+    component: ProgramSearchPublicComponent,
   }
 ]

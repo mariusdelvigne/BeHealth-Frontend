@@ -39,4 +39,8 @@ export class PlanService {
   public getPlansByUserId(userId: number) {
     return this._htppClient.get<any>(`${PlanService.URL_PLANS}/users/${userId}`);
   }
+
+  public getPlansById(planId: number) {
+    return this._htppClient.get<any>(`${PlanService.URL_PLANS}/${planId}`);
+  }
 }
