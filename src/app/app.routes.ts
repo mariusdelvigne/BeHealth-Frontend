@@ -11,9 +11,9 @@ import {InsertFoodComponent} from './features/users/components/insert/insert-foo
 import {InsertSportComponent} from './features/users/components/insert/insert-sport/insert-sport.component';
 import {InsertSleepComponent} from './features/users/components/insert/insert-sleep/insert-sleep.component';
 import {InsertPeriodComponent} from './features/users/components/insert/insert-period/insert-period.component';
-import {AccountInformationComponent} from './features/profile/components/account/account-information/account-information.component';
-import {AccountDeleteComponent} from './features/profile/components/account/account-delete/account-delete.component';
-import {AccountComponent} from './features/profile/components/account/account.component';
+import {AccountInformationComponent} from './features/account/components/account/account-information/account-information.component';
+import {AccountDeleteComponent} from './features/account/components/account/account-delete/account-delete.component';
+import {AccountComponent} from './features/account/components/account/account.component';
 
 export const routes: Routes = [
   {
@@ -50,6 +50,10 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        component: AccountInformationComponent,
+      },
+      {
+        path: 'modify',
         component: AccountInformationComponent,
       },
       {

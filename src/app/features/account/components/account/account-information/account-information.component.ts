@@ -4,6 +4,7 @@ import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {UserService} from '../../../../../shared/services/user.service';
 import {DatePipe} from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-account-information',
@@ -26,12 +27,19 @@ export class AccountInformationComponent implements OnInit {
     mail: new FormControl('', Validators.required),
   });
 
-  constructor(private _authService: AuthService, private _userService: UserService) {
-  }
+  modifyState: boolean = false;
+
+  constructor(private _authService: AuthService, private _userService: UserService, private _location: Location) { }
 
   ngOnInit(): void {
-    this.form.disable();
+    this._location.onUrlChange(url => {
+      this.onUrlChange(url);
+    });
+
+    this.onUrlChange(this._location.path());
+
     const id = this._authService.getId();
+
     this._userService.getById(id).subscribe({
       next: response => {
         this.form.patchValue({
@@ -44,5 +52,24 @@ export class AccountInformationComponent implements OnInit {
         });
       }
     });
+  }
+
+  emitUserUpdate() {
+    const id = this._authService.getId();
+    this._userService.update(id, this.form.value).subscribe({
+      next: () => {
+        this._location.go('account');
+      },
+    })
+  }
+
+  onUrlChange(url: string) {
+    const urlParts = url.split('/');
+    this.modifyState = urlParts[urlParts.length-1] === 'modify';
+    this.modifyState ? this.form.enable() : this.form.disable();
+  }
+
+  activateModifyState() {
+    this._location.go('account/modify');
   }
 }
