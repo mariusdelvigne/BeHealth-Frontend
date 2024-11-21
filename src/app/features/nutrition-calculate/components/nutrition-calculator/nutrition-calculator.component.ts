@@ -3,6 +3,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {NutritionCalculatorOutput} from '../../utils/nutrition-calculator-output';
 import {NutritionCalculatorService} from '../../services/nutrition-calculator.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-nutrition-calculator',
@@ -50,7 +51,7 @@ export class NutritionCalculatorComponent {
     potassiums: 0.0,
   }
 
-  constructor(private _nutritionCalculatorService: NutritionCalculatorService) {
+  constructor(private _nutritionCalculatorService: NutritionCalculatorService, private _toastrService: ToastrService) {
   }
 
   get colorChange() {
@@ -73,9 +74,10 @@ export class NutritionCalculatorComponent {
         this.resultNutriment.proteins = response.proteins;
         this.resultNutriment.potassiums = response.potassiums;
         console.log(this.resultNutriment);
+        this._toastrService.success("Nutrition computed successfully");
       },
       error: (error) => {
-        alert(error.message);
+        this._toastrService.error("Nutrition computing failed : " + error.message)
       }
     })
   }

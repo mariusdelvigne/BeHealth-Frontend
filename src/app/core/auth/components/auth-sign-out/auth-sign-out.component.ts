@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth-sign-out',
@@ -11,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class AuthSignOutComponent {
 
-  constructor(private _authService: AuthService, private _router: Router) { }
+  constructor(private _authService: AuthService, private _router: Router, private _toastrService: ToastrService) { }
 
   goHome() {
     this._router.navigate(['/']);
@@ -19,7 +20,13 @@ export class AuthSignOutComponent {
 
   emitSignOut() {
     this._authService.signOut().subscribe({
-      next: _ => this.goHome(),
+      next: _ => {
+        this.goHome();
+        this._toastrService.success('Logged out successfully');
+      },
+      error: (error) => {
+        this._toastrService.error("Error signing you out : " + error.message);
+      }
     });
   }
 }
