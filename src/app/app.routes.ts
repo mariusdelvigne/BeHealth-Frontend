@@ -17,6 +17,7 @@ import {BmiCalculatorComponent} from './features/bmiCalculator/components/bmi-ca
 import {AccountInformationComponent} from './features/account/components/account/account-information/account-information.component';
 import {AccountDeleteComponent} from './features/account/components/account/account-delete/account-delete.component';
 import {AccountComponent} from './features/account/components/account/account.component';
+import {GraphComponent} from './features/profile/utils/components/graph/graph.component';
 
 export const routes: Routes = [
   {
@@ -98,5 +99,9 @@ export const routes: Routes = [
   {
     path: 'program-create',
     component: ProgramCreateComponent,
+  },
+  {
+    path: 'weights',
+    component: GraphComponent
   }
 ]
