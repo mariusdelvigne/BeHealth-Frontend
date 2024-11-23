@@ -32,25 +32,25 @@ import {SportCaloriesBurnedCalculatorOutput} from '../../utils/sport-calories-bu
 })
 export class SportCaloriesBurnedCalculatorComponent {
   allSport: { name: string; value: string }[] = [
-    { name: "Running", value: "run" },
+    { name: "Running", value: "running" },
     { name: "Football", value: "soccer" },
     { name: "Basketball", value: "basketball" },
-    { name: "Swimming", value: "swim" },
-    { name: "Cycling", value: "cycle" },
+    { name: "Swimming", value: "swimming" },
+    { name: "Road Cycling", value: "road cycling" },
     { name: "Yoga", value: "yoga" },
     { name: "Boxing", value: "boxing" },
-    { name: "American football", value: "football" },
+    { name: "American football", value: "american football" },
     { name: "Tennis", value: "tennis" },
     { name: "Hiking", value: "hiking" },
     { name: "Rowing", value: "rowing" },
-    { name: "Weightlifting", value: "weightlifting" },
-    { name: "Jumping", value: "jumping" },
+    { name: "Weight lifting", value: "weight lifting" },
+    { name: "Trampoline", value: "trampoline" },
     { name: "Skiing", value: "skiing" },
     { name: "Surfing", value: "surfing" },
-    { name: "Dance", value: "dance" },
+    { name: "Dancing", value: "dancing" },
     { name: "Walking", value: "walking" },
-    { name: "Climbing", value: "climbing" },
-    { name: "Karate", value: "karate" },
+    { name: "Road Climbing", value: "road climbing" },
+    { name: "Martial Art", value: "martial art" },
     { name: "Stretching", value: "stretching" },
     { name: "Bowling", value: "bowling" }
   ];
@@ -78,7 +78,6 @@ export class SportCaloriesBurnedCalculatorComponent {
   }
 
   calculCaloriesBurned() {
-    // console.log(this.form.value)
     this._sportCaloriesBurnedCalculatorService.calculateCaloriesBurned(this.form.value).subscribe({
       next: (response) => {
         const selectedSportValue = this.form.value.sport;

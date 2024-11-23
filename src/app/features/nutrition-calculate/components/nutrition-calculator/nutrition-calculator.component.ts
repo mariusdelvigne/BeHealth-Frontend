@@ -73,7 +73,6 @@ export class NutritionCalculatorComponent {
         this.resultNutriment.sugars = response.sugars;
         this.resultNutriment.proteins = response.proteins;
         this.resultNutriment.potassiums = response.potassiums;
-        console.log(this.resultNutriment);
         this._toastrService.success("Nutrition computed successfully");
       },
       error: (error) => {

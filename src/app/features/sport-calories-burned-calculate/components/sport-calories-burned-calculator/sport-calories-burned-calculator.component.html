@@ -1,62 +1,66 @@
 <div class="container text-center">
-  <h3>Calcul Nutriments</h3>
-  <form class="m-3 p-3 rounded" [formGroup]="form" [@colorChange]="colorChange" (submit)="calculCaloriesBurned()">
-    <div class="row mt-3 mb-2">
-      <div class="col-2">
-        <label>
-          Sport
-          <select class="form-control h-100" formControlName="sport">
-            @for (sportName of allSport; track $index) {
-              <option value="{{sportName.value}}">{{ sportName.name }}</option>
-            }
-          </select>
-        </label>
-      </div>
+    <h3>Calcul Nutriments</h3>
+    <form class="m-3 p-3 rounded" [formGroup]="form" [@colorChange]="colorChange" (submit)="calculCaloriesBurned()">
+        <div class="row mt-3 mb-2">
+            <div class="col-2">
+                <label>
+                    Sport
+                    <select class="form-control h-100" formControlName="sport">
+                        @for (sportName of allSport; track $index) {
+                            <option value="{{sportName.value}}">{{ sportName.name }}</option>
+                        }
+                    </select>
+                </label>
+            </div>
 
-      <div class="col-2">
-        <label>
-          Durations (Minutes)
-          <input type="number" class="form-control h-100" formControlName="durationInMinute">
-        </label>
-      </div>
+            <div class="col-2">
+                <label>
+                    Durations (Minutes)
+                    <input type="number" class="form-control h-100" formControlName="durationInMinute">
+                </label>
+            </div>
 
-      <div class="col-2">
-        <label>
-          Weight (Kilograms)
-          <input type="number" class="form-control h-100" formControlName="weightInKg">
-        </label>
-      </div>
+            <div class="col-2">
+                <label>
+                    Weight (Kilograms)
+                    <input type="number" class="form-control h-100" formControlName="weightInKg">
+                </label>
+            </div>
 
-      <div class="col-2">
-        <label>
-          Gender
-          <input type="text" class="form-control h-100" formControlName="gender">
-        </label>
-      </div>
+            <div class="col-2">
+                <label>
+                    Gender
 
-      <div class="col-2">
-        <label>
-          Height (Centimeters)
-          <input type="number" class="form-control h-100" formControlName="heightInCm">
-        </label>
-      </div>
+                    <select class="form-control h-60" formControlName="gender">
+                        <option value="male" selected>Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select> </label>
+            </div>
 
-      <div class="col-2">
-        <label>
-          Age
-          <input type="number" class="form-control h-100" formControlName="age">
-        </label>
-      </div>
+            <div class="col-2">
+                <label>
+                    Height (Centimeters)
+                    <input type="number" class="form-control h-100" formControlName="heightInCm">
+                </label>
+            </div>
 
-      <div class="col-4">
-        <input class="btn btn-primary h-100 w-50" type="submit" [disabled]="form.invalid"
-               value="Calcul Calories Burned">
-      </div>
-    </div>
-  </form>
+            <div class="col-2">
+                <label>
+                    Age
+                    <input type="number" class="form-control h-100" formControlName="age">
+                </label>
+            </div>
+
+            <div class="col-4">
+                <input class="btn btn-primary h-100 w-50" type="submit" [disabled]="form.invalid"
+                       value="Calcul Calories Burned">
+            </div>
+        </div>
+    </form>
 </div>
 <div class="container text-center">
-  <li>Sport : {{ resultCaloriesBurned.nameSport }}</li>
-  <li>Duration : {{ resultCaloriesBurned.durationMinutes }}</li>
-  <li>Calories Burned : {{ resultCaloriesBurned.calories }}</li>
+    <li>Sport : {{ resultCaloriesBurned.nameSport }}</li>
+    <li>Duration : {{ resultCaloriesBurned.durationMinutes }}</li>
+    <li>Calories Burned : {{ resultCaloriesBurned.calories }}</li>
 </div>
