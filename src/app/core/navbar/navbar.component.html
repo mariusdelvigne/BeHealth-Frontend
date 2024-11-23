@@ -1,17 +1,28 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" routerLink="">BeHealth</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <!--  Users  -->
         <a routerLink="/users" class="nav-link">Users</a>
-        <!-- Bmi Calculator -->
-        <a routerLink="/bmi-calculator" class="nav-link">BMI Calculator</a>
-        <!-- Nutrition calculator -->
-        <a routerLink="/nutrition-calculator" class="nav-link">Nutrition Calculator</a>
+        <!-- Calculators -->
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Calculators
+          </a>
+          <div class="dropdown-menu">
+            <!-- Bmi Calculator -->
+            <a class="dropdown-item" routerLink="/bmi-calculator">BMI</a>
+            <!-- Nutrition calculator -->
+            <a class="dropdown-item" routerLink="/nutrition-calculator">Nutrition</a>
+            <!-- Sport Calories Burned calculator -->
+            <a class="dropdown-item" routerLink="/sport-calories-burned-calculator">Sport Calories Burned</a>
+          </div>
+        </div>
         <!--  Programs  -->
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,7 +40,7 @@
           </a>
           <div class="dropdown-menu">
             <a routerLink="/plan-search-public" class="dropdown-item">Search</a>
-            <a routerLink="/plan-create"  class="dropdown-item">Create</a>
+            <a routerLink="/plan-create" class="dropdown-item">Create</a>
           </div>
         </div>
         <!--  Profile  -->

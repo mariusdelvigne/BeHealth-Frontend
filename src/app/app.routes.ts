@@ -23,6 +23,9 @@ import {BmiCalculatorComponent} from './features/bmi-calculate/components/bmi-ca
 import {
   NutritionCalculatorComponent
 } from './features/nutrition-calculate/components/nutrition-calculator/nutrition-calculator.component';
+import {
+  SportCaloriesBurnedCalculatorComponent
+} from './features/sport-calories-burned-calculate/components/sport-calories-burned-calculator/sport-calories-burned-calculator.component';
 
 export const routes: Routes = [
   {
@@ -116,5 +119,9 @@ export const routes: Routes = [
   {
     path: 'nutrition-calculator',
     component: NutritionCalculatorComponent,
+  },
+  {
+    path: 'sport-calories-burned-calculator',
+    component: SportCaloriesBurnedCalculatorComponent,
   }
 ]
