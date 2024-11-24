@@ -28,4 +28,8 @@ export class ProgramService {
 
     return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}`, {params: params,withCredentials: true});
   }
+
+  public getProgramsByUserId(userId: number): Observable<any> {
+    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/users/${userId}`, {withCredentials: true});
+  }
 }

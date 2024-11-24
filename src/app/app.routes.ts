@@ -26,6 +26,9 @@ import {
 import {
   SportCaloriesBurnedCalculatorComponent
 } from './features/sport-calories-burned-calculate/components/sport-calories-burned-calculator/sport-calories-burned-calculator.component';
+import {
+  ProgramSearchMineComponent
+} from './features/programs/components/program-search-mine/program-search-mine.component';
 
 export const routes: Routes = [
   {
@@ -111,6 +114,10 @@ export const routes: Routes = [
   {
     path: 'program-search-public',
     component: ProgramSearchPublicComponent,
+  },
+  {
+    path: 'program-search-mine',
+    component: ProgramSearchMineComponent,
   },
   {
     path: 'bmi-calculator',

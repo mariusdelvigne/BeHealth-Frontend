@@ -7,7 +7,7 @@ import {ProgramService} from '../../services/program.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {PlanService} from '../../../plans/services/plan.service';
 import {UserService} from '../../../../shared/services/user.service';
-import {ProgramInfoComponent} from './program-info/program-info.component';
+import {ProgramInfoComponent} from '../program-info/program-info.component';
 
 @Component({
   selector: 'app-program-search-public',
