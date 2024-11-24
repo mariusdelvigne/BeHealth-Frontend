@@ -19,6 +19,19 @@ import {AccountDeleteComponent} from './features/account/components/account/acco
 import {AccountComponent} from './features/account/components/account/account.component';
 import {ProfileComponent} from './features/profile/components/profile/profile.component';
 import {PhysicalGraphComponent} from './features/profile/components/profile/physical-graph/physical-graph.component';
+import {
+  ProgramSearchPublicComponent
+} from './features/programs/components/program-search-public/program-search-public.component';
+import {BmiCalculatorComponent} from './features/bmi-calculate/components/bmi-calculator/bmi-calculator.component';
+import {
+  NutritionCalculatorComponent
+} from './features/nutrition-calculate/components/nutrition-calculator/nutrition-calculator.component';
+import {
+  SportCaloriesBurnedCalculatorComponent
+} from './features/sport-calories-burned-calculate/components/sport-calories-burned-calculator/sport-calories-burned-calculator.component';
+import {
+  ProgramSearchMineComponent
+} from './features/programs/components/program-search-mine/program-search-mine.component';
 
 export const routes: Routes = [
   {
@@ -64,8 +77,8 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'bmi-calculator',
-    component: BmiCalculatorComponent,
+    path: 'profile-delete',
+    component: AccountDeleteComponent,
   },
   {
     path: 'insert',
@@ -100,6 +113,26 @@ export const routes: Routes = [
   {
     path: 'program-create',
     component: ProgramCreateComponent,
+  },
+  {
+    path: 'program-search-public',
+    component: ProgramSearchPublicComponent,
+  },
+  {
+    path: 'program-search-mine',
+    component: ProgramSearchMineComponent,
+  },
+  {
+    path: 'bmi-calculator',
+    component: BmiCalculatorComponent,
+  },
+  {
+    path: 'nutrition-calculator',
+    component: NutritionCalculatorComponent,
+  },
+  {
+    path: 'sport-calories-burned-calculator',
+    component: SportCaloriesBurnedCalculatorComponent,
   },
   {
     path: 'profile',

@@ -9,12 +9,11 @@ import {BmiCalculatorOutput} from '../utils/bmi-calculator-output';
   providedIn: 'root'
 })
 export class BmiCalculatorService {
-  private static URL: string = `${environment.API_URL}/${apis.BMICALCULATOR_URL}`;
+  private static URL: string = `${environment.API_URL}/${apis.BMI_CALCULATOR_URL}`;
 
   constructor(private _httpClient: HttpClient) { }
 
   public calculBmi(calculBmiCommand: BmiCalculatorCommand): Observable<BmiCalculatorOutput> {
-    console.log(this._httpClient.post<BmiCalculatorOutput>(BmiCalculatorService.URL, calculBmiCommand, {withCredentials: true}));
     return this._httpClient.post<BmiCalculatorOutput>(BmiCalculatorService.URL, calculBmiCommand, {withCredentials: true});
   }
 }

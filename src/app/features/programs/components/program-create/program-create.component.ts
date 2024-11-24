@@ -6,6 +6,7 @@ import {FoodService} from '../../../../shared/services/food.service';
 import {FoodPlansTableComponent} from './food-plans-table/food-plans-table.component';
 import {SportPlansTableComponent} from './sport-plans-table/sport-plans-table.component';
 import {SleepPlansTableComponent} from './sleep-plans-table/sleep-plans-table.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-program-create',
@@ -29,16 +30,16 @@ export class ProgramCreateComponent {
   selectedSleepPlan: any = null;
   selectedFoodPlan: any = null;
 
-  constructor(private _programService: ProgramService, private _authService: AuthService) {
+  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   emitCreateProgram() {
     this._programService.create(this.form.value, this._authService.getId()).subscribe({
       next: () => {
-        alert("Program created successfully.");
+        this._toastrService.success("Program created successfully");
       },
       error: (error) => {
-        alert(error.message);
+        this._toastrService.error("Error creating the program : " + error.message);
       }
     })
   }

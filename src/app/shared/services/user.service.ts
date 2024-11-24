@@ -4,6 +4,7 @@ import {apis, environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {UserCreateCommand} from '../../core/auth/utils/user-create-command';
 import {UserCreateOutput} from '../../core/auth/utils/user-create-output';
+import {UserSearchQuery} from '../utils/user-search-query';
 import {UserUpdateCommand} from '../utils/user-update-command';
 
 @Injectable({
@@ -29,5 +30,14 @@ export class UserService {
     return this._httpClient.put<void>(`${UserService.URL}/${userId}`, userUpdateCommand, {
       withCredentials: true,
     });
+  }
+
+  getAllUsers(): Observable<any> {
+    return this._httpClient.get<any>(UserService.URL);
+  }
+
+  getUserByUsername(query: UserSearchQuery): Observable<any> {
+    // console.log(UserSearchService.urlSearchUser + "/" + query.username + "/usernames")
+    return this._httpClient.get<any>(UserService.URL + "/" + query.username + "/usernames");
   }
 }
