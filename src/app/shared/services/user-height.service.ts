@@ -26,4 +26,11 @@ export class UserHeightService {
       withCredentials: true
     });
   }
+
+  public create(height: number): Observable<any> {
+    let userId = this._authService.getId();
+    return this._httpClient.post<any>(UserHeightService.URL + `/${userId}/heights`, {heightInCm: height}, {
+      withCredentials: true,
+    });
+  }
 }

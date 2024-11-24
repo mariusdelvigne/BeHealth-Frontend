@@ -26,4 +26,11 @@ export class UserWeightService {
       withCredentials: true
     });
   }
+
+  public create(weight: number): Observable<any> {
+    let userId = this._authService.getId();
+    return this._httpClient.post<any>(UserWeightService.URL + `/${userId}/weights`, {weightInG: weight}, {
+      withCredentials: true,
+    });
+  }
 }

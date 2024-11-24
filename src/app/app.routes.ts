@@ -37,6 +37,7 @@ import {
 import {
   ProgramSearchMineComponent
 } from './features/programs/components/program-search-mine/program-search-mine.component';
+import {InsertPhysicalComponent} from './features/users/components/insert/insert-physical/insert-physical.component';
 
 export const routes: Routes = [
   {
@@ -89,6 +90,10 @@ export const routes: Routes = [
     path: 'insert',
     component: InsertComponent,
     children: [
+      {
+        path: 'physical',
+        component: InsertPhysicalComponent,
+      },
       {
         path: 'food',
         component: InsertFoodComponent,
