@@ -4,6 +4,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {PlanCreateCommand} from '../utils/plan-create-command';
 import {PlanCreateOutput} from '../utils/plan-create-output';
 import {Observable} from 'rxjs';
+import {PlanUpdateCommand} from '../utils/plan-update-command';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ import {Observable} from 'rxjs';
 export class PlanService {
   private static URL_USERS: string = `${environment.API_URL}/${apis.USERS_URL}`;
   private static URL_PLANS: string = `${environment.API_URL}/${apis.PLANS_URL}`;
-
 
   constructor(private _htppClient: HttpClient) { }
 
@@ -44,6 +44,10 @@ export class PlanService {
   }
 
   public deletePlan(userId: number, planId: number) : Observable<any> {
-    return this._htppClient.delete<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`);
+    return this._htppClient.delete<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`, {withCredentials: true});
+  }
+
+  public updatePlan(userId: number, planId: number, command: PlanUpdateCommand) : Observable<any> {
+    return this._htppClient.put<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`, command, {withCredentials: true});
   }
 }

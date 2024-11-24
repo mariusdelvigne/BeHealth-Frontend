@@ -24,6 +24,7 @@ import {ToastrService} from 'ngx-toastr';
 export class PlanSearchMineComponent implements OnInit{
   plans: PlanSearchOutput[] = [];
   selectedPlan: any;
+  showUpdate: boolean = false;
 
   constructor(private _planService: PlanService, private _authService: AuthService, private toastrService: ToastrService) {
   }
@@ -52,5 +53,9 @@ export class PlanSearchMineComponent implements OnInit{
         this.toastrService.error("Error deleting plan: " + error.message);
       }
     });
+  }
+
+  showUpdateForm(planId: number) {
+    this.showUpdate = true;
   }
 }
