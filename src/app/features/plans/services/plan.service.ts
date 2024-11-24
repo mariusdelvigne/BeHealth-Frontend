@@ -4,7 +4,6 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {PlanCreateCommand} from '../utils/plan-create-command';
 import {PlanCreateOutput} from '../utils/plan-create-output';
 import {Observable} from 'rxjs';
-import {PlanSearchOutput} from "../utils/plan-search-output";
 
 @Injectable({
   providedIn: 'root'
@@ -36,11 +35,15 @@ export class PlanService {
     });
   }
 
-  public getPlansByUserId(userId: number) {
+  public getPlansByUserId(userId: number): Observable<any> {
     return this._htppClient.get<any>(`${PlanService.URL_PLANS}/users/${userId}`);
   }
 
-  public getPlansById(planId: number) {
+  public getPlansById(planId: number): Observable<any> {
     return this._htppClient.get<any>(`${PlanService.URL_PLANS}/${planId}`);
+  }
+
+  public deletePlan(userId: number, planId: number) : Observable<any> {
+    return this._htppClient.delete<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`);
   }
 }

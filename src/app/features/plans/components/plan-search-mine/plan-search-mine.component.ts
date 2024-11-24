@@ -5,6 +5,7 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
 import {PlanSearchOutput} from '../../utils/plan-search-output';
 import {PlanInfoComponent} from '../plan-info/plan-info.component';
 import {NgClass} from '@angular/common';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-plan-search-public-mine',
@@ -24,7 +25,7 @@ export class PlanSearchMineComponent implements OnInit{
   plans: PlanSearchOutput[] = [];
   selectedPlan: any;
 
-  constructor(private _planService: PlanService, private _authService: AuthService) {
+  constructor(private _planService: PlanService, private _authService: AuthService, private toastrService: ToastrService) {
   }
 
   ngOnInit() {
@@ -33,12 +34,23 @@ export class PlanSearchMineComponent implements OnInit{
         this.plans = plans.plans;
       },
       error: (error) => {
-        alert(error.message);
+        this.toastrService.error("Error searching plans: " + error.message);
       }
     });
   }
 
   showPlanInfo(planId: number) {
     this.selectedPlan = this.plans.find(plan => plan.id === planId);
+  }
+
+  deletePlan(planId: number) {
+    this._planService.deletePlan(this._authService.getId(), planId).subscribe({
+      next: () => {
+        this.toastrService.success("Plan deleted successfully.");
+      },
+      error: (error) => {
+        this.toastrService.error("Error deleting plan: " + error.message);
+      }
+    });
   }
 }
