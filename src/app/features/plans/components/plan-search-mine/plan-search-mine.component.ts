@@ -28,7 +28,7 @@ export class PlanSearchMineComponent implements OnInit{
   selectedPlan: any;
   selectedUpdatePlan: any;
 
-  constructor(private _planService: PlanService, private _authService: AuthService, private toastrService: ToastrService) {
+  constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class PlanSearchMineComponent implements OnInit{
         this.plans = plans.plans;
       },
       error: (error) => {
-        this.toastrService.error("Error searching plans: " + error.message);
+        this._toastrService.error("Error searching plans: " + error.message);
       }
     });
   }
@@ -49,10 +49,10 @@ export class PlanSearchMineComponent implements OnInit{
   deletePlan(planId: number) {
     this._planService.deletePlan(this._authService.getId(), planId).subscribe({
       next: () => {
-        this.toastrService.success("Plan deleted successfully.");
+        this._toastrService.success("Plan deleted successfully.");
       },
       error: (error) => {
-        this.toastrService.error("Error deleting plan: " + error.message);
+        this._toastrService.error("Error deleting plan: " + error.message);
       }
     });
   }
