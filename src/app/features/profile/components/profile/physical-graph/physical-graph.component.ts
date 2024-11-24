@@ -3,20 +3,20 @@ import { NgxEchartsDirective } from 'ngx-echarts';
 import {EChartsOption, SeriesOption} from 'echarts';
 import { DatePipe } from '@angular/common';
 import { UserWeightService } from '../../../../../shared/services/user-weight.service';
-import { DatedValue } from './DatedValue';
+import { DatedValue } from '../../../utils/DatedValue';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-graph',
+  selector: 'app-physical-graph',
   standalone: true,
   imports: [
     NgxEchartsDirective,
     DatePipe
   ],
-  templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.css']
+  templateUrl: './physical-graph.component.html',
+  styleUrls: ['./physical-graph.component.css']
 })
-export class GraphComponent implements OnInit {
+export class PhysicalGraphComponent implements OnInit {
   startDate: Date = new Date();
   endDate: Date = new Date();
 
