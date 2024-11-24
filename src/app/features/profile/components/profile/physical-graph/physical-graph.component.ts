@@ -1,10 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgxEchartsDirective } from 'ngx-echarts';
-import {EChartsOption, SeriesOption} from 'echarts';
 import { DatePipe } from '@angular/common';
-import { UserWeightService } from '../../../../../shared/services/user-weight.service';
-import { DatedValue } from '../../../utils/DatedValue';
-import { firstValueFrom } from 'rxjs';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 @Component({

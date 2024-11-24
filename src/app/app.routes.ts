@@ -19,6 +19,12 @@ import {AccountDeleteComponent} from './features/account/components/account/acco
 import {AccountComponent} from './features/account/components/account/account.component';
 import {ProfileComponent} from './features/profile/components/profile/profile.component';
 import {PhysicalGraphComponent} from './features/profile/components/profile/physical-graph/physical-graph.component';
+import {
+  WeightGraphComponent
+} from './features/profile/components/profile/physical-graph/weight-graph/weight-graph.component';
+import {
+  HeightGraphComponent
+} from './features/profile/components/profile/physical-graph/height-graph/height-graph.component';
 
 export const routes: Routes = [
   {
@@ -108,6 +114,16 @@ export const routes: Routes = [
       {
         path: 'physical',
         component: PhysicalGraphComponent,
+        children: [
+          {
+            path: 'weight',
+            component: WeightGraphComponent,
+          },
+          {
+            path: 'height',
+            component: HeightGraphComponent,
+          },
+        ]
       },
     ]
   }
