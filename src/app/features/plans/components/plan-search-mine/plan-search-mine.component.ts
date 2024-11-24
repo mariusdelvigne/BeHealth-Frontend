@@ -6,6 +6,7 @@ import {PlanSearchOutput} from '../../utils/plan-search-output';
 import {PlanInfoComponent} from '../plan-info/plan-info.component';
 import {NgClass} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
+import {PlanUpdateFormComponent} from "../plan-update-form/plan-update-form.component";
 
 @Component({
   selector: 'app-plan-search-public-mine',
@@ -13,7 +14,8 @@ import {ToastrService} from 'ngx-toastr';
   imports: [
     ReactiveFormsModule,
     PlanInfoComponent,
-    NgClass
+    NgClass,
+    PlanUpdateFormComponent
   ],
   templateUrl: './plan-search-mine.component.html',
   styleUrls: [
@@ -24,7 +26,7 @@ import {ToastrService} from 'ngx-toastr';
 export class PlanSearchMineComponent implements OnInit{
   plans: PlanSearchOutput[] = [];
   selectedPlan: any;
-  showUpdate: boolean = false;
+  selectedUpdatePlan: any;
 
   constructor(private _planService: PlanService, private _authService: AuthService, private toastrService: ToastrService) {
   }
@@ -56,6 +58,6 @@ export class PlanSearchMineComponent implements OnInit{
   }
 
   showUpdateForm(planId: number) {
-    this.showUpdate = true;
+    this.selectedUpdatePlan = this.plans.find(plan => plan.id === planId);
   }
 }

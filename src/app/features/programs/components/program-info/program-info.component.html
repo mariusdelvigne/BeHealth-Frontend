@@ -1,32 +1,41 @@
-<div class="d-flex mt-3">
-  <input type="text" class="w-25 me-1" disabled [value]="program.title">
-  <input type="text" class="w-25 me-1" disabled [value]="program.privacy">
+<textarea class="form-control-lg w-100" style="height: 20vh" disabled [value]="program.description"></textarea>
+
+<div class="d-flex flex-column w-100">
+    <ul class="responsive-table w-100">
+        <li class="table-header bg-dark-subtle">
+            <div class="col-5">Name</div>
+            <div class="col-5">Duration (days)</div>
+            <div class="col-2">Description</div>
+        </li>
+        @for (plan of [foodPlan, sportPlan, sleepPlan]; track $index) {
+            @if (plan) {
+
+                <div class="horizontal-text text-white text-uppercase text-center"
+                     [ngClass]="{'bg-warning': plan.category == 'food','bg-danger': plan.category == 'sport','bg-primary': plan.category == 'sleep'}">
+                    {{ plan.category }}
+                </div>
+
+                <li class="table-row border-top border-5"
+                    [ngClass]="{'border-warning': plan.category == 'food','border-danger': plan.category == 'sport','border-primary': plan.category == 'sleep'}">
+                    <div class="col-5">
+                        {{ plan.name }}
+                    </div>
+                    <div class="col-5">
+                        {{ plan.durationInDays }}
+                    </div>
+                    <div class="col-2">
+                        <button (click)="showPlanInfo(plan.id)" class="bg-dark-subtle rounded text-uppercase p-2">Show
+                        </button>
+                    </div>
+                </li>
+
+                @if (selectedPlan) {
+                    @if (selectedPlan.id == plan.id) {
+                        <textarea class="form-control-lg w-100" style="height: 20vh" disabled
+                                  [value]="plan.description"></textarea>
+                    }
+                }
+            }
+        }
+    </ul>
 </div>
-
-<textarea class="w-100 mt-2" style="height: 20vh" disabled [value]="program.description"></textarea>
-
-@for (plan of [foodPlan, sportPlan, sleepPlan]; track $index) {
-  @if (plan) {
-
-    <div class="d-flex mt-2 gap-1">
-      <h4 class="vertical-text text-center p-2 text-white"
-          [ngClass]="{'bg-warning': plan === foodPlan,'bg-danger': plan === sportPlan,'bg-primary': plan === sleepPlan}">
-        {{ plan.category }}
-      </h4>
-      <ul class="responsive-table w-100">
-        <li class="table-header">
-          <div class="col col-5">Name</div>
-          <div class="col col-5">Duration (days)</div>
-        </li>
-        <li class="table-row">
-          <div class="col col-5">
-            {{ plan.name }}
-          </div>
-          <div class="col col-5">
-            {{ plan.durationInDays }}
-          </div>
-        </li>
-      </ul>
-    </div>
-  }
-}

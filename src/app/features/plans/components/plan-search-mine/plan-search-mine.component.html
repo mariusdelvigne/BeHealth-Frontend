@@ -41,8 +41,8 @@
           <app-plan-info [plan]="selectedPlan"></app-plan-info>
         </div>
       }
-      @if (showUpdate) {
-
+      @if (plan == selectedUpdatePlan) {
+          <app-plan-update-form [plan]="selectedUpdatePlan"></app-plan-update-form>
       }
     }
   </ul>

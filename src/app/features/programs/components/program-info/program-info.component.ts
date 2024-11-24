@@ -25,19 +25,24 @@ export class ProgramInfoComponent implements OnInit {
   foodPlan: any;
   sportPlan: any;
   sleepPlan: any;
+  selectedPlan: any;
 
   constructor(private _planService: PlanService) {
   }
 
   ngOnInit() {
-    if (this.program.foodPlanId != 0)
+    if (this.program.foodPlanId != null)
       this._planService.getPlansById(this.program.foodPlanId)
         .subscribe(plan => this.foodPlan = plan);
-    if (this.program.sportPlanId != 0)
+    if (this.program.sportPlanId != null)
       this._planService.getPlansById(this.program.sportPlanId)
         .subscribe(plan => this.sportPlan = plan);
-    if (this.program.sleepPlanId != 0)
+    if (this.program.sleepPlanId != null)
       this._planService.getPlansById(this.program.sleepPlanId)
         .subscribe(plan => this.sleepPlan = plan);
+  }
+
+  showPlanInfo(planId: number) {
+    this._planService.getPlansById(planId).subscribe(plan => this.selectedPlan = plan);
   }
 }
