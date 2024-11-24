@@ -1,9 +1,10 @@
 <div class="mt-3 text-center">
   <h3>Your physical data</h3>
 </div>
-<div class="d-flex">
-  <span class="col text-end m-auto"><input type="button" class="page-btn btn btn-primary" value="Previous" (click)="changeMonth(false)"></span>
-  <h3 class="m-0 ms-3 me-3">{{startDate | date: 'M-y'}}</h3>
-  <span class="col m-auto"><input type="button" class="page-btn btn btn-primary" value="Next" (click)="changeMonth(true)"></span>
+<div class="d-flex justify-content-center mt-1">
+  <div class="border border-primary border-2 rounded-3 overflow-hidden">
+      <input routerLink="weight" routerLinkActive="active" type="button" class="page-btn btn btn-light rounded-0 page-btn" value="Weight">
+      <input routerLink="height" routerLinkActive="active"  type="button" class="page-btn btn btn-light rounded-0 page-btn" value="Height">
+  </div>
 </div>
-<div echarts [options]="options" (chartInit)="onChartInit($event)"></div>
+<router-outlet></router-outlet>
