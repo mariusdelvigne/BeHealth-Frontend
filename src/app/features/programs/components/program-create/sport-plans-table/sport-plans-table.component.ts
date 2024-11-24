@@ -17,6 +17,7 @@ import {NgClass} from '@angular/common';
 export class SportPlansTableComponent implements OnInit{
   sportPlans: any;
   selectedSportPlan: any;
+  @Input() program!: any;
   @Output() emitSportPlan = new EventEmitter();
 
   constructor(private _planService: PlanService) {
@@ -31,6 +32,17 @@ export class SportPlansTableComponent implements OnInit{
         alert(error.message);
       }
     })
+
+    // Show the plan already selected (Used in update form)
+    if (this.program.sportPlanId != null) {
+      this._planService.getPlansById(this.program.sportPlanId)
+        .subscribe({
+          next: (plan) => {
+            this.selectedSportPlan = plan;
+            this.emitSportPlan.emit(plan);
+          }
+        });
+    }
   }
 
   selectPlan(plan: any) {
@@ -39,6 +51,6 @@ export class SportPlansTableComponent implements OnInit{
   }
 
   isSelected(sportPlan: any) {
-    return this.selectedSportPlan == sportPlan;
+    return this.selectedSportPlan.id == sportPlan.id;
   }
 }

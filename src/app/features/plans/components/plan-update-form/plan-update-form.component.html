@@ -1,0 +1,29 @@
+<form [formGroup]="form" (submit)="updatePlan()">
+
+    <div class="container text-center">
+        <div class="row bg-info rounded">
+            <input type="text" class="col-2 form-control w-auto m-3" formControlName="name">
+
+            <select class="form-control  col-2 w-auto m-3" formControlName="privacy">
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+            </select>
+
+            <select type="text" class="form-control col-2 w-auto m-3" formControlName="category">
+                <option value="sport">sport</option>
+                <option value="food">food</option>
+                <option value="sleep">sleep</option>
+            </select>
+
+            <input type="number" class="form-control col-2 w-auto m-3" formControlName="durationInDays">
+
+            <input class="col-2 w-25 m-3 form-control bg-light" type="submit" value="Save" [disabled]="form.invalid">
+        </div>
+
+        <div class="row">
+            <textarea type="text" class="form-control" style="min-height: 25vh"
+                      formControlName="description"></textarea>
+        </div>
+    </div>
+
+</form>

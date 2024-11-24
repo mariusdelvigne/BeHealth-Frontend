@@ -4,6 +4,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {UserFoodService} from '../../../../../shared/services/user-food.service';
 import {debounceTime} from 'rxjs';
 import {FoodService} from '../../../../../shared/services/food.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-insert-food',
@@ -39,7 +40,7 @@ export class InsertFoodComponent implements OnInit {
 
   foods: any[] = [];
 
-  constructor(private _userFoodService: UserFoodService, private _foodService: FoodService) { }
+  constructor(private _userFoodService: UserFoodService, private _foodService: FoodService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
     this.form.get('name')?.valueChanges
@@ -51,7 +52,8 @@ export class InsertFoodComponent implements OnInit {
 
   emitUserFood() {
     this._userFoodService.create(this.form.value).subscribe({
-      next: response => alert(response),
+      next: response => this._toastrService.success("Created Food successfully."),
+      error: (error) => this._toastrService.error("Error creating the food : " + error.message)
     });
   }
 

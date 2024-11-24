@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ProfileService} from '../../../services/profile.service';
 import {ProfileDeleteCommand} from '../../../utils/profile-delete-command';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-account-delete',
@@ -13,7 +14,7 @@ import {AuthService} from '../../../../../core/auth/services/auth.service';
 })
 export class AccountDeleteComponent {
 
-  constructor(private _router: Router, private _profileService: ProfileService, private _authService: AuthService) { }
+  constructor(private _router: Router, private _profileService: ProfileService, private _authService: AuthService, private _toastrService: ToastrService) { }
 
   goToProfile(): void {
     this._router.navigate(['account']);
@@ -26,8 +27,11 @@ export class AccountDeleteComponent {
 
     this._profileService.delete(deleteCommand).subscribe({
       next: () => {
-        console.log('Profile deleted successfully');
         this._router.navigate(['home']);
+        this._toastrService.success("Account deleted successfully");
+      },
+      error: (error) => {
+        this._toastrService.error("Error deleting account : " + error.message);
       }
     });
   }

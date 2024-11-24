@@ -4,6 +4,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {UserSportService} from '../../../../../shared/services/user-sport.service';
 import {debounceTime} from 'rxjs';
 import {SportService} from '../../../../../shared/services/sport.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-insert-sport',
@@ -39,7 +40,7 @@ export class InsertSportComponent implements OnInit {
 
   sports: any[] = [];
 
-  constructor(private _userSportService: UserSportService, private _sportService: SportService) { }
+  constructor(private _userSportService: UserSportService, private _sportService: SportService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
     this.form.get('name')?.valueChanges
@@ -51,7 +52,8 @@ export class InsertSportComponent implements OnInit {
 
   emitUserSport() {
     this._userSportService.create(this.form.value).subscribe({
-      next: response => alert(response),
+      next: response => this._toastrService.success("Created Sport successfully."),
+      error: (error) => this._toastrService.error("Error creating the sport : " + error.message),
     });
   }
 

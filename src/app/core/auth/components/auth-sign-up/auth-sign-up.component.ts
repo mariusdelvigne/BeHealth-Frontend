@@ -4,6 +4,7 @@ import {UserService} from '../../../../shared/services/user.service';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth-sign-up',
@@ -41,7 +42,7 @@ export class AuthSignUpComponent {
     mail: new FormControl('', Validators.required),
   });
 
-  constructor(private _authService: AuthService, private _userService: UserService, private _router: Router) { }
+  constructor(private _authService: AuthService, private _userService: UserService, private _router: Router, private _toastrService: ToastrService) { }
 
   goHome() {
     this._router.navigate(['/']);
@@ -54,14 +55,14 @@ export class AuthSignUpComponent {
           username: this.form.value.username,
           password: this.form.value.password,
         };
-        alert("Sign up successful");
+        this._toastrService.success("Sign up successful");
         this._authService.signIn(auth)
           .subscribe({
             next: _ => this.goHome(),
           });
       },
       error: (error) => {
-        alert(error.message);
+        this._toastrService.error("Error signing you up : " + error.message);
       }
     });
   }

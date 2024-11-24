@@ -1,0 +1,39 @@
+<div class="container text-center">
+    <h3>Calcul Nutriments</h3>
+    <form class="m-3 p-3 rounded" [formGroup]="form" [@colorChange]="colorChange" (submit)="calculNutrition()">
+        <div class="row mt-3 mb-2">
+            <div class="col-2">
+                <label>
+                    Food
+                    <input type="text" class="form-control h-100" formControlName="nameFood">
+                </label>
+            </div>
+
+            <div class="col-2">
+                <label>
+                    Quantity (grams)
+                    <input type="number" class="form-control h-100" formControlName="quantityInGrams">
+                </label>
+            </div>
+
+            <div class="col-4">
+                <input class="btn btn-primary h-100 w-50" type="submit" [disabled]="form.invalid"
+                       value="Calcul Nutriments">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container text-center">
+    <li>Food name : {{ resultNutriment.foodsName }}</li>
+    <li>Serving weights : {{ resultNutriment.servingsWeights }} g</li>
+    <li>Calories : {{ resultNutriment.calories }}</li>
+    <li>Total fats : {{ resultNutriment.totalFats }}</li>
+    <li>Satured fats : {{ resultNutriment.saturedFats }}</li>
+    <li>Cholesterol : {{ resultNutriment.cholesterol }}</li>
+    <li>Sodium : {{ resultNutriment.sodium }}</li>
+    <li>Total carbohydrates : {{ resultNutriment.totalCarbohydrates }}</li>
+    <li>Dietary fiber : {{ resultNutriment.dietaryFiber }}</li>
+    <li>Sugars : {{ resultNutriment.sugars }}</li>
+    <li>Proteins : {{ resultNutriment.proteins }}</li>
+    <li>Potassiums : {{ resultNutriment.potassiums }}</li>
+</div>

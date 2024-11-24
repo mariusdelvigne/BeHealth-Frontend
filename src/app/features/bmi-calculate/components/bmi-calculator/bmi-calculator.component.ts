@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {BmiCalculatorService} from '../../services/bmi-calculator.service';
-import {formatNumber} from '@angular/common';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-bmi-calculator',
@@ -38,7 +38,7 @@ export class BmiCalculatorComponent {
   resultBmi: number = 0.00;
   resultBmiInterpretation: string = "";
 
-  constructor(private _bmiCalculatorService: BmiCalculatorService) {
+  constructor(private _bmiCalculatorService: BmiCalculatorService, private _toastrService: ToastrService) {
   }
 
   get colorChange() {
@@ -50,9 +50,10 @@ export class BmiCalculatorComponent {
       next: (response) => {
         this.resultBmi = Number(response.bmi.toFixed(2));
         this.resultBmiInterpretation = response.bmiInterpretetion;
+        this._toastrService.success("BMI computed successfully")
       },
       error: (error) => {
-        alert(error.message);
+        this._toastrService.error("BMI computing failed : " + error.message);
       }
     })
   }

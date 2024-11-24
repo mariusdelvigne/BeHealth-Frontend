@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {UserPeriodService} from '../../../../../shared/services/user-period.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-insert-period',
@@ -34,11 +35,12 @@ export class InsertPeriodComponent {
     endDatetime: new FormControl('', Validators.required),
   });
 
-  constructor(private _userPeriodService: UserPeriodService) { }
+  constructor(private _userPeriodService: UserPeriodService, private _toastrService: ToastrService) { }
 
   emitUserPeriod() {
     this._userPeriodService.create(this.form.value).subscribe({
-      next: response => alert(response),
+      next: response => this._toastrService.success("Period created successfully"),
+      error: (error) => this._toastrService.error("Error creating the period : " + error.message),
     });
   }
 

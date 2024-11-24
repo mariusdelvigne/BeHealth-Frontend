@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProgramService} from '../../../services/program.service';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {FoodService} from '../../../../../shared/services/food.service';
@@ -20,6 +20,7 @@ import {NgClass} from '@angular/common';
 export class FoodPlansTableComponent implements OnInit {
   foodPlans: any;
   selectedFoodPlan: any;
+  @Input() program!: any;
   @Output() emitFoodPlan = new EventEmitter();
 
   constructor(private _planService: PlanService) {
@@ -34,6 +35,17 @@ export class FoodPlansTableComponent implements OnInit {
         alert(error.message);
       }
     })
+
+    // Show the plan already selected (Used in update form)
+    if (this.program.foodPlanId != null) {
+      this._planService.getPlansById(this.program.foodPlanId)
+        .subscribe({
+          next: (plan) => {
+            this.selectedFoodPlan = plan;
+            this.emitFoodPlan.emit(plan);
+          }
+        });
+    }
   }
 
   selectPlan(plan: any) {
@@ -42,6 +54,6 @@ export class FoodPlansTableComponent implements OnInit {
   }
 
   isSelected(foodPlan: any) {
-    return this.selectedFoodPlan == foodPlan;
+    return this.selectedFoodPlan.id == foodPlan.id;
   }
 }

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {UserSleepService} from '../../../../../shared/services/user-sleep.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-insert-sleep',
@@ -34,11 +35,12 @@ export class InsertSleepComponent {
     endDatetime: new FormControl('', Validators.required),
   });
 
-  constructor(private _userSleepService: UserSleepService) { }
+  constructor(private _userSleepService: UserSleepService, private _toastrService: ToastrService) { }
 
   emitUserSleep() {
     this._userSleepService.create(this.form.value).subscribe({
-      next: response => alert(response),
+      next: response => this._toastrService.success("Sleep created successfully."),
+      error: (error) => this._toastrService.error("Error creating the sleep + " + error.message),
     });
   }
 
