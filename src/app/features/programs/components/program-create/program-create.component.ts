@@ -25,6 +25,9 @@ export class ProgramCreateComponent {
     title: new FormControl('', Validators.required),
     privacy: new FormControl('private', Validators.required),
     description: new FormControl('', Validators.required),
+    foodPlanId: new FormControl(0),
+    sportPlanId: new FormControl(0),
+    sleepPlanId: new FormControl(0),
   });
   selectedSportPlan: any = null;
   selectedSleepPlan: any = null;
@@ -46,13 +49,22 @@ export class ProgramCreateComponent {
 
   setSelectedSportPlan(sportPlan: any) {
     this.selectedSportPlan = sportPlan;
+    this.form.patchValue({
+      sportPlanId: sportPlan.id,
+    })
   }
 
   setSelectedSleepPlan(sleepPlan: any) {
     this.selectedSleepPlan = sleepPlan;
+    this.form.patchValue({
+      sleepPlanId: sleepPlan.id,
+    })
   }
 
   setSelectedFoodPlan(foodPlan: any) {
     this.selectedFoodPlan = foodPlan;
+    this.form.patchValue({
+      foodPlanId: foodPlan.id,
+    })
   }
 }

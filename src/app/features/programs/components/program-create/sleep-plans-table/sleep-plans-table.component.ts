@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PlanService} from '../../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
 
@@ -17,6 +17,7 @@ import {NgClass} from '@angular/common';
 export class SleepPlansTableComponent implements OnInit{
   sleepPlans: any;
   selectedSleepPlan: any;
+  @Input() program!: any;
   @Output() emitSleepPlan = new EventEmitter();
 
   constructor(private _planService: PlanService) {
@@ -31,6 +32,17 @@ export class SleepPlansTableComponent implements OnInit{
         alert(error.message);
       }
     })
+
+    // Show the plan already selected (Used in update form)
+    if (this.program.sleepPlanId != null) {
+      this._planService.getPlansById(this.program.sleepPlanId)
+        .subscribe({
+          next: (plan) => {
+            this.selectedSleepPlan = plan;
+            this.emitSleepPlan.emit(plan);
+          }
+        });
+    }
   }
 
   selectPlan(plan: any) {
@@ -39,6 +51,6 @@ export class SleepPlansTableComponent implements OnInit{
   }
 
   isSelected(sleepPlan: any) {
-    return this.selectedSleepPlan == sleepPlan;
+    return this.selectedSleepPlan.id == sleepPlan.id;
   }
 }

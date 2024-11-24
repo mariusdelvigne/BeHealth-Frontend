@@ -58,6 +58,6 @@ export class PlanSearchMineComponent implements OnInit{
   }
 
   showUpdateForm(planId: number) {
-    this.selectedUpdatePlan = this.plans.find(plan => plan.id === planId);
+    this.selectedUpdatePlan = this.plans.find(plan => plan.id == planId);
   }
 }

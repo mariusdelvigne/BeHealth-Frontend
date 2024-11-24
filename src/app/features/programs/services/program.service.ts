@@ -4,6 +4,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {ProgramCreateCommand} from '../utils/program-create-command';
 import {ProgramCreateOutput} from '../utils/program-create-output';
 import {Observable} from 'rxjs';
+import {PlanUpdateCommand} from "../../plans/utils/plan-update-command";
+import {ProgramUpdateCommand} from "../utils/program-update-command";
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +37,9 @@ export class ProgramService {
 
   public deleteProgram(userId: number, programId: number) : Observable<any> {
     return this._httpClient.delete<any>(`${ProgramService.URL_USERS}/${userId}/programs/${programId}`, {withCredentials: true});
+  }
+
+  public updateProgram(userId: number, programId: number, command: ProgramUpdateCommand) : Observable<any> {
+    return this._httpClient.put<any>(`${ProgramService.URL_USERS}/${userId}/programs/${programId}`, command, {withCredentials: true});
   }
 }

@@ -19,7 +19,8 @@
           <button (click)="showProgramInfo(program.id)" class="bg-dark-subtle rounded text-uppercase p-2">Show</button>
         </div>
         <div class="col-2">
-          <input type="button" class="bg-dark-subtle rounded text-uppercase p-2" value="Update">
+          <input type="button" class="bg-dark-subtle rounded text-uppercase p-2" value="Update"
+          (click)="showUpdateProgram(program.id)">
         </div>
         <div class="col-2">
           <input type="button" class="bg-dark-subtle rounded text-uppercase p-2" value="Delete"
@@ -30,6 +31,9 @@
         <div>
           <app-program-info [program]="selectedProgram"></app-program-info>
         </div>
+      }
+      @if (program == selectedUpdateProgram) {
+        <app-program-update-form [program]="selectedUpdateProgram"></app-program-update-form>
       }
     }
   </ul>

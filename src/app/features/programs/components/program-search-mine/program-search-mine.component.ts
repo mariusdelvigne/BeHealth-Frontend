@@ -6,6 +6,7 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
 import {PlanInfoComponent} from "../../../plans/components/plan-info/plan-info.component";
 import {PlanUpdateFormComponent} from "../../../plans/components/plan-update-form/plan-update-form.component";
 import {ToastrService} from "ngx-toastr";
+import {ProgramUpdateFormComponent} from "../program-update-form/program-update-form.component";
 
 @Component({
   selector: 'app-program-search-mine',
@@ -13,7 +14,8 @@ import {ToastrService} from "ngx-toastr";
   imports: [
     ProgramInfoComponent,
     PlanInfoComponent,
-    PlanUpdateFormComponent
+    PlanUpdateFormComponent,
+    ProgramUpdateFormComponent
   ],
   templateUrl: './program-search-mine.component.html',
   styleUrls: [
@@ -23,7 +25,8 @@ import {ToastrService} from "ngx-toastr";
 })
 export class ProgramSearchMineComponent implements OnInit{
   programs: any[] = [];
-  selectedProgram: any;
+  selectedProgram: any
+  selectedUpdateProgram: any;
 
   constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
@@ -34,7 +37,7 @@ export class ProgramSearchMineComponent implements OnInit{
         this.programs = response.programs;
       },
       error: (error) => {
-        alert(error);
+        this._toastrService.error("Error Getting programs");
       }
     });
   }
@@ -52,5 +55,9 @@ export class ProgramSearchMineComponent implements OnInit{
         this._toastrService.error("Error deleting program: " + error.message);
       }
     });
+  }
+
+  showUpdateProgram(programId: number) {
+    this.selectedUpdateProgram = this.programs.find(program => program.id == programId);
   }
 }
