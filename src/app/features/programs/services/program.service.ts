@@ -32,4 +32,8 @@ export class ProgramService {
   public getProgramsByUserId(userId: number): Observable<any> {
     return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/users/${userId}`, {withCredentials: true});
   }
+
+  public getProgramsByAssociations(userId: number, relation: string): Observable<any> {
+    return this._httpClient.get<any>(`${ProgramService.URL_USERS}/${userId}/associations/${relation}`, {withCredentials: true});
+  }
 }
