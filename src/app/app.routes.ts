@@ -38,6 +38,7 @@ import {
   ProgramSearchMineComponent
 } from './features/programs/components/program-search-mine/program-search-mine.component';
 import {InsertPhysicalComponent} from './features/users/components/insert/insert-physical/insert-physical.component';
+import {authGuard} from './auth-guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -55,6 +56,7 @@ export const routes: Routes = [
   {
     path: 'sign-out',
     component: AuthSignOutComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'users',
@@ -63,10 +65,12 @@ export const routes: Routes = [
   {
     path: 'plan-create',
     component: PlanCreateComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'account',
     component: AccountComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -89,6 +93,7 @@ export const routes: Routes = [
   {
     path: 'insert',
     component: InsertComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'physical',
@@ -115,6 +120,7 @@ export const routes: Routes = [
   {
     path: 'plan-search-mine',
     component: PlanSearchMineComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'plan-search-public',
@@ -123,10 +129,12 @@ export const routes: Routes = [
   {
     path: 'program-create',
     component: ProgramCreateComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'physical',
@@ -151,6 +159,7 @@ export const routes: Routes = [
   {
     path: 'program-search-mine',
     component: ProgramSearchMineComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'bmi-calculator',
