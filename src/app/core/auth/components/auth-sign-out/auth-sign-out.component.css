@@ -1,0 +1,10 @@
+.bg-blue-div {
+  background-color: rgba(13, 110, 253, 0.3);
+  border: 3px solid rgba(13, 110, 253, 0.5);
+  width: fit-content;
+}
+
+.page-btn {
+  width: 100px;
+  border: none;
+}

@@ -1,5 +1,7 @@
-<h2>Do you want to sign out ?</h2>
-<div>
-  <input type="button" (click)="goHome()" value="Back">
-  <input type="button" (click)="emitSignOut()" value="Ok">
+<div class="m-3 p-3 rounded m-auto bg-blue-div">
+  <h3>Do you want to sign out ?</h3>
+  <div class="d-flex justify-content-between ps-5 pe-5">
+    <input type="button" class="btn btn-primary page-btn" (click)="goHome()" value="Back">
+    <input type="button" class="btn btn-danger page-btn" (click)="emitSignOut()" value="Ok">
+  </div>
 </div>
