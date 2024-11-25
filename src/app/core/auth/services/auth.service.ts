@@ -11,26 +11,20 @@ import {AuthData} from '../utils/auth-data';
 export class AuthService {
   private static URL: string = `${environment.API_URL}/${apis.AUTH_URL}`;
 
-  private _isAuthenticated: boolean = false;
-  private _authData: AuthData = {
-    id: 0,
-    username: '',
-    role: '',
-  };
+  private _authData: AuthData | null = null;
 
-  constructor(private _httpClient: HttpClient) {
-    this.onInit();
-  }
+  constructor(private _httpClient: HttpClient) { }
 
-  onInit(): void {
+  loadData(): Observable<any> {
     const request = this._httpClient.get<AuthData>(AuthService.URL, {withCredentials: true});
 
     request.subscribe({
       next: response => {
-        this._isAuthenticated = true;
         this._authData = response;
       },
     });
+
+    return request;
   }
 
   public signIn(auth: AuthCred): Observable<AuthData> {
@@ -38,7 +32,6 @@ export class AuthService {
 
     request.subscribe({
       next: response => {
-        this._isAuthenticated = true;
         this._authData = response;
       }
     });
@@ -51,10 +44,7 @@ export class AuthService {
 
     request.subscribe({
       next: _ => {
-        this._isAuthenticated = false;
-        this._authData.id = 0;
-        this._authData.role = '';
-        this._authData.username = '';
+        this._authData = null;
       }
     });
 
@@ -62,18 +52,24 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return this._isAuthenticated;
+    return this._authData !== null;
   }
 
   public getId(): number {
-    return this._authData.id;
+    if (this._authData)
+      return this._authData.id;
+    throw Error('Not logged in');
   }
 
   public getRole(): string {
-    return this._authData.role;
+    if (this._authData)
+      return this._authData.role;
+    throw Error('Not logged in');
   }
 
   public getUsername(): string {
-    return this._authData.username;
+    if (this._authData)
+      return this._authData.username;
+    throw Error('Not logged in');
   }
 }
