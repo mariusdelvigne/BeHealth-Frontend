@@ -39,6 +39,7 @@ import {
 } from './features/programs/components/program-search-mine/program-search-mine.component';
 import {InsertPhysicalComponent} from './features/users/components/insert/insert-physical/insert-physical.component';
 import {authGuard} from './auth-guards/auth.guard';
+import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
 
 export const routes: Routes = [
   {
@@ -87,8 +88,8 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'bmi-calculator',
-    component: BmiCalculatorComponent,
+    path: 'profile-delete',
+    component: AccountDeleteComponent,
   },
   {
     path: 'insert',
@@ -132,6 +133,26 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'program-search-public',
+    component: ProgramSearchPublicComponent,
+  },
+  {
+    path: 'program-search-mine',
+    component: ProgramSearchMineComponent,
+  },
+  {
+    path: 'bmi-calculator',
+    component: BmiCalculatorComponent,
+  },
+  {
+    path: 'nutrition-calculator',
+    component: NutritionCalculatorComponent,
+  },
+  {
+    path: 'sport-calories-burned-calculator',
+    component: SportCaloriesBurnedCalculatorComponent,
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [authGuard],
@@ -149,6 +170,10 @@ export const routes: Routes = [
             component: HeightGraphComponent,
           },
         ]
+      },
+      {
+        path: 'relations',
+        component: RelationsComponent,
       },
     ]
   },

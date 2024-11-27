@@ -1,0 +1,27 @@
+<div class="container">
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-5">Title</div>
+      <div class="col col-5">Creator</div>
+      <div class="col col-2"></div>
+    </li>
+    @for (program of programs; track $index) {
+      <li class="table-row">
+        <div class="col col-5">
+          {{ program.program.title }}
+        </div>
+        <div class="col col-5">
+          {{ program.program.creatorName }}
+        </div>
+        <div class="col col-2">
+          <button (click)="showProgramInfo(program.program.id)" class="bg-dark-subtle rounded text-uppercase p-2">Show</button>
+        </div>
+      </li>
+      @if (program == selectedProgram) {
+        <div>
+          <app-program-info [program]="selectedProgram.program"></app-program-info>
+        </div>
+      }
+    }
+  </ul>
+</div>

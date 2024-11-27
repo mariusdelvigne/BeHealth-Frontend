@@ -42,4 +42,8 @@ export class ProgramService {
   public updateProgram(userId: number, programId: number, command: ProgramUpdateCommand) : Observable<any> {
     return this._httpClient.put<any>(`${ProgramService.URL_USERS}/${userId}/programs/${programId}`, command, {withCredentials: true});
   }
+
+  public getProgramsByAssociations(userId: number, relation: string): Observable<any> {
+    return this._httpClient.get<any>(`${ProgramService.URL_USERS}/${userId}/associations/${relation}`, {withCredentials: true});
+  }
 }
