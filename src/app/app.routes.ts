@@ -41,6 +41,7 @@ import {InsertPhysicalComponent} from './features/users/components/insert/insert
 import {authGuard} from './auth-guards/auth.guard';
 import {AuthService} from './core/auth/services/auth.service';
 import {AppComponent} from './app.component';
+import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
 
 export const routes: Routes = [
   {
@@ -156,6 +157,10 @@ export const routes: Routes = [
                 component: HeightGraphComponent,
               },
             ]
+          },
+          {
+            path: 'relations',
+            component: RelationsComponent,
           },
         ]
       },
