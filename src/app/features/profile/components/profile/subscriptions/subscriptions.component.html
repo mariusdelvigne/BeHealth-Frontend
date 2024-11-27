@@ -11,7 +11,7 @@
           {{ program.program.title }}
         </div>
         <div class="col col-5">
-          {{ program.user.username }}
+          {{ program.program.creatorName }}
         </div>
         <div class="col col-2">
           <button (click)="showProgramInfo(program.program.id)" class="bg-dark-subtle rounded text-uppercase p-2">Show</button>
@@ -25,5 +25,3 @@
     }
   </ul>
 </div>
-
-{{programs.length}}
