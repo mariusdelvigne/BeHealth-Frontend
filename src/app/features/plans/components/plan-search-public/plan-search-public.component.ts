@@ -4,7 +4,7 @@ import {PlanSearchOutput} from '../../utils/plan-search-output';
 import {PlanService} from '../../services/plan.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {
-    ProgramInfoComponent
+  ProgramInfoComponent
 } from "../../../programs/components/program-info/program-info.component";
 import {PlanInfoComponent} from '../plan-info/plan-info.component';
 import {NgClass} from '@angular/common';
@@ -52,14 +52,14 @@ export class PlanSearchPublicComponent implements OnInit {
   }
 
   ngOnInit() {
-      this._planService.getPlansFiltered("public").subscribe({
-        next: (plans) => {
-          this.plans = plans.plans;
-        },
-        error: (error) => {
-          alert(error.message);
-        }
-      });
+    this._planService.getPlansFiltered("public").subscribe({
+      next: (plans) => {
+        this.plans = plans.plans;
+      },
+      error: (error) => {
+        alert(error.message);
+      }
+    });
   }
 
   emitSearchPlan() {
@@ -69,7 +69,10 @@ export class PlanSearchPublicComponent implements OnInit {
   }
 
   showPlanInfo(planId: number) {
-    this.selectedPlan = this.plans.find(plan => plan.id === planId);
+    if (this.selectedPlan != null)
+      this.selectedPlan = null;
+    else
+      this.selectedPlan = this.plans.find(plan => plan.id === planId);
   }
 
   get colorChange() {

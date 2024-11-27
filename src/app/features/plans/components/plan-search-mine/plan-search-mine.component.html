@@ -24,7 +24,7 @@
           {{ plan.durationInDays }}
         </div>
         <div class="col-2">
-          <input type="button" class="bg-dark-subtle rounded text-uppercase p-2" value="Show"
+          <input type="button" class="bg-dark-subtle rounded text-uppercase p-2" value="Show/Hide"
                  (click)="showPlanInfo(plan.id)">
         </div>
         <div class="col-2">
@@ -37,9 +37,7 @@
         </div>
       </li>
       @if (plan == selectedPlan) {
-        <div>
           <app-plan-info [plan]="selectedPlan"></app-plan-info>
-        </div>
       }
       @if (plan == selectedUpdatePlan) {
           <app-plan-update-form [plan]="selectedUpdatePlan"></app-plan-update-form>

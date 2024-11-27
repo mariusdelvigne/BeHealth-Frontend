@@ -43,6 +43,9 @@ export class ProgramInfoComponent implements OnInit {
   }
 
   showPlanInfo(planId: number) {
-    this._planService.getPlansById(planId).subscribe(plan => this.selectedPlan = plan);
+    if (this.selectedPlan != null)
+      this.selectedPlan = null;
+    else
+      this._planService.getPlansById(planId).subscribe(plan => this.selectedPlan = plan);
   }
 }

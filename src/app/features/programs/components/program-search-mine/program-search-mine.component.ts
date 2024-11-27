@@ -43,7 +43,12 @@ export class ProgramSearchMineComponent implements OnInit{
   }
 
   showProgramInfo(programId: number) {
-    this.selectedProgram = this.programs.find(program => program.id === programId);
+    if (this.selectedProgram != null) {
+      this.selectedProgram = null;
+    } else {
+      this.selectedUpdateProgram = null;
+      this.selectedProgram = this.programs.find(program => program.id === programId);
+    }
   }
 
   deleteProgram(programId: number) {
@@ -58,6 +63,11 @@ export class ProgramSearchMineComponent implements OnInit{
   }
 
   showUpdateProgram(programId: number) {
-    this.selectedUpdateProgram = this.programs.find(program => program.id == programId);
+    if (this.selectedUpdateProgram != null) {
+      this.selectedUpdateProgram = null;
+    } else {
+      this.selectedProgram = null;
+      this.selectedUpdateProgram = this.programs.find(program => program.id === programId);
+    }
   }
 }

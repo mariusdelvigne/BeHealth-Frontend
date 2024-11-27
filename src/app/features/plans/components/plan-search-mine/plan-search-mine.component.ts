@@ -43,7 +43,13 @@ export class PlanSearchMineComponent implements OnInit{
   }
 
   showPlanInfo(planId: number) {
-    this.selectedPlan = this.plans.find(plan => plan.id === planId);
+    if (this.selectedPlan != null) {
+      this.selectedPlan = null;
+    }
+    else {
+      this.selectedUpdatePlan = null;
+      this.selectedPlan = this.plans.find(plan => plan.id === planId);
+    }
   }
 
   deletePlan(planId: number) {
@@ -58,6 +64,12 @@ export class PlanSearchMineComponent implements OnInit{
   }
 
   showUpdateForm(planId: number) {
-    this.selectedUpdatePlan = this.plans.find(plan => plan.id == planId);
+    if (this.selectedUpdatePlan != null) {
+      this.selectedUpdatePlan = null;
+    }
+    else {
+      this.selectedPlan = null;
+      this.selectedUpdatePlan = this.plans.find(plan => plan.id === planId);
+    }
   }
 }
