@@ -1,56 +1,25 @@
-<!--
-@if (sportPlans.length) {
-  <div class="table-responsive">
-    <table class="table table-borderless">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Duration (days)</th>
-      </tr>
-      </thead>
-      <tbody>
-        @for (sportPlan of sportPlans; track $index) {
-          <tr (dblclick)="selectPlan(sportPlan)" [ngClass]="{ 'selected': isSelected(sportPlan) }">
-            <td (mouseenter)="showTooltip($event, sportPlan.description)" (mouseleave)="hideTooltip()">{{ sportPlan.name }}</td>
-            <td>{{ sportPlan.durationInDays }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-
-    <div class="position-absolute">
-      @for (selectedPlan of selectedPlans; track $index) {
-        <button class="btn-info" disabled>{{ selectedPlan.name}}</button>
+@if (sportPlans) {
+  <div class="container overflow-hidden">
+    <div class="row g-3">
+      @for (sportPlan of sportPlans; track $index) {
+        <div class="col-12">
+          <div class="card pt-3" (dblclick)="selectPlan(sportPlan)" [ngClass]="{ 'bg-dark-subtle': isSelected(sportPlan) }">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h3>{{ sportPlan.name }}</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="red" class="bi bi-heart-pulse-fill icon-top-right" viewBox="0 0 16 16">
+                <path d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9z"/>
+                <path d="M.88 8C-2.427 1.68 4.41-2 7.823 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8z"/>
+              </svg>
+            </div>
+            <div class="card-body">
+              <p><strong>Duration:</strong> {{ sportPlan.durationInDays }} days</p>
+            </div>
+          </div>
+        </div>
       }
     </div>
   </div>
-
-  <div id="tooltip" class="tooltip-custom" hidden></div>
 } @else {
-  <h2>No Sports Found</h2>
-}
-
--->
-@if (sportPlans.length) {
-  <div class="container">
-    <ul class="responsive-table">
-      <li class="table-header">
-        <div class="col col-6">Name</div>
-        <div class="col col-6">Duration (days)</div>
-      </li>
-      @for (sportPlan of sportPlans; track $index) {
-        <li class="table-row" (dblclick)="selectPlan(sportPlan)" [ngClass]="{ 'selected': isSelected(sportPlan) }">
-          <div class="col col-6">
-            {{ sportPlan.name }}
-          </div>
-          <div class="col col-6">
-            {{ sportPlan.durationInDays }}
-          </div>
-        </li>
-      }
-    </ul>
-  </div>
-} @else {
-  <h2>No Sports Found</h2>
+  <h2>No Sports Plans Found</h2>
 }
 

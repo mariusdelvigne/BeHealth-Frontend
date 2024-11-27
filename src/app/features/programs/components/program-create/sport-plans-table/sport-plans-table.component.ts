@@ -34,7 +34,7 @@ export class SportPlansTableComponent implements OnInit{
     })
 
     // Show the plan already selected (Used in update form)
-    if (this.program.sportPlanId != null) {
+    if (this.program && this.program.sportPlanId != null) {
       this._planService.getPlansById(this.program.sportPlanId)
         .subscribe({
           next: (plan) => {
@@ -51,6 +51,6 @@ export class SportPlansTableComponent implements OnInit{
   }
 
   isSelected(sportPlan: any) {
-    return this.selectedSportPlan.id == sportPlan.id;
+    return this.selectedSportPlan && this.selectedSportPlan.id == sportPlan.id;
   }
 }

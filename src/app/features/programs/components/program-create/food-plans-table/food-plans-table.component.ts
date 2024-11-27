@@ -37,7 +37,7 @@ export class FoodPlansTableComponent implements OnInit {
     })
 
     // Show the plan already selected (Used in update form)
-    if (this.program.foodPlanId != null) {
+    if (this.program && this.program.foodPlanId != null) {
       this._planService.getPlansById(this.program.foodPlanId)
         .subscribe({
           next: (plan) => {
@@ -54,6 +54,6 @@ export class FoodPlansTableComponent implements OnInit {
   }
 
   isSelected(foodPlan: any) {
-    return this.selectedFoodPlan.id == foodPlan.id;
+    return this.selectedFoodPlan && this.selectedFoodPlan.id == foodPlan.id;
   }
 }

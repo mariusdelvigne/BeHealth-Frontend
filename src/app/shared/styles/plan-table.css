@@ -24,13 +24,32 @@
   }
 }
 
-.vertical-text {
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-  text-transform: uppercase;
-}
-
 .horizontal-text {
   width: 15%;
 }
 
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+  min-height: 30vh;
+  max-height: 30vh;
+  position: relative;
+}
+
+.card-header {
+  border-bottom: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.icon-top-right {
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
