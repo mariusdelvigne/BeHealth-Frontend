@@ -44,6 +44,10 @@ import {authGuard} from './auth-guards/auth.guard';
 import {AuthService} from './core/auth/services/auth.service';
 import {AppComponent} from './app.component';
 import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
+import {
+  CaloriesGraphComponent
+} from './features/profile/components/profile/food-graph/calories-graph/calories-graph.component';
+import {FoodGraphComponent} from './features/profile/components/profile/food-graph/food-graph.component';
 
 export const routes: Routes = [
   {
@@ -188,5 +192,167 @@ export const routes: Routes = [
         component: SportCaloriesBurnedCalculatorComponent,
       }
     ]
+  },
+  {
+    path: 'sign-in',
+    component: AuthSignInComponent,
+  },
+  {
+    path: 'sign-up',
+    component: AuthSignUpComponent,
+  },
+  {
+    path: 'sign-out',
+    component: AuthSignOutComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'users',
+    component: UserSearchComponent,
+  },
+  {
+    path: 'plan-create',
+    component: PlanCreateComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'account',
+    component: AccountComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        component: AccountInformationComponent,
+      },
+      {
+        path: 'modify',
+        component: AccountInformationComponent,
+      },
+      {
+        path: 'delete',
+        component: AccountDeleteComponent,
+      }
+    ]
+  },
+  {
+    path: 'profile-delete',
+    component: AccountDeleteComponent,
+  },
+  {
+    path: 'insert',
+    component: InsertComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'physical',
+        component: InsertPhysicalComponent,
+      },
+      {
+        path: 'food',
+        component: InsertFoodComponent,
+      },
+      {
+        path: 'sport',
+        component: InsertSportComponent,
+      },
+      {
+        path: 'sleep',
+        component: InsertSleepComponent,
+      },
+      {
+        path: 'period',
+        component: InsertPeriodComponent,
+      }
+    ]
+  },
+  {
+    path: 'plan-search-mine',
+    component: PlanSearchMineComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'plan-search-public',
+    component: PlanSearchPublicComponent,
+  },
+  {
+    path: 'program-create',
+    component: ProgramCreateComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'program-search-public',
+    component: ProgramSearchPublicComponent,
+  },
+  {
+    path: 'program-search-mine',
+    component: ProgramSearchMineComponent,
+  },
+  {
+    path: 'bmi-calculator',
+    component: BmiCalculatorComponent,
+  },
+  {
+    path: 'nutrition-calculator',
+    component: NutritionCalculatorComponent,
+  },
+  {
+    path: 'sport-calories-burned-calculator',
+    component: SportCaloriesBurnedCalculatorComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'physical',
+        component: PhysicalGraphComponent,
+        children: [
+          {
+            path: 'weight',
+            component: WeightGraphComponent,
+          },
+          {
+            path: 'height',
+            component: HeightGraphComponent,
+          },
+        ]
+      },
+      {
+        path: 'food',
+        component: FoodGraphComponent,
+        children: [
+          {
+            path: 'calories',
+            component: CaloriesGraphComponent,
+          },
+        ]
+      },
+      {
+        path: 'relations',
+        component: RelationsComponent,
+      },
+    ]
+  },
+  {
+    path: 'program-search-public',
+    component: ProgramSearchPublicComponent,
+  },
+  {
+    path: 'program-search-mine',
+    component: ProgramSearchMineComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'bmi-calculator',
+    component: BmiCalculatorComponent,
+  },
+  {
+    path: 'nutrition-calculator',
+    component: NutritionCalculatorComponent,
+  },
+  {
+    path: 'sport-calories-burned-calculator',
+    component: SportCaloriesBurnedCalculatorComponent,
   }
 ]

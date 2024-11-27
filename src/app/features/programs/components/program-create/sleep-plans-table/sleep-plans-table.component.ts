@@ -34,7 +34,7 @@ export class SleepPlansTableComponent implements OnInit{
     })
 
     // Show the plan already selected (Used in update form)
-    if (this.program.sleepPlanId != null) {
+    if (this.program && this.program.sleepPlanId != null) {
       this._planService.getPlansById(this.program.sleepPlanId)
         .subscribe({
           next: (plan) => {
@@ -51,6 +51,6 @@ export class SleepPlansTableComponent implements OnInit{
   }
 
   isSelected(sleepPlan: any) {
-    return this.selectedSleepPlan.id == sleepPlan.id;
+    return this.selectedSleepPlan && this.selectedSleepPlan.id == sleepPlan.id;
   }
 }
