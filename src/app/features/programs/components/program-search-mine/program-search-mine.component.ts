@@ -43,9 +43,11 @@ export class ProgramSearchMineComponent implements OnInit{
   }
 
   showProgramInfo(programId: number) {
-    if (this.selectedProgram != null) {
+    if (this.selectedProgram?.id == programId) {
       this.selectedProgram = null;
-    } else {
+    }
+    else {
+      this.selectedProgram = null;
       this.selectedUpdateProgram = null;
       this.selectedProgram = this.programs.find(program => program.id === programId);
     }
@@ -63,9 +65,11 @@ export class ProgramSearchMineComponent implements OnInit{
   }
 
   showUpdateProgram(programId: number) {
-    if (this.selectedUpdateProgram != null) {
+    if (this.selectedUpdateProgram?.id == programId) {
       this.selectedUpdateProgram = null;
-    } else {
+    }
+    else {
+      this.selectedUpdateProgram = null;
       this.selectedProgram = null;
       this.selectedUpdateProgram = this.programs.find(program => program.id === programId);
     }

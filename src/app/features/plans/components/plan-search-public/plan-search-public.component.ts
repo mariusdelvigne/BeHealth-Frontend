@@ -69,10 +69,13 @@ export class PlanSearchPublicComponent implements OnInit {
   }
 
   showPlanInfo(planId: number) {
-    if (this.selectedPlan != null)
+    if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
-    else
+    }
+    else {
+      this.selectedPlan = null;
       this.selectedPlan = this.plans.find(plan => plan.id === planId);
+    }
   }
 
   get colorChange() {

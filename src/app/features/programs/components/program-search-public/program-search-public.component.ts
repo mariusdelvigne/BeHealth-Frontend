@@ -44,10 +44,13 @@ export class ProgramSearchPublicComponent implements OnInit {
   }
 
   showProgramInfo(programId: number) {
-    if (this.selectedProgram != null)
+    if (this.selectedProgram?.id == programId) {
       this.selectedProgram = null;
-    else
+    }
+    else {
+      this.selectedProgram = null;
       this.selectedProgram = this.programs.find(program => program.id === programId);
+    }
   }
 }
 

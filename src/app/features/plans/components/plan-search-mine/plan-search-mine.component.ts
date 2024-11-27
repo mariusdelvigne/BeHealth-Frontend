@@ -43,10 +43,11 @@ export class PlanSearchMineComponent implements OnInit{
   }
 
   showPlanInfo(planId: number) {
-    if (this.selectedPlan != null) {
+    if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
     }
     else {
+      this.selectedPlan = null;
       this.selectedUpdatePlan = null;
       this.selectedPlan = this.plans.find(plan => plan.id === planId);
     }
@@ -64,10 +65,11 @@ export class PlanSearchMineComponent implements OnInit{
   }
 
   showUpdateForm(planId: number) {
-    if (this.selectedUpdatePlan != null) {
+    if (this.selectedUpdatePlan?.id == planId) {
       this.selectedUpdatePlan = null;
     }
     else {
+      this.selectedUpdatePlan = null;
       this.selectedPlan = null;
       this.selectedUpdatePlan = this.plans.find(plan => plan.id === planId);
     }
