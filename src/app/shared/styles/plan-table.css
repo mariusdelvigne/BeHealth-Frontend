@@ -53,3 +53,17 @@
   height: 40px;
   z-index: 10;
 }
+
+button {
+  border: none;
+  min-width: 50px;
+  width: auto;
+}
+
+button:hover, input:hover {
+  background-color: #b3b3b3;
+  transform: translateY(-5px);
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
