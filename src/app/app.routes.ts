@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {HomeComponent} from './core/home/home.component';
 import {AuthSignInComponent} from './core/auth/components/auth-sign-in/auth-sign-in.component';
 import {AuthSignOutComponent} from './core/auth/components/auth-sign-out/auth-sign-out.component';
@@ -13,7 +13,9 @@ import {InsertSleepComponent} from './features/users/components/insert/insert-sl
 import {InsertPeriodComponent} from './features/users/components/insert/insert-period/insert-period.component';
 import {PlanSearchMineComponent} from './features/plans/components/plan-search-mine/plan-search-mine.component';
 import {ProgramCreateComponent} from './features/programs/components/program-create/program-create.component';
-import {AccountInformationComponent} from './features/account/components/account/account-information/account-information.component';
+import {
+  AccountInformationComponent
+} from './features/account/components/account/account-information/account-information.component';
 import {AccountDeleteComponent} from './features/account/components/account/account-delete/account-delete.component';
 import {AccountComponent} from './features/account/components/account/account.component';
 import {ProfileComponent} from './features/profile/components/profile/profile.component';

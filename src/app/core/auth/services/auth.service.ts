@@ -80,4 +80,8 @@ export class AuthService implements Resolve<boolean> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<boolean> {
     return this.loadData();
   }
+
+  public isAdmin(): boolean {
+     return !!this._authData && this._authData.role === 'Admin';
+  }
 }
