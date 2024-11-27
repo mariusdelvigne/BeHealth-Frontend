@@ -40,6 +40,10 @@ import {
 import {InsertPhysicalComponent} from './features/users/components/insert/insert-physical/insert-physical.component';
 import {authGuard} from './auth-guards/auth.guard';
 import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
+import {
+  CaloriesGraphComponent
+} from './features/profile/components/profile/food-graph/calories-graph/calories-graph.component';
+import {FoodGraphComponent} from './features/profile/components/profile/food-graph/food-graph.component';
 
 export const routes: Routes = [
   {
@@ -168,6 +172,16 @@ export const routes: Routes = [
           {
             path: 'height',
             component: HeightGraphComponent,
+          },
+        ]
+      },
+      {
+        path: 'food',
+        component: FoodGraphComponent,
+        children: [
+          {
+            path: 'calories',
+            component: CaloriesGraphComponent,
           },
         ]
       },
