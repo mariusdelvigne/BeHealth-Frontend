@@ -72,4 +72,8 @@ export class AuthService {
       return this._authData.username;
     throw Error('Not logged in');
   }
+
+  public isAdmin(): boolean {
+     return !!this._authData && this._authData.role === 'Admin';
+  }
 }
