@@ -39,138 +39,147 @@ import {
 } from './features/programs/components/program-search-mine/program-search-mine.component';
 import {InsertPhysicalComponent} from './features/users/components/insert/insert-physical/insert-physical.component';
 import {authGuard} from './auth-guards/auth.guard';
+import {AuthService} from './core/auth/services/auth.service';
+import {AppComponent} from './app.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'sign-in',
-    component: AuthSignInComponent,
-  },
-  {
-    path: 'sign-up',
-    component: AuthSignUpComponent,
-  },
-  {
-    path: 'sign-out',
-    component: AuthSignOutComponent,
-    canActivate: [authGuard],
-  },
-  {
-    path: 'users',
-    component: UserSearchComponent,
-  },
-  {
-    path: 'plan-create',
-    component: PlanCreateComponent,
-    canActivate: [authGuard],
-  },
-  {
-    path: 'account',
-    component: AccountComponent,
-    canActivate: [authGuard],
+    component: AppComponent,
+    resolve: {AuthService},
     children: [
       {
         path: '',
-        component: AccountInformationComponent,
+        component: HomeComponent,
       },
       {
-        path: 'modify',
-        component: AccountInformationComponent,
+        path: 'sign-in',
+        component: AuthSignInComponent,
       },
       {
-        path: 'delete',
-        component: AccountDeleteComponent,
-      }
-    ]
-  },
-  {
-    path: 'bmi-calculator',
-    component: BmiCalculatorComponent,
-  },
-  {
-    path: 'insert',
-    component: InsertComponent,
-    canActivate: [authGuard],
-    children: [
-      {
-        path: 'physical',
-        component: InsertPhysicalComponent,
+        path: 'sign-up',
+        component: AuthSignUpComponent,
       },
       {
-        path: 'food',
-        component: InsertFoodComponent,
+        path: 'sign-out',
+        component: AuthSignOutComponent,
+        canActivate: [authGuard],
       },
       {
-        path: 'sport',
-        component: InsertSportComponent,
+        path: 'users',
+        component: UserSearchComponent,
       },
       {
-        path: 'sleep',
-        component: InsertSleepComponent,
+        path: 'plan-create',
+        component: PlanCreateComponent,
+        canActivate: [authGuard],
       },
       {
-        path: 'period',
-        component: InsertPeriodComponent,
-      }
-    ]
-  },
-  {
-    path: 'plan-search-mine',
-    component: PlanSearchMineComponent,
-    canActivate: [authGuard],
-  },
-  {
-    path: 'plan-search-public',
-    component: PlanSearchPublicComponent,
-  },
-  {
-    path: 'program-create',
-    component: ProgramCreateComponent,
-    canActivate: [authGuard],
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [authGuard],
-    children: [
-      {
-        path: 'physical',
-        component: PhysicalGraphComponent,
+        path: 'account',
+        component: AccountComponent,
+        canActivate: [authGuard],
         children: [
           {
-            path: 'weight',
-            component: WeightGraphComponent,
+            path: '',
+            component: AccountInformationComponent,
           },
           {
-            path: 'height',
-            component: HeightGraphComponent,
+            path: 'modify',
+            component: AccountInformationComponent,
+          },
+          {
+            path: 'delete',
+            component: AccountDeleteComponent,
+          }
+        ]
+      },
+      {
+        path: 'bmi-calculator',
+        component: BmiCalculatorComponent,
+      },
+      {
+        path: 'insert',
+        component: InsertComponent,
+        canActivate: [authGuard],
+        children: [
+          {
+            path: 'physical',
+            component: InsertPhysicalComponent,
+          },
+          {
+            path: 'food',
+            component: InsertFoodComponent,
+          },
+          {
+            path: 'sport',
+            component: InsertSportComponent,
+          },
+          {
+            path: 'sleep',
+            component: InsertSleepComponent,
+          },
+          {
+            path: 'period',
+            component: InsertPeriodComponent,
+          }
+        ]
+      },
+      {
+        path: 'plan-search-mine',
+        component: PlanSearchMineComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'plan-search-public',
+        component: PlanSearchPublicComponent,
+      },
+      {
+        path: 'program-create',
+        component: ProgramCreateComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [authGuard],
+        children: [
+          {
+            path: 'physical',
+            component: PhysicalGraphComponent,
+            children: [
+              {
+                path: 'weight',
+                component: WeightGraphComponent,
+              },
+              {
+                path: 'height',
+                component: HeightGraphComponent,
+              },
+            ]
           },
         ]
       },
+      {
+        path: 'program-search-public',
+        component: ProgramSearchPublicComponent,
+      },
+      {
+        path: 'program-search-mine',
+        component: ProgramSearchMineComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'bmi-calculator',
+        component: BmiCalculatorComponent,
+      },
+      {
+        path: 'nutrition-calculator',
+        component: NutritionCalculatorComponent,
+      },
+      {
+        path: 'sport-calories-burned-calculator',
+        component: SportCaloriesBurnedCalculatorComponent,
+      }
     ]
-  },
-  {
-    path: 'program-search-public',
-    component: ProgramSearchPublicComponent,
-  },
-  {
-    path: 'program-search-mine',
-    component: ProgramSearchMineComponent,
-    canActivate: [authGuard],
-  },
-  {
-    path: 'bmi-calculator',
-    component: BmiCalculatorComponent,
-  },
-  {
-    path: 'nutrition-calculator',
-    component: NutritionCalculatorComponent,
-  },
-  {
-    path: 'sport-calories-burned-calculator',
-    component: SportCaloriesBurnedCalculatorComponent,
   }
 ]

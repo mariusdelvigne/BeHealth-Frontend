@@ -2,29 +2,33 @@ import { Injectable } from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AuthCred} from '../utils/auth-cred';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {AuthData} from '../utils/auth-data';
+import {ActivatedRouteSnapshot, MaybeAsync, Resolve, RouterStateSnapshot} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements Resolve<boolean> {
   private static URL: string = `${environment.API_URL}/${apis.AUTH_URL}`;
 
   private _authData: AuthData | null = null;
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) {
+  }
 
-  loadData(): Observable<any> {
+  loadData(): Observable<boolean> {
     const request = this._httpClient.get<AuthData>(AuthService.URL, {withCredentials: true});
+    let success = false;
 
     request.subscribe({
       next: response => {
         this._authData = response;
+        success = true;
       },
     });
 
-    return request;
+    return of(success);
   }
 
   public signIn(auth: AuthCred): Observable<AuthData> {
@@ -71,5 +75,9 @@ export class AuthService {
     if (this._authData)
       return this._authData.username;
     throw Error('Not logged in');
+  }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<boolean> {
+    return this.loadData();
   }
 }
