@@ -46,6 +46,12 @@ export class SubscriptionsComponent implements OnInit{
   }
 
   showProgramInfo(programId: number) {
-    this.selectedProgram = this.programs.find(program => program.program.id === programId);
+    if (this.selectedProgram?.program.id == programId) {
+      this.selectedProgram = null;
+    }
+    else {
+      this.selectedProgram = null;
+      this.selectedProgram = this.programs.find(program => program.program.id === programId);
+    }
   }
 }
