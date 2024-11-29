@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FoodPlansTableComponent} from '../program-create/food-plans-table/food-plans-table.component';
-import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {SleepPlansTableComponent} from '../program-create/sleep-plans-table/sleep-plans-table.component';
 import {SportPlansTableComponent} from '../program-create/sport-plans-table/sport-plans-table.component';
 import {ProgramService} from '../../services/program.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
-import {PlanService} from '../../../plans/services/plan.service';
 import {UserService} from '../../../../shared/services/user.service';
 import {ProgramInfoComponent} from '../program-info/program-info.component';
 
@@ -29,7 +28,7 @@ export class ProgramSearchPublicComponent implements OnInit {
   programs: any[] = [];
   selectedProgram: any;
 
-  constructor(private _programService: ProgramService, private _userService: UserService) {
+  constructor(private _programService: ProgramService, private _userService: UserService, private _authService : AuthService) {
   }
 
   ngOnInit() {
@@ -51,6 +50,12 @@ export class ProgramSearchPublicComponent implements OnInit {
       this.selectedProgram = null;
       this.selectedProgram = this.programs.find(program => program.id === programId);
     }
+  }
+
+  addToSubscriptions(programId: number) {
+    this._programService.postFavorite(this._authService.getId(), programId).subscribe({
+
+    })
   }
 }
 

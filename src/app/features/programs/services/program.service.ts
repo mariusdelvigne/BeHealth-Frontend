@@ -4,7 +4,6 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {ProgramCreateCommand} from '../utils/program-create-command';
 import {ProgramCreateOutput} from '../utils/program-create-output';
 import {Observable} from 'rxjs';
-import {PlanUpdateCommand} from "../../plans/utils/plan-update-command";
 import {ProgramUpdateCommand} from "../utils/program-update-command";
 
 @Injectable({
@@ -45,5 +44,9 @@ export class ProgramService {
 
   public getProgramsByAssociations(userId: number, relation: string): Observable<any> {
     return this._httpClient.get<any>(`${ProgramService.URL_USERS}/${userId}/associations/${relation}`, {withCredentials: true});
+  }
+
+  public postFavorite(userId: number, programId: number) : Observable<any> {
+    return this._httpClient.post(`${ProgramService.URL_USERS}/${userId}/associations`, {withCredentials: true});
   }
 }
