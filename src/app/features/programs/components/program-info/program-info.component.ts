@@ -17,7 +17,7 @@ import {NgClass} from '@angular/common';
   templateUrl: './program-info.component.html',
   styleUrls: [
     './program-info.component.css',
-    '../../../../shared/styles/plan-table.css',
+    '../../../../shared/styles/style.css',
   ]
 })
 export class ProgramInfoComponent implements OnInit {

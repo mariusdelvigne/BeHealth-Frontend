@@ -12,7 +12,7 @@ import {AuthService} from '../../../../../core/auth/services/auth.service';
   templateUrl: './subscriptions.component.html',
   styleUrls: [
     './subscriptions.component.css',
-    '../../../../../shared/styles/plan-table.css',
+    '../../../../../shared/styles/style.css',
   ],
 })
 export class SubscriptionsComponent implements OnInit{

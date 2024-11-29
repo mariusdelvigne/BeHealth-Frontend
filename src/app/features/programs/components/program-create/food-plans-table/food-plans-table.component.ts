@@ -1,7 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ProgramService} from '../../../services/program.service';
-import {AuthService} from '../../../../../core/auth/services/auth.service';
-import {FoodService} from '../../../../../shared/services/food.service';
 import {PlanService} from '../../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
 
@@ -14,7 +11,7 @@ import {NgClass} from '@angular/common';
   templateUrl: './food-plans-table.component.html',
   styleUrls: [
     './food-plans-table.component.css',
-    '../../../../../shared/styles/plan-table.css'
+    '../../../../../shared/styles/style.css'
   ]
 })
 export class FoodPlansTableComponent implements OnInit {

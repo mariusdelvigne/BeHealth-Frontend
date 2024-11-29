@@ -3,10 +3,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {PlanService} from '../../services/plan.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {PlanSearchOutput} from '../../utils/plan-search-output';
-import {PlanInfoComponent} from '../plan-info/plan-info.component';
+import {PlanInfoComponent} from '../../shared/plan-info/plan-info.component';
 import {NgClass} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
-import {PlanUpdateFormComponent} from "../plan-update-form/plan-update-form.component";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-plan-search-public-mine',
@@ -15,20 +15,18 @@ import {PlanUpdateFormComponent} from "../plan-update-form/plan-update-form.comp
     ReactiveFormsModule,
     PlanInfoComponent,
     NgClass,
-    PlanUpdateFormComponent
   ],
   templateUrl: './plan-search-mine.component.html',
   styleUrls: [
     './plan-search-mine.component.css',
-    '../../../../shared/styles/plan-table.css',
+    '../../../../shared/styles/style.css',
   ],
 })
 export class PlanSearchMineComponent implements OnInit{
   plans: PlanSearchOutput[] = [];
   selectedPlan: any;
-  selectedUpdatePlan: any;
 
-  constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) {
+  constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService, private _router: Router) {
   }
 
   ngOnInit() {
@@ -48,7 +46,6 @@ export class PlanSearchMineComponent implements OnInit{
     }
     else {
       this.selectedPlan = null;
-      this.selectedUpdatePlan = null;
       this.selectedPlan = this.plans.find(plan => plan.id === planId);
     }
   }
@@ -64,14 +61,7 @@ export class PlanSearchMineComponent implements OnInit{
     });
   }
 
-  showUpdateForm(planId: number) {
-    if (this.selectedUpdatePlan?.id == planId) {
-      this.selectedUpdatePlan = null;
-    }
-    else {
-      this.selectedUpdatePlan = null;
-      this.selectedPlan = null;
-      this.selectedUpdatePlan = this.plans.find(plan => plan.id === planId);
-    }
+  goToUpdateForm(planId: number) {
+    this._router.navigate(['plan-update', planId]);
   }
 }

@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ProgramInfoComponent} from '../program-info/program-info.component';
 import {ProgramService} from '../../services/program.service';
-import {UserService} from '../../../../shared/services/user.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
-import {PlanInfoComponent} from "../../../plans/components/plan-info/plan-info.component";
-import {PlanUpdateFormComponent} from "../../../plans/components/plan-update-form/plan-update-form.component";
+import {PlanInfoComponent} from "../../../plans/shared/plan-info/plan-info.component";
 import {ToastrService} from "ngx-toastr";
 import {ProgramUpdateFormComponent} from "../program-update-form/program-update-form.component";
 
@@ -14,13 +12,12 @@ import {ProgramUpdateFormComponent} from "../program-update-form/program-update-
   imports: [
     ProgramInfoComponent,
     PlanInfoComponent,
-    PlanUpdateFormComponent,
     ProgramUpdateFormComponent
   ],
   templateUrl: './program-search-mine.component.html',
   styleUrls: [
     './program-search-mine.component.css',
-    '../../../../shared/styles/plan-table.css',
+    '../../../../shared/styles/style.css',
   ],
 })
 export class ProgramSearchMineComponent implements OnInit{
@@ -37,7 +34,7 @@ export class ProgramSearchMineComponent implements OnInit{
         this.programs = response.programs;
       },
       error: (error) => {
-        this._toastrService.error("Error Getting programs");
+        this._toastrService.error("Error Getting programs: " + error);
       }
     });
   }

@@ -17,7 +17,7 @@
 
   .table-row {
     background-color: #ffffff;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 
   .table-row.selected {
@@ -61,8 +61,8 @@ button {
   width: auto;
 }
 
-button:hover, input:hover {
-  background-color: #b3b3b3;
+.hovered-transition:hover {
+  background-color: #2230c8;
   transform: translateY(-5px);
   border: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);

@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FoodPlansTableComponent} from '../program-create/food-plans-table/food-plans-table.component';
-import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {SleepPlansTableComponent} from '../program-create/sleep-plans-table/sleep-plans-table.component';
 import {SportPlansTableComponent} from '../program-create/sport-plans-table/sport-plans-table.component';
 import {ProgramService} from '../../services/program.service';
-import {AuthService} from '../../../../core/auth/services/auth.service';
-import {PlanService} from '../../../plans/services/plan.service';
 import {UserService} from '../../../../shared/services/user.service';
 import {ProgramInfoComponent} from '../program-info/program-info.component';
 
@@ -22,7 +20,7 @@ import {ProgramInfoComponent} from '../program-info/program-info.component';
   templateUrl: './program-search-public.component.html',
   styleUrls: [
     './program-search-public.component.css',
-    '../../../../shared/styles/plan-table.css',
+    '../../../../shared/styles/style.css',
   ],
 })
 export class ProgramSearchPublicComponent implements OnInit {
