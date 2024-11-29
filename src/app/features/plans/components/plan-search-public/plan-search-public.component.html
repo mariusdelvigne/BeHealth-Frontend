@@ -1,5 +1,5 @@
 <div class="container text-center">
-  <form class="m-3 p-3 rounded" [formGroup]="form" (submit)="emitSearchPlan()" [@colorChange]="colorChange">
+  <form class="p-3 rounded" [formGroup]="form" (submit)="emitSearchPlan()" [@colorChange]="colorChange">
     <div class="row mt-3 mb-2">
       <div class="col-2">
         <input class="form-control" formControlName="name" placeholder="Title">
@@ -20,8 +20,8 @@
 
   </form>
 
-  <div class="container">
-    <ul class="responsive-table">
+  <div class="d-flex">
+    <ul class="responsive-table w-100">
       <li class="table-header">
         <div class="col-2">Name</div>
         <div class="col-2">Privacy</div>

@@ -1,5 +1,6 @@
 .responsive-table {
   margin-top: 2%;
+  padding-left: 0;
   li {
     padding: 25px 30px;
     display: flex;
