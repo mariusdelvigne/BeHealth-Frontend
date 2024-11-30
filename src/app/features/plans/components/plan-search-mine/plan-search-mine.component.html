@@ -33,13 +33,13 @@
         </div>
 
         <div class="col-2">
-          <input type="button" class="form-control rounded text-uppercase p-2" value="Update"
-                 (click)="goToUpdateForm(plan.id)">
+          <button class="rounded text-uppercase p-2 hovered-transition"
+                  (click)="goToUpdateForm(plan.id)">Update</button>
         </div>
 
         <div class="col-2">
-          <input type="button" class="form-control rounded text-uppercase p-2" value="Delete"
-                 (click)="deletePlan(plan.id)">
+          <button class="rounded text-uppercase p-2 hovered-transition"
+                  (click)="deletePlan(plan.id)">Delete</button>
         </div>
       </li>
       @if (plan == selectedPlan) {

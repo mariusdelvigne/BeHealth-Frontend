@@ -24,12 +24,12 @@
           </button>
         </div>
         <div class="col-2">
-          <input type="button" class="form-control rounded text-uppercase p-2 hovered-transition" value="Update"
-          (click)="goToUpdateForm(program.id)">
+          <button class="rounded text-uppercase p-2 hovered-transition"
+                  (click)="goToUpdateForm(program.id)">Update</button>
         </div>
         <div class="col-2">
-          <input type="button" class="form-control rounded text-uppercase p-2 hovered-transition" value="Delete"
-                 (click)="deleteProgram(program.id)">
+          <button class="rounded text-uppercase p-2 hovered-transition"
+                  (click)="deleteProgram(program.id)">Delete</button>
         </div>
       </li>
       @if (program == selectedProgram) {
