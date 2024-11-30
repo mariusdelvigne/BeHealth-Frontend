@@ -49,6 +49,7 @@ import {
 } from './features/profile/components/profile/food-graph/calories-graph/calories-graph.component';
 import {FoodGraphComponent} from './features/profile/components/profile/food-graph/food-graph.component';
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
+import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
 
 export const routes: Routes = [
   {
@@ -149,6 +150,11 @@ export const routes: Routes = [
       {
         path: 'program-create',
         component: ProgramCreateComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'program-update/:id',
+        component: ProgramUpdateComponent,
         canActivate: [authGuard],
       },
       {

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FoodPlansTableComponent} from '../program-create/food-plans-table/food-plans-table.component';
+import {FoodPlansTableComponent} from '../../shared/food-plans-table/food-plans-table.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SleepPlansTableComponent} from '../program-create/sleep-plans-table/sleep-plans-table.component';
-import {SportPlansTableComponent} from '../program-create/sport-plans-table/sport-plans-table.component';
+import {SleepPlansTableComponent} from '../../shared/sleep-plans-table/sleep-plans-table.component';
+import {SportPlansTableComponent} from '../../shared/sport-plans-table/sport-plans-table.component';
 import {ProgramService} from '../../services/program.service';
 import {UserService} from '../../../../shared/services/user.service';
-import {ProgramInfoComponent} from '../program-info/program-info.component';
+import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 
 @Component({
   selector: 'app-program-search-public',

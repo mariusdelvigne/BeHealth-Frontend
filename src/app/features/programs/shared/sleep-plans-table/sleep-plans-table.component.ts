@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PlanService} from '../../../../plans/services/plan.service';
+import {PlanService} from '../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
 
 @Component({
@@ -11,7 +11,7 @@ import {NgClass} from '@angular/common';
   templateUrl: './sleep-plans-table.component.html',
   styleUrls: [
     './sleep-plans-table.component.css',
-    '../../../../../shared/styles/style.css'
+    '../../../../shared/styles/style.css'
   ]
 })
 export class SleepPlansTableComponent implements OnInit{

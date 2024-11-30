@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ProgramInfoComponent} from '../program-info/program-info.component';
+import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 import {ProgramService} from '../../services/program.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {PlanInfoComponent} from "../../../plans/shared/plan-info/plan-info.component";
 import {ToastrService} from "ngx-toastr";
 import {ProgramUpdateFormComponent} from "../program-update-form/program-update-form.component";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-program-search-mine',
@@ -23,9 +24,8 @@ import {ProgramUpdateFormComponent} from "../program-update-form/program-update-
 export class ProgramSearchMineComponent implements OnInit{
   programs: any[] = [];
   selectedProgram: any
-  selectedUpdateProgram: any;
 
-  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
+  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService, private _route: ActivatedRoute, private _router: Router) {
   }
 
   ngOnInit() {
@@ -45,7 +45,6 @@ export class ProgramSearchMineComponent implements OnInit{
     }
     else {
       this.selectedProgram = null;
-      this.selectedUpdateProgram = null;
       this.selectedProgram = this.programs.find(program => program.id === programId);
     }
   }
@@ -61,14 +60,7 @@ export class ProgramSearchMineComponent implements OnInit{
     });
   }
 
-  showUpdateProgram(programId: number) {
-    if (this.selectedUpdateProgram?.id == programId) {
-      this.selectedUpdateProgram = null;
-    }
-    else {
-      this.selectedUpdateProgram = null;
-      this.selectedProgram = null;
-      this.selectedUpdateProgram = this.programs.find(program => program.id === programId);
-    }
+  goToUpdateForm(programId: number) {
+    this._router.navigate(['program-update', programId]);
   }
 }

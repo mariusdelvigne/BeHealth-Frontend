@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PlanService} from '../../../../plans/services/plan.service';
+import {PlanService} from '../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
 
 @Component({
@@ -11,7 +11,7 @@ import {NgClass} from '@angular/common';
   templateUrl: './food-plans-table.component.html',
   styleUrls: [
     './food-plans-table.component.css',
-    '../../../../../shared/styles/style.css'
+    '../../../../shared/styles/style.css'
   ]
 })
 export class FoodPlansTableComponent implements OnInit {
@@ -33,8 +33,10 @@ export class FoodPlansTableComponent implements OnInit {
       }
     })
 
+    console.log("Out" + this.program);
     // Show the plan already selected (Used in update form)
     if (this.program && this.program.foodPlanId != null) {
+      console.log("In");
       this._planService.getPlansById(this.program.foodPlanId)
         .subscribe({
           next: (plan) => {

@@ -5,7 +5,7 @@ import {PlanService} from '../../services/plan.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {
   ProgramInfoComponent
-} from "../../../programs/components/program-info/program-info.component";
+} from "../../../programs/shared/program-info/program-info.component";
 import {PlanInfoComponent} from '../../shared/plan-info/plan-info.component';
 import {NgClass} from '@angular/common';
 

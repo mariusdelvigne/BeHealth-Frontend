@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {FoodPlansTableComponent} from '../program-create/food-plans-table/food-plans-table.component';
-import {SleepPlansTableComponent} from '../program-create/sleep-plans-table/sleep-plans-table.component';
-import {SportPlansTableComponent} from '../program-create/sport-plans-table/sport-plans-table.component';
+import {FoodPlansTableComponent} from '../../shared/food-plans-table/food-plans-table.component';
+import {SleepPlansTableComponent} from '../../shared/sleep-plans-table/sleep-plans-table.component';
+import {SportPlansTableComponent} from '../../shared/sport-plans-table/sport-plans-table.component';
 import {ProgramService} from '../../services/program.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
@@ -21,6 +21,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class ProgramUpdateFormComponent implements OnInit{
   @Input() program!: any;
+
   form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
     privacy: new FormControl('', Validators.required),

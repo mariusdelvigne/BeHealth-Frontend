@@ -1,0 +1,35 @@
+<form class="m-2 mb-0 p-3 rounded border border-black" [formGroup]="form" (submit)="submit()">
+  <h3>Create a program</h3>
+  <div class="d-flex mt-3 justify-content-between gap-3">
+    <input type="text" class="flex-grow-1 me-3" placeholder="Title" formControlName="title">
+
+    <select class="ps-5 pe-5" formControlName="privacy">
+      <option value="private">private</option>
+      <option value="public">public</option>
+    </select>
+
+    @if (mode == "create") {
+      <input class="col-2 w-25 m-3 form-control bg-light hovered-transition" type="submit" value="Create" [disabled]="form.invalid">
+    } @else if (mode == "update") {
+      <input class="col-2 w-25 m-3 form-control bg-light hovered-transition" type="submit" value="Save" [disabled]="form.invalid">
+    }
+  </div>
+  <textarea class="w-100 mt-2" style="height: 20vh" id="" placeholder="Description"
+            formControlName="description"></textarea>
+
+
+  @if (program) {
+    <div class="d-flex flex-wrap mt-3">
+      <div class="col-4">
+        <app-food-plans-table [program]="program" (emitFoodPlan)="setSelectedFoodPlan($event)"></app-food-plans-table>
+      </div>
+      <div class="col-4">
+        <app-sport-plans-table [program]="program" (emitSportPlan)="setSelectedSportPlan($event)"></app-sport-plans-table>
+      </div>
+      <div class="col-4">
+        <app-sleep-plans-table [program]="program" (emitSleepPlan)="setSelectedSleepPlan($event)"></app-sleep-plans-table>
+      </div>
+    </div>
+  }
+</form>
+

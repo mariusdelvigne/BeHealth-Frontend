@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProgramInfoComponent} from '../../../../programs/components/program-info/program-info.component';
+import {ProgramInfoComponent} from '../../../../programs/shared/program-info/program-info.component';
 import {ProgramService} from '../../../../programs/services/program.service';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 

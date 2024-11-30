@@ -34,8 +34,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class PlanFormComponent implements OnInit {
   @Input() mode: string = '';
-  @Input() planId: any;
-  @Input() plan: any;
+  @Input() planId!: number;
+  plan: any;
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     privacy: new FormControl('', Validators.required),
