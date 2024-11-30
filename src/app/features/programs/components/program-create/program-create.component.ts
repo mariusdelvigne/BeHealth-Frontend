@@ -1,12 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../../../core/auth/services/auth.service';
-import {ProgramService} from '../../services/program.service';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {FoodService} from '../../../../shared/services/food.service';
-import {FoodPlansTableComponent} from '../../shared/food-plans-table/food-plans-table.component';
-import {SportPlansTableComponent} from '../../shared/sport-plans-table/sport-plans-table.component';
-import {SleepPlansTableComponent} from '../../shared/sleep-plans-table/sleep-plans-table.component';
-import {ToastrService} from 'ngx-toastr';
+import {Component} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/food-plans-table.component';
+import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
+import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
 import {ProgramFormComponent} from '../../shared/program-form/program-form.component';
 
 @Component({

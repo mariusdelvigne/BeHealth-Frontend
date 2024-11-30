@@ -3,9 +3,9 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {ProgramService} from '../../services/program.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
-import {FoodPlansTableComponent} from '../food-plans-table/food-plans-table.component';
-import {SportPlansTableComponent} from '../sport-plans-table/sport-plans-table.component';
-import {SleepPlansTableComponent} from '../sleep-plans-table/sleep-plans-table.component';
+import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/food-plans-table.component';
+import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
+import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
 
 @Component({
   selector: 'app-program-form',

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FoodPlansTableComponent} from '../../shared/food-plans-table/food-plans-table.component';
+import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/food-plans-table.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SleepPlansTableComponent} from '../../shared/sleep-plans-table/sleep-plans-table.component';
-import {SportPlansTableComponent} from '../../shared/sport-plans-table/sport-plans-table.component';
+import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
+import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {ProgramService} from '../../services/program.service';
 import {UserService} from '../../../../shared/services/user.service';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
@@ -31,7 +31,7 @@ export class ProgramSearchPublicComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._programService.getProgramsFiltered().subscribe({
+    this._programService.getProgramsFiltered('public').subscribe({
       next: (response) => {
         this.programs = response.programs;
       },

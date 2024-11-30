@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
-import {PlanService} from '../../../plans/services/plan.service';
+import {PlanService} from '../../services/plan.service';
 import {NgClass} from '@angular/common';
 
 @Component({

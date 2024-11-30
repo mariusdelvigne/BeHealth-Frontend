@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FoodPlansTableComponent} from '../food-plans-table/food-plans-table.component';
-import {SleepPlansTableComponent} from '../sleep-plans-table/sleep-plans-table.component';
-import {SportPlansTableComponent} from '../sport-plans-table/sport-plans-table.component';
+import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/food-plans-table.component';
+import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
+import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {PlanService} from '../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
 

@@ -4,7 +4,6 @@ import {ProgramService} from '../../services/program.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {PlanInfoComponent} from "../../../plans/shared/plan-info/plan-info.component";
 import {ToastrService} from "ngx-toastr";
-import {ProgramUpdateFormComponent} from "../program-update-form/program-update-form.component";
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -13,7 +12,6 @@ import {ActivatedRoute, Router} from '@angular/router';
   imports: [
     ProgramInfoComponent,
     PlanInfoComponent,
-    ProgramUpdateFormComponent
   ],
   templateUrl: './program-search-mine.component.html',
   styleUrls: [
