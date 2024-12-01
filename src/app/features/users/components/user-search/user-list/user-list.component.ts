@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {UserService} from '../../../../../shared/services/user.service';
 import {UserBanCommand} from '../../../../../shared/utils/user-ban-command';
 
 @Component({
