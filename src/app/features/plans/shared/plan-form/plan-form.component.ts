@@ -38,8 +38,8 @@ export class PlanFormComponent implements OnInit {
   plan: any;
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    privacy: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
+    privacy: new FormControl('private', Validators.required),
+    category: new FormControl('sport', Validators.required),
     durationInDays: new FormControl('', [Validators.required, Validators.min(1)]),
     description: new FormControl('', [Validators.required, Validators.min(1)])
   });

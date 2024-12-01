@@ -25,7 +25,7 @@ export class ProgramFormComponent implements OnInit {
   program: any;
   form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    privacy: new FormControl('', Validators.required),
+    privacy: new FormControl('private', Validators.required),
     description: new FormControl('', [Validators.required, Validators.min(1)]),
     foodPlanId: new FormControl(0),
     sportPlanId: new FormControl(0),
@@ -39,20 +39,24 @@ export class ProgramFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._programService.getProgramById(this.programId).subscribe( {
-      next: (program) => {
-        this.program = program;
+    if (this.mode == "create") {
 
-        this.form.patchValue({
-          title: this.program.title,
-          privacy: this.program.privacy,
-          description: this.program.description,
-          foodPlanId: this.program.foodPlanId,
-          sportPlanId: this.program.sportPlanId,
-          sleepPlanId: this.program.sleepPlanId,
-        });
-      }
-    });
+    } else if (this.mode == "update") {
+      this._programService.getProgramById(this.programId).subscribe( {
+        next: (program) => {
+          this.program = program;
+
+          this.form.patchValue({
+            title: this.program.title,
+            privacy: this.program.privacy,
+            description: this.program.description,
+            foodPlanId: this.program.foodPlanId,
+            sportPlanId: this.program.sportPlanId,
+            sleepPlanId: this.program.sleepPlanId,
+          });
+        }
+      });
+    }
   }
 
   setSelectedSportPlan(sportPlan: any) {
