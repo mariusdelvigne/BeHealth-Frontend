@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserService} from '../../../../../shared/services/user.service';
+import {UserBanCommand} from '../../../../../shared/utils/user-ban-command';
 
 @Component({
   selector: 'app-user-list',
@@ -17,13 +18,20 @@ export class UserListComponent {
   @Input()
   users: UserSearchOutput[] = []
 
-  constructor(private userService: UserService) {}
+  @Output()
+  userIsBanned: EventEmitter<UserBanCommand> = new EventEmitter()
 
   banUser(id: number) {
-    console.log(id);
-    this.userService.banUser(id).subscribe(user => {
-      console.log(user);
-      }
-    )
+    this.userIsBanned.emit({
+      userId: id,
+      isBanned: true
+    })
+  }
+
+  UnbanUser(id: number) {
+    this.userIsBanned.emit({
+      userId: id,
+      isBanned: false
+    })
   }
 }

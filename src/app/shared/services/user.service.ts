@@ -6,6 +6,7 @@ import {UserCreateCommand} from '../../core/auth/utils/user-create-command';
 import {UserCreateOutput} from '../../core/auth/utils/user-create-output';
 import {UserSearchQuery} from '../utils/user-search-query';
 import {UserUpdateCommand} from '../utils/user-update-command';
+import {UserBanCommand} from '../utils/user-ban-command';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +42,7 @@ export class UserService {
     return this._httpClient.get<any>(UserService.URL + "/" + query.username + "/usernames");
   }
 
-  public banUser(userId:number): Observable<void> {
-    return this._httpClient.put<void>(`${UserService.URL}/${userId}/ban`, {withCredentials: true});
+  public banUser(userBanCommand: UserBanCommand): Observable<void> {
+    return this._httpClient.put<void>(`${UserService.URL}/${userBanCommand.userId}/ban/${userBanCommand.isBanned}`, {withCredentials: true});
   }
 }

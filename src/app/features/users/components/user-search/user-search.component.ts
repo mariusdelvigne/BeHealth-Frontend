@@ -4,6 +4,7 @@ import {UserListComponent} from './user-list/user-list.component';
 import {UserSearchOutput} from '../../../../shared/utils/user-search-output';
 import {UserSearchQuery} from '../../../../shared/utils/user-search-query';
 import {UserService} from '../../../../shared/services/user.service';
+import {UserBanCommand} from '../../../../shared/utils/user-ban-command';
 
 @Component({
   selector: 'app-user-search',
@@ -28,5 +29,12 @@ export class UserSearchComponent{
     this._userService.getUserByUsername(query).subscribe(users => {
       this.user = users.userGetByNames;
     });
+  }
+
+
+  banUser(command: UserBanCommand) {
+    this._userService.banUser(command).subscribe(user => {
+      console.log(user);
+    })
   }
 }
