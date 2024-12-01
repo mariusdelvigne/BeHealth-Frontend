@@ -43,6 +43,7 @@ export class ProgramInfoComponent implements OnInit {
   }
 
   showPlanInfo(planId: number) {
+    console.log(planId);
     if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
     } else {

@@ -9,9 +9,9 @@
     </select>
 
     @if (mode == "create") {
-      <input class="col-2 w-25 m-3 form-control bg-light hovered-transition" type="submit" value="Create" [disabled]="form.invalid">
+      <input class="col-2 w-25 m-3 form-control bg-light custom-btn" type="submit" value="Create" [disabled]="form.invalid">
     } @else if (mode == "update") {
-      <input class="col-2 w-25 m-3 form-control bg-light hovered-transition" type="submit" value="Save" [disabled]="form.invalid">
+      <input class="col-2 w-25 m-3 form-control bg-light custom-btn" type="submit" value="Save" [disabled]="form.invalid">
     }
   </div>
   <textarea class="w-100 mt-2" style="height: 20vh" id="" placeholder="Description"

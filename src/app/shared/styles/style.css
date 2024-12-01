@@ -1,5 +1,4 @@
 .responsive-table {
-  margin-top: 2%;
   padding-left: 0;
   li {
     padding: 25px 30px;
@@ -10,27 +9,27 @@
 
   .table-header {
     background-color: #aaaaaa;
-    font-size: 16px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+  }
+
+  .table-row-container {
+    transition: transform 0.5s ease, box-shadow 0.5s;
+  }
+
+  .table-row-container:hover {
+    transform: translateY(-10px);
   }
 
   .table-row {
     background-color: #ffffff;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
-
-  .table-row.selected {
-    background-color: #48f662;
-  }
-}
-
-.horizontal-text {
-  width: 15%;
 }
 
 .card {
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.5s ease, box-shadow 0.5s;
   border-radius: 10px;
   min-height: 30vh;
   max-height: 30vh;
@@ -56,15 +55,20 @@
 }
 
 button {
+  transition: transform 0.5s ease, box-shadow 0.5s;
   border: none;
   min-width: 50px;
   width: auto;
 }
 
-.hovered-transition:hover {
+.custom-btn:hover {
   background-color: #878787;
-  transform: translateY(-5px);
+  transform: translateY(-10px);
   border: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+}
+
+.custom-width {
+  width: 15%;
 }
