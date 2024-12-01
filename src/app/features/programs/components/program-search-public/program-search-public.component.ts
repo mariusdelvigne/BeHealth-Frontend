@@ -5,8 +5,8 @@ import {SleepPlansTableComponent} from '../program-create/sleep-plans-table/slee
 import {SportPlansTableComponent} from '../program-create/sport-plans-table/sport-plans-table.component';
 import {ProgramService} from '../../services/program.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
-import {UserService} from '../../../../shared/services/user.service';
 import {ProgramInfoComponent} from '../program-info/program-info.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-program-search-public',
@@ -28,7 +28,7 @@ export class ProgramSearchPublicComponent implements OnInit {
   programs: any[] = [];
   selectedProgram: any;
 
-  constructor(private _programService: ProgramService, private _userService: UserService, private _authService : AuthService) {
+  constructor(private _programService: ProgramService, private _authService : AuthService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
@@ -52,17 +52,19 @@ export class ProgramSearchPublicComponent implements OnInit {
     }
   }
 
-  addToSubscriptions(programId: number) {
+  addToRelations(programId: number, relation: string) {
     const userId = this._authService.getId();
-    this._programService.postFavorite(userId, programId).subscribe({
+    this._programService.postFavorite(userId, programId, relation).subscribe({
       next: response => {
-        console.log('Subscription créée avec succès:', response);
+        this._toastrService.success( relation + " added successfully.");
+        console.log(response);
       },
       error: error => {
-        console.error('Erreur lors de la création de la subscription:', error);
+        console.error(error);
       }
     });
   }
 
 }
+
 
