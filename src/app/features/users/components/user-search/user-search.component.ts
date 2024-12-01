@@ -26,7 +26,6 @@ export class UserSearchComponent{
 
   searchUserByName(query: UserSearchQuery) {
     this._userService.getUserByUsername(query).subscribe(users => {
-      console.log(users.userGetByNames.birthDate);
       this.user = users.userGetByNames;
     });
   }

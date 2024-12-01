@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {apis, environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
@@ -39,5 +39,9 @@ export class UserService {
   getUserByUsername(query: UserSearchQuery): Observable<any> {
     // console.log(UserSearchService.urlSearchUser + "/" + query.username + "/usernames")
     return this._httpClient.get<any>(UserService.URL + "/" + query.username + "/usernames");
+  }
+
+  public banUser(userId:number): Observable<void> {
+    return this._httpClient.put<void>(`${UserService.URL}/${userId}/ban`, {withCredentials: true});
   }
 }

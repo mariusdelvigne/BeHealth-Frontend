@@ -11,6 +11,7 @@
         <th>Gender</th>
         <th>Name</th>
         <th>Surname</th>
+        <th>Is Ban</th>
       </tr>
       </thead>
       <tbody>
@@ -24,6 +25,8 @@
             <td>{{ user.gender }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.surname }}</td>
+            <td>{{ user.isBanned }}</td>
+            <button type="button" (click)="banUser(user.id)">Ban User</button>
           </tr>
         }
       </tbody>
