@@ -53,9 +53,16 @@ export class ProgramSearchPublicComponent implements OnInit {
   }
 
   addToSubscriptions(programId: number) {
-    this._programService.postFavorite(this._authService.getId(), programId).subscribe({
-
-    })
+    const userId = this._authService.getId();
+    this._programService.postFavorite(userId, programId).subscribe({
+      next: response => {
+        console.log('Subscription créée avec succès:', response);
+      },
+      error: error => {
+        console.error('Erreur lors de la création de la subscription:', error);
+      }
+    });
   }
+
 }
 

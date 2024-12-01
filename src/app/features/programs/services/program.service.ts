@@ -47,6 +47,7 @@ export class ProgramService {
   }
 
   public postFavorite(userId: number, programId: number) : Observable<any> {
-    return this._httpClient.post(`${ProgramService.URL_USERS}/${userId}/associations`, {withCredentials: true});
+    const body = { ProgramId: programId, RelationType: "favorite" };
+    return this._httpClient.post(`${ProgramService.URL_USERS}/${userId}/associations`, body,{withCredentials: true});
   }
 }
