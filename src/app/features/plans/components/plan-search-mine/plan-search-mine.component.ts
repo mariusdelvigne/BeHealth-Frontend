@@ -41,6 +41,7 @@ export class PlanSearchMineComponent implements OnInit{
   }
 
   showPlanInfo(planId: number) {
+    console.log("fezb");
     if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
     }
