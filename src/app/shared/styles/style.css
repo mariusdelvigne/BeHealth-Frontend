@@ -32,12 +32,13 @@
   transition: transform 0.5s ease, box-shadow 0.5s;
   border-radius: 10px;
   min-height: 30vh;
-  max-height: 30vh;
   position: relative;
 }
 
 .card-header {
   border-bottom: none;
+  min-height: 20vh;
+  border-radius: 15px;
 }
 
 .card:hover {
@@ -71,4 +72,29 @@ button {
 
 .custom-width {
   width: 15%;
+}
+
+.food-color {
+  background: linear-gradient(135deg, #ffe498, #ffdb80);
+}
+
+.sport-color {
+  background: linear-gradient(135deg, #ffa198, #ff8a80);
+}
+
+.sleep-color {
+  background: linear-gradient(135deg, #98b0ff, #8098ff);
+}
+
+.selected {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.selected::after {
+  content: '✔';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
 }
