@@ -22,19 +22,24 @@ export class UserSearchComponent{
   @Input()
   user: UserSearchOutput[] = []
 
+  private lastUserQuery: UserSearchQuery | null = null;
+
   constructor(private _userService: UserService) {
   }
 
   searchUserByName(query: UserSearchQuery) {
+    this.lastUserQuery = query;
     this._userService.getUserByUsername(query).subscribe(users => {
       this.user = users.userGetByNames;
     });
   }
 
-
   banUser(command: UserBanCommand) {
     this._userService.banUser(command).subscribe(user => {
       console.log(user);
+      if(this.lastUserQuery){
+        this.searchUserByName(this.lastUserQuery);
+      }
     })
   }
 }
