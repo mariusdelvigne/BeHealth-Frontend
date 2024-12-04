@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {NgClass} from '@angular/common';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ToastrService} from 'ngx-toastr';
 
@@ -10,8 +9,7 @@ import {ToastrService} from 'ngx-toastr';
   selector: 'app-auth-sign-in',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
-    NgClass
+    ReactiveFormsModule
   ],
   templateUrl: './auth-sign-in.component.html',
   styleUrl: './auth-sign-in.component.css',
@@ -37,7 +35,8 @@ export class AuthSignInComponent {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private _authService: AuthService, private _router: Router, private _toastrService: ToastrService) { }
+  constructor(private _authService: AuthService, private _router: Router, private _toastrService: ToastrService) {
+  }
 
   emitSignIn() {
     this._authService.signIn(this.form.value).subscribe({
@@ -46,7 +45,11 @@ export class AuthSignInComponent {
         this._toastrService.success('Logged in successfully');
       },
       error: (error) => {
-        this._toastrService.error('Error signing in : ' + error.message);
+        if (error.status === 403) {
+          this._toastrService.error('User banned of the application');
+        } else {
+          this._toastrService.error('Error signing in : ' + error.message);
+        }
       }
     });
   }
