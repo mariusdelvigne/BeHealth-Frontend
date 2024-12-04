@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {NgxEchartsDirective} from "ngx-echarts";
 import {DatedValue} from '../../../../utils/DatedValue';
@@ -17,7 +17,7 @@ import {firstValueFrom} from 'rxjs';
   templateUrl: './calories-graph.component.html',
   styleUrl: './calories-graph.component.css'
 })
-export class CaloriesGraphComponent {
+export class CaloriesGraphComponent implements OnInit{
   startDate: Date = new Date();
   endDate: Date = new Date();
 

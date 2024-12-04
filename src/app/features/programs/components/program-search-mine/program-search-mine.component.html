@@ -6,8 +6,8 @@
       <div class="col-4"></div>
     </li>
     @for (program of programs; track $index) {
-      <div class="table-row-container" (click)="showProgramInfo(program.id)">
-        <li class="table-row">
+      <div class="table-row-container">
+        <li class="table-row" (click)="showProgramInfo(program.id)">
           <div class="col-4">
             {{ program.title }}
           </div>
