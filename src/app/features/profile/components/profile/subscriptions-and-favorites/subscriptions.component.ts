@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProgramInfoComponent} from '../../../../programs/components/program-info/program-info.component';
+import {ProgramInfoComponent} from '../../../../programs/shared/program-info/program-info.component';
 import {ProgramService} from '../../../../programs/services/program.service';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {ToastrService} from "ngx-toastr";
@@ -13,7 +13,7 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './subscriptions.component.html',
   styleUrls: [
     './subscriptions.component.css',
-    '../../../../../shared/styles/plan-table.css',
+    '../../../../../shared/styles/style.css',
   ],
 })
 export class SubscriptionsComponent implements OnInit{

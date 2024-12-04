@@ -1,51 +1,42 @@
 <div class="container text-center">
   <ul class="responsive-table">
     <li class="table-header">
-      <div class="col-2">Name</div>
-      <div class="col-2">Privacy</div>
-      <div class="col-2">Duration (days)</div>
-      <div class="col-2">Description</div>
-      <div class="col-2"></div>
-      <div class="col-2"></div>
+      <div class="col-3">Name</div>
+      <div class="col-3">Privacy</div>
+      <div class="col-3">Duration (days)</div>
+      <div class="col-3"></div>
     </li>
     @for (plan of plans; track $index) {
-      <div class="horizontal-text text-white text-uppercase text-center"
-           [ngClass]="{'bg-warning': plan.category == 'food','bg-danger': plan.category == 'sport','bg-primary': plan.category == 'sleep'}">
-        {{ plan.category }}
-      </div>
-      <li class="table-row border-top border-5"  [ngClass]="{'border-warning': plan.category == 'food','border-danger': plan.category == 'sport','border-primary': plan.category == 'sleep'}">
-        <div class="col-2">
-          {{ plan.name }}
+      <div class="table-row-container" (click)="showPlanInfo(plan.id)">
+        <div class="custom-width text-white text-uppercase text-center"
+             [ngClass]="{'bg-warning': plan.category == 'food','bg-danger': plan.category == 'sport','bg-primary': plan.category == 'sleep'}">
+          {{ plan.category }}
         </div>
-        <div class="col-2">
-          {{ plan.privacy }}
-        </div>
-        <div class="col-2">
-          {{ plan.durationInDays }}
-        </div>
-        <div class="col-2">
-          <button class="rounded p-2" (click)="showPlanInfo(plan.id)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-              <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-            </svg>
-          </button>
-        </div>
-        <div class="col-2">
-          <input type="button" class="form-control rounded text-uppercase p-2" value="Update"
-                 (click)="showUpdateForm(plan.id)">
-        </div>
-        <div class="col-2">
-          <input type="button" class="form-control rounded text-uppercase p-2" value="Delete"
-                 (click)="deletePlan(plan.id)">
-        </div>
-      </li>
-      @if (plan == selectedPlan) {
+        <li class="table-row border-top border-5"
+            [ngClass]="{'border-warning': plan.category == 'food','border-danger': plan.category == 'sport','border-primary': plan.category == 'sleep'}">
+          <div class="col-3">
+            {{ plan.name }}
+          </div>
+          <div class="col-3">
+            {{ plan.privacy }}
+          </div>
+          <div class="col-3">
+            {{ plan.durationInDays }}
+          </div>
+
+          <div class="col-3 d-flex flex-column gap-1">
+            <button class="rounded text-uppercase p-2 custom-btn"
+                    (click)="goToUpdateForm(plan.id)">Update
+            </button>
+            <button class="rounded text-uppercase p-2 custom-btn"
+                    (click)="deletePlan(plan.id)">Delete
+            </button>
+          </div>
+        </li>
+        @if (plan == selectedPlan) {
           <app-plan-info [plan]="selectedPlan"></app-plan-info>
-      }
-      @if (plan == selectedUpdatePlan) {
-          <app-plan-update-form [plan]="selectedUpdatePlan"></app-plan-update-form>
-      }
+        }
+      </div>
     }
   </ul>
 </div>

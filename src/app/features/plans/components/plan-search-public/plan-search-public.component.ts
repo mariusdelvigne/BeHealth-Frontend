@@ -5,8 +5,8 @@ import {PlanService} from '../../services/plan.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {
   ProgramInfoComponent
-} from "../../../programs/components/program-info/program-info.component";
-import {PlanInfoComponent} from '../plan-info/plan-info.component';
+} from "../../../programs/shared/program-info/program-info.component";
+import {PlanInfoComponent} from '../../shared/plan-info/plan-info.component';
 import {NgClass} from '@angular/common';
 
 @Component({
@@ -22,7 +22,7 @@ import {NgClass} from '@angular/common';
   templateUrl: './plan-search-public.component.html',
   styleUrls: [
     './plan-search-public.component.css',
-    '../../../../shared/styles/plan-table.css',
+    '../../../../shared/styles/style.css',
   ],
   animations: [
     trigger('colorChange', [

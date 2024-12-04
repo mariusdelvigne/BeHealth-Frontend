@@ -24,16 +24,63 @@
     </form>
 </div>
 <div class="container text-center">
-    <li>Food name : {{ resultNutriment.foodsName }}</li>
-    <li>Serving weights : {{ resultNutriment.servingsWeights }} g</li>
-    <li>Calories : {{ resultNutriment.calories }}</li>
-    <li>Total fats : {{ resultNutriment.totalFats }}</li>
-    <li>Satured fats : {{ resultNutriment.saturedFats }}</li>
-    <li>Cholesterol : {{ resultNutriment.cholesterol }}</li>
-    <li>Sodium : {{ resultNutriment.sodium }}</li>
-    <li>Total carbohydrates : {{ resultNutriment.totalCarbohydrates }}</li>
-    <li>Dietary fiber : {{ resultNutriment.dietaryFiber }}</li>
-    <li>Sugars : {{ resultNutriment.sugars }}</li>
-    <li>Proteins : {{ resultNutriment.proteins }}</li>
-    <li>Potassiums : {{ resultNutriment.potassiums }}</li>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Property</th>
+      <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Food name</td>
+      <td>{{ resultNutriment.foodsName }}</td>
+    </tr>
+    <tr>
+      <td>Serving weights</td>
+      <td>{{ resultNutriment.servingsWeights }} g</td>
+    </tr>
+    <tr>
+      <td>Calories</td>
+      <td>{{ resultNutriment.calories }} kcal</td>
+    </tr>
+    <tr>
+      <td>Total fats</td>
+      <td>{{ resultNutriment.totalFats }} g</td>
+    </tr>
+    <tr>
+      <td>Saturated fats</td>
+      <td>{{ resultNutriment.saturedFats }} g</td>
+    </tr>
+    <tr>
+      <td>Cholesterol</td>
+      <td>{{ resultNutriment.cholesterol }} mg</td>
+    </tr>
+    <tr>
+      <td>Sodium</td>
+      <td>{{ resultNutriment.sodium }} mg</td>
+    </tr>
+    <tr>
+      <td>Total carbohydrates</td>
+      <td>{{ resultNutriment.totalCarbohydrates }} g</td>
+    </tr>
+    <tr>
+      <td>Dietary fiber</td>
+      <td>{{ resultNutriment.dietaryFiber }} g</td>
+    </tr>
+    <tr>
+      <td>Sugars</td>
+      <td>{{ resultNutriment.sugars }} g</td>
+    </tr>
+    <tr>
+      <td>Proteins</td>
+      <td>{{ resultNutriment.proteins }} g</td>
+    </tr>
+    <tr>
+      <td>Potassium</td>
+      <td>{{ resultNutriment.potassiums }} mg</td>
+    </tr>
+    </tbody>
+  </table>
+
 </div>

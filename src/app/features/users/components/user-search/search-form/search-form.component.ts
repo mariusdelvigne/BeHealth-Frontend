@@ -19,14 +19,13 @@ export class SearchFormComponent {
     setTimeout(() => button.classList.remove('btn-clicked'), 300);
   }
 
-    formSearch: FormGroup = new FormGroup({
+  formSearch: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required])
   })
   @Output()
   userSearch: EventEmitter<UserSearchQuery> = new EventEmitter()
 
   searchUser() {
-    console.log(this.formSearch.value.username);
     this.userSearch.emit({
         username: this.formSearch.value.username,
       }

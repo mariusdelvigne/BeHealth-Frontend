@@ -7,7 +7,7 @@ import {Component, Input} from '@angular/core';
   templateUrl: './plan-info.component.html',
   styleUrls: [
     './plan-info.component.css',
-    '../../../../shared/styles/plan-table.css',
+    '../../../../shared/styles/style.css',
   ]
 })
 export class PlanInfoComponent {

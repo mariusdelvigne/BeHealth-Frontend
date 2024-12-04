@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FoodPlansTableComponent} from '../program-create/food-plans-table/food-plans-table.component';
-import {SleepPlansTableComponent} from '../program-create/sleep-plans-table/sleep-plans-table.component';
-import {SportPlansTableComponent} from '../program-create/sport-plans-table/sport-plans-table.component';
+import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/food-plans-table.component';
+import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
+import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {PlanService} from '../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
 
@@ -17,7 +17,7 @@ import {NgClass} from '@angular/common';
   templateUrl: './program-info.component.html',
   styleUrls: [
     './program-info.component.css',
-    '../../../../shared/styles/plan-table.css',
+    '../../../../shared/styles/style.css',
   ]
 })
 export class ProgramInfoComponent implements OnInit {
@@ -43,6 +43,7 @@ export class ProgramInfoComponent implements OnInit {
   }
 
   showPlanInfo(planId: number) {
+    console.log(planId);
     if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
     } else {

@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ProgramInfoComponent} from '../program-info/program-info.component';
+import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 import {ProgramService} from '../../services/program.service';
-import {UserService} from '../../../../shared/services/user.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
-import {PlanInfoComponent} from "../../../plans/components/plan-info/plan-info.component";
-import {PlanUpdateFormComponent} from "../../../plans/components/plan-update-form/plan-update-form.component";
+import {PlanInfoComponent} from "../../../plans/shared/plan-info/plan-info.component";
 import {ToastrService} from "ngx-toastr";
-import {ProgramUpdateFormComponent} from "../program-update-form/program-update-form.component";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-program-search-mine',
@@ -14,21 +12,18 @@ import {ProgramUpdateFormComponent} from "../program-update-form/program-update-
   imports: [
     ProgramInfoComponent,
     PlanInfoComponent,
-    PlanUpdateFormComponent,
-    ProgramUpdateFormComponent
   ],
   templateUrl: './program-search-mine.component.html',
   styleUrls: [
     './program-search-mine.component.css',
-    '../../../../shared/styles/plan-table.css',
+    '../../../../shared/styles/style.css',
   ],
 })
 export class ProgramSearchMineComponent implements OnInit{
   programs: any[] = [];
   selectedProgram: any
-  selectedUpdateProgram: any;
 
-  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
+  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService, private _route: ActivatedRoute, private _router: Router) {
   }
 
   ngOnInit() {
@@ -37,7 +32,7 @@ export class ProgramSearchMineComponent implements OnInit{
         this.programs = response.programs;
       },
       error: (error) => {
-        this._toastrService.error("Error Getting programs");
+        this._toastrService.error("Error Getting programs: " + error);
       }
     });
   }
@@ -48,7 +43,6 @@ export class ProgramSearchMineComponent implements OnInit{
     }
     else {
       this.selectedProgram = null;
-      this.selectedUpdateProgram = null;
       this.selectedProgram = this.programs.find(program => program.id === programId);
     }
   }
@@ -64,14 +58,7 @@ export class ProgramSearchMineComponent implements OnInit{
     });
   }
 
-  showUpdateProgram(programId: number) {
-    if (this.selectedUpdateProgram?.id == programId) {
-      this.selectedUpdateProgram = null;
-    }
-    else {
-      this.selectedUpdateProgram = null;
-      this.selectedProgram = null;
-      this.selectedUpdateProgram = this.programs.find(program => program.id === programId);
-    }
+  goToUpdateForm(programId: number) {
+    this._router.navigate(['program-update', programId]);
   }
 }

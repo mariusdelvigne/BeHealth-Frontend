@@ -4,6 +4,6 @@
     <app-search-form (userSearch)="searchUserByName($event)"></app-search-form>
   </div>
   <div class="mt-4">
-    <app-user-list [users]="user"></app-user-list>
+    <app-user-list [users]="user" (userIsBanned)="banUser($event)"></app-user-list>
   </div>
 </div>
