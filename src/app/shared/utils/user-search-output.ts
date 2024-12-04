@@ -7,4 +7,5 @@ export interface UserSearchOutput {
   gender: string;
   name: string;
   surname: string;
+  isBanned: boolean;
 }

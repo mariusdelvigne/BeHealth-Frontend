@@ -1,22 +1,20 @@
 <div class="container">
   <ul class="responsive-table">
     <li class="table-header">
-      <div class="col col-5">Title</div>
-      <div class="col col-5">Creator</div>
-      <div class="col col-2"></div>
+      <div class="col-6">Title</div>
+      <div class="col-6">Creator</div>
     </li>
     @for (program of programs; track $index) {
-      <li class="table-row">
-        <div class="col col-5">
-          {{ program.title }}
-        </div>
-        <div class="col col-5">
-          {{ program.creatorName }}
-        </div>
-        <div class="col col-2">
-          <button (click)="showProgramInfo(program.id)" class="bg-dark-subtle rounded text-uppercase p-2">Show/Hide</button>
-        </div>
-      </li>
+      <div class="table-row-container" (click)="showProgramInfo(program.id)">
+        <li class="table-row">
+          <div class="col-6">
+            {{ program.title }}
+          </div>
+          <div class="col-6">
+            {{ program.creatorName }}
+          </div>
+        </li>
+      </div>
       @if (program == selectedProgram) {
         <div>
           <app-program-info [program]="selectedProgram"></app-program-info>

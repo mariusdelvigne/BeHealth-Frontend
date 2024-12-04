@@ -1,19 +1,18 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
+import {HomeUserConnectedComponent} from './home-user-connected/home-user-connected.component';
+import {AuthService} from '../auth/services/auth.service';
+import {HomeDefaultComponent} from './home-default/home-default.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [
+    HomeUserConnectedComponent,
+    HomeDefaultComponent
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements AfterViewInit {
-  @ViewChild('content') content!: ElementRef;
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.content.nativeElement.style.opacity = '1';
-      this.content.nativeElement.style.transform = 'translateX(0)';
-      }, 250); // Délai pour assurer que l'animation se joue après le rendu initial
-  }
+export class HomeComponent {
+  constructor(public authService: AuthService) { }
 }

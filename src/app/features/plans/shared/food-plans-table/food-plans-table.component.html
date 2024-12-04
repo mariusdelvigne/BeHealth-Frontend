@@ -1,0 +1,20 @@
+@if (foodPlans) {
+  <div class="container overflow-hidden">
+    <div class="row g-3">
+      @for (foodPlan of foodPlans; track $index) {
+        <div class="col-12">
+          <div class="card pt-3 food-color" (click)="selectPlan(foodPlan)" [ngClass]="{ 'selected': isSelected(foodPlan) }">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h3 class="text-truncate">{{ foodPlan.name }}</h3>
+            </div>
+            <div class="card-body">
+              <p><strong>Duration:</strong> {{ foodPlan.durationInDays }} days</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <h2>No Food Plans Found</h2>
+}

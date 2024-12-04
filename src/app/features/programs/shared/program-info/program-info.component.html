@@ -1,0 +1,37 @@
+<textarea class="form-control-lg w-100" style="height: 20vh" disabled [value]="program.description"></textarea>
+
+<div class="d-flex flex-column w-100">
+  <ul class="responsive-table w-100">
+    <li class="table-header bg-dark-subtle">
+      <div class="col-6">Name</div>
+      <div class="col-6">Duration (days)</div>
+    </li>
+    @for (plan of [foodPlan, sportPlan, sleepPlan]; track $index) {
+      @if (plan) {
+        <div class="table-row-container" (click)="showPlanInfo(plan.id)">
+          <div class="custom-width text-white text-uppercase text-center"
+               [ngClass]="{'bg-warning': plan.category == 'food','bg-danger': plan.category == 'sport','bg-primary': plan.category == 'sleep'}">
+            {{ plan.category }}
+          </div>
+
+          <li class="table-row border-top border-5"
+              [ngClass]="{'border-warning': plan.category == 'food','border-danger': plan.category == 'sport','border-primary': plan.category == 'sleep'}">
+            <div class="col-6">
+              {{ plan.name }}
+            </div>
+            <div class="col-6">
+              {{ plan.durationInDays }}
+            </div>
+          </li>
+
+          @if (selectedPlan) {
+            @if (selectedPlan.id == plan.id) {
+              <textarea class="form-control-lg w-100" style="height: 20vh" disabled
+                        [value]="plan.description"></textarea>
+            }
+          }
+        </div>
+      }
+    }
+  </ul>
+</div>
