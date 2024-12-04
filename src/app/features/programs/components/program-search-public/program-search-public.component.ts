@@ -60,6 +60,7 @@ export class ProgramSearchPublicComponent implements OnInit {
         console.log(response);
       },
       error: error => {
+        this._toastrService.error( relation + " already exists!");
         console.error(error);
       }
     });
