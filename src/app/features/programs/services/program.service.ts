@@ -46,8 +46,21 @@ export class ProgramService {
     return this._httpClient.get<any>(`${ProgramService.URL_USERS}/${userId}/associations/${relation}`, {withCredentials: true});
   }
 
-  public postFavorite(userId: number, programId: number, relation: string) : Observable<any> {
+  public postRelation(userId: number, programId: number, relation: string) : Observable<any> {
     const body = { ProgramId: programId, RelationType: relation };
     return this._httpClient.post(`${ProgramService.URL_USERS}/${userId}/associations`, body,{withCredentials: true});
   }
+
+    // public deleteRelation(userId: number, programId: number, relation: string): Observable<any> {
+    // const body = { ProgramId: programId, RelationType: relation };
+    // return this._httpClient.delete(`${ProgramService.URL_USERS}/${userId}/associations/delete`, body, {withCredentials: true});
+  public deleteRelation(userId: number, programId: number, relation: string): Observable<any> {
+      return this._httpClient.delete(`${ProgramService.URL_USERS}/${userId}/associations/delete`, {
+        params: {
+          ProgramId: programId,
+          RelationType: relation
+        },
+        withCredentials: true
+      });
+    }
 }

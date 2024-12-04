@@ -54,7 +54,7 @@ export class ProgramSearchPublicComponent implements OnInit {
 
   addToRelations(programId: number, relation: string) {
     const userId = this._authService.getId();
-    this._programService.postFavorite(userId, programId, relation).subscribe({
+    this._programService.postRelation(userId, programId, relation).subscribe({
       next: response => {
         this._toastrService.success( relation + " added successfully.");
         console.log(response);

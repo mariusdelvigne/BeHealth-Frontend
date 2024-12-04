@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {SubscriptionsComponent} from '../subscriptions/subscriptions.component';
+import {SubscriptionsComponent} from '../subscriptions-and-favorites/subscriptions.component';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({

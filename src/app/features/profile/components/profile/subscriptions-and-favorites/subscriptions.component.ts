@@ -2,9 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProgramInfoComponent} from '../../../../programs/components/program-info/program-info.component';
 import {ProgramService} from '../../../../programs/services/program.service';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
-  selector: 'app-subscriptions',
+  selector: 'app-subscriptions-and-favorites',
   standalone: true,
   imports: [
     ProgramInfoComponent
@@ -18,17 +19,17 @@ import {AuthService} from '../../../../../core/auth/services/auth.service';
 export class SubscriptionsComponent implements OnInit{
   programs: any[] = [];
   selectedProgram: any;
-  private _relation: string = '';
+  relationType: string = '';
 
   @Input()
   set relation(value: string) {
-    this._relation = value;
+    this.relationType = value;
     this.loadData();
-    console.log(this._relation);
+    console.log(this.relationType);
   }
 
   loadData() {
-    this._programService.getProgramsByAssociations(this._authService.getId(),this._relation).subscribe({
+    this._programService.getProgramsByAssociations(this._authService.getId(),this.relationType).subscribe({
       next: (response) => {
         this.programs = response.astHealthProgramUsers;
       },
@@ -38,7 +39,7 @@ export class SubscriptionsComponent implements OnInit{
     });
   }
 
-  constructor(private _programService: ProgramService, private _authService: AuthService) {
+  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
@@ -53,5 +54,16 @@ export class SubscriptionsComponent implements OnInit{
       this.selectedProgram = null;
       this.selectedProgram = this.programs.find(program => program.program.id === programId);
     }
+  }
+
+  deleteRelation(programId: number, relation: string) {
+    this._programService.deleteRelation(this._authService.getId(),programId, relation).subscribe({
+      next: () => {
+        this._toastrService.success("Program deleted successfully from your " + relation + ".");
+      },
+      error: (error) => {
+        this._toastrService.error("Error deleting program: " + error.message);
+      }
+    })
   }
 }
