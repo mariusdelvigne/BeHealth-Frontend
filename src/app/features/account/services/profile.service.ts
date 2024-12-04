@@ -13,6 +13,6 @@ export class ProfileService {
   constructor(private _httpClient: HttpClient) { }
 
   public delete(profileDeleteCommand: ProfileDeleteCommand): Observable<void> {
-    return this._httpClient.delete<void>(`${ProfileService.URL}/users/${profileDeleteCommand}`, {withCredentials: true});
+    return this._httpClient.delete<void>(`${ProfileService.URL}/${profileDeleteCommand.id}`, {withCredentials: true});
   }
 }
