@@ -4,8 +4,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
 import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {ProgramService} from '../../services/program.service';
-import {UserService} from '../../../../shared/services/user.service';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
+import {ToastrService} from 'ngx-toastr';
+import {AuthService} from '../../../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-program-search-public',
