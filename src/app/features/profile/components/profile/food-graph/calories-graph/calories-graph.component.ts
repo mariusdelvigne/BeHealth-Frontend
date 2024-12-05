@@ -3,21 +3,20 @@ import {DatePipe} from "@angular/common";
 import {NgxEchartsDirective} from "ngx-echarts";
 import {DatedValue} from '../../../../utils/DatedValue';
 import {EChartsOption, SeriesOption} from 'echarts';
-import {UserHeightService} from '../../../../../../shared/services/user-height.service';
 import {UserFoodService} from '../../../../../../shared/services/user-food.service';
 import {firstValueFrom} from 'rxjs';
 
 @Component({
   selector: 'app-calories-graph',
   standalone: true,
-    imports: [
-        DatePipe,
-        NgxEchartsDirective
-    ],
+  imports: [
+    DatePipe,
+    NgxEchartsDirective
+  ],
   templateUrl: './calories-graph.component.html',
   styleUrl: './calories-graph.component.css'
 })
-export class CaloriesGraphComponent implements OnInit{
+export class CaloriesGraphComponent implements OnInit {
   startDate: Date = new Date();
   endDate: Date = new Date();
 
@@ -49,6 +48,16 @@ export class CaloriesGraphComponent implements OnInit{
         show: true,
       }
     },
+    tooltip: {
+      trigger: 'axis',
+      formatter: (params: any) => {
+        const data = params[0].data;
+        return `<div class="text-center">
+                    <div><b>${data[1]} calories</b></div>
+                    <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
+                </div>`;
+      },
+    },
     series: {
       name: 'Calories',
       type: 'line',
@@ -70,7 +79,8 @@ export class CaloriesGraphComponent implements OnInit{
 
   chart!: NgxEchartsDirective;
 
-  constructor(private _datePipe: DatePipe, private _userFoodService: UserFoodService) { }
+  constructor(private _datePipe: DatePipe, private _userFoodService: UserFoodService) {
+  }
 
   ngOnInit(): void {
     this.startDate.setDate(1);
@@ -104,12 +114,12 @@ export class CaloriesGraphComponent implements OnInit{
     do {
       let response = await firstValueFrom(this._userFoodService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
       dataToAdd = response.userFoods.map((d: any) => ({
-        date: new Date(d.eatenDateTime),
-        value: d.calories,
+        date: new Date(d.eatenDatetime),
+        value: d.food.calories,
       }));
-
+      console.log(response);
       this.data = this.data.concat(dataToAdd);
-    } while(dataToAdd.length == pageSize);
+    } while (dataToAdd.length == pageSize);
 
     this.updateChart();
   }
