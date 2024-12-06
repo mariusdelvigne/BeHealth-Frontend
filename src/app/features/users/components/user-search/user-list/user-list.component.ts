@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserBanCommand} from '../../../../../shared/utils/user-ban-command';
@@ -21,9 +21,9 @@ import {Subscription} from 'rxjs';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent {
-  @Input()
-  users: UserSearchOutput[] = []
+export class UserListComponent implements OnInit, OnDestroy {
+  @Input() users: UserSearchOutput[] = [];
+  private _userBanStatusSubscription: Subscription | null = null;
 
   @Output()
   userIsBanned: EventEmitter<UserBanCommand> = new EventEmitter()
@@ -31,9 +31,28 @@ export class UserListComponent {
   constructor(private _userService: UserService, private _toastrService: ToastrService, private _userBanEventBus: UserEventBusService) {
   }
 
+  ngOnInit() {
+    this._userBanStatusSubscription = this._userBanEventBus.listen('UserBanStatusChanged').subscribe(event => {
+      const { userId, isBanned } = event.object;
+      const user = this.users.find(u => u.id === userId);
+      if (user) {
+        user.isBanned = isBanned;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    if (this._userBanStatusSubscription) {
+      this._userBanStatusSubscription.unsubscribe();
+    }
+  }
+
   onUserBanStatusChange(userId: number, isBanned: boolean) {
-    const command:UserBanCommand = { userId, isBanned };
-    this.userIsBanned.emit(command);
+    const command: UserBanCommand = { userId, isBanned };
+    this._userService.banUser(command).subscribe({
+      next: () => this._toastrService.success(`User ${isBanned ? 'banned' : 'unbanned'} successfully`),
+      error: (err) => this._toastrService.error('Error: ' + err.message)
+    });
     const user = this.users.find(u => u.id === userId);
     if (user) {
       user.isBanned = isBanned;
