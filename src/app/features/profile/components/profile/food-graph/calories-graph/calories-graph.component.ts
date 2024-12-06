@@ -115,7 +115,7 @@ export class CaloriesGraphComponent implements OnInit {
       let response = await firstValueFrom(this._userFoodService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
       dataToAdd = response.userFoods.map((d: any) => ({
         date: new Date(d.eatenDatetime),
-        value: d.food.calories,
+        value: d.calories,
       }));
       console.log(response);
       this.data = this.data.concat(dataToAdd);
