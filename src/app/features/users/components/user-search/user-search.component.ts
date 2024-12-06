@@ -36,7 +36,6 @@ export class UserSearchComponent{
 
   banUser(command: UserBanCommand) {
     this._userService.banUser(command).subscribe(user => {
-      console.log(user);
       if(this.lastUserQuery){
         this.searchUserByName(this.lastUserQuery);
       }
