@@ -7,7 +7,7 @@ import {firstValueFrom} from 'rxjs';
 import {UserHeightService} from '../../../../../../shared/services/user-height.service';
 
 @Component({
-  selector: 'app-height-graph',
+  selector: 'app-height-scatter-graph',
   standalone: true,
   imports: [
     DatePipe,

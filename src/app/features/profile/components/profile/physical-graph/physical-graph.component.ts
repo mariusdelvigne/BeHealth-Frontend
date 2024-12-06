@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { NgxEchartsDirective } from 'ngx-echarts';
-import { DatePipe } from '@angular/common';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 @Component({
-  selector: 'app-physical-graph',
+  selector: 'app-physical-scatter-graph',
   standalone: true,
   imports: [
-    NgxEchartsDirective,
-    DatePipe,
     RouterOutlet,
     RouterLink,
     RouterLinkActive

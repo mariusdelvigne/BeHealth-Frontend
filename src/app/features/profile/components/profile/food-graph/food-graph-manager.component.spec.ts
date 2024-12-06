@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CaloriesGraphComponent } from './calories-graph.component';
+import { FoodGraphManagerComponent } from './food-graph-manager.component';
 
-describe('CaloriesGraphComponent', () => {
-  let component: CaloriesGraphComponent;
-  let fixture: ComponentFixture<CaloriesGraphComponent>;
+describe('FoodGraphComponent', () => {
+  let component: FoodGraphManagerComponent;
+  let fixture: ComponentFixture<FoodGraphManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CaloriesGraphComponent]
+      imports: [FoodGraphManagerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CaloriesGraphComponent);
+    fixture = TestBed.createComponent(FoodGraphManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

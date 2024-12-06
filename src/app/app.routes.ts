@@ -44,12 +44,10 @@ import {authGuard} from './auth-guards/auth.guard';
 import {AuthService} from './core/auth/services/auth.service';
 import {AppComponent} from './app.component';
 import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
-import {
-  CaloriesGraphComponent
-} from './features/profile/components/profile/food-graph/calories-graph/calories-graph.component';
-import {FoodGraphComponent} from './features/profile/components/profile/food-graph/food-graph.component';
+import {FoodGraphManagerComponent} from './features/profile/components/profile/food-graph/food-graph-manager.component';
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
+import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/scatter-graph.component';
 
 export const routes: Routes = [
   {
@@ -331,12 +329,12 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'food',
-        component: FoodGraphComponent,
+        path: 'food-graph-manager',
+        component: FoodGraphManagerComponent,
         children: [
           {
-            path: 'calories',
-            component: CaloriesGraphComponent,
+            path: 'food-graph/:dataType',
+            component: ScatterGraphComponent,
           },
         ]
       },
