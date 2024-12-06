@@ -49,11 +49,12 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   onUserBanStatusChange(userId: number, isBanned: boolean) {
     const command: UserBanCommand = { userId, isBanned };
+    const user = this.users.find(u => u.id === userId);
+
     this._userService.banUser(command).subscribe({
-      next: () => this._toastrService.success(`User ${isBanned ? 'banned' : 'unbanned'} successfully`),
+      next: () => this._toastrService.success(`User: ${user?.name}  ${isBanned ? 'banned' : 'unbanned'} successfully`),
       error: (err) => this._toastrService.error('Error: ' + err.message)
     });
-    const user = this.users.find(u => u.id === userId);
     if (user) {
       user.isBanned = isBanned;
     }
