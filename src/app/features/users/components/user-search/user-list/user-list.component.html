@@ -26,14 +26,10 @@
             <td>{{ user.name }}</td>
             <td>{{ user.surname }}</td>
             <td>{{ user.isBanned }}</td>
-            @if (user.isBanned) {
-              <button type="button" (click)="unbanUser(user.id)">Unban User</button>
-            } @else {
-              <button type="button" (click)="banUser(user.id)">Ban User</button>
-            }
-            <button type="button" (click)="deleteAllPlansOfUser(user.id)">Delete plans</button>
-            <button type="button" (click)="deleteAllProgramsOfUser(user.id)">Delete programs</button>
-            <button type="button" (click)="deleteAllFeedbacksOfUser(user.id)">Delete feedbacks</button>
+            <app-user-ban [(userIsBanned)]="user.isBanned"></app-user-ban>
+<!--            <button type="button" (click)="deleteAllPlansOfUser(user.id)">Delete plans</button>-->
+<!--            <button type="button" (click)="deleteAllProgramsOfUser(user.id)">Delete programs</button>-->
+<!--            <button type="button" (click)="deleteAllFeedbacksOfUser(user.id)">Delete feedbacks</button>-->
           </tr>
         }
       </tbody>
