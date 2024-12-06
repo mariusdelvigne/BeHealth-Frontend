@@ -6,6 +6,8 @@ import {UserService} from '../../../../../shared/services/user.service';
 import {DatePipe} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import {UserBanComponent} from './user-ban/user-ban.component';
+import {UserEventBusService} from '../../../utils/user-event-bus.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -26,21 +28,16 @@ export class UserListComponent {
   @Output()
   userIsBanned: EventEmitter<UserBanCommand> = new EventEmitter()
 
-  constructor(private _userService: UserService, private _toastrService: ToastrService) {
+  constructor(private _userService: UserService, private _toastrService: ToastrService, private _userBanEventBus: UserEventBusService) {
   }
 
-  banUser(id: number) {
-    this.userIsBanned.emit({
-      userId: id,
-      isBanned: true
-    })
-  }
-
-  unbanUser(id: number) {
-    this.userIsBanned.emit({
-      userId: id,
-      isBanned: false
-    })
+  onUserBanStatusChange(userId: number, isBanned: boolean) {
+    const command:UserBanCommand = { userId, isBanned };
+    this.userIsBanned.emit(command);
+    const user = this.users.find(u => u.id === userId);
+    if (user) {
+      user.isBanned = isBanned;
+    }
   }
 
   deleteAllPlansOfUser(id: number) {

@@ -15,15 +15,8 @@ export class UserBanComponent {
   @Output()
   userIsBannedChange = new EventEmitter<boolean>();
 
-  userBan(isBanned: boolean) {
-    console.log("button pressed");
-    // console.log(isBanned);
-    if (isBanned) {
-      console.log("userBan is true");
-      this.userIsBannedChange.emit(false);
-    } else if (!isBanned) {
-      console.log("userBan is false");
-      this.userIsBannedChange.emit(true);
-    }
+  userBan(userIsBanned: boolean) {
+    this.userIsBanned = !this.userIsBanned;
+    this.userIsBannedChange.emit(this.userIsBanned);
   }
 }

@@ -1,7 +1,3 @@
 <button type="button" (click)="userBan(userIsBanned)">
-  @if (userIsBanned){
-    Unban
-  } @else {
-    Ban
-  }
+  {{ userIsBanned ? 'Unban' : 'Ban' }}
 </button>

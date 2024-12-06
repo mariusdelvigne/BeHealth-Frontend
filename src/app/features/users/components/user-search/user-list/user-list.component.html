@@ -26,7 +26,7 @@
             <td>{{ user.name }}</td>
             <td>{{ user.surname }}</td>
             <td>{{ user.isBanned }}</td>
-            <app-user-ban [(userIsBanned)]="user.isBanned"></app-user-ban>
+            <app-user-ban [userIsBanned]="user.isBanned" (userIsBannedChange)="onUserBanStatusChange(user.id, $event)"></app-user-ban>
 <!--            <button type="button" (click)="deleteAllPlansOfUser(user.id)">Delete plans</button>-->
 <!--            <button type="button" (click)="deleteAllProgramsOfUser(user.id)">Delete programs</button>-->
 <!--            <button type="button" (click)="deleteAllFeedbacksOfUser(user.id)">Delete feedbacks</button>-->
