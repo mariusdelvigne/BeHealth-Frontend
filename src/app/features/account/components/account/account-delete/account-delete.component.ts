@@ -27,8 +27,9 @@ export class AccountDeleteComponent {
 
     this._profileService.delete(deleteCommand).subscribe({
       next: () => {
-        this._router.navigate(['home']);
         this._toastrService.success("Account deleted successfully");
+        this._authService.signOut();
+        this._router.navigate(['']);
       },
       error: (error) => {
         this._toastrService.error("Error deleting account : " + error.message);
