@@ -45,4 +45,16 @@ export class UserService {
   public banUser(userBanCommand: UserBanCommand): Observable<void> {
     return this._httpClient.put<void>(`${UserService.URL}/${userBanCommand.userId}/ban/${userBanCommand.isBanned}`, {withCredentials: true});
   }
+
+  public deleteAllPlanByUserId(userId: number): Observable<any> {
+    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/plans`, {withCredentials: true,});
+  }
+
+  public deleteAllProgramsByUserId(userId: number): Observable<any> {
+    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/programs`, {withCredentials: true,});
+  }
+
+  public deleteAllFeedbackByUserId(userId: number): Observable<any> {
+    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/programFeedbacks`, {withCredentials: true,});
+  }
 }

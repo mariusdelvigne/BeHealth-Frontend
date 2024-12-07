@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {DatedValue} from '../../../../utils/DatedValue';
-import {EChartsOption, SeriesOption} from 'echarts';
 import {NgxEchartsDirective} from 'ngx-echarts';
 import {DatePipe} from '@angular/common';
-import {firstValueFrom} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {UserHeightService} from '../../../../../../shared/services/user-height.service';
+import {GraphBase} from '../../graphs/utils/graph-base';
+import {GetHeightGraphOptions} from '../../graphs/utils/HeightGraphOptions';
 
 @Component({
   selector: 'app-height-scatter-graph',
@@ -16,127 +17,24 @@ import {UserHeightService} from '../../../../../../shared/services/user-height.s
   templateUrl: './height-graph.component.html',
   styleUrl: './height-graph.component.css'
 })
-export class HeightGraphComponent implements OnInit {
-  startDate: Date = new Date();
-  endDate: Date = new Date();
-
-  data: DatedValue[] = [];
-
-  options: EChartsOption = {
-    xAxis: {
-      name: 'Time',
-      type: 'time',
-      axisLabel: {
-        formatter: (value: number) => {
-          return `${this._datePipe.transform(value, 'd/M/y')}`;
-        },
-      },
-      nameTextStyle: {
-        fontWeight: 'bold',
-      },
-      min: this.startDate,
-      max: this.endDate,
-      splitNumber: 2,
-    },
-    yAxis: {
-      name: 'Height in cm',
-      type: 'value',
-      nameTextStyle: {
-        fontWeight: 'bold',
-      },
-      axisLine: {
-        show: true,
-      }
-    },
-    tooltip: {
-      trigger: 'axis',
-      formatter: (params: any) => {
-        const data = params[0].data;
-        return `<div class="text-center">
-                    <div><b>${data[1]} cm</b></div>
-                    <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
-                </div>`;
-      },
-    },
-    series: {
-      name: 'Height',
-      type: 'line',
-      data: this.data.map(d => [d.date, d.value]),
-      symbol: 'circle',
-      symbolSize: 10,
-      itemStyle: {
-        color: 'rgba(15, 80, 250, 0.9)',
-      },
-      lineStyle: {
-        color: 'rgba(15, 80, 250, 0.9)',
-        width: 3,
-      },
-      areaStyle: {
-        color: 'rgba(15, 80, 250, 0.3)',
-      },
-    },
-  };
-
-  chart!: NgxEchartsDirective;
-
-  constructor(private _datePipe: DatePipe, private _userHeightService: UserHeightService) { }
-
-  ngOnInit(): void {
-    this.startDate.setDate(1);
-    this.startDate.setHours(0, 0, 0, 0);
-
-    this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0,
-      23, 59, 59, 999);
+export class HeightGraphComponent extends GraphBase implements OnInit {
+  constructor(datePipe: DatePipe, private _userHeightService: UserHeightService) {
+    super(datePipe);
   }
 
-  onChartInit(e: any): void {
-    this.chart = e;
-    this.loadData();
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.options = GetHeightGraphOptions(this.startDate, this.endDate, this._datePipe, this.data);
   }
 
-  changeMonth(next: boolean) {
-    this.startDate = new Date(this.startDate
-      .setMonth(this.startDate.getMonth() + (next ? 1 : -1))
+  override loadPageOfData(pageNumber: number, pageSize: number): Observable<DatedValue[]> {
+    let response = this._userHeightService.getAllBetween(this.startDate, this.endDate, pageNumber, pageSize);
+    return response.pipe(
+      map(r => r.userHeights.map((d: { inputDate: string; heightInCm: number; }) => ({
+          date: new Date(d.inputDate),
+          value: d.heightInCm
+        })
+      ))
     );
-    this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0,
-      23, 59, 59, 999);
-
-    this.loadData();
-  }
-
-  async loadData() {
-    this.data = [];
-    let dataToAdd: DatedValue[] = [];
-    let pageNumber = 0;
-    const pageSize: number = 20;
-
-    do {
-      let response = await firstValueFrom(this._userHeightService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
-      dataToAdd = response.userHeights.map((d: any) => ({
-        date: new Date(d.inputDate),
-        value: d.heightInCm,
-      }));
-
-      this.data = this.data.concat(dataToAdd);
-    } while(dataToAdd.length == pageSize);
-
-    this.updateChart();
-  }
-
-  updateChart() {
-    if (this.chart !== undefined) {
-      console.log(this.data);
-      const series = this.options.series as SeriesOption;
-      series.data = this.data.map(d => [d.date, d.value]);
-
-      const xAxis = this.options.xAxis;
-      // @ts-ignore
-      xAxis!.min = this.startDate;
-      // @ts-ignore
-      xAxis!.max = this.endDate;
-
-      // @ts-ignore
-      this.chart.setOption(this.options);
-    }
   }
 }

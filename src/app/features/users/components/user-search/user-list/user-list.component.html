@@ -21,16 +21,21 @@
             <td>{{ user.username }}</td>
             <td>{{ user.mail }}</td>
             <td>{{ user.role }}</td>
-            <td>{{ user.birthDate }}</td>
+            <td>{{ user.birthDate | date: 'd-M-y' }}</td>
             <td>{{ user.gender }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.surname }}</td>
-            <td>{{ user.isBanned }}</td>
-            @if (user.isBanned) {
-              <button type="button" (click)="UnbanUser(user.id)">Unban User</button>
-            } @else {
-              <button type="button" (click)="banUser(user.id)">Ban User</button>
-            }
+            <td>{{ user.isBanned ? 'Banned' : 'Not Banned' }}</td>
+            <td>
+              <app-user-ban
+                [userIsBanned]="user.isBanned"
+                (userIsBannedChange)="onUserBanStatusChange(user.id, $event)"
+                (deleteUserPlans)="deleteAllPlansOfUser(user.id, $event)"
+                (deleteUserPrograms)="deleteAllProgramsOfUser(user.id, $event)"
+                (deleteUserFeedbacks)="deleteAllFeedbacksOfUser(user.id, $event)"
+              >
+              </app-user-ban>
+            </td>
           </tr>
         }
       </tbody>

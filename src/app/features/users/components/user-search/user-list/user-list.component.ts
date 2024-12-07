@@ -1,7 +1,14 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserBanCommand} from '../../../../../shared/utils/user-ban-command';
+import {UserService} from '../../../../../shared/services/user.service';
+import {DatePipe} from '@angular/common';
+import {ToastrService} from 'ngx-toastr';
+import {UserBanComponent} from './user-ban/user-ban.component';
+import {UserEventBusService} from '../../../utils/user-event-bus.service';
+import {Subscription} from 'rxjs';
+import {UserBanDeleteChoice} from '../../../utils/user-ban-delete-choice';
 
 @Component({
   selector: 'app-user-list',
@@ -9,28 +16,103 @@ import {UserBanCommand} from '../../../../../shared/utils/user-ban-command';
   imports: [
     ReactiveFormsModule,
     FormsModule,
+    DatePipe,
+    UserBanComponent,
   ],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent {
-  @Input()
-  users: UserSearchOutput[] = []
+export class UserListComponent implements OnInit, OnDestroy {
+  @Input() users: UserSearchOutput[] = [];
+  private _userBanStatusSubscription: Subscription | null = null;
 
   @Output()
   userIsBanned: EventEmitter<UserBanCommand> = new EventEmitter()
 
-  banUser(id: number) {
-    this.userIsBanned.emit({
-      userId: id,
-      isBanned: true
+  constructor(private _userService: UserService, private _toastrService: ToastrService, private _userBanEventBus: UserEventBusService) {
+  }
+
+  ngOnInit() {
+    this._userBanStatusSubscription = this._userBanEventBus.listen('UserBanStatusChanged').subscribe(event => {
+      const {userId, isBanned} = event.object;
+      const user = this.users.find(u => u.id === userId);
+      if (user) {
+        user.isBanned = isBanned;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    if (this._userBanStatusSubscription) {
+      this._userBanStatusSubscription.unsubscribe();
+    }
+  }
+
+  onUserBanStatusChange(userId: number, isBanned: boolean) {
+    const command: UserBanCommand = {userId, isBanned};
+    const user = this.users.find(u => u.id === userId);
+
+    this._userService.banUser(command).subscribe({
+        next: () => {
+          this._toastrService.success(`User : ${user?.username} has been ${isBanned ? 'banned' : 'unbanned'}`)
+        },
+        error: (error) => {
+          this._toastrService.error("Error : " + error.message);
+        }
+      }
+    );
+
+    if (user) {
+      user.isBanned = isBanned;
+    }
+  }
+
+  deleteAllPlansOfUser(userId: number, deleted: boolean) {
+    const user = this.users.find(u => u.id === userId);
+    const command: UserBanDeleteChoice = {userId};
+
+    this._userService.deleteAllPlanByUserId(userId).subscribe({
+        next: () => {
+          console.log(`Plans for user ${userId} deleted successfully`);
+          this._toastrService.success(`All plans of ${user?.username} are deleted successfully`)
+        },
+        error: (error) => {
+          console.error(`Error deleting plans for user ${userId}:`, error);
+          this._toastrService.error(`Unable to delete plan of ${user?.username}` + error.message);
+        }
+      }
+    )
+  }
+
+  deleteAllProgramsOfUser(userId: number, deleted: boolean) {
+    const user = this.users.find(u => u.id === userId);
+    const command: UserBanDeleteChoice = {userId};
+
+    this._userService.deleteAllProgramsByUserId(userId).subscribe({
+      next: () => {
+        console.log(`Programs for user ${userId} deleted successfully`);
+        this._toastrService.success(`All programs of ${user?.username} are deleted successfully`)
+      },
+      error: (error) => {
+        console.error(`Error deleting programs for user ${userId}:`, error);
+        this._toastrService.error(`Unable to delete programs of ${user?.username}` + error.message);
+      }
     })
   }
 
-  UnbanUser(id: number) {
-    this.userIsBanned.emit({
-      userId: id,
-      isBanned: false
+  deleteAllFeedbacksOfUser(userId: number, deleted: boolean) {
+    const user = this.users.find(u => u.id === userId);
+    const command: UserBanDeleteChoice = {userId};
+
+    this._userService.deleteAllFeedbackByUserId(userId).subscribe({
+      next: () => {
+        console.log(`Feedbacks for user ${userId} deleted successfully`);
+        this._toastrService.success(`All feedbacks of ${user?.username} are deleted successfully`)
+      },
+      error: (error) => {
+        console.error(`Error deleting feedbacks for user ${userId}:`, error);
+        this._toastrService.error(`Unable to delete feedbacks of ${user?.username}` + error.message);
+      }
     })
   }
 }
