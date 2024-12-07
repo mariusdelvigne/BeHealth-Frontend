@@ -73,14 +73,17 @@
             <a class="dropdown-item" href="#">Sport</a>
             <a class="dropdown-item" href="#">Sleep</a>
             <a class="dropdown-item" href="#">Periods</a>
-            <hr class="dropdown-divider">
-
-            <a routerLink="/account" class="dropdown-item">Account</a>
           </div>
         </div>
       </div>
       <div class="navbar-nav ms-auto">
         @if (authService.isAuthenticated()) {
+          <div style="font-size: 2rem;">
+            <a routerLink="/account" class="dropdown-item">
+              <i class="far fa-address-card"></i>
+            </a>
+          </div>
+
           <a routerLink="/sign-out" class="nav-link">Sign Out</a>
         } @else {
           <a routerLink="/sign-in" class="nav-link">Sign In</a>
