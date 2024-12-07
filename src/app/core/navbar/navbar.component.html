@@ -78,12 +78,12 @@
       </div>
       <div class="navbar-nav ms-auto">
         @if (authService.isAuthenticated()) {
-          <div style="font-size: 2rem;">
-            <a routerLink="/account" class="dropdown-item">
-              <i class="far fa-address-card"></i>
-            </a>
-          </div>
-
+          <a routerLink="/notifications" class="nav-link">
+            <i class="far fa-message"></i>
+          </a>
+          <a routerLink="/account" class="nav-link">
+            <i class="far fa-address-card"></i>
+          </a>
           <a routerLink="/sign-out" class="nav-link">Sign Out</a>
         } @else {
           <a routerLink="/sign-in" class="nav-link">Sign In</a>

@@ -49,6 +49,7 @@ import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
 import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/scatter-graph.component';
 import {BmiGraphComponent} from './features/profile/components/profile/physical-graph/bmi-graph/bmi-graph.component';
+import {NotificationsComponent} from './features/notifications/components/notifications/notifications.component';
 
 export const routes: Routes = [
   {
@@ -369,5 +370,9 @@ export const routes: Routes = [
   {
     path: 'sport-calories-burned-calculator',
     component: SportCaloriesBurnedCalculatorComponent,
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent,
   }
 ]
