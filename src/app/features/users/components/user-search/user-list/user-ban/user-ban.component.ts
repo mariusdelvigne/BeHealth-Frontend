@@ -37,7 +37,10 @@ export class UserBanComponent {
     this._userBanEventBus.publish(event);
 
     if (this.userIsBanned) {
-      this.modalRef = this._modalService.open(UserBanModalDeleteChoiceComponent);
+      this.modalRef = this._modalService.open(UserBanModalDeleteChoiceComponent, {
+        animation: true,
+        backdrop: false,
+      });
 
       this.modalRef.component.deleteUserPlans.subscribe((deletePlans: boolean) => {
         this.deleteUserPlans.emit(deletePlans);
