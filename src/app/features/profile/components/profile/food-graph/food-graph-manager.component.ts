@@ -10,7 +10,10 @@ import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/route
     RouterOutlet
   ],
   templateUrl: './food-graph-manager.component.html',
-  styleUrl: './food-graph-manager.component.css'
+  styleUrls: [
+    './food-graph-manager.component.css',
+    '../../../../../shared/styles/style.css',
+  ]
 })
 export class FoodGraphManagerComponent {
   graphType: string = 'scatter';

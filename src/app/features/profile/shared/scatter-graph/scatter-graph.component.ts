@@ -74,19 +74,19 @@ export class ScatterGraphComponent implements OnInit {
   loadType() {
     switch (this.dataType) {
       case 'calories':
-        this.dataValues = {yName: "Calories in g.", seriesName: 'Calories'};
+        this.dataValues = {yName: "Calories", seriesName: 'Calories'};
         break;
       case 'cholesterol':
-        this.dataValues = {yName: "Cholesterol in g.", seriesName: 'Cholesterol'};
+        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol'};
         break;
       case 'sugars':
-        this.dataValues = {yName: "Sugars in g.", seriesName: 'Sugars'};
+        this.dataValues = {yName: "Sugars", seriesName: 'Sugars'};
         break;
       case 'proteins':
-        this.dataValues = {yName: "Proteins in g.", seriesName: 'Proteins'};
+        this.dataValues = {yName: "Proteins", seriesName: 'Proteins'};
         break;
       default:
-        this._toastrService.error("Data type not supported.");
+        this._toastrService.error("Data type not supported");
         break;
     }
   }
@@ -161,7 +161,7 @@ export class ScatterGraphComponent implements OnInit {
       series: {
         name: this.dataValues.seriesName,
         type: 'line',
-        data: this.data.map(d => [d.date, d.value]),
+        data: this.data.map(d => [this._datePipe.transform(d.date, 'yyyy-MM-dd'), d.value]),
         symbol: 'circle',
         symbolSize: 10,
         itemStyle: {

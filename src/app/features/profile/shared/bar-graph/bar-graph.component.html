@@ -1,8 +1,7 @@
-@if (dataType) {
-  <div class="d-flex mt-1">
+<div class="d-flex mt-1">
     <span class="col text-end m-auto"><input type="button" class="page-btn btn btn-primary" value="Previous" (click)="changeWeek(false)"></span>
-    <h3 class="m-0 ms-3 me-3">{{startDate | date: 'M-y-d'}}</h3>
+    <h3 class="m-0 ms-3 me-3">{{ startDate | date: 'M-d-y' }}/{{ endDate | date: 'M-d-y' }}</h3>
     <span class="col m-auto"><input type="button" class="page-btn btn btn-primary" value="Next" (click)="changeWeek(true)"></span>
-  </div>
-  <div echarts [options]="options" (chartInit)="onChartInit($event)"></div>
-}
+</div>
+<div echarts [options]="options" [merge]="updateOptions"></div>
+

@@ -27,8 +27,8 @@ export class BarGraphComponent implements OnInit {
 
   data: DatedValue[] = [];
 
-  options: EChartsOption = {};
-  chart!: NgxEchartsDirective;
+  options!: EChartsOption;
+  updateOptions!: EChartsOption;
 
   constructor(private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
   }
@@ -64,11 +64,9 @@ export class BarGraphComponent implements OnInit {
       }));
 
       this.data = this.data.concat(dataToAdd);
-      console.log(this.data);
     } while (dataToAdd.length == pageSize);
 
     this.data.sort((a, b) => a.date.getTime() - b.date.getTime());
-    console.log(this.startDate, this.endDate);
 
     this.updateChart();
   }
@@ -76,50 +74,38 @@ export class BarGraphComponent implements OnInit {
   loadType() {
     switch (this.dataType) {
       case 'calories':
-        this.dataValues = {yName: "Calories in g.", seriesName: 'Calories'};
+        this.dataValues = {yName: "Calories", seriesName: 'Calories'};
         break;
       case 'cholesterol':
-        this.dataValues = {yName: "Cholesterol in g.", seriesName: 'Cholesterol'};
+        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol'};
         break;
       case 'sugars':
-        this.dataValues = {yName: "Sugars in g.", seriesName: 'Sugars'};
+        this.dataValues = {yName: "Sugars", seriesName: 'Sugars'};
         break;
       case 'proteins':
-        this.dataValues = {yName: "Proteins in g.", seriesName: 'Proteins'};
+        this.dataValues = {yName: "Proteins", seriesName: 'Proteins'};
         break;
       default:
-        this._toastrService.error("Data type not supported.");
+        this._toastrService.error("Data type not supported");
         break;
     }
-  }
-
-  onChartInit(e: any): void {
-    this.chart = e;
-    this.loadData();
   }
 
   changeWeek(next: boolean) {
     this.startDate = new Date(this.startDate.setDate(this.startDate.getDate() + (next ? 7 : -7)));
 
-    this.endDate.setDate(this.endDate.getDate() + (next ? 7 : -7));
+    this.endDate= new Date(this.endDate.setDate(this.endDate.getDate() + (next ? 7 : -7)));
 
     this.loadData();
   }
 
   updateChart() {
-    if (this.chart !== undefined) {
-      const series = this.options.series as SeriesOption;
-      series.data = this.data.map(d => d.value);
-
-      const xAxis = this.options.xAxis;
-      // @ts-ignore
-      xAxis!.min = this.startDate;
-      // @ts-ignore
-      xAxis!.max = this.endDate;
-
-      // @ts-ignore
-      this.chart.setOption(this.options);
-    }
+    console.log(this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]));
+    this.updateOptions = {
+      series: {
+        data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),
+      },
+    };
   }
 
   loadOptions() {
@@ -127,12 +113,7 @@ export class BarGraphComponent implements OnInit {
       xAxis: {
         name: 'Time',
         type: 'category',
-        data: this.data.map((d) => d.date.toISOString()),
-        nameTextStyle: {
-          fontWeight: 'bold',
-        },
-        min: this.startDate.toISOString(),
-        max: this.endDate.toISOString(),
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       },
       yAxis: {
         name: this.dataValues.yName,
@@ -142,16 +123,26 @@ export class BarGraphComponent implements OnInit {
         },
         axisLine: {
           show: true,
-        }
+        },
       },
       series: {
         name: this.dataValues.seriesName,
         type: 'bar',
-        data: this.data.map(d => [d.date, d.value]),
+        data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),
         itemStyle: {
           color: 'rgba(15, 80, 250, 0.9)',
         },
       },
+      tooltip: {
+        trigger: 'axis',
+        formatter: (params: any) => {
+          const data = params[0].data;
+          return `<div class="text-center">
+                    <div><b>${data[1].toFixed(2)}g ${this.dataType}</b></div>
+                </div>`;
+        },
+      },
     };
   }
+
 }
