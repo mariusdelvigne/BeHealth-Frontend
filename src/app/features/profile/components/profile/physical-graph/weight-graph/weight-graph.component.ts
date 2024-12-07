@@ -7,7 +7,7 @@ import {UserWeightService} from '../../../../../../shared/services/user-weight.s
 import {firstValueFrom} from 'rxjs';
 
 @Component({
-  selector: 'app-weight-graph',
+  selector: 'app-weight-scatter-graph',
   standalone: true,
   imports: [
     DatePipe,

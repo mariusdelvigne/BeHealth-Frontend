@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CaloriesGraphComponent } from './calories-graph.component';
+import { ScatterGraphComponent } from './scatter-graph.component';
 
-describe('CaloriesGraphComponent', () => {
-  let component: CaloriesGraphComponent;
-  let fixture: ComponentFixture<CaloriesGraphComponent>;
+describe('GraphComponent', () => {
+  let component: ScatterGraphComponent;
+  let fixture: ComponentFixture<ScatterGraphComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CaloriesGraphComponent]
+      imports: [ScatterGraphComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CaloriesGraphComponent);
+    fixture = TestBed.createComponent(ScatterGraphComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
