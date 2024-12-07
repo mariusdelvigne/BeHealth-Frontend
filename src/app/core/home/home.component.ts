@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
-import {HomeUserConnectedComponent} from './home-user-connected/home-user-connected.component';
 import {AuthService} from '../auth/services/auth.service';
 import {HomeDefaultComponent} from './home-default/home-default.component';
+import {DashboardComponent} from '../../features/dashboard/components/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    HomeUserConnectedComponent,
-    HomeDefaultComponent
+    HomeDefaultComponent,
+    DashboardComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
