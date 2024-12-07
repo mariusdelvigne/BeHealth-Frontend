@@ -1,0 +1,8 @@
+<form>
+  Filter notifications by:
+  <select class="dropdown">
+      @for (category of allCategories; track $index){
+        <option>{{ category }}</option>
+      }
+  </select>
+</form>
