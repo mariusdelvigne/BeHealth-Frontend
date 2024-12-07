@@ -10,13 +10,29 @@ import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/route
     RouterOutlet
   ],
   templateUrl: './food-graph-manager.component.html',
-  styleUrl: './food-graph-manager.component.css'
+  styleUrls: [
+    './food-graph-manager.component.css',
+    '../../../../../shared/styles/style.css',
+  ]
 })
 export class FoodGraphManagerComponent {
+  graphType: string = 'scatter';
+  dataType: string = 'calories';
   constructor(private _router: Router) {
   }
 
-  goToGraph(dataType: string) {
-    this._router.navigate(['/profile/food-graph-manager/food-graph', dataType]);
+  setDataType(dataType: string) {
+    this.dataType = dataType;
+    this.goToGraph()
   }
+
+  setGraphType(type: string) {
+    this.graphType = type;
+    this.goToGraph()
+  }
+
+  goToGraph() {
+    this._router.navigate([`/profile/food-graph-manager/${this.graphType}-graph`, this.dataType]);
+  }
+
 }
