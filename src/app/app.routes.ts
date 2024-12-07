@@ -50,6 +50,7 @@ import {
 import {FoodGraphComponent} from './features/profile/components/profile/food-graph/food-graph.component';
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
+import {BmiGraphComponent} from './features/profile/components/profile/physical-graph/bmi-graph/bmi-graph.component';
 
 export const routes: Routes = [
   {
@@ -173,6 +174,10 @@ export const routes: Routes = [
               {
                 path: 'height',
                 component: HeightGraphComponent,
+              },
+              {
+                path: 'bmi',
+                component: BmiGraphComponent,
               },
             ]
           },
