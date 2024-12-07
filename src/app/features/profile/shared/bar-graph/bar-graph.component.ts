@@ -1,26 +1,25 @@
 import {Component, OnInit} from '@angular/core';
+import {GraphData} from '../utils/graph-data';
 import {DatedValue} from '../../utils/DatedValue';
 import {EChartsOption, SeriesOption} from 'echarts';
 import {NgxEchartsDirective} from 'ngx-echarts';
 import {DatePipe} from '@angular/common';
 import {UserFoodService} from '../../../../shared/services/user-food.service';
-import {firstValueFrom} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {GraphData} from '../utils/graph-data';
+import {firstValueFrom} from 'rxjs';
 
 @Component({
-  selector: 'app-scatter-graph',
+  selector: 'app-bar-graph',
   standalone: true,
   imports: [
     DatePipe,
     NgxEchartsDirective
   ],
-  templateUrl: './scatter-graph.component.html',
-  styleUrl: './scatter-graph.component.css'
+  templateUrl: './bar-graph.component.html',
+  styleUrl: './bar-graph.component.css'
 })
-
-export class ScatterGraphComponent implements OnInit {
+export class BarGraphComponent implements OnInit {
   dataType: string = '';
   dataValues: GraphData = {yName: '', seriesName: ''};
   startDate: Date = new Date();
@@ -28,8 +27,8 @@ export class ScatterGraphComponent implements OnInit {
 
   data: DatedValue[] = [];
 
-  options: EChartsOption = {};
-  chart!: NgxEchartsDirective;
+  options!: EChartsOption;
+  updateOptions!: EChartsOption;
 
   constructor(private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
   }
@@ -42,10 +41,10 @@ export class ScatterGraphComponent implements OnInit {
       this.loadData();
     });
 
-    this.startDate.setDate(1);
-    this.startDate.setHours(0, 0, 0, 0);
-    this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0,
-      23, 59, 59, 999);
+    // week start => Monday
+    this.startDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate(), 0, 0, 0, 0);
+    // week end => Sunday
+    this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate() + 6, 23, 59, 59, 999);
 
     this.loadOptions()
     this.loadData();
@@ -68,6 +67,7 @@ export class ScatterGraphComponent implements OnInit {
     } while (dataToAdd.length == pageSize);
 
     this.data.sort((a, b) => a.date.getTime() - b.date.getTime());
+
     this.updateChart();
   }
 
@@ -91,52 +91,29 @@ export class ScatterGraphComponent implements OnInit {
     }
   }
 
-  onChartInit(e: any): void {
-    this.chart = e;
-    this.loadData();
-  }
+  changeWeek(next: boolean) {
+    this.startDate = new Date(this.startDate.setDate(this.startDate.getDate() + (next ? 7 : -7)));
 
-  changeMonth(next: boolean) {
-    this.startDate = new Date(this.startDate
-      .setMonth(this.startDate.getMonth() + (next ? 1 : -1))
-    );
-    this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0,
-      23, 59, 59, 999);
+    this.endDate= new Date(this.endDate.setDate(this.endDate.getDate() + (next ? 7 : -7)));
 
     this.loadData();
   }
+
   updateChart() {
-    if (this.chart !== undefined) {
-      const series = this.options.series as SeriesOption;
-      series.data = this.data.map(d => [d.date, d.value]);
-
-      const xAxis = this.options.xAxis;
-      // @ts-ignore
-      xAxis!.min = this.startDate;
-      // @ts-ignore
-      xAxis!.max = this.endDate;
-
-      // @ts-ignore
-      this.chart.setOption(this.options);
-    }
+    console.log(this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]));
+    this.updateOptions = {
+      series: {
+        data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),
+      },
+    };
   }
 
   loadOptions() {
     this.options = {
       xAxis: {
         name: 'Time',
-        type: 'time',
-        axisLabel: {
-          formatter: (value: number) => {
-            return `${this._datePipe.transform(value, 'd/M/y')}`;
-          },
-        },
-        nameTextStyle: {
-          fontWeight: 'bold',
-        },
-        min: this.startDate,
-        max: this.endDate,
-        splitNumber: 2,
+        type: 'category',
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       },
       yAxis: {
         name: this.dataValues.yName,
@@ -146,35 +123,26 @@ export class ScatterGraphComponent implements OnInit {
         },
         axisLine: {
           show: true,
-        }
+        },
+      },
+      series: {
+        name: this.dataValues.seriesName,
+        type: 'bar',
+        data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),
+        itemStyle: {
+          color: 'rgba(15, 80, 250, 0.9)',
+        },
       },
       tooltip: {
         trigger: 'axis',
         formatter: (params: any) => {
           const data = params[0].data;
           return `<div class="text-center">
-                    <div><b>${data[1]}g ${this.dataType}</b></div>
-                    <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
+                    <div><b>${data[1].toFixed(2)}g ${this.dataType}</b></div>
                 </div>`;
-        },
-      },
-      series: {
-        name: this.dataValues.seriesName,
-        type: 'line',
-        data: this.data.map(d => [this._datePipe.transform(d.date, 'yyyy-MM-dd'), d.value]),
-        symbol: 'circle',
-        symbolSize: 10,
-        itemStyle: {
-          color: 'rgba(15, 80, 250, 0.9)',
-        },
-        lineStyle: {
-          color: 'rgba(15, 80, 250, 0.9)',
-          width: 3,
-        },
-        areaStyle: {
-          color: 'rgba(15, 80, 250, 0.3)',
         },
       },
     };
   }
+
 }
