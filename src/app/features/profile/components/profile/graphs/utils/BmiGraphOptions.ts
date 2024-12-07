@@ -16,7 +16,7 @@ export function GetBmiGraphOptions(startDate: Date, endDate: Date, datePipe: Dat
     formatter: (params: any) => {
       const data = params[0].data;
       return `<div class="text-center">
-                <div><b>${data[1]}</b></div>
+                <div><b>${data[1].toFixed(1)}</b></div>
                 <div>${datePipe.transform(data[0], 'd/M/y')}</div>
               </div>`;
     },
