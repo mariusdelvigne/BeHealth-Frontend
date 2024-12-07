@@ -48,6 +48,7 @@ import {FoodGraphManagerComponent} from './features/profile/components/profile/f
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
 import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/scatter-graph.component';
+import {BarGraphComponent} from './features/profile/shared/bar-graph/bar-graph.component';
 
 export const routes: Routes = [
   {
@@ -333,8 +334,12 @@ export const routes: Routes = [
         component: FoodGraphManagerComponent,
         children: [
           {
-            path: 'food-graph/:dataType',
+            path: 'scatter-graph/:dataType',
             component: ScatterGraphComponent,
+          },
+          {
+            path: 'bar-graph/:dataType',
+            component: BarGraphComponent,
           },
         ]
       },
