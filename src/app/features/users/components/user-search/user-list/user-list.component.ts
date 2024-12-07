@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import {UserBanComponent} from './user-ban/user-ban.component';
 import {UserEventBusService} from '../../../utils/user-event-bus.service';
 import {Subscription} from 'rxjs';
+import {UserBanDeleteChoice} from '../../../utils/user-ban-delete-choice';
 
 @Component({
   selector: 'app-user-list',
@@ -33,7 +34,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._userBanStatusSubscription = this._userBanEventBus.listen('UserBanStatusChanged').subscribe(event => {
-      const { userId, isBanned } = event.object;
+      const {userId, isBanned} = event.object;
       const user = this.users.find(u => u.id === userId);
       if (user) {
         user.isBanned = isBanned;
@@ -48,48 +49,69 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   onUserBanStatusChange(userId: number, isBanned: boolean) {
-    const command: UserBanCommand = { userId, isBanned };
+    const command: UserBanCommand = {userId, isBanned};
     const user = this.users.find(u => u.id === userId);
 
     this._userService.banUser(command).subscribe({
-      next: () => this._toastrService.success(`User: ${user?.name}  ${isBanned ? 'banned' : 'unbanned'} successfully`),
-      error: (err) => this._toastrService.error('Error: ' + err.message)
-    });
+        next: () => {
+          this._toastrService.success(`User : ${user?.username} has been ${isBanned ? 'banned' : 'unbanned'}`)
+        },
+        error: (error) => {
+          this._toastrService.error("Error : " + error.message);
+        }
+      }
+    );
+
     if (user) {
       user.isBanned = isBanned;
     }
   }
 
-  deleteAllPlansOfUser(id: number) {
-    this._userService.deleteAllPlanByUserId(id).subscribe({
-        next: (response) => {
-          this._toastrService.success("All plans of the user are deleted successfully")
+  deleteAllPlansOfUser(userId: number, deleted: boolean) {
+    const user = this.users.find(u => u.id === userId);
+    const command: UserBanDeleteChoice = {userId};
+
+    this._userService.deleteAllPlanByUserId(userId).subscribe({
+        next: () => {
+          console.log(`Plans for user ${userId} deleted successfully`);
+          this._toastrService.success(`All plans of ${user?.username} are deleted successfully`)
         },
         error: (error) => {
-          this._toastrService.error("Unable to delete plan of user list" + error.message);
+          console.error(`Error deleting plans for user ${userId}:`, error);
+          this._toastrService.error(`Unable to delete plan of ${user?.username}` + error.message);
         }
       }
     )
   }
 
-  deleteAllProgramsOfUser(id: number) {
-    this._userService.deleteAllProgramsByUserId(id).subscribe({
-      next: (response) => {
-        this._toastrService.success("All programs of the user are deleted successfully")
+  deleteAllProgramsOfUser(userId: number, deleted: boolean) {
+    const user = this.users.find(u => u.id === userId);
+    const command: UserBanDeleteChoice = {userId};
+
+    this._userService.deleteAllProgramsByUserId(userId).subscribe({
+      next: () => {
+        console.log(`Programs for user ${userId} deleted successfully`);
+        this._toastrService.success(`All programs of ${user?.username} are deleted successfully`)
       },
       error: (error) => {
-        this._toastrService.error("Unable to delete program of user list" + error.message);
+        console.error(`Error deleting programs for user ${userId}:`, error);
+        this._toastrService.error(`Unable to delete programs of ${user?.username}` + error.message);
       }
     })
   }
 
-  deleteAllFeedbacksOfUser(id: number) {
-    this._userService.deleteAllFeedbackByUserId(id).subscribe({
-      next: (response) => {
-        this._toastrService.success("All feedbacks of the user are deleted successfully")
+  deleteAllFeedbacksOfUser(userId: number, deleted: boolean) {
+    const user = this.users.find(u => u.id === userId);
+    const command: UserBanDeleteChoice = {userId};
+
+    this._userService.deleteAllFeedbackByUserId(userId).subscribe({
+      next: () => {
+        console.log(`Feedbacks for user ${userId} deleted successfully`);
+        this._toastrService.success(`All feedbacks of ${user?.username} are deleted successfully`)
       },
       error: (error) => {
-        this._toastrService.error("Unable to delete feedback of user list" + error.message);
+        console.error(`Error deleting feedbacks for user ${userId}:`, error);
+        this._toastrService.error(`Unable to delete feedbacks of ${user?.username}` + error.message);
       }
     })
   }

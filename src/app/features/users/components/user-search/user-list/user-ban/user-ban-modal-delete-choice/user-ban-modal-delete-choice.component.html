@@ -1,10 +1,10 @@
 <div class="modal-header">
-  <h5 class="modal-title">Choose what to do with user infos</h5>
+  <h5 class="modal-title">Choose what to do with user actions</h5>
   <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
-  <div class="modal-body">
-    <button type="button" class="btn-primary">Delete plans</button>
-    <button type="button" class="btn-primary">Delete programs</button>
-    <button type="button" class="btn-primary">Delete feedbacks</button>
-    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Delete nothing</button>
-  </div>
+</div>
+<div class="modal-body">
+  <button type="button" (click)="deleteUserPlan()">Delete plans</button>
+  <button type="button" (click)="deleteUserProgram()">Delete programs</button>
+  <button type="button" (click)="deleteUserFeedback()">Delete feedbacks</button>
+  <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Delete nothing</button>
 </div>
