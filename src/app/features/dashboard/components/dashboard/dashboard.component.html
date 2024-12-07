@@ -1,0 +1,115 @@
+<h2>Dashboard</h2>
+<div class="row">
+  <div class="col-12 col-md-6 mt-3">
+    <div class="card border-danger border-3 h-100">
+      <div class="card-header bg-danger rounded-0">
+        <h4 class="card-title text-white fw-bold">Sport</h4>
+      </div>
+      <div class="card-body">
+        <h5><u>{{userData.sport.name}}</u></h5>
+        <p class="card-text">
+          <b>Date:</b> {{userData.sport.startDatetime | date: 'EEEE d/M/y'}}<br/>
+          <b>Duration:</b> {{dateDiff(userData.sport.endDatetime, userData.sport.startDatetime) | time}}
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-around gap-1 m-1">
+        <a routerLink="" class="btn btn-danger w-100 fw-bold">Consult</a>
+        <a routerLink="/insert/sport" class="btn btn-outline-danger w-100 fw-bold">Add</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 mt-3">
+    <div class="card border-warning border-3 h-100">
+      <div class="card-header bg-warning rounded-0">
+        <h4 class="card-title text-white fw-bold">Food</h4>
+      </div>
+      <div class="card-body">
+        <h5><u>{{userData.food.name}}</u></h5>
+        <p class="card-text">
+          <b>Date:</b> {{userData.food.eatenDatetime | date: 'EEEE d/M/y'}}<br/>
+          <b>Quantity:</b> {{userData.food.quantityInG}}g
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-around gap-1 m-1">
+        <a routerLink="" class="btn btn-warning w-100 fw-bold">Consult</a>
+        <a routerLink="/insert/food" class="btn btn-outline-warning w-100 fw-bold">Add</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6 mt-3">
+    <div class="card border-primary border-3 h-100">
+      <div class="card-header bg-primary rounded-0">
+        <h4 class="card-title text-white fw-bold">Sleep</h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <b>Date:</b> {{userData.sleep.startDatetime | date: 'EEEE d/M/y'}}<br/>
+          <b>Duration:</b> {{dateDiff(userData.sleep.endDatetime, userData.sleep.startDatetime) | time}}
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-around gap-1 m-1">
+        <a routerLink="" class="btn btn-primary w-100 fw-bold text-white">Consult</a>
+        <a routerLink="/insert/sleep" class="btn btn-outline-primary w-100 fw-bold">Add</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 mt-3">
+    <div class="card border-primary border-3 h-100">
+      <div class="card-header bg-primary rounded-0">
+        <h4 class="card-title text-white fw-bold">Periods</h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <b>Start date:</b> {{userData.period.startDate | date: 'EEEE d/M/y'}}<br/>
+          <b>End date:</b> {{userData.period.endDate | date: 'EEEE d/M/y'}}
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-around gap-1 m-1">
+        <a routerLink="" class="btn btn-primary w-100 fw-bold text-white">Consult</a>
+        <a routerLink="/insert/sleep" class="btn btn-outline-primary w-100 fw-bold">Add</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6 mt-3">
+    <div class="card border-primary border-3 h-100">
+      <div class="card-header bg-primary rounded-0">
+        <h4 class="card-title text-white fw-bold">Height</h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <b>Date:</b> {{userData.height.inputDate | date: 'EEEE d/M/y'}}<br/>
+          <b>Height:</b> {{userData.height.heightInCm}} cm
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-around gap-1 m-1">
+        <a routerLink="" class="btn btn-primary w-100 fw-bold text-white">Consult</a>
+        <a routerLink="/insert/sleep" class="btn btn-outline-primary w-100 fw-bold">Add</a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-12 col-md-6 mt-3">
+    <div class="card border-primary border-3 h-100">
+      <div class="card-header bg-primary rounded-0">
+        <h4 class="card-title text-white fw-bold">Weight</h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <b>Date:</b> {{userData.weight.inputDate | date: 'EEEE d/M/y'}}<br/>
+          <b>Weight:</b> {{userData.weight.weightInKg}} kg
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-around gap-1 m-1">
+        <a routerLink="" class="btn btn-primary w-100 fw-bold text-white">Consult</a>
+        <a routerLink="/insert/sleep" class="btn btn-outline-primary w-100 fw-bold">Add</a>
+      </div>
+    </div>
+  </div>
+</div>
