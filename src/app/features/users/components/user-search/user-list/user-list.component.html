@@ -1,23 +1,23 @@
 @if (users.length) {
-  <div class="table-responsive">
-    <table class="table table-bordered">
+  <div>
+    <table class="table table-striped">
       <thead>
       <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Birthdate</th>
-        <th>Gender</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Is Ban</th>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Birthdate</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Is Ban</th>
       </tr>
       </thead>
       <tbody>
         @for (user of users; track $index) {
           <tr>
-            <td>{{ user.id }}</td>
+            <th scope="row">{{ user.id }}</th>
             <td>{{ user.username }}</td>
             <td>{{ user.mail }}</td>
             <td>{{ user.role }}</td>
