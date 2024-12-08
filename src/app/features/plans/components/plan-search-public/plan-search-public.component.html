@@ -20,38 +20,28 @@
 
   </form>
 
-  <div class="d-flex">
-    <ul class="responsive-table w-100">
-      <li class="table-header">
-        <div class="col-4" data-label="Name">Name</div>
-        <div class="col-4" data-label="Privacy">Privacy</div>
-        <div class="col-4" data-label="Duration">Duration (days)</div>
-      </li>
-      @for (plan of plans; track $index) {
-        <div class="table-row-container" (click)="showPlanInfo(plan.id)">
-          <div class="custom-width text-white text-uppercase text-center"
+  <ul class="program-list mt-3">
+    @for (plan of plans; track $index) {
+      <li (click)="showPlanInfo(plan.id)">
+        <div class="d-flex">
+          <div class="col-4 col-md-2 text-white text-uppercase text-center"
                [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
             {{ plan.category }}
           </div>
-          <li class="table-row border-top border-5"
-              [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
-            <div class="col-4">
-              {{ plan.name }}
-            </div>
-            <div class="col-4">
-              {{ plan.privacy }}
-            </div>
-            <div class="col-4">
-              {{ plan.durationInDays }}
-            </div>
-          </li>
+          <div class="col-4 col-md-4 ps-3">
+            Duration: {{ plan.durationInDays }} days
+          </div>
+        </div>
+        <div class="p-1">
+          <div> {{ plan.name }} </div>
           @if (plan == selectedPlan) {
             <div>
               <app-plan-info [plan]="selectedPlan"></app-plan-info>
             </div>
           }
         </div>
-      }
-    </ul>
-  </div>
+
+      </li>
+    }
+  </ul>
 </div>
