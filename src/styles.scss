@@ -74,7 +74,7 @@ $sleep-color: rgba(27, 156, 55, 0.76);
   z-index: 10;
 }
 
-button {
+button, input[type=button] {
   transition: transform 0.5s ease, box-shadow 0.5s;
   border: none;
   min-width: 50px;
@@ -124,6 +124,10 @@ textarea {
   top: 10px;
   right: 10px;
   font-size: 20px;
+}
+
+.graph-background {
+  background: $french-gray;
 }
 
 

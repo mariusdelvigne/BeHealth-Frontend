@@ -165,14 +165,14 @@ export class ScatterGraphComponent implements OnInit {
         symbol: 'circle',
         symbolSize: 10,
         itemStyle: {
-          color: 'rgba(15, 80, 250, 0.9)',
+          color: '#424874',
         },
         lineStyle: {
-          color: 'rgba(15, 80, 250, 0.9)',
+          color: '#424874',
           width: 3,
         },
         areaStyle: {
-          color: 'rgba(15, 80, 250, 0.3)',
+          color: '#424874',
         },
       },
     };

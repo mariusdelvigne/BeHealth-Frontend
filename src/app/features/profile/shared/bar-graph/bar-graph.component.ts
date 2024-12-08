@@ -135,7 +135,7 @@ export class BarGraphComponent implements OnInit {
         type: 'bar',
         data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),
         itemStyle: {
-          color: 'rgba(15, 80, 250, 0.9)',
+          color: '#424874',
         },
       },
       tooltip: {
