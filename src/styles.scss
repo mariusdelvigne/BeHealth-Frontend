@@ -21,10 +21,6 @@ $sleep-color: rgba(27, 156, 55, 0.76);
     margin-bottom: 15px;
   }
 
-  td {
-    background-color: transparent !important;
-  }
-
   .table-header {
     background: rgba(255, 255, 255, 0.1);
     border: 3px solid $french-gray;
@@ -45,6 +41,33 @@ $sleep-color: rgba(27, 156, 55, 0.76);
   }
 
   .table-row {
+    background-color: $alice-blue;
+
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.responsive-list {
+  margin-top: 2%;
+  padding-left: 0;
+
+  li {
+    margin-bottom: 15px;
+    transition: transform 0.5s ease, box-shadow 0.5s;
+  }
+
+  li:hover {
+    transform: translateY(-6px);
+    cursor: pointer;
+  }
+
+  li>div {
+    padding: 25px 30px;
+    display: flex;
+    width: 100%;
+  }
+
+  .list-row {
     background-color: $alice-blue;
 
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);

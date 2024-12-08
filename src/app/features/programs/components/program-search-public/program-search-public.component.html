@@ -1,13 +1,8 @@
 <div class="container">
-  <ul class="responsive-table">
-    <li class="table-header">
-      <div class="col-4">Title</div>
-      <div class="col-4">Creator</div>
-      <div class="col-4"></div>
-    </li>
+  <ul class="responsive-list">
     @for (program of programs; track $index) {
-      <div class="table-row-container" (click)="showProgramInfo(program.id)">
-        <li class="table-row">
+      <li (click)="showProgramInfo(program.id)">
+        <div class="list-row">
           <div class="col-4">
             {{ program.title }}
           </div>
@@ -20,8 +15,8 @@
             </button>
             <button type="button" class="rounded text-uppercase p-2 custom-btn" (click)="addToRelations(program.id, 'subscription')">Subscribe</button>
           </div>
-        </li>
-      </div>
+        </div>
+      </li>
       @if (program == selectedProgram) {
         <div>
           <app-program-info [program]="selectedProgram"></app-program-info>
