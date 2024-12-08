@@ -18,4 +18,8 @@ export class NotificationService {
   public getNotificationNotReadByUserId(userId: number): Observable<any> {
     return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications/read/false`);
   }
+
+  public getNotificationByNotificationId(userId:number, notificationId: number): Observable<any> {
+    return this._httpClient.get(`${NotificationService.URL_USERS}/${userId}/notifications/${notificationId}`);
+  }
 }

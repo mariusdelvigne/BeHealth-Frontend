@@ -21,7 +21,6 @@ export class NotificationsDropdownViewComponent implements OnInit {
   constructor(private _notificationService: NotificationService, private _authService: AuthService, private _toastrService: ToastrService) {}
 
   ngOnInit() {
-    console.log(this._authService.getId())
     this._notificationService.getNotificationNotReadByUserId(this._authService.getId()).subscribe({
       next: (notifications) => {
         this.notificationsNotRead = notifications.notifications;
