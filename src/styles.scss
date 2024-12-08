@@ -74,7 +74,7 @@ $sleep-color: rgba(27, 156, 55, 0.76);
   z-index: 10;
 }
 
-button, input[type=button] {
+button, input[type=button], input[type=submit] {
   transition: transform 0.5s ease, box-shadow 0.5s;
   border: none;
   min-width: 50px;
@@ -130,7 +130,6 @@ textarea {
   background: $french-gray;
 }
 
-
 .program-list {
   list-style: none;
   padding: 0;
@@ -150,4 +149,10 @@ textarea {
     transform: translateY(-6px);
     cursor: pointer;
   }
+}
+
+.custom-form {
+  background: $columbia-blue;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
 }
