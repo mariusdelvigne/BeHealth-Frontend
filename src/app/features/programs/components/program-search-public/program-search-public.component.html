@@ -1,28 +1,25 @@
-<div class="container">
-  <ul class="responsive-list">
-    @for (program of programs; track $index) {
-      <li (click)="showProgramInfo(program.id)">
-        <div class="list-row">
-          <div class="col-4">
-            {{ program.title }}
-          </div>
-          <div class="col-4">
-            {{ program.creatorName }}
-          </div>
-          <div class="col-4 d-flex flex-column gap-2">
-            <button class="rounded p-2 custom-btn" (click)="addToRelations(program.id, 'favorite')">
-              <i class="far fa-star"></i>
-            </button>
-            <button type="button" class="rounded text-uppercase p-2 custom-btn" (click)="addToRelations(program.id, 'subscription')">Subscribe</button>
-          </div>
+<ul class="program-list container">
+  @for (program of programs; track $index) {
+    <li class="">
+      <div class="program pt-1 pb-1 p-1 p-md-2 p-xl-3 row align-content-between" (click)="showProgramInfo(program.id)">
+        <div class="col-8 col-md-10 d-flex flex-column justify-content-between">
+          <p>{{ program.title }}</p>
+          <p class="m-0">By : {{ program.creatorName }}</p>
         </div>
-      </li>
+        <div class="col-4 col-md-2 d-flex flex-column gap-1">
+          <button class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'favorite')">
+            <i class="far fa-star"></i>
+          </button>
+          <button type="button" class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'subscription')">
+            Subscribe
+          </button>
+        </div>
+      </div>
       @if (program == selectedProgram) {
-        <div>
+        <div class="m-1 m-md-2">
           <app-program-info [program]="selectedProgram"></app-program-info>
         </div>
       }
-    }
-  </ul>
-</div>
-
+    </li>
+  }
+</ul>

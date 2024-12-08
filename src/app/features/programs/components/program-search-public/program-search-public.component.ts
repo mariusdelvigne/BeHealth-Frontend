@@ -45,7 +45,9 @@ export class ProgramSearchPublicComponent implements OnInit {
     }
   }
 
-  addToRelations(programId: number, relation: string) {
+  addToRelations(e: MouseEvent, programId: number, relation: string) {
+    e.stopPropagation();
+
     const userId = this._authService.getId();
     this._programService.postRelation(userId, programId, relation).subscribe({
       next: response => {
