@@ -17,7 +17,7 @@ import {firstValueFrom} from 'rxjs';
     NgxEchartsDirective
   ],
   templateUrl: './bar-graph.component.html',
-  styleUrl: './bar-graph.component.css'
+  styleUrl: './bar-graph.component.scss'
 })
 export class BarGraphComponent implements OnInit {
   dataType: string = '';

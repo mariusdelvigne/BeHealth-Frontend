@@ -9,7 +9,7 @@ import {UserBanModalDeleteChoiceComponent} from './user-ban-modal-delete-choice/
   standalone: true,
   imports: [MdbModalModule],
   templateUrl: './user-ban.component.html',
-  styleUrl: './user-ban.component.css'
+  styleUrl: './user-ban.component.scss'
 })
 export class UserBanComponent {
   @Input() userIsBanned: boolean = false;

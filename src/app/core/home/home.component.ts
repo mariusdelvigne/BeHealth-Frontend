@@ -11,7 +11,7 @@ import {HomeDefaultComponent} from './home-default/home-default.component';
     HomeDefaultComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   constructor(public authService: AuthService) { }

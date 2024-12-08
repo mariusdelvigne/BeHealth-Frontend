@@ -6,7 +6,7 @@ import {AuthService} from '../../auth/services/auth.service';
   standalone: true,
   imports: [],
   templateUrl: './home-user-connected.component.html',
-  styleUrl: './home-user-connected.component.css'
+  styleUrl: './home-user-connected.component.scss'
 })
 export class HomeUserConnectedComponent {
   constructor(public authService: AuthService) {

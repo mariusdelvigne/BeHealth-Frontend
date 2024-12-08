@@ -14,7 +14,7 @@ import {ToastrService} from 'ngx-toastr';
         ReactiveFormsModule
     ],
   templateUrl: './insert-sport.component.html',
-  styleUrl: './insert-sport.component.css',
+  styleUrl: './insert-sport.component.scss',
   animations: [
     trigger('colorChange', [
       state('grey', style({

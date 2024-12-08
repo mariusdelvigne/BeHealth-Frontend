@@ -1,7 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/food-plans-table.component';
-import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
-import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {PlanService} from '../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
 
@@ -9,15 +6,11 @@ import {NgClass} from '@angular/common';
   selector: 'app-program-info',
   standalone: true,
   imports: [
-    FoodPlansTableComponent,
-    SleepPlansTableComponent,
-    SportPlansTableComponent,
     NgClass
   ],
   templateUrl: './program-info.component.html',
   styleUrls: [
-    './program-info.component.css',
-    '../../../../shared/styles/style.css',
+    './program-info.component.scss',
   ]
 })
 export class ProgramInfoComponent implements OnInit {

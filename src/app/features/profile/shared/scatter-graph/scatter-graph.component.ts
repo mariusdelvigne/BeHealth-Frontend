@@ -17,7 +17,7 @@ import {GraphData} from '../utils/graph-data';
     NgxEchartsDirective
   ],
   templateUrl: './scatter-graph.component.html',
-  styleUrl: './scatter-graph.component.css'
+  styleUrl: './scatter-graph.component.scss'
 })
 
 export class ScatterGraphComponent implements OnInit {

@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
   standalone: true,
   imports: [],
   templateUrl: './account-delete.component.html',
-  styleUrl: './account-delete.component.css'
+  styleUrl: './account-delete.component.scss'
 })
 export class AccountDeleteComponent {
 

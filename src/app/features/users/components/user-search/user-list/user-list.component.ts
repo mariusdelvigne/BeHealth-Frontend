@@ -20,7 +20,7 @@ import {UserBanDeleteChoice} from '../../../utils/user-ban-delete-choice';
     UserBanComponent,
   ],
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.css'
+  styleUrl: './user-list.component.scss'
 })
 export class UserListComponent implements OnInit, OnDestroy {
   @Input() users: UserSearchOutput[] = [];

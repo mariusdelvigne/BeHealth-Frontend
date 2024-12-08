@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
         PlanFormComponent
     ],
   templateUrl: './plan-update.component.html',
-  styleUrl: './plan-update.component.css'
+  styleUrl: './plan-update.component.scss'
 })
 export class PlanUpdateComponent implements OnInit {
   mode: string = 'update';

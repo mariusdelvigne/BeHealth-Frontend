@@ -15,7 +15,7 @@ import {DatedValue} from '../../../../utils/DatedValue';
     NgxEchartsDirective
   ],
   templateUrl: './weight-graph.component.html',
-  styleUrl: './weight-graph.component.css'
+  styleUrl: './weight-graph.component.scss'
 })
 export class WeightGraphComponent extends GraphBase implements OnInit {
   constructor(datePipe: DatePipe, private _userWeightService: UserWeightService) {

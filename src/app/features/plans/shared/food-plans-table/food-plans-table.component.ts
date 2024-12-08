@@ -1,18 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PlanService} from '../../services/plan.service';
-import {NgClass, NgStyle} from '@angular/common';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-food-plans-table',
   standalone: true,
   imports: [
     NgClass,
-    NgStyle
   ],
   templateUrl: './food-plans-table.component.html',
   styleUrls: [
-    './food-plans-table.component.css',
-    '../../../../shared/styles/style.css'
+    './food-plans-table.component.scss',
   ]
 })
 export class FoodPlansTableComponent implements OnInit {

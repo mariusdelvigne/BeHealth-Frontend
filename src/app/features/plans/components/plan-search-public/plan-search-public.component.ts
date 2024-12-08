@@ -3,9 +3,6 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular
 import {PlanSearchOutput} from '../../utils/plan-search-output';
 import {PlanService} from '../../services/plan.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {
-  ProgramInfoComponent
-} from "../../../programs/shared/program-info/program-info.component";
 import {PlanInfoComponent} from '../../shared/plan-info/plan-info.component';
 import {NgClass} from '@angular/common';
 
@@ -15,14 +12,12 @@ import {NgClass} from '@angular/common';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    ProgramInfoComponent,
     PlanInfoComponent,
     NgClass
   ],
   templateUrl: './plan-search-public.component.html',
   styleUrls: [
-    './plan-search-public.component.css',
-    '../../../../shared/styles/style.css',
+    './plan-search-public.component.scss',
   ],
   animations: [
     trigger('colorChange', [

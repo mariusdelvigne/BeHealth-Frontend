@@ -9,7 +9,7 @@ import {UserSearchQuery} from '../../../../../shared/utils/user-search-query';
     ReactiveFormsModule
   ],
   templateUrl: './search-form.component.html',
-  styleUrl: './search-form.component.css'
+  styleUrl: './search-form.component.scss'
 })
 export class SearchFormComponent {
 

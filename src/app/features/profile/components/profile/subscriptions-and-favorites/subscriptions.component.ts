@@ -12,8 +12,7 @@ import {ToastrService} from "ngx-toastr";
   ],
   templateUrl: './subscriptions.component.html',
   styleUrls: [
-    './subscriptions.component.css',
-    '../../../../../shared/styles/style.css',
+    './subscriptions.component.scss',
   ],
 })
 export class SubscriptionsComponent implements OnInit{

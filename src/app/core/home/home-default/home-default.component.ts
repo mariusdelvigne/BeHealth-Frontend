@@ -5,7 +5,7 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './home-default.component.html',
-  styleUrl: './home-default.component.css'
+  styleUrl: './home-default.component.scss'
 })
 export class HomeDefaultComponent implements AfterViewInit {
   @ViewChild('content') content!: ElementRef;

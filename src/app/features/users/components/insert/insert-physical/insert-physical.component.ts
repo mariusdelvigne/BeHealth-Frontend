@@ -12,7 +12,7 @@ import {UserHeightService} from '../../../../../shared/services/user-height.serv
     ReactiveFormsModule
   ],
   templateUrl: './insert-physical.component.html',
-  styleUrl: './insert-physical.component.css',
+  styleUrl: './insert-physical.component.scss',
   animations: [
     trigger('colorChange', [
       state('grey', style({
