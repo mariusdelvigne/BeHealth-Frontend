@@ -78,9 +78,7 @@
       </div>
       <div class="navbar-nav ms-auto">
         @if (authService.isAuthenticated()) {
-          <a routerLink="/notifications" class="nav-link">
-            <i class="far fa-message"></i>
-          </a>
+          <app-notifications-dropdown-view></app-notifications-dropdown-view>
           <a routerLink="/account" class="nav-link">
             <i class="far fa-address-card"></i>
           </a>

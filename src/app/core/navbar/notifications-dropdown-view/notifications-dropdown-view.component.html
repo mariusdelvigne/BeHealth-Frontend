@@ -1,0 +1,14 @@
+<div class="position-relative">
+  <button class="nav-link" type="button" (click)="toggleNotifications()">
+    <i class="far fa-message"></i>
+  </button>
+  <div class="notification-menu shadow-sm" [class.d-none]="!showNotifications">
+    <div class="dropdown-header fw-bold fs-6">Notifications</div>
+    <div class="px-3 py-2">
+      <a class="dropdown-item" routerLink="/notifications">Notification 1</a>
+      <a class="dropdown-item" routerLink="/notifications">Notifications 2</a>
+    </div>
+    <hr class="dropdown-divider">
+    <a class="dropdown-item text-muted" routerLink="/notifications">See all notifications</a>
+  </div>
+</div>
