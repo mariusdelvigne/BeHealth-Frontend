@@ -15,11 +15,14 @@ $sleep-color: rgba(27, 156, 55, 0.76);
 .responsive-table {
   margin-top: 2%;
   padding-left: 0;
-  li {
+  tr {
     padding: 25px 30px;
     display: flex;
-    justify-content: space-between;
     margin-bottom: 15px;
+  }
+
+  td {
+    background-color: transparent !important;
   }
 
   .table-header {
@@ -27,9 +30,8 @@ $sleep-color: rgba(27, 156, 55, 0.76);
     border: 3px solid $french-gray;
     border-radius: 10px;
     padding-bottom: 10px;
-    font-size: 12px;
+    font-size: 16px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
     font-weight: bold;
   }
 
@@ -85,6 +87,10 @@ button {
 
 textarea {
   background-color: $alice-blue;
+}
+
+.custom-btn {
+  padding: 5px;
 }
 
 .custom-btn:hover {
