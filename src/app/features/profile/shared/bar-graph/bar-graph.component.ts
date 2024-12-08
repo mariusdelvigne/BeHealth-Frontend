@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GraphData} from '../utils/graph-data';
 import {DatedValue} from '../../utils/DatedValue';
-import {EChartsOption, SeriesOption} from 'echarts';
+import {EChartsOption} from 'echarts';
 import {NgxEchartsDirective} from 'ngx-echarts';
 import {DatePipe} from '@angular/common';
 import {UserFoodService} from '../../../../shared/services/user-food.service';
@@ -41,10 +41,16 @@ export class BarGraphComponent implements OnInit {
       this.loadData();
     });
 
+    // 0 : sunday, 1 : monday, ...
+    const monday = new Date();
+    const diff = monday.getDay() === 0 ? -6 : 1 - monday.getDay()
+
     // week start => Monday
-    this.startDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate(), 0, 0, 0, 0);
+    monday.setDate(monday.getDate() + diff);
+    this.startDate =  monday;
+
     // week end => Sunday
-    this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate() + 6, 23, 59, 59, 999);
+    this.endDate.setDate(this.startDate.getDate() + 6);
 
     this.loadOptions()
     this.loadData();
@@ -100,7 +106,6 @@ export class BarGraphComponent implements OnInit {
   }
 
   updateChart() {
-    console.log(this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]));
     this.updateOptions = {
       series: {
         data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),

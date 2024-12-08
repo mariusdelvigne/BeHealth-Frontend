@@ -38,7 +38,6 @@ export class UserService {
   }
 
   getUserByUsername(query: UserSearchQuery): Observable<any> {
-    // console.log(UserSearchService.urlSearchUser + "/" + query.username + "/usernames")
     return this._httpClient.get<any>(UserService.URL + "/" + query.username + "/usernames");
   }
 
@@ -56,5 +55,9 @@ export class UserService {
 
   public deleteAllFeedbackByUserId(userId: number): Observable<any> {
     return this._httpClient.delete<void>(`${UserService.URL}/${userId}/programFeedbacks`, {withCredentials: true,});
+  }
+
+  public getCurrentData(userId: number): Observable<any> {
+    return this._httpClient.get<any>(`${UserService.URL}/${userId}/data`, {withCredentials: true,});
   }
 }

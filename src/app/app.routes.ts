@@ -51,6 +51,7 @@ import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/sca
 import {BarGraphComponent} from './features/profile/shared/bar-graph/bar-graph.component';
 import {BmiGraphComponent} from './features/profile/components/profile/physical-graph/bmi-graph/bmi-graph.component';
 import {NotificationsComponent} from './features/notifications/components/notifications/notifications.component';
+import {DashboardComponent} from './features/dashboard/components/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -58,6 +59,11 @@ export const routes: Routes = [
     component: AppComponent,
     resolve: {AuthService},
     children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [authGuard],
+      },
       {
         path: '',
         component: HomeComponent,
