@@ -9,7 +9,7 @@ import {AuthService} from '../auth/services/auth.service';
     RouterLink
   ],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
   constructor(public authService: AuthService) { }

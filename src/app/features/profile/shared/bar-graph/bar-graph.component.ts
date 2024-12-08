@@ -17,7 +17,7 @@ import {firstValueFrom} from 'rxjs';
     NgxEchartsDirective
   ],
   templateUrl: './bar-graph.component.html',
-  styleUrl: './bar-graph.component.css'
+  styleUrl: './bar-graph.component.scss'
 })
 export class BarGraphComponent implements OnInit {
   dataType: string = '';
@@ -135,7 +135,7 @@ export class BarGraphComponent implements OnInit {
         type: 'bar',
         data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),
         itemStyle: {
-          color: 'rgba(15, 80, 250, 0.9)',
+          color: '#424874',
         },
       },
       tooltip: {

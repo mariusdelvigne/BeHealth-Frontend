@@ -12,7 +12,7 @@ import {ToastrService} from 'ngx-toastr';
         ReactiveFormsModule
     ],
   templateUrl: './insert-period.component.html',
-  styleUrl: './insert-period.component.css',
+  styleUrl: './insert-period.component.scss',
   animations: [
     trigger('colorChange', [
       state('grey', style({

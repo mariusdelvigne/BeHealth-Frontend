@@ -17,7 +17,7 @@ import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/
     SleepPlansTableComponent
   ],
   templateUrl: './program-form.component.html',
-  styleUrl: './program-form.component.css'
+  styleUrl: './program-form.component.scss'
 })
 export class ProgramFormComponent implements OnInit {
   @Input() mode: string = '';

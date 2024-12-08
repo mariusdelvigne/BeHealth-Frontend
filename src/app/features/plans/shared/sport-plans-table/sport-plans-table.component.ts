@@ -10,8 +10,7 @@ import {NgClass} from '@angular/common';
   ],
   templateUrl: './sport-plans-table.component.html',
   styleUrls: [
-    './sport-plans-table.component.css',
-    '../../../../shared/styles/style.css'
+    './sport-plans-table.component.scss',
   ]
 })
 export class SportPlansTableComponent implements OnInit{

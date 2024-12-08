@@ -1,35 +1,25 @@
-<div class="container">
-  <ul class="responsive-table">
-    <li class="table-header">
-      <div class="col-4">Title</div>
-      <div class="col-4">Creator</div>
-      <div class="col-4"></div>
-    </li>
-    @for (program of programs; track $index) {
-      <div class="table-row-container" (click)="showProgramInfo(program.id)">
-        <li class="table-row">
-          <div class="col-4">
-            {{ program.title }}
-          </div>
-          <div class="col-4">
-            {{ program.creatorName }}
-          </div>
-          <div class="col-4 d-flex flex-column gap-2">
-            <button class="rounded p-2" (click)="addToRelations(program.id, 'favorite')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
-                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
-              </svg>
-            </button>
-            <button type="button" class="btn btn-danger" (click)="addToRelations(program.id, 'subscription')">Subscribe</button>
-          </div>
-        </li>
+<ul class="program-list container mt-3">
+  @for (program of programs; track $index) {
+    <li class="">
+      <div class="program pt-1 pb-1 p-1 p-md-2 p-xl-3 row align-content-between" (click)="showProgramInfo(program.id)">
+        <div class="col-8 col-md-10 d-flex flex-column justify-content-between">
+          <p>{{ program.title }}</p>
+          <p class="m-0">By : {{ program.creatorName }}</p>
+        </div>
+        <div class="col-4 col-md-2 d-flex flex-column gap-1">
+          <button class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'favorite')">
+            <i class="far fa-star"></i>
+          </button>
+          <button type="button" class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'subscription')">
+            Subscribe
+          </button>
+        </div>
       </div>
       @if (program == selectedProgram) {
-        <div>
+        <div class="m-1 m-md-2">
           <app-program-info [program]="selectedProgram"></app-program-info>
         </div>
       }
-    }
-  </ul>
-</div>
-
+    </li>
+  }
+</ul>

@@ -14,7 +14,7 @@ import {ToastrService} from 'ngx-toastr';
         ReactiveFormsModule
     ],
   templateUrl: './auth-sign-up.component.html',
-  styleUrl: './auth-sign-up.component.css',
+  styleUrl: './auth-sign-up.component.scss',
   animations: [
     trigger('colorChange', [
       state('grey', style({

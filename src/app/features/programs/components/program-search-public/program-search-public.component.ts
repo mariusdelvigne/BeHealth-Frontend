@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/food-plans-table.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
-import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {ProgramService} from '../../services/program.service';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 import {ToastrService} from 'ngx-toastr';
@@ -12,16 +9,12 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
   selector: 'app-program-search-public',
   standalone: true,
   imports: [
-    FoodPlansTableComponent,
     ReactiveFormsModule,
-    SleepPlansTableComponent,
-    SportPlansTableComponent,
     ProgramInfoComponent
   ],
   templateUrl: './program-search-public.component.html',
   styleUrls: [
-    './program-search-public.component.css',
-    '../../../../shared/styles/style.css',
+    './program-search-public.component.scss',
   ],
 })
 export class ProgramSearchPublicComponent implements OnInit {
@@ -52,7 +45,9 @@ export class ProgramSearchPublicComponent implements OnInit {
     }
   }
 
-  addToRelations(programId: number, relation: string) {
+  addToRelations(e: MouseEvent, programId: number, relation: string) {
+    e.stopPropagation();
+
     const userId = this._authService.getId();
     this._programService.postRelation(userId, programId, relation).subscribe({
       next: response => {

@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
-import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-food-scatter-graph',
   standalone: true,
   imports: [
-    RouterLink,
     RouterLinkActive,
     RouterOutlet
   ],
   templateUrl: './food-graph-manager.component.html',
   styleUrls: [
-    './food-graph-manager.component.css',
-    '../../../../../shared/styles/style.css',
+    './food-graph-manager.component.scss',
   ]
 })
 export class FoodGraphManagerComponent {

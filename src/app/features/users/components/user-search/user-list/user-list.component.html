@@ -1,44 +1,29 @@
 @if (users.length) {
-  <div>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Username</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
-        <th scope="col">Birthdate</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Name</th>
-        <th scope="col">Surname</th>
-        <th scope="col">Is Ban</th>
+  <div class="table-responsive">
+    <table class="w-100 table responsive-table table-striped">
+      <tr class="table-header text-start">
+        <th class="col-3">Username</th>
+        <th class="col-6"> Email</th>
+        <th class="col-2">Role</th>
+        <th></th>
       </tr>
-      </thead>
-      <tbody>
-        @for (user of users; track $index) {
-          <tr>
-            <th scope="row">{{ user.id }}</th>
-            <td>{{ user.username }}</td>
-            <td>{{ user.mail }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.birthDate | date: 'd-M-y' }}</td>
-            <td>{{ user.gender }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ user.surname }}</td>
-            <td>{{ user.isBanned ? 'Banned' : 'Not Banned' }}</td>
-            <td>
-              <app-user-ban
-                [userIsBanned]="user.isBanned"
-                (userIsBannedChange)="onUserBanStatusChange(user.id, $event)"
-                (deleteUserPlans)="deleteAllPlansOfUser(user.id, $event)"
-                (deleteUserPrograms)="deleteAllProgramsOfUser(user.id, $event)"
-                (deleteUserFeedbacks)="deleteAllFeedbacksOfUser(user.id, $event)"
-              >
-              </app-user-ban>
-            </td>
-          </tr>
-        }
-      </tbody>
+      @for (user of users; track $index) {
+        <tr class="table-row">
+          <td class="col-3">{{ user.username }}</td>
+          <td class="col-6">{{ user.mail }}</td>
+          <td class="col-2">{{ user.role }}</td>
+          <td>
+            <app-user-ban class="bg-transparent"
+              [userIsBanned]="user.isBanned"
+              (userIsBannedChange)="onUserBanStatusChange(user.id, $event)"
+              (deleteUserPlans)="deleteAllPlansOfUser(user.id, $event)"
+              (deleteUserPrograms)="deleteAllProgramsOfUser(user.id, $event)"
+              (deleteUserFeedbacks)="deleteAllFeedbacksOfUser(user.id, $event)"
+            >
+            </app-user-ban>
+          </td>
+        </tr>
+      }
     </table>
   </div>
 } @else {

@@ -1,35 +1,28 @@
-<div class="container">
-  <ul class="responsive-table">
-    <li class="table-header">
-      <div class="col-4">Title</div>
-      <div class="col-4">Creator</div>
-      <div class="col-4"></div>
-    </li>
-    @for (program of programs; track $index) {
-      <div class="table-row-container">
-        <li class="table-row" (click)="showProgramInfo(program.id)">
-          <div class="col-4">
-            {{ program.title }}
-          </div>
-          <div class="col-4">
-            {{ program.creatorName }}
-          </div>
-          <div class="col-4 d-flex flex-column gap-1">
-            <button class="rounded text-uppercase p-2 custom-btn"
+<ul class="program-list container mt-3">
+  @for (program of programs; track $index) {
+    <li class="">
+      <div class="program pt-1 pb-1 p-1 p-md-2 p-xl-3 row align-content-between" (click)="showProgramInfo(program.id)">
+        <div class="col-8 col-md-10 d-flex flex-column justify-content-between">
+          <p>{{ program.title }}</p>
+          <p class="m-0">By : {{ program.creatorName }}</p>
+        </div>
+        <div class=" gap-1">
+          <div class="d-flex gap-1 p-3">
+            <button class="rounded text-uppercase p-2 custom-btn w-50"
                     (click)="goToUpdateForm(program.id)">Update
             </button>
-            <button class="rounded text-uppercase p-2 custom-btn"
+            <button class="rounded text-uppercase p-2 custom-btn w-50"
                     (click)="deleteProgram(program.id)">Delete
             </button>
           </div>
-        </li>
-        @if (program == selectedProgram) {
-          <div>
-            <app-program-info [program]="selectedProgram"></app-program-info>
-          </div>
-        }
+        </div>
       </div>
-    }
-  </ul>
-</div>
+      @if (program == selectedProgram) {
+        <div class="m-1 m-md-2">
+          <app-program-info [program]="selectedProgram"></app-program-info>
+        </div>
+      }
+    </li>
+  }
+</ul>
 

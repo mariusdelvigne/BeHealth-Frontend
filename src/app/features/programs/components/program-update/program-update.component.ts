@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
     ProgramFormComponent
   ],
   templateUrl: './program-update.component.html',
-  styleUrl: './program-update.component.css'
+  styleUrl: './program-update.component.scss'
 })
 export class ProgramUpdateComponent implements OnInit {
   mode: string = 'update';

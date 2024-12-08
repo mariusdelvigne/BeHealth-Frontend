@@ -15,7 +15,7 @@ import {GetHeightGraphOptions} from '../../graphs/utils/HeightGraphOptions';
     NgxEchartsDirective
   ],
   templateUrl: './height-graph.component.html',
-  styleUrl: './height-graph.component.css'
+  styleUrl: './height-graph.component.scss'
 })
 export class HeightGraphComponent extends GraphBase implements OnInit {
   constructor(datePipe: DatePipe, private _userHeightService: UserHeightService) {

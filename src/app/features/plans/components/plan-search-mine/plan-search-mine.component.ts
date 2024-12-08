@@ -18,8 +18,7 @@ import {Router} from '@angular/router';
   ],
   templateUrl: './plan-search-mine.component.html',
   styleUrls: [
-    './plan-search-mine.component.css',
-    '../../../../shared/styles/style.css',
+    './plan-search-mine.component.scss',
   ],
 })
 export class PlanSearchMineComponent implements OnInit{

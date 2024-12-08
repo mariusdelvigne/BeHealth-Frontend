@@ -11,8 +11,7 @@ import {PlanFormComponent} from '../../shared/plan-form/plan-form.component';
   ],
   templateUrl: './plan-create.component.html',
   styleUrls: [
-    './plan-create.component.css',
-    '../../../../shared/styles/style.css',
+    './plan-create.component.scss',
   ],
 })
 export class PlanCreateComponent {

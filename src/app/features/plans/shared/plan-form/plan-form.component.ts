@@ -13,8 +13,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   ],
   templateUrl: './plan-form.component.html',
   styleUrls: [
-    './plan-form.component.css',
-    '../../../../shared/styles/style.css',
+    './plan-form.component.scss',
   ],
   animations: [
     trigger('colorChange', [

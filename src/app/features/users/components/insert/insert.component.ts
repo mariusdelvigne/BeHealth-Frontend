@@ -8,7 +8,7 @@ import {RouterOutlet} from '@angular/router';
     RouterOutlet
   ],
   templateUrl: './insert.component.html',
-  styleUrl: './insert.component.css'
+  styleUrl: './insert.component.scss'
 })
 export class InsertComponent {
 

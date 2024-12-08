@@ -10,8 +10,7 @@ import {NgClass} from '@angular/common';
   ],
   templateUrl: './sleep-plans-table.component.html',
   styleUrls: [
-    './sleep-plans-table.component.css',
-    '../../../../shared/styles/style.css'
+    './sleep-plans-table.component.scss',
   ]
 })
 export class SleepPlansTableComponent implements OnInit{

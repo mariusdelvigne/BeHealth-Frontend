@@ -26,6 +26,7 @@
     "ngx-echarts": "^18.0.0",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
+    "schematics-scss-migrate": "^2.3.17",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },

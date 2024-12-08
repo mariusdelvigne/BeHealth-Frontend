@@ -17,7 +17,7 @@ import {GraphData} from '../utils/graph-data';
     NgxEchartsDirective
   ],
   templateUrl: './scatter-graph.component.html',
-  styleUrl: './scatter-graph.component.css'
+  styleUrl: './scatter-graph.component.scss'
 })
 
 export class ScatterGraphComponent implements OnInit {
@@ -165,14 +165,14 @@ export class ScatterGraphComponent implements OnInit {
         symbol: 'circle',
         symbolSize: 10,
         itemStyle: {
-          color: 'rgba(15, 80, 250, 0.9)',
+          color: '#424874',
         },
         lineStyle: {
-          color: 'rgba(15, 80, 250, 0.9)',
+          color: '#424874',
           width: 3,
         },
         areaStyle: {
-          color: 'rgba(15, 80, 250, 0.3)',
+          color: '#424874',
         },
       },
     };

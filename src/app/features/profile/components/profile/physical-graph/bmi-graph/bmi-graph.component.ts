@@ -15,7 +15,7 @@ import {UserBmiService} from '../../../../../../shared/services/user-bmi.service
     NgxEchartsDirective
   ],
   templateUrl: './bmi-graph.component.html',
-  styleUrl: './bmi-graph.component.css'
+  styleUrl: './bmi-graph.component.scss'
 })
 export class BmiGraphComponent extends GraphBase implements OnInit {
   constructor(datePipe: DatePipe, private _userBmiService: UserBmiService) {

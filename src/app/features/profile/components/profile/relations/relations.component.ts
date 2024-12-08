@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import {SubscriptionsComponent} from '../subscriptions-and-favorites/subscriptions.component';
-import {RouterLink, RouterLinkActive} from '@angular/router';
 
 @Component({
   selector: 'app-relations',
   standalone: true,
   imports: [
     SubscriptionsComponent,
-    RouterLink,
-    RouterLinkActive
   ],
   templateUrl: './relations.component.html',
-  styleUrl: './relations.component.css'
+  styleUrl: './relations.component.scss'
 })
 export class RelationsComponent {
 
