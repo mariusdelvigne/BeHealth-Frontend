@@ -1,4 +1,5 @@
 export interface NotificationSearchOutput {
+  id: number;
   title: string;
   category: string;
   description: string;

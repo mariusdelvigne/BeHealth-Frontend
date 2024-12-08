@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { NotificationService } from '../../../../../shared/services/notification.service';
+import {NotificationService} from '../../../../../shared/services/notification.service';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {NotificationSearchOutput} from '../../../../../shared/utils/notification-search-output';
 import {ToastrService} from 'ngx-toastr';

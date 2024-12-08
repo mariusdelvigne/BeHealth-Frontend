@@ -52,6 +52,9 @@ import {BarGraphComponent} from './features/profile/shared/bar-graph/bar-graph.c
 import {BmiGraphComponent} from './features/profile/components/profile/physical-graph/bmi-graph/bmi-graph.component';
 import {NotificationsComponent} from './features/notifications/components/notifications/notifications.component';
 import {DashboardComponent} from './features/dashboard/components/dashboard/dashboard.component';
+import {
+  NotificationReadComponent
+} from './features/notifications/components/notifications/notification-list/notification-read/notification-read.component';
 
 export const routes: Routes = [
   {
@@ -385,5 +388,9 @@ export const routes: Routes = [
   {
     path: 'notifications',
     component: NotificationsComponent,
+  },
+  {
+    path: 'notifications-reads/:id',
+    component: NotificationReadComponent,
   }
 ]
