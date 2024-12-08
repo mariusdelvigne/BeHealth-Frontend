@@ -31,6 +31,7 @@ export class SubscriptionsComponent implements OnInit{
     this._programService.getProgramsByAssociations(this._authService.getId(),this.relationType).subscribe({
       next: (response) => {
         this.programs = response.astHealthProgramUsers;
+        console.log(response.astHealthProgramUsers);
       },
       error: (error) => {
         alert(error);
