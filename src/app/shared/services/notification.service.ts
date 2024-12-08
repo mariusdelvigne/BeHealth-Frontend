@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {apis, environment} from '../../../../environments/environment';
+import {apis, environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
@@ -8,7 +8,6 @@ import {Observable} from 'rxjs';
 })
 export class NotificationService {
   private static URL_USERS: string = `${environment.API_URL}/${apis.USERS_URL}`;
-  private static URL_NOTIFICATIONS: string = `${environment.API_URL}/${apis.NOTIFICATIONS_URL}`;
 
   constructor(private _httpClient: HttpClient) { }
 
