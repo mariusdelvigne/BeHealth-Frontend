@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AuthCred} from '../utils/auth-cred';
-import {Observable, of} from 'rxjs';
+import {catchError, map, Observable, of} from 'rxjs';
 import {AuthData} from '../utils/auth-data';
 import {ActivatedRouteSnapshot, MaybeAsync, Resolve, RouterStateSnapshot} from '@angular/router';
 
@@ -19,16 +19,14 @@ export class AuthService implements Resolve<boolean> {
 
   loadData(): Observable<boolean> {
     const request = this._httpClient.get<AuthData>(AuthService.URL, {withCredentials: true});
-    let success = false;
 
-    request.subscribe({
-      next: response => {
+    return request.pipe(
+      map(response => {
         this._authData = response;
-        success = true;
-      },
-    });
-
-    return of(success);
+        return true;
+      }),
+      catchError(() => of(false))
+    );
   }
 
   public signIn(auth: AuthCred): Observable<AuthData> {
