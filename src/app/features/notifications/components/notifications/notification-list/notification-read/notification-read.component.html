@@ -1,7 +1,11 @@
-<div class="position-relative">
-    <div>Notifications</div>
-    <div class="px-3 py-2">
-        <h1>{{ notificationToPrint.id }}</h1>
-
-    </div>
+<div class="card text-center">
+  <div class="card-header">
+    <h3>{{ notificationToPrint.category }}</h3>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ notificationToPrint.title }}</h5>
+    <p class="card-text">{{ notificationToPrint.description }}</p>
+    <button class="btn btn-secondary" data-mdb-ripple-init (click)="markAsNotRead()">Mark as Not Read</button>
+  </div>
+  <div class="card-footer text-muted">{{ timeFromReceive }}</div>
 </div>

@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
   standalone: true,
   imports: [],
   templateUrl: './notification-read.component.html',
-  styleUrl: './notification-read.component.css'
+  styleUrl: './notification-read.component.scss'
 })
 export class NotificationReadComponent implements OnInit {
   notificationToPrint: NotificationSearchOutput = {
@@ -22,6 +22,7 @@ export class NotificationReadComponent implements OnInit {
     sendingDateTime: new Date().toISOString(),
   };
   notificationId: number = 0;
+  timeFromReceive: string = "";
 
   constructor(private _route: ActivatedRoute, private _notificationService: NotificationService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
@@ -34,6 +35,8 @@ export class NotificationReadComponent implements OnInit {
         this._notificationService.getNotificationByNotificationId(userId, this.notificationId).subscribe({
           next: (notifications) => {
             this.notificationToPrint = notifications;
+            this.timeFromReceive = this.getTimeFromReceive(notifications.sendingDateTime);
+            console.log(this.timeFromReceive);
           },
           error: (error) => {
             this._toastrService.error("Error : " + error.message);
@@ -42,5 +45,26 @@ export class NotificationReadComponent implements OnInit {
       }
       this._notificationService.readNotification(userId, this.notificationId, true).subscribe()
     })
+  }
+
+  getTimeFromReceive(sendingDateTime: string): string {
+    const now = new Date();
+    const sendingDate = new Date(sendingDateTime);
+
+    const diffInMs = now.getTime() - sendingDate.getTime();
+
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+    const remainingHours = diffInHours % 24;
+    const remainingMinutes = diffInMinutes % 60;
+
+    return `${diffInDays} days, ${remainingHours} hours, ${remainingMinutes} minutes ago`;
+  }
+
+  markAsNotRead() {
+    const userId = this._authService.getId();
+    this._notificationService.readNotification(userId, this.notificationId, false).subscribe();
   }
 }
