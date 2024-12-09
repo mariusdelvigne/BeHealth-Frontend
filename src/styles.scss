@@ -148,7 +148,7 @@ textarea {
   border-radius: 15px;
 }
 
-// Backgrounds
+// Backgrounds colors
 .bg-food-color {
   background-color: $food-color !important;
 }
@@ -173,52 +173,8 @@ textarea {
   background-color: $height-color !important;
 }
 
-// Borders
-.border-food-color {
-  border: 3px solid $food-color !important;
-}
-
-.border-sport-color {
-  border: 3px solid $sport-color !important;
-}
-
-.border-sleep-color {
-  border: 3px solid $sleep-color !important;
-}
-
-.border-period-color {
-  border: 3px solid $period-color !important;
-}
-
-.border-weight-color {
-  border: 3px solid $weight-color !important;
-}
-
-.border-height-color {
-  border: 3px solid $height-color !important;
-}
-
-// Buttons
-.btn-food-color:hover {
-  background-color: darken($food-color, 30%) !important;
-}
-
-.btn-sport-color:hover {
-  background-color: darken($sport-color, 30%) !important;
-}
-
-.btn-sleep-color:hover {
-  background-color: darken($sleep-color, 30%) !important;
-}
-
-.btn-period-color:hover {
-  background-color: darken($period-color, 30%) !important;
-}
-
-.btn-weight-color:hover {
-  background-color: darken($weight-color, 30%) !important;
-}
-
-.btn-height-color:hover {
-  background-color: darken($height-color, 30%) !important;
+// Icons size
+.custom-icon {
+  font-size: 6rem;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
 }
