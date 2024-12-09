@@ -173,6 +173,30 @@ textarea {
   background-color: $height-color !important;
 }
 
+.border-top-food-color {
+  border-top: 20px solid $food-color !important;
+}
+
+.border-top-sport-color {
+  border-top: 20px solid $sport-color !important;
+}
+
+.border-top-sleep-color {
+  border-top: 20px solid $sleep-color !important;
+}
+
+.border-top-period-color {
+  border-top: 20px solid $period-color !important;
+}
+
+.border-top-weight-color {
+  border-top: 20px solid $weight-color !important;
+}
+
+.border-top-height-color {
+  border-top: 20px solid $height-color !important;
+}
+
 // Icons size
 .custom-icon {
   font-size: 5rem;
