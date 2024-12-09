@@ -13,7 +13,14 @@ import {ToastrService} from 'ngx-toastr';
   styleUrl: './notification-read.component.css'
 })
 export class NotificationReadComponent implements OnInit {
-  notificationToPrint!: NotificationSearchOutput;
+  notificationToPrint: NotificationSearchOutput = {
+    id: 0,
+    category: "",
+    title: "",
+    seen: false,
+    description: "",
+    sendingDateTime: new Date().toISOString(),
+  };
   notificationId: number = 0;
 
   constructor(private _route: ActivatedRoute, private _notificationService: NotificationService, private _authService: AuthService, private _toastrService: ToastrService) {
@@ -26,16 +33,14 @@ export class NotificationReadComponent implements OnInit {
       if (this.notificationId) {
         this._notificationService.getNotificationByNotificationId(userId, this.notificationId).subscribe({
           next: (notifications) => {
-            console.log(notifications);
             this.notificationToPrint = notifications;
-            console.log(this.notificationToPrint);
           },
           error: (error) => {
-            console.log(error);
-            this._toastrService.error("Error : "+ error.message);
+            this._toastrService.error("Error : " + error.message);
           }
         })
       }
+      this._notificationService.readNotification(userId, this.notificationId, true).subscribe()
     })
   }
 }

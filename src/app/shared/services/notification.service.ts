@@ -22,4 +22,8 @@ export class NotificationService {
   public getNotificationByNotificationId(userId:number, notificationId: number): Observable<any> {
     return this._httpClient.get(`${NotificationService.URL_USERS}/${userId}/notifications/${notificationId}`);
   }
+
+  public readNotification(userId:number, notificationId: number, isRead: boolean): Observable<any> {
+    return this._httpClient.put(`${NotificationService.URL_USERS}/${userId}/notifications/${notificationId}/read/${isRead}`, {withCredentials: true});
+  }
 }
