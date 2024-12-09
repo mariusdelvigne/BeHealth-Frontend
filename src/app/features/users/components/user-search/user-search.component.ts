@@ -17,7 +17,7 @@ import {UserBanDeleteChoice} from '../../utils/user-ban-delete-choice';
   providers: [
   ],
   templateUrl: './user-search.component.html',
-  styleUrl: './user-search.component.css'
+  styleUrl: './user-search.component.scss'
 })
 export class UserSearchComponent{
   @Input()

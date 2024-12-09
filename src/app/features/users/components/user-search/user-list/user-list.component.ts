@@ -3,7 +3,6 @@ import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserBanCommand} from '../../../../../shared/utils/user-ban-command';
 import {UserService} from '../../../../../shared/services/user.service';
-import {DatePipe} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import {UserBanComponent} from './user-ban/user-ban.component';
 import {UserEventBusService} from '../../../utils/user-event-bus.service';
@@ -16,11 +15,10 @@ import {UserBanDeleteChoice} from '../../../utils/user-ban-delete-choice';
   imports: [
     ReactiveFormsModule,
     FormsModule,
-    DatePipe,
     UserBanComponent,
   ],
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.css'
+  styleUrl: './user-list.component.scss'
 })
 export class UserListComponent implements OnInit, OnDestroy {
   @Input() users: UserSearchOutput[] = [];

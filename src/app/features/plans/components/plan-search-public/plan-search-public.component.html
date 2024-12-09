@@ -1,11 +1,13 @@
 <div class="container text-center">
-  <form class="p-3 rounded" [formGroup]="form" (submit)="emitSearchPlan()" [@colorChange]="colorChange">
-    <div class="row mt-3 mb-2">
-      <div class="col-2">
+  <form class="p-3 rounded custom-form mt-2" [formGroup]="form" (submit)="emitSearchPlan()" [@colorChange]="colorChange">
+    <div class="row mt-3 mb-2 g-2">
+      <!-- Champ Title -->
+      <div class="col-12 col-md-4">
         <input class="form-control" formControlName="name" placeholder="Title">
       </div>
 
-      <div class="col-2">
+      <!-- Champ Category -->
+      <div class="col-12 col-md-4">
         <select formControlName="category" class="form-control">
           <option value="sport" selected>Sport</option>
           <option value="food">Food</option>
@@ -13,45 +15,36 @@
         </select>
       </div>
 
-      <div class="col-8">
-        <input class="btn btn-primary w-100" type="submit" [disabled]="form.invalid" value="Filter">
+      <!-- Bouton Submit -->
+      <div class="col-12 col-md-4">
+        <input class="custom-btn rounded-3 w-100" type="submit" [disabled]="form.invalid" value="Filter">
       </div>
     </div>
-
   </form>
 
-  <div class="d-flex">
-    <ul class="responsive-table w-100">
-      <li class="table-header">
-        <div class="col-4" data-label="Name">Name</div>
-        <div class="col-4" data-label="Privacy">Privacy</div>
-        <div class="col-4" data-label="Duration">Duration (days)</div>
-      </li>
-      @for (plan of plans; track $index) {
-        <div class="table-row-container" (click)="showPlanInfo(plan.id)">
-          <div class="custom-width text-white text-uppercase text-center"
-               [ngClass]="{'bg-warning': plan.category == 'food','bg-danger': plan.category == 'sport','bg-primary': plan.category == 'sleep'}">
+
+  <ul class="program-list mt-3">
+    @for (plan of plans; track $index) {
+      <li (click)="showPlanInfo(plan.id)">
+        <div class="d-flex">
+          <div class="col-4 col-md-2 text-white text-uppercase text-center"
+               [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
             {{ plan.category }}
           </div>
-          <li class="table-row border-top border-5"
-              [ngClass]="{'border-warning': plan.category == 'food','border-danger': plan.category == 'sport','border-primary': plan.category == 'sleep'}">
-            <div class="col-4">
-              {{ plan.name }}
-            </div>
-            <div class="col-4">
-              {{ plan.privacy }}
-            </div>
-            <div class="col-4">
-              {{ plan.durationInDays }}
-            </div>
-          </li>
+          <div class="col-4 col-md-4 ps-3">
+            Duration: {{ plan.durationInDays }} days
+          </div>
+        </div>
+        <div class="p-1">
+          <div> {{ plan.name }} </div>
           @if (plan == selectedPlan) {
             <div>
               <app-plan-info [plan]="selectedPlan"></app-plan-info>
             </div>
           }
         </div>
-      }
-    </ul>
-  </div>
+
+      </li>
+    }
+  </ul>
 </div>

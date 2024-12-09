@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 import {ProgramService} from '../../services/program.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
-import {PlanInfoComponent} from "../../../plans/shared/plan-info/plan-info.component";
 import {ToastrService} from "ngx-toastr";
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -11,12 +10,10 @@ import {ActivatedRoute, Router} from '@angular/router';
   standalone: true,
   imports: [
     ProgramInfoComponent,
-    PlanInfoComponent,
   ],
   templateUrl: './program-search-mine.component.html',
   styleUrls: [
-    './program-search-mine.component.css',
-    '../../../../shared/styles/style.css',
+    './program-search-mine.component.scss',
   ],
 })
 export class ProgramSearchMineComponent implements OnInit{

@@ -8,7 +8,7 @@ import {ToastrService} from 'ngx-toastr';
   standalone: true,
   imports: [],
   templateUrl: './auth-sign-out.component.html',
-  styleUrl: './auth-sign-out.component.css'
+  styleUrl: './auth-sign-out.component.scss'
 })
 export class AuthSignOutComponent {
 

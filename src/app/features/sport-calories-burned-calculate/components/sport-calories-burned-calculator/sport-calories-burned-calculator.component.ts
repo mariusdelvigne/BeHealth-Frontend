@@ -13,7 +13,7 @@ import {SportCaloriesBurnedCalculatorOutput} from '../../utils/sport-calories-bu
     ReactiveFormsModule,
   ],
   templateUrl: './sport-calories-burned-calculator.component.html',
-  styleUrl: './sport-calories-burned-calculator.component.css',
+  styleUrl: './sport-calories-burned-calculator.component.scss',
   animations: [
     trigger('colorChange', [
       state('grey', style({

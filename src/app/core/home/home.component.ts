@@ -11,7 +11,7 @@ import {DashboardComponent} from '../../features/dashboard/components/dashboard/
     DashboardComponent
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   constructor(public authService: AuthService) { }

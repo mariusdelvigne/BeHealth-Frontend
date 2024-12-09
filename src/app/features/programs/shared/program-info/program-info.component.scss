@@ -1,0 +1,8 @@
+li {
+  transition: transform 0.5s ease, box-shadow 0.5s;
+}
+
+li:hover {
+  transform: translateY(-6px);
+  cursor: pointer;
+}

@@ -12,8 +12,7 @@ import {ToastrService} from "ngx-toastr";
   ],
   templateUrl: './subscriptions.component.html',
   styleUrls: [
-    './subscriptions.component.css',
-    '../../../../../shared/styles/style.css',
+    './subscriptions.component.scss',
   ],
 })
 export class SubscriptionsComponent implements OnInit{
@@ -32,6 +31,7 @@ export class SubscriptionsComponent implements OnInit{
     this._programService.getProgramsByAssociations(this._authService.getId(),this.relationType).subscribe({
       next: (response) => {
         this.programs = response.astHealthProgramUsers;
+        console.log(response.astHealthProgramUsers);
       },
       error: (error) => {
         alert(error);

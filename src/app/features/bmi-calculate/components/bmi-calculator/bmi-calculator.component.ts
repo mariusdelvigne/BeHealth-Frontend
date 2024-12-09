@@ -11,7 +11,7 @@ import {ToastrService} from 'ngx-toastr';
     ReactiveFormsModule
   ],
   templateUrl: './bmi-calculator.component.html',
-  styleUrl: './bmi-calculator.component.css',
+  styleUrl: './bmi-calculator.component.scss',
   animations: [
     trigger('colorChange', [
       state('grey', style({

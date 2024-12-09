@@ -10,7 +10,7 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
     RouterLinkActive
   ],
   templateUrl: './physical-graph.component.html',
-  styleUrls: ['./physical-graph.component.css']
+  styleUrls: ['./physical-graph.component.scss']
 })
 export class PhysicalGraphComponent {
 

@@ -11,7 +11,7 @@ import {NotificationsDropdownViewComponent} from './notifications-dropdown-view/
     NotificationsDropdownViewComponent
   ],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
   constructor(public authService: AuthService) { }

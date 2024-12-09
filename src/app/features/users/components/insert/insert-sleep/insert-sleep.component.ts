@@ -12,7 +12,7 @@ import {ToastrService} from 'ngx-toastr';
     ReactiveFormsModule
   ],
   templateUrl: './insert-sleep.component.html',
-  styleUrl: './insert-sleep.component.css',
+  styleUrl: './insert-sleep.component.scss',
   animations: [
     trigger('colorChange', [
       state('grey', style({

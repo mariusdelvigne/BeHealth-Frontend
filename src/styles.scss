@@ -1,0 +1,158 @@
+$marian-blue: #424874;
+$periwinkle-pink: #DCD6F7;
+$periwinkle-blue: #A6B1E1;
+$french-gray: #CACFD6;
+$azure-web: #D6E5E3;
+$columbia-blue: #C5D5EA;
+$air-superiority-blue: #759EB8;
+$silver-lake-blue: #7392B7;
+$powder-blue: #B3C5D7;
+$alice-blue: #D8E1E9;
+$food-color: rgba(244, 197, 68, 0.76);
+$sport-color: rgba(244, 115, 68, 0.76);
+$sleep-color: rgba(27, 156, 55, 0.76);
+
+.responsive-table {
+  margin-top: 2%;
+  padding-left: 0;
+  tr {
+    padding: 25px 30px;
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  .table-header {
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid $french-gray;
+    border-radius: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .table-row-container {
+    transition: transform 0.5s ease, box-shadow 0.5s;
+  }
+
+  .table-row-container:hover {
+    transform: translateY(-6px);
+    cursor: pointer;
+  }
+
+  .table-row {
+    background-color: $alice-blue;
+
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.card {
+  transition: transform 0.5s ease, box-shadow 0.5s;
+  border-radius: 10px;
+  min-height: 30vh;
+  position: relative;
+}
+
+.card-header {
+  border-bottom: none;
+  min-height: 20vh;
+  border-radius: 15px;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.icon-top-right {
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
+
+button, input[type=button], input[type=submit] {
+  transition: transform 0.5s ease, box-shadow 0.5s;
+  border: none;
+  min-width: 50px;
+  width: auto;
+}
+
+textarea {
+  background-color: $alice-blue;
+}
+
+.custom-btn {
+  padding: 5px;
+}
+
+.custom-btn:hover {
+  background-color: $french-gray;
+  transform: translateY(-6px);
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.custom-width {
+  width: 150px;
+}
+
+.food-color {
+  background: $food-color;
+}
+
+.sport-color {
+  background: $sport-color;
+}
+
+.sleep-color {
+  background: $sleep-color;
+}
+
+.selected {
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.selected::after {
+  content: '✔';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+}
+
+.graph-background {
+  background: $french-gray;
+}
+
+.program-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    margin-bottom: 10px;
+    list-style: none;
+    background: aliceblue;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .program {
+    transition: transform 0.5s ease, box-shadow 0.5s;
+  }
+
+  .program:hover {
+    transform: translateY(-6px);
+    cursor: pointer;
+  }
+}
+
+.custom-form {
+  background: $columbia-blue;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}

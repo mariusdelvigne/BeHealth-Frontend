@@ -1,42 +1,32 @@
 <div class="container text-center">
-  <ul class="responsive-table">
-    <li class="table-header">
-      <div class="col-3">Name</div>
-      <div class="col-3">Privacy</div>
-      <div class="col-3">Duration (days)</div>
-      <div class="col-3"></div>
-    </li>
+  <ul class="program-list mt-3">
     @for (plan of plans; track $index) {
-      <div class="table-row-container" (click)="showPlanInfo(plan.id)">
-        <div class="custom-width text-white text-uppercase text-center"
-             [ngClass]="{'bg-warning': plan.category == 'food','bg-danger': plan.category == 'sport','bg-primary': plan.category == 'sleep'}">
-          {{ plan.category }}
+      <li (click)="showPlanInfo(plan.id)">
+        <div class="d-flex">
+          <div class="col-4 col-md-2 text-white text-uppercase text-center"
+               [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
+            {{ plan.category }}
+          </div>
+          <div class="col-8 col-md-4 ps-3">
+            Duration: {{ plan.durationInDays }} days
+          </div>
         </div>
-        <li class="table-row border-top border-5"
-            [ngClass]="{'border-warning': plan.category == 'food','border-danger': plan.category == 'sport','border-primary': plan.category == 'sleep'}">
-          <div class="col-3">
-            {{ plan.name }}
-          </div>
-          <div class="col-3">
-            {{ plan.privacy }}
-          </div>
-          <div class="col-3">
-            {{ plan.durationInDays }}
-          </div>
 
-          <div class="col-3 d-flex flex-column gap-1">
-            <button class="rounded text-uppercase p-2 custom-btn"
+        <div class=" gap-1">
+          <div>{{ plan.name }}</div>
+          <div class="d-flex gap-1 p-3">
+            <button class="rounded text-uppercase p-2 custom-btn w-50"
                     (click)="goToUpdateForm(plan.id)">Update
             </button>
-            <button class="rounded text-uppercase p-2 custom-btn"
+            <button class="rounded text-uppercase p-2 custom-btn w-50"
                     (click)="deletePlan(plan.id)">Delete
             </button>
           </div>
-        </li>
+        </div>
         @if (plan == selectedPlan) {
           <app-plan-info [plan]="selectedPlan"></app-plan-info>
         }
-      </div>
+      </li>
     }
   </ul>
 </div>

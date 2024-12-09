@@ -13,7 +13,7 @@ import {ToastrService} from 'ngx-toastr';
     ReactiveFormsModule
   ],
   templateUrl: './nutrition-calculator.component.html',
-  styleUrl: './nutrition-calculator.component.css',
+  styleUrl: './nutrition-calculator.component.scss',
   animations: [
     trigger('colorChange', [
       state('grey', style({

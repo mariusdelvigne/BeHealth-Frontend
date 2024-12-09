@@ -8,7 +8,7 @@ import {UserEventBusService} from '../../../../../utils/user-event-bus.service';
   standalone: true,
   imports: [],
   templateUrl: './user-ban-modal-delete-choice.component.html',
-  styleUrl: './user-ban-modal-delete-choice.component.css'
+  styleUrl: './user-ban-modal-delete-choice.component.scss'
 })
 export class UserBanModalDeleteChoiceComponent {
   @Input() userDeletePlans: boolean = true;

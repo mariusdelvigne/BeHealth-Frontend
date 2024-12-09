@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {UserService} from '../../../../../shared/services/user.service';
-import {DatePipe} from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Location } from '@angular/common';
 
@@ -11,11 +10,10 @@ import { Location } from '@angular/common';
   standalone: true,
   imports: [
     RouterLink,
-    DatePipe,
     ReactiveFormsModule
   ],
   templateUrl: './account-information.component.html',
-  styleUrl: './account-information.component.css'
+  styleUrl: './account-information.component.scss'
 })
 export class AccountInformationComponent implements OnInit {
   form: FormGroup = new FormGroup({
