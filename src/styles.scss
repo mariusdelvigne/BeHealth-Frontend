@@ -8,9 +8,12 @@ $air-superiority-blue: #759EB8;
 $silver-lake-blue: #7392B7;
 $powder-blue: #B3C5D7;
 $alice-blue: #D8E1E9;
-$food-color: rgba(244, 197, 68, 0.76);
+$food-color: rgba(244, 197, 68, 0.52);
 $sport-color: rgba(244, 115, 68, 0.76);
 $sleep-color: rgba(27, 156, 55, 0.76);
+$period-color: rgba(182, 43, 137, 0.76);
+$weight-color: rgba(43, 182, 182, 0.76);
+$height-color: rgba(182, 43, 68, 0.76);
 
 .responsive-table {
   margin-top: 2%;
@@ -101,18 +104,6 @@ textarea {
   width: 150px;
 }
 
-.food-color {
-  background: $food-color;
-}
-
-.sport-color {
-  background: $sport-color;
-}
-
-.sleep-color {
-  background: $sleep-color;
-}
-
 .selected {
   transform: scale(1.05);
   transition: all 0.3s ease;
@@ -155,4 +146,79 @@ textarea {
   background: $columbia-blue;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
   border-radius: 15px;
+}
+
+// Backgrounds
+.bg-food-color {
+  background-color: $food-color !important;
+}
+
+.bg-sport-color {
+  background-color: $sport-color !important;
+}
+
+.bg-sleep-color {
+  background-color: $sleep-color !important;
+}
+
+.bg-period-color {
+  background-color: $period-color !important;
+}
+
+.bg-weight-color {
+  background-color: $weight-color !important;
+}
+
+.bg-height-color {
+  background-color: $height-color !important;
+}
+
+// Borders
+.border-food-color {
+  border: 3px solid $food-color !important;
+}
+
+.border-sport-color {
+  border: 3px solid $sport-color !important;
+}
+
+.border-sleep-color {
+  border: 3px solid $sleep-color !important;
+}
+
+.border-period-color {
+  border: 3px solid $period-color !important;
+}
+
+.border-weight-color {
+  border: 3px solid $weight-color !important;
+}
+
+.border-height-color {
+  border: 3px solid $height-color !important;
+}
+
+// Buttons
+.btn-food-color:hover {
+  background-color: darken($food-color, 30%) !important;
+}
+
+.btn-sport-color:hover {
+  background-color: darken($sport-color, 30%) !important;
+}
+
+.btn-sleep-color:hover {
+  background-color: darken($sleep-color, 30%) !important;
+}
+
+.btn-period-color:hover {
+  background-color: darken($period-color, 30%) !important;
+}
+
+.btn-weight-color:hover {
+  background-color: darken($weight-color, 30%) !important;
+}
+
+.btn-height-color:hover {
+  background-color: darken($height-color, 30%) !important;
 }
