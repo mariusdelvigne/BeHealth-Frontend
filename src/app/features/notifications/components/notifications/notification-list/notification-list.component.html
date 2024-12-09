@@ -1,6 +1,9 @@
 @for (notif of notifications; track $index){
-  <tr>
-    <td>{{ notif.title }}</td>
-    <td>{{ notif.category }}</td>
-  </tr>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Title : {{ notif.title }}</h5>
+      <p class="card-text">Category : {{ notif.category }}</p>
+      <a [routerLink]="['/notifications-reads', notif.id]" type="button" class="btn btn-primary" data-mdb-ripple-init>Read</a>
+    </div>
+  </div>
 }

@@ -3,11 +3,14 @@ import {NotificationService} from '../../../../../shared/services/notification.s
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {NotificationSearchOutput} from '../../../../../shared/utils/notification-search-output';
 import {ToastrService} from 'ngx-toastr';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-notification-list',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './notification-list.component.html',
   styleUrl: './notification-list.component.css'
 })
