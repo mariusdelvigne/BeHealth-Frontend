@@ -6,7 +6,7 @@
         <div class="dropdown-header fw-bold fs-6">Notifications</div>
         <div class="px-3 py-2">
             @for (notification of notificationsNotRead; track $index) {
-                <a class="dropdown-item" [routerLink]="['/notifications-reads', notification.id]">{{ notification.id }}</a>
+                <a class="dropdown-item" [routerLink]="['/notifications-reads', notification.id]">{{ notification.title }}</a>
             }
         </div>
         <hr class="dropdown-divider">

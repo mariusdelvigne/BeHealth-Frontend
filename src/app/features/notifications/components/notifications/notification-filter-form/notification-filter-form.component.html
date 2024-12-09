@@ -1,8 +1,31 @@
-<form>
-  Filter notifications by:
-  <select class="dropdown">
-      @for (category of allCategories; track $index){
-        <option>{{ category }}</option>
+<form [formGroup]="formSearch" class="row gap-2 justify-content-center">
+  <label for="category" class="form-label">Filter notifications by:</label>
+
+  <!-- Dropdown for Categories -->
+  <div>
+    Category:
+    <select id="category" class="dropdown form-select" formControlName="category">
+      @for (category of allCategories; track $index) {
+        <option [value]="category">{{ category }}</option>
       }
-  </select>
+    </select>
+  </div>
+
+  <!-- Dropdown for Read Status -->
+  <div>
+    Read:
+    <select id="read" class="dropdown form-select" formControlName="isRead">
+      <option value="all">All</option>
+      <option value="read">Read</option>
+      <option value="not-read">Not read</option>
+    </select>
+  </div>
+
+  <button
+    type="submit"
+    class="custom-btn rounded-3 col-3"
+    [disabled]="formSearch.invalid"
+    (click)="filterNotifications()">
+    Filter
+  </button>
 </form>

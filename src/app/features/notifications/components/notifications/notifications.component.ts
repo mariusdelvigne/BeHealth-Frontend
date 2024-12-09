@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Input} from '@angular/core';
 import {NotificationFilterFormComponent} from './notification-filter-form/notification-filter-form.component';
 import {NotificationListComponent} from './notification-list/notification-list.component';
+import {NotificationGetByCategoryCommand} from '../../utils/notification-get-by-category-command';
 
 @Component({
   selector: 'app-notifications',
@@ -13,5 +14,9 @@ import {NotificationListComponent} from './notification-list/notification-list.c
   styleUrl: './notifications.component.css'
 })
 export class NotificationsComponent {
+  @Input() selectedCategory: string = "";
 
+  filteredByCategory($event: NotificationGetByCategoryCommand) {
+
+  }
 }

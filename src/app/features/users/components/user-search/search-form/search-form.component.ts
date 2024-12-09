@@ -12,18 +12,17 @@ import {UserSearchQuery} from '../../../../../shared/utils/user-search-query';
   styleUrl: './search-form.component.scss'
 })
 export class SearchFormComponent {
+  @Output() userSearch: EventEmitter<UserSearchQuery> = new EventEmitter()
+
+  formSearch: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required])
+  })
 
   onButtonClick(event: Event) {
     const button = event.target as HTMLButtonElement;
     button.classList.add('btn-clicked');
     setTimeout(() => button.classList.remove('btn-clicked'), 300);
   }
-
-  formSearch: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required])
-  })
-  @Output()
-  userSearch: EventEmitter<UserSearchQuery> = new EventEmitter()
 
   searchUser() {
     this.userSearch.emit({

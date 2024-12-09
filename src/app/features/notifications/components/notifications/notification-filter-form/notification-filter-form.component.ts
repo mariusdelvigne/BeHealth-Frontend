@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {MdbDropdownModule} from 'mdb-angular-ui-kit/dropdown';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {NotificationGetByCategoryCommand} from '../../../utils/notification-get-by-category-command';
 
 @Component({
   selector: 'app-notification-filter-form',
@@ -10,14 +11,32 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   templateUrl: './notification-filter-form.component.html',
-  styleUrl: './notification-filter-form.component.css'
+  styleUrls: ['./notification-filter-form.component.css']
 })
 export class NotificationFilterFormComponent {
+  @Output() selectedCategory: EventEmitter<NotificationGetByCategoryCommand> = new EventEmitter();
+  @Output() selectedRead: EventEmitter<string> = new EventEmitter();
+
+  formSearch: FormGroup = new FormGroup({
+    category: new FormControl('', [Validators.required]),
+    isRead: new FormControl('', [Validators.required]) // Corrected name here
+  });
+
   allCategories: string[] = [
-    "All categories", "General", "Plans", "Programs"
+    "All categories", "general", "plans", "programs"
   ];
 
-  filterNotifications(category: string) {
-    console.log('Filtered by category:', category);
+  filterNotifications() {
+    const selectedCategory = this.formSearch.get('category')?.value;
+    const selectedRead = this.formSearch.get('isRead')?.value;
+
+    console.log('Filtered by category:', selectedCategory, 'and read:', selectedRead);
+
+    if (selectedCategory) {
+      this.selectedCategory.emit(selectedCategory);
+    }
+    if (selectedRead) {
+      this.selectedRead.emit(selectedRead);
+    }
   }
 }
