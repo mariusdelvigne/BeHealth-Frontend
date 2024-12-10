@@ -1,25 +1,25 @@
 <div class="container text-center">
-  <form class="p-3 rounded custom-form mt-2" [formGroup]="form" (submit)="emitSearchPlan()" [@colorChange]="colorChange">
-    <div class="row mt-3 mb-2 g-2">
-      <!-- Champ Title -->
-      <div class="col-12 col-md-4">
-        <input class="form-control" formControlName="name" placeholder="Title">
-      </div>
-
-      <!-- Champ Category -->
-      <div class="col-12 col-md-4">
-        <select formControlName="category" class="form-control">
-          <option value="sport" selected>Sport</option>
-          <option value="food">Food</option>
-          <option value="sleep">Sleep</option>
-        </select>
-      </div>
-
-      <!-- Bouton Submit -->
-      <div class="col-12 col-md-4">
-        <input class="custom-btn rounded-3 w-100" type="submit" [disabled]="form.invalid" value="Filter">
-      </div>
+  <form class="d-flex flex-column justify-content-center align-items-center p-3 rounded"
+        [formGroup]="form" (submit)="emitSearchPlan()" [@colorChange]="colorChange">
+    <!-- Champ Title -->
+    <div class="w-50 mb-2">
+      <input class="form-control" formControlName="name" placeholder="Title">
     </div>
+
+    <!-- Champ Category -->
+    <div class="w-50 mb-2">
+      <select formControlName="category" class="form-control">
+        <option value="sport" selected>Sport</option>
+        <option value="food">Food</option>
+        <option value="sleep">Sleep</option>
+      </select>
+    </div>
+
+    <!-- Bouton Submit -->
+    <div class="w-50 mb-2">
+      <input class="custom-btn rounded-3 w-100 mt-auto" type="submit" [disabled]="form.invalid" value="Filter">
+    </div>
+
   </form>
 
 
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="p-1">
-          <div> {{ plan.name }} </div>
+          <div> {{ plan.name }}</div>
           @if (plan == selectedPlan) {
             <div>
               <app-plan-info [plan]="selectedPlan"></app-plan-info>
