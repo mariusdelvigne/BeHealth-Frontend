@@ -24,6 +24,14 @@
           </div>
         </div>
         @if (plan == selectedPlan) {
+          <div>
+            <ul>
+              Tags:
+              @for (astPlansTags of tags; track $index) {
+                <li>{{astPlansTags.tag.name}}</li>
+              }
+            </ul>
+          </div>
           <app-plan-info [plan]="selectedPlan"></app-plan-info>
         }
       </li>

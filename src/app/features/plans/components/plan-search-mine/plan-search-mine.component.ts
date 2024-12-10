@@ -23,6 +23,7 @@ import {Router} from '@angular/router';
 })
 export class PlanSearchMineComponent implements OnInit{
   plans: PlanSearchOutput[] = [];
+  tags: any[] = [];
   selectedPlan: any;
 
   constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService, private _router: Router) {
@@ -43,10 +44,13 @@ export class PlanSearchMineComponent implements OnInit{
     console.log("fezb");
     if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
+      this.tags = [];
     }
     else {
       this.selectedPlan = null;
+      this.tags = [];
       this.selectedPlan = this.plans.find(plan => plan.id === planId);
+      this.loadTags(planId);
     }
   }
 
@@ -63,5 +67,17 @@ export class PlanSearchMineComponent implements OnInit{
 
   goToUpdateForm(planId: number) {
     this._router.navigate(['plan-update', planId]);
+  }
+
+  loadTags(planId: number) {
+    this._planService.getTags(planId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.tags = response.astPlansTags;
+      },
+      error: (error) => {
+        alert(error.message);
+      }
+    });
   }
 }
