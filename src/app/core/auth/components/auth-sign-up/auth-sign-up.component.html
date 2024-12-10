@@ -1,45 +1,51 @@
-<form [formGroup]="form" (submit)="emitSignUp()" class="m-3 p-3 rounded" [@colorChange]="colorChange">
-  <div class="row">
-    <label for="username" class="col-sm-2 col-form-label fw-bold">Username</label>
-    <div class="col-sm-10">
-      <input class="form-control w-100" type="text" placeholder="Username" formControlName="username" id="username">
-    </div>
+<div class="sign-form-container d-flex justify-content-center align-items-center">
+  <div class="form-container d-flex justify-content-center align-items-center rounded-3 m-auto">
+    <form [formGroup]="form" (submit)="emitSignUp()" class="p-3 rounded custom-form" style="max-width: 50vw" [@colorChange]="colorChange">
+      <div class="row">
+        <label for="username" class="col-sm-2 col-form-label fw-bold">Username</label>
+        <div class="col-sm-10">
+          <input class="form-control w-100" type="text" placeholder="Username" formControlName="username" id="username">
+        </div>
+      </div>
+      <div class="row">
+        <label for="mail" class="col-sm-2 col-form-label fw-bold">Mail</label>
+        <div class="col-sm-10">
+          <input class="form-control w-100" type="text" placeholder="Mail" formControlName="mail" id="mail">
+        </div>
+      </div>
+      <div class="row">
+        <label for="password" class="col-sm-2 col-form-label fw-bold">Password</label>
+        <div class="col-sm-10">
+          <input class="form-control w-100" type="password" placeholder="Password" formControlName="password"
+                 id="password">
+        </div>
+      </div>
+      <div class="row">
+        <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
+        <div class="col-sm-4">
+          <input class="form-control w-100" type="text" placeholder="Name" formControlName="name" id="name">
+        </div>
+        <label for="surname" class="col-sm-2 col-form-label fw-bold">Surname</label>
+        <div class="col-sm-4">
+          <input class="form-control w-100" type="text" placeholder="Surname" formControlName="surname" id="surname">
+        </div>
+      </div>
+      <div class="row">
+        <label for="birth-date" class="col-sm-2 col-form-label fw-bold">Birth Date</label>
+        <div class="col-sm-4">
+          <input class="form-control w-100" type="date" formControlName="birthDate" id="birth-date">
+        </div>
+        <label for="gender" class="col-sm-2 col-form-label fw-bold">Gender</label>
+        <div class="col-sm-4">
+          <select class="form-control w-100" formControlName="gender" id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+      <input class="btn btn-dark custom-btn rounded-3 w-100 mt-5" type="submit" value="Sign up" [disabled]="form.invalid">
+    </form>
   </div>
-  <div class="row">
-    <label for="mail" class="col-sm-2 col-form-label fw-bold">Mail</label>
-    <div class="col-sm-10">
-      <input class="form-control w-100" type="text" placeholder="Mail" formControlName="mail" id="mail">
-    </div>
-  </div>
-  <div class="row">
-    <label for="password" class="col-sm-2 col-form-label fw-bold">Password</label>
-    <div class="col-sm-10">
-      <input class="form-control w-100" type="password" placeholder="Password" formControlName="password" id="password">
-    </div>
-  </div>
-  <div class="row">
-    <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="text" placeholder="Name" formControlName="name" id="name">
-    </div>
-    <label for="surname" class="col-sm-2 col-form-label fw-bold">Surname</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="text" placeholder="Surname" formControlName="surname" id="surname">
-    </div>
-  </div>
-  <div class="row">
-    <label for="birth-date" class="col-sm-2 col-form-label fw-bold">Birth Date</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="date" formControlName="birthDate" id="birth-date">
-    </div>
-    <label for="gender" class="col-sm-2 col-form-label fw-bold">Gender</label>
-    <div class="col-sm-4">
-      <select class="form-control w-100" formControlName="gender" id="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-  </div>
-  <input class="btn btn-primary w-100 fw-bold mt-5" type="submit" value="Sign up" [disabled]="form.invalid">
-</form>
+
+</div>

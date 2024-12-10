@@ -3,7 +3,6 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {UserService} from '../../../../shared/services/user.service';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -15,21 +14,6 @@ import {ToastrService} from 'ngx-toastr';
     ],
   templateUrl: './auth-sign-up.component.html',
   styleUrl: './auth-sign-up.component.scss',
-  animations: [
-    trigger('colorChange', [
-      state('grey', style({
-        backgroundColor: 'rgba(173, 181, 189, 0.3)',
-        border: '3px solid rgba(173, 181, 189, 0.5)',
-      })),
-      state('blue', style({
-        backgroundColor: 'rgba(13, 110, 253, 0.3)',
-        border: '3px solid rgba(13, 110, 253, 0.5)',
-      })),
-      transition('grey <=> blue', [
-        animate('1s ease-out')
-      ])
-    ])
-  ]
 })
 export class AuthSignUpComponent {
   form: FormGroup = new FormGroup({
