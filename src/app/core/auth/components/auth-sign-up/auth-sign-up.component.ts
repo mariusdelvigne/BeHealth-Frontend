@@ -3,7 +3,6 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {UserService} from '../../../../shared/services/user.service';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
