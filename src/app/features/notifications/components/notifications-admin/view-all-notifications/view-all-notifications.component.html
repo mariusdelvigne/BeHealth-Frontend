@@ -15,7 +15,7 @@
                         <p><b>Is read :</b> {{ notification.seen }}</p>
                     </div>
                     <div class="card-footer d-flex justify-content-around gap-1 m-1">
-                        <button class="btn btn-sm btn-danger">Delete</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteNotification(notification.id)">Delete</button>
                     </div>
                 </div>
             </div>

@@ -32,7 +32,7 @@ export class ViewAllNotificationsComponent implements OnInit {
     });
   }
 
-  private getUserReceiver(notification: NotificationsGetAllOutput, index: number) {
+  getUserReceiver(notification: NotificationsGetAllOutput, index: number) {
     const userId = notification.userId;
     this._userService.getById(userId).subscribe({
       next: (user) => {
@@ -44,7 +44,7 @@ export class ViewAllNotificationsComponent implements OnInit {
     });
   }
 
-  public getDateTime(sendingDateTime: string): string {
+  getDateTime(sendingDateTime: string): string {
     const date = new Date(sendingDateTime);
 
     const year = date.getFullYear();
@@ -57,4 +57,8 @@ export class ViewAllNotificationsComponent implements OnInit {
     return `${year}-${month}-${day} ${hours}:${minutes}`;
   }
 
+  deleteNotification(id: number) {
+    this._notificationService.deleteNotification(id).subscribe();
+    window.location.reload();
+  }
 }
