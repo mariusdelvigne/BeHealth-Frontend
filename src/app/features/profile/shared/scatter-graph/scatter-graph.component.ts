@@ -6,7 +6,6 @@ import {DatePipe} from '@angular/common';
 import {UserFoodService} from '../../../../shared/services/user-food.service';
 import {firstValueFrom} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
 import {GraphData} from '../utils/graph-data';
 import {GraphService} from '../services/graph.service';
 
@@ -32,13 +31,13 @@ export class ScatterGraphComponent implements OnInit {
   options: EChartsOption = {};
   updateOptions!: EChartsOption;
 
-  constructor(private _graphService: GraphService, private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService) {
+  constructor(private _graphService: GraphService, private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this._route.paramMap.subscribe(() => {
       this.dataType = this._route.snapshot.params['dataType'];
-      this.loadType()
+      this.dataValues = this._graphService.loadType(this.dataType, this.dataValues);
       this.loadOptions()
       this.loadData();
     });
@@ -70,26 +69,6 @@ export class ScatterGraphComponent implements OnInit {
 
     this.data.sort((a, b) => a.date.getTime() - b.date.getTime());
     this.updateChart();
-  }
-
-  loadType() {
-    switch (this.dataType) {
-      case 'calories':
-        this.dataValues = {yName: "Calories", seriesName: 'Calories', measureUnit: 'kcal'};
-        break;
-      case 'cholesterol':
-        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol', measureUnit: 'g'};
-        break;
-      case 'sugars':
-        this.dataValues = {yName: "Sugars", seriesName: 'Sugars', measureUnit: 'g'};
-        break;
-      case 'proteins':
-        this.dataValues = {yName: "Proteins", seriesName: 'Proteins', measureUnit: 'g'};
-        break;
-      default:
-        this._toastrService.error("Data type not supported");
-        break;
-    }
   }
 
   changeMonth(next: boolean) {
