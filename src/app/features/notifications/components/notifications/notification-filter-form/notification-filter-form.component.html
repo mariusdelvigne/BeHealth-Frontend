@@ -5,15 +5,15 @@
     Category:
     <select id="category" class="dropdown form-select" formControlName="category">
       @for (category of allCategories; track $index) {
-        <option [value]="category">
-          {{ category }}
+        <option [value]="category.value">
+          {{ category.name }}
         </option>
       }
     </select>
   </div>
 
   <div>
-    Read:
+    Is Read:
     <select id="read" class="dropdown form-select" formControlName="isRead">
       <option value="all">All</option>
       <option value="read">Read</option>
