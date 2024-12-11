@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {apis, environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {NotificationCreateCommand} from '../../features/notifications/utils/notification-create-command';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,9 @@ export class NotificationService {
 
   public deleteNotification(notificationId: number): Observable<any> {
     return this._httpClient.delete(`${NotificationService.URL_NOTIFICATIONS}/${notificationId}`);
+  }
+
+  public createNotification(notification: NotificationCreateCommand): Observable<any> {
+    return this._httpClient.post(`${NotificationService.URL_NOTIFICATIONS}`, notification, {withCredentials: true});
   }
 }
