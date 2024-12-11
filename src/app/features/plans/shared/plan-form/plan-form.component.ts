@@ -4,12 +4,16 @@ import {PlanService} from '../../services/plan.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {PlanSportListComponent} from './components/plan-sport-list/plan-sport-list.component';
+import {PlanSportCreateComponent} from './components/plan-sport-create/plan-sport-create.component';
 
 @Component({
   selector: 'app-plan-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    PlanSportListComponent,
+    PlanSportCreateComponent,
   ],
   templateUrl: './plan-form.component.html',
   styleUrls: [
@@ -43,8 +47,9 @@ export class PlanFormComponent implements OnInit {
     description: new FormControl('', [Validators.required, Validators.min(1)])
   });
 
-  constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) {
-  }
+  planSports: any[] = [];
+
+  constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
     this._planService.getPlansById(this.planId).subscribe( {
@@ -64,9 +69,25 @@ export class PlanFormComponent implements OnInit {
 
   submit() {
     if (this.mode == "create") {
-      this._planService.create(this.form.value, this._authService.getId()).subscribe({
-        next: () => {
+      // TODO Change tagNames when implemented
+      this._planService.create({...this.form.value, tagNames: []}, this._authService.getId()).subscribe({
+        next: response => {
           this._toastrService.success("Plan created successfully");
+
+          if (this.planCategory === 'sport') {
+            // Needed because C# needs TimeSpan in XX:XX:XX format and JS sends it in XX:XX format
+            const planSports = this.planSports.map(sport => ({...sport, dayTime: sport.dayTime + ":00"}));
+
+            this._planService.updatePlanSports(this._authService.getId(), response.id, {sports: planSports})
+              .subscribe({
+                next: response => {
+                  this._toastrService.success("Sports added successfully");
+                },
+                error: () => {
+                  this._toastrService.error("Error adding sports");
+                }
+              });
+          }
         },
         error: (error) => {
           this._toastrService.error("Error creating the plan : " + error.message);
@@ -84,7 +105,15 @@ export class PlanFormComponent implements OnInit {
     }
   }
 
+  get planCategory(): string {
+    return this.form.value.category;
+  }
+
   get colorChange() {
     return this.form.invalid ? 'grey' : 'blue';
+  }
+
+  createPlanSport(planSport: any) {
+    this.planSports.push(planSport);
   }
 }

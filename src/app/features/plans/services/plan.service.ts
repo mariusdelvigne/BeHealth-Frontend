@@ -50,4 +50,8 @@ export class PlanService {
   public updatePlan(userId: number, planId: number, command: PlanUpdateCommand) : Observable<any> {
     return this._httpClient.put<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`, command, {withCredentials: true});
   }
+
+  public updatePlanSports(userId: number, planId: number, command: any) : Observable<void> {
+    return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sports`, command, {withCredentials: true});
+  }
 }
