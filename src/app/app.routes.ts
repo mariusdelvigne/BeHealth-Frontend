@@ -51,6 +51,7 @@ import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/sca
 import {BarGraphComponent} from './features/profile/shared/bar-graph/bar-graph.component';
 import {BmiGraphComponent} from './features/profile/components/profile/physical-graph/bmi-graph/bmi-graph.component';
 import {DashboardComponent} from './features/dashboard/components/dashboard/dashboard.component';
+import {StackedBarGraphComponent} from './features/profile/shared/stacked-bar-graph/stacked-bar-graph.component';
 
 export const routes: Routes = [
   {
@@ -351,6 +352,10 @@ export const routes: Routes = [
           {
             path: 'bar-graph/:dataType',
             component: BarGraphComponent,
+          },
+          {
+            path: 'stacked-bar-graph/:dataType',
+            component: StackedBarGraphComponent,
           },
         ]
       },

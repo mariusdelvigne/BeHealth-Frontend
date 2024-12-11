@@ -22,7 +22,7 @@ import {GraphData} from '../utils/graph-data';
 
 export class ScatterGraphComponent implements OnInit {
   dataType: string = '';
-  dataValues: GraphData = {yName: '', seriesName: ''};
+  dataValues: GraphData = {yName: '', seriesName: '', measureUnit: ''};
   startDate: Date = new Date();
   endDate: Date = new Date();
 
@@ -74,16 +74,16 @@ export class ScatterGraphComponent implements OnInit {
   loadType() {
     switch (this.dataType) {
       case 'calories':
-        this.dataValues = {yName: "Calories", seriesName: 'Calories'};
+        this.dataValues = {yName: "Calories", seriesName: 'Calories', measureUnit: 'kcal'};
         break;
       case 'cholesterol':
-        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol'};
+        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol', measureUnit: 'g'};
         break;
       case 'sugars':
-        this.dataValues = {yName: "Sugars", seriesName: 'Sugars'};
+        this.dataValues = {yName: "Sugars", seriesName: 'Sugars', measureUnit: 'g'};
         break;
       case 'proteins':
-        this.dataValues = {yName: "Proteins", seriesName: 'Proteins'};
+        this.dataValues = {yName: "Proteins", seriesName: 'Proteins', measureUnit: 'g'};
         break;
       default:
         this._toastrService.error("Data type not supported");
@@ -153,7 +153,7 @@ export class ScatterGraphComponent implements OnInit {
         formatter: (params: any) => {
           const data = params[0].data;
           return `<div class="text-center">
-                    <div><b>${data[1]}g ${this.dataType}</b></div>
+                    <div><b>${data[1]}${this.dataValues.measureUnit}</b></div>
                     <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
                 </div>`;
         },
