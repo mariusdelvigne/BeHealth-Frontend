@@ -1,15 +1,15 @@
-@if (authService.isAuthenticated()){
+@if (authService.isAuthenticated()) {
   @if (authService.isAdmin()) {
-    <div class="form-check form-switch">
+    <div class="d-flex justify-content-center align-items-center form-check form-switch toggle-admin-dashboard">
       <input
         mdbCheckbox
-        class="form-check-input"
+        class="form-check-input large-toggle"
         type="checkbox"
         id="adminDashBoardChecked"
         [checked]="false"
         (change)="adminDashboardIsChecked = !adminDashboardIsChecked"
       />
-      <label class="form-check-label" for="adminDashBoardChecked">
+      <label class="form-check-label font-weight-bold" for="adminDashBoardChecked">
         Admin dashboard
       </label>
     </div>
