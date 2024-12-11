@@ -115,7 +115,7 @@ export class ScatterGraphComponent implements OnInit {
       const dayString = this._datePipe.transform(date, 'yyyy-MM-dd') || '';
 
       // Add the data for the day, or 0 if no data for that day
-        scatterData.push([date.getTime(), dailyTotals[dayString] || 0]);
+      scatterData.push([date.getTime(), dailyTotals[dayString] || 0]);
     }
 
 
