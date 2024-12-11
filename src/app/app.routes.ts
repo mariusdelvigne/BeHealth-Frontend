@@ -58,6 +58,7 @@ import {
   AccountChangePasswordComponent
 } from './features/account/components/account/account-change-password/account-change-password.component';
 import {StackedBarGraphComponent} from './features/profile/shared/stacked-bar-graph/stacked-bar-graph.component';
+import {AdminDashboardComponent} from './features/dashboard/components/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -68,6 +69,11 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'admin-dashboard',
+        component: AdminDashboardComponent,
         canActivate: [authGuard],
       },
       {
