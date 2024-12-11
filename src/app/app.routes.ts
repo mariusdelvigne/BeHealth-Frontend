@@ -395,9 +395,11 @@ export const routes: Routes = [
   {
     path: 'notifications',
     component: NotificationsComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'notifications-reads/:id',
     component: NotificationReadComponent,
+    canActivate: [authGuard],
   }
 ]
