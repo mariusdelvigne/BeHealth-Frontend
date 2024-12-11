@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class NotificationService {
   private static URL_USERS: string = `${environment.API_URL}/${apis.USERS_URL}`;
+  private static URL_NOTIFICATIONS: string = `${environment.API_URL}/${apis.NOTIFICATIONS_URL}`;
 
   constructor(private _httpClient: HttpClient) {
   }
@@ -24,10 +25,6 @@ export class NotificationService {
     return this._httpClient.get(`${NotificationService.URL_USERS}/${userId}/notifications/${notificationId}`);
   }
 
-  public readNotification(userId: number, notificationId: number, isRead: boolean): Observable<any> {
-    return this._httpClient.put(`${NotificationService.URL_USERS}/${userId}/notifications/${notificationId}/read/${isRead}`, {withCredentials: true});
-  }
-
   public getFilteredNotifications(userId: number, isRead: boolean | null, category: string | null): Observable<any> {
     if (isRead == null && category == null) {
       return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications`);
@@ -38,5 +35,13 @@ export class NotificationService {
     } else {
       return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications/category/${category}/read/${isRead}`);
     }
+  }
+
+  public getAllNotifications(): Observable<any> {
+    return this._httpClient.get<any>(`${NotificationService.URL_NOTIFICATIONS}`);
+  }
+
+  public readNotification(userId: number, notificationId: number, isRead: boolean): Observable<any> {
+    return this._httpClient.put(`${NotificationService.URL_USERS}/${userId}/notifications/${notificationId}/read/${isRead}`, {withCredentials: true});
   }
 }

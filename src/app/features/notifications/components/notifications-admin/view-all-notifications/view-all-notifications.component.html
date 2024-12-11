@@ -1,1 +1,5 @@
-<p>view-all-notifications works!</p>
+<div>
+  @for (notification of notifications; track $index){
+    <h1>{{ notification.id }}</h1>
+  }
+</div>

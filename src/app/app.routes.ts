@@ -68,6 +68,7 @@ import {
 import {
   ViewAllNotificationsComponent
 } from './features/notifications/components/notifications-admin/view-all-notifications/view-all-notifications.component';
+import {adminGuard} from './auth-guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -420,17 +421,17 @@ export const routes: Routes = [
   {
     path: 'notifications-admin',
     component: NotificationsAdminComponent,
-    canActivate: [authGuard],
+    canActivate: [adminGuard],
     children: [
       {
         path: 'create',
         component: CreateNotificationsComponent,
-        canActivate: [authGuard],
+        canActivate: [adminGuard],
       },
       {
         path: 'view-all',
         component: ViewAllNotificationsComponent,
-        canActivate: [authGuard],
+        canActivate: [adminGuard],
       }
     ]
   }
