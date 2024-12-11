@@ -44,7 +44,7 @@ import {authGuard} from './auth-guards/auth.guard';
 import {AuthService} from './core/auth/services/auth.service';
 import {AppComponent} from './app.component';
 import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
-import {FoodGraphManagerComponent} from './features/profile/components/profile/food-graph/food-graph-manager.component';
+import {FoodGraphManagerComponent} from './features/profile/components/profile/food-graph-manager/food-graph-manager.component';
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
 import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/scatter-graph.component';
@@ -69,6 +69,10 @@ import {
   ViewAllNotificationsComponent
 } from './features/notifications/components/notifications-admin/view-all-notifications/view-all-notifications.component';
 import {adminGuard} from './auth-guards/admin.guard';
+import {
+  PeriodDataManagerComponent
+} from './features/profile/components/profile/period-data-manager/period-data-manager.component';
+import {PeriodCalendarComponent} from './features/profile/shared/period-calendar/period-calendar.component';
 
 export const routes: Routes = [
   {
@@ -378,6 +382,16 @@ export const routes: Routes = [
           {
             path: 'stacked-bar-graph/:dataType',
             component: StackedBarGraphComponent,
+          },
+        ]
+      },
+      {
+        path: 'period-data-manager',
+        component: PeriodDataManagerComponent,
+        children: [
+          {
+            path: 'period-calendar',
+            component: PeriodCalendarComponent,
           },
         ]
       },

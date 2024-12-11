@@ -31,8 +31,8 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class InsertPeriodComponent {
   form: FormGroup = new FormGroup({
-    startDatetime: new FormControl('', Validators.required),
-    endDatetime: new FormControl('', Validators.required),
+    startDate: new FormControl('', Validators.required),
+    endDate: new FormControl('', Validators.required),
   });
 
   constructor(private _userPeriodService: UserPeriodService, private _toastrService: ToastrService) { }
