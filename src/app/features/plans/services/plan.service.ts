@@ -63,11 +63,4 @@ export class PlanService {
 
     return this._httpClient.get<any>(`${PlanService.URL_USERS}/tags`, {withCredentials: true, params: params});
   }
-
-  public createTag(userId: number, name: string): Observable<any> {
-    const body = { name: name, category: 'sport' };
-
-    return this._httpClient.post<any>(`${PlanService.URL_USERS}/${userId}/tags`, body, {withCredentials: true});
-  }
-
 }

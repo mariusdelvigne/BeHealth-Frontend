@@ -4,7 +4,7 @@ import {PlanService} from '../../services/plan.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {debounceTime} from 'rxjs';
+import {debounceTime, firstValueFrom} from 'rxjs';
 
 @Component({
   selector: 'app-plan-form',
@@ -47,6 +47,7 @@ export class PlanFormComponent implements OnInit {
   tags: {id: number, name: string} [] = [];
   tagsList: {id: number, name: string} [] = [];
   tagIdCounter = 0;
+  tagNames: string[] = [];
 
   constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
@@ -74,27 +75,17 @@ export class PlanFormComponent implements OnInit {
       });
   }
 
-  submit() {
-    if (this.mode == "create") {
-      for(let tag of this.tagsList) {
-        this._planService.createTag(this._authService.getId(), tag.name).subscribe({
-          next: () => {
-            console.log(tag);
+   submit() {
+      if(this.mode == "create") {
+        this._planService.create({...this.form.value, tagNames: this.tagNames}, this._authService.getId()).subscribe({
+          next: (plan) => {
+            this._toastrService.success("Plan created successfully");
           },
           error: (error) => {
-            this._toastrService.error("Error creating the tag : " + error.message);
+            this._toastrService.error("Error creating new plan: " + error.message);
           }
-        })
-      }
+        });
 
-      this._planService.create(this.form.value, this._authService.getId()).subscribe({
-        next: () => {
-          this._toastrService.success("Plan created successfully");
-        },
-        error: (error) => {
-          this._toastrService.error("Error creating the plan : " + error.message);
-        }
-      })
     } else if (this.mode == "update") {
       this._planService.updatePlan(this._authService.getId(), this.plan.id, this.form.value).subscribe({
         next: () => {
@@ -122,6 +113,7 @@ export class PlanFormComponent implements OnInit {
     const tag = tagInput.value;
     if (tag && !this.tagsList.find(t => t.name === tag)) {
       this.tagsList.push({ id: this.tagIdCounter++, name: tag });
+      this.tagNames.push(tag)
       tagInput.value = '';
     }
   }
