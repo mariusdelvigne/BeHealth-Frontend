@@ -31,7 +31,7 @@ export class StackedBarGraphComponent implements OnInit {
   options!: EChartsOption;
   updateOptions!: EChartsOption;
 
-  constructor(private _graphService: GraphService, private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
+  constructor(private _graphService: GraphService, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
   }
 
   ngOnInit(): void {
@@ -114,25 +114,25 @@ export class StackedBarGraphComponent implements OnInit {
     const groupedData = this._graphService.groupDataByDayAndFood(this.data);
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
-    this.updateOptions = {
-      series: Object.keys(groupedData).map(food => ({
-        name: food,
-        type: 'bar',
-        stack: 'total',
-        barWidth: '60%',
-        label: {
-          show: true,
-          formatter: (params: any) => params.value == 0 ? `` : `${params.seriesName}`,
+      this.updateOptions = {
+        series: Object.keys(groupedData).map(food => ({
+          name: food,
+          type: 'bar',
+          stack: 'total',
+          barWidth: '60%',
+          label: {
+            show: true,
+            formatter: (params: any) => params.value == 0 ? `` : `${params.seriesName}`,
+          },
+          data: days.map(day => groupedData[food][day]),
+        })),
+        tooltip: {
+          trigger: 'item',
+          formatter: (params: any) => {
+            return `${params.value.toFixed(2)}${this.dataValues.measureUnit}`
+          }
         },
-        data: days.map(day => groupedData[food][day]),
-      })),
-      tooltip: {
-        trigger: 'item',
-        formatter: (params: any) => {
-          return `${params.value.toFixed(2)}${this.dataValues.measureUnit}`
-        }
-      },
-    };
+      };
   }
 
   loadOptions() {

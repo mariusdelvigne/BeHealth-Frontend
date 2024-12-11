@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import {GraphData} from '../utils/graph-data';
-import {ToastrService} from 'ngx-toastr';
 import {DatedValue} from '../../utils/DatedValue';
+import {DatePipe} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GraphService {
 
-  constructor(private _toastrService: ToastrService) { }
+  constructor(private _datePipe: DatePipe) { }
 
   groupDataByDayAndFood(data: DatedValue[]) {
     // Example : "Apple": { Mon: 100, Tue: 0, Wed: 450, Thu: 0, Fri: 0, Sat: 0, Sun: 0 }
@@ -29,14 +28,19 @@ export class GraphService {
     return grouped;
   }
 
-  computeDailyTotals(groupedData: { [food: string]: { [day: string]: number } }) {
-    const totals: { [day: string]: number } = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
+  computeTotals(data: DatedValue[]): { [day: string]: number } {
+    const totals: { [day: string]: number } = {};
 
-    // Daily totals
-    Object.keys(groupedData).forEach(food => {
-      Object.keys(groupedData[food]).forEach(day => {
-        totals[day] += groupedData[food][day];
-      });
+    // Totals for each day
+    data.forEach(d => {
+      const dayNumber = this._datePipe.transform(d.date, 'yyyy-MM-dd') || '';
+
+      // If the day isn't in the list yet we add it
+      if (!totals[dayNumber]) {
+        totals[dayNumber] = 0;
+      }
+      // Append the data to the current data for this day of the month
+      totals[dayNumber] += d.value;
     });
 
     return totals;

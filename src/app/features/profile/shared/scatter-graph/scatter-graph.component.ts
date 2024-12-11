@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DatedValue} from '../../utils/DatedValue';
-import {EChartsOption, SeriesOption} from 'echarts';
+import {EChartsOption} from 'echarts';
 import {NgxEchartsDirective} from 'ngx-echarts';
 import {DatePipe} from '@angular/common';
 import {UserFoodService} from '../../../../shared/services/user-food.service';
@@ -8,6 +8,7 @@ import {firstValueFrom} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {GraphData} from '../utils/graph-data';
+import {GraphService} from '../services/graph.service';
 
 @Component({
   selector: 'app-scatter-graph',
@@ -29,9 +30,9 @@ export class ScatterGraphComponent implements OnInit {
   data: DatedValue[] = [];
 
   options: EChartsOption = {};
-  chart!: NgxEchartsDirective;
+  updateOptions!: EChartsOption;
 
-  constructor(private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
+  constructor(private _graphService: GraphService, private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -91,11 +92,6 @@ export class ScatterGraphComponent implements OnInit {
     }
   }
 
-  onChartInit(e: any): void {
-    this.chart = e;
-    this.loadData();
-  }
-
   changeMonth(next: boolean) {
     this.startDate = new Date(this.startDate
       .setMonth(this.startDate.getMonth() + (next ? 1 : -1))
@@ -108,19 +104,36 @@ export class ScatterGraphComponent implements OnInit {
   }
 
   updateChart() {
-    if (this.chart !== undefined) {
-      const series = this.options.series as SeriesOption;
-      series.data = this.data.map(d => [d.date, d.value]);
+    const dailyTotals = this._graphService.computeTotals(this.data);
+    const scatterData = [];
+    const daysInMonth = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0).getDate();
 
-      const xAxis = this.options.xAxis;
-      // @ts-ignore
-      xAxis!.min = this.startDate;
-      // @ts-ignore
-      xAxis!.max = this.endDate;
+    // Iterate through each day of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+      // Create the date for each day
+      const date = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), day);
+      const dayString = this._datePipe.transform(date, 'yyyy-MM-dd') || '';
 
-      // @ts-ignore
-      this.chart.setOption(this.options);
+      // Add the data for the day, or 0 if no data for that day
+      scatterData.push([date.getTime(), dailyTotals[dayString] || 0]);
     }
+
+
+    this.updateOptions = {
+      xAxis: {
+        min: this.startDate,
+        max: this.endDate,
+      },
+      series: [{
+        data: scatterData,
+      }],
+      tooltip: {
+        trigger: 'item',
+        formatter: (params: any) => {
+          return `${params.value.toFixed(2)}${this.dataValues.measureUnit}`
+        }
+      },
+    };
   }
 
   loadOptions() {
