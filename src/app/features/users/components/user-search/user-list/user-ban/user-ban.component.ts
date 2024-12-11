@@ -37,22 +37,26 @@ export class UserBanComponent {
     this._userBanEventBus.publish(event);
 
     if (this.userIsBanned) {
-      this.modalRef = this._modalService.open(UserBanModalDeleteChoiceComponent, {
-        animation: true,
-        backdrop: false,
-      });
-
-      this.modalRef.component.deleteUserPlans.subscribe((deletePlans: boolean) => {
-        this.deleteUserPlans.emit(deletePlans);
-      });
-
-      this.modalRef.component.deleteUserPrograms.subscribe((deletePrograms: boolean) => {
-        this.deleteUserPrograms.emit(deletePrograms);
-      });
-
-      this.modalRef.component.deleteUserFeedbacks.subscribe((deleteFeedbacks: boolean) => {
-        this.deleteUserFeedbacks.emit(deleteFeedbacks);
-      });
+     this.openModal();
     }
+  }
+
+  openModal(){
+    this.modalRef = this._modalService.open(UserBanModalDeleteChoiceComponent, {
+      animation: true,
+      backdrop: false,
+    });
+
+    this.modalRef.component.deleteUserPlans.subscribe((deletePlans: boolean) => {
+      this.deleteUserPlans.emit(deletePlans);
+    });
+
+    this.modalRef.component.deleteUserPrograms.subscribe((deletePrograms: boolean) => {
+      this.deleteUserPrograms.emit(deletePrograms);
+    });
+
+    this.modalRef.component.deleteUserFeedbacks.subscribe((deleteFeedbacks: boolean) => {
+      this.deleteUserFeedbacks.emit(deleteFeedbacks);
+    });
   }
 }
