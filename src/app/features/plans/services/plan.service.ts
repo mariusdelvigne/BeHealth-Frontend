@@ -50,4 +50,17 @@ export class PlanService {
   public updatePlan(userId: number, planId: number, command: PlanUpdateCommand) : Observable<any> {
     return this._httpClient.put<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`, command, {withCredentials: true});
   }
+
+  public getTags(planId: number): Observable<any> {
+    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/getAll`, {withCredentials: true});
+  }
+
+  public getAllTagsStartingWith(text?: string): Observable<any> {
+    let params = new HttpParams();
+
+    if (text)
+      params = params.set('text', text);
+
+    return this._httpClient.get<any>(`${PlanService.URL_USERS}/tags`, {withCredentials: true, params: params});
+  }
 }

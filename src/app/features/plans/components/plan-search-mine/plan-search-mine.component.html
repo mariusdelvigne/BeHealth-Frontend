@@ -1,32 +1,47 @@
 <div class="container text-center">
-  <ul class="program-list mt-3">
-    @for (plan of plans; track $index) {
-      <li (click)="showPlanInfo(plan.id)">
-        <div class="d-flex">
-          <div class="col-4 col-md-2 text-white text-uppercase text-center"
-               [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
-            {{ plan.category }}
+  @if (plans.length) {
+    <ul class="program-list mt-3">
+      @for (plan of plans; track $index) {
+        <li (click)="showPlanInfo(plan.id)">
+          <div class="d-flex">
+            <div class="col-4 col-md-2 text-white text-uppercase text-center"
+                 [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
+              {{ plan.category }}
+            </div>
+            <div class="col-8 col-md-4 ps-3">
+              Duration: {{ plan.durationInDays }} days
+            </div>
           </div>
-          <div class="col-8 col-md-4 ps-3">
-            Duration: {{ plan.durationInDays }} days
-          </div>
-        </div>
 
-        <div class=" gap-1">
-          <div>{{ plan.name }}</div>
-          <div class="d-flex gap-1 p-3">
-            <button class="rounded text-uppercase p-2 custom-btn w-50"
-                    (click)="goToUpdateForm(plan.id)">Update
-            </button>
-            <button class="rounded text-uppercase p-2 custom-btn w-50"
-                    (click)="deletePlan(plan.id)">Delete
-            </button>
+          <div class=" gap-1">
+            <div>{{ plan.name }}</div>
+            <div class="d-flex gap-1 p-3">
+              <button class="rounded text-uppercase p-2 custom-btn w-50"
+                      (click)="goToUpdateForm(plan.id)">Update
+              </button>
+              <button class="rounded text-uppercase p-2 custom-btn w-50"
+                      (click)="deletePlan(plan.id)">Delete
+              </button>
+            </div>
           </div>
-        </div>
-        @if (plan == selectedPlan) {
-          <app-plan-info [plan]="selectedPlan"></app-plan-info>
-        }
-      </li>
-    }
-  </ul>
+          @if (plan == selectedPlan) {
+            <div>
+              <ul>
+                Tags:
+                @for (astPlansTags of tags; track $index) {
+                  <li>{{astPlansTags.tag.name}}</li>
+                }
+              </ul>
+            </div>
+            <app-plan-info [plan]="selectedPlan"></app-plan-info>
+          }
+        </li>
+      }
+    </ul>
+  } @else {
+    <div class="alert alert-warning text-center mt-4" role="alert">
+      <h1 class="display-4">You have no plans !</h1>
+    </div>
+  }
+
 </div>

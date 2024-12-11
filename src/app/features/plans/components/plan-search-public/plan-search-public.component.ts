@@ -21,6 +21,7 @@ import {NgClass} from '@angular/common';
 })
 export class PlanSearchPublicComponent implements OnInit {
   plans: PlanSearchOutput[] = [];
+  tags: any[] = [];
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
     category: new FormControl(''),
@@ -50,14 +51,29 @@ export class PlanSearchPublicComponent implements OnInit {
   showPlanInfo(planId: number) {
     if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
+      this.tags = [];
     }
     else {
       this.selectedPlan = null;
+      this.tags = [];
       this.selectedPlan = this.plans.find(plan => plan.id === planId);
+      this.loadTags(planId)
     }
   }
 
-  get colorChange() {
+  loadTags(planId: number) {
+    this._planService.getTags(planId).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.tags = response.astPlansTags;
+        },
+      error: (error) => {
+        alert(error.message);
+      }
+    });
+  }
+
+    get colorChange() {
     return this.form.invalid ? 'grey' : 'blue';
   }
 }
