@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DatedValue} from '../../utils/DatedValue';
-import {EChartsOption, SeriesOption} from 'echarts';
+import {EChartsOption} from 'echarts';
 import {NgxEchartsDirective} from 'ngx-echarts';
 import {DatePipe} from '@angular/common';
 import {UserFoodService} from '../../../../shared/services/user-food.service';
@@ -8,6 +8,7 @@ import {firstValueFrom} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {GraphData} from '../utils/graph-data';
+import {GraphService} from '../services/graph.service';
 
 @Component({
   selector: 'app-scatter-graph',
@@ -22,16 +23,16 @@ import {GraphData} from '../utils/graph-data';
 
 export class ScatterGraphComponent implements OnInit {
   dataType: string = '';
-  dataValues: GraphData = {yName: '', seriesName: ''};
+  dataValues: GraphData = {yName: '', seriesName: '', measureUnit: ''};
   startDate: Date = new Date();
   endDate: Date = new Date();
 
   data: DatedValue[] = [];
 
   options: EChartsOption = {};
-  chart!: NgxEchartsDirective;
+  updateOptions!: EChartsOption;
 
-  constructor(private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
+  constructor(private _graphService: GraphService, private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -43,9 +44,9 @@ export class ScatterGraphComponent implements OnInit {
     });
 
     this.startDate.setDate(1);
-    this.startDate.setHours(0, 0, 0, 0);
+    this.startDate.setHours(1, 0, 0, 0);
     this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0,
-      23, 59, 59, 999);
+      24, 59, 59, 999);
 
     this.loadOptions()
     this.loadData();
@@ -74,26 +75,21 @@ export class ScatterGraphComponent implements OnInit {
   loadType() {
     switch (this.dataType) {
       case 'calories':
-        this.dataValues = {yName: "Calories", seriesName: 'Calories'};
+        this.dataValues = {yName: "Calories", seriesName: 'Calories', measureUnit: 'kcal'};
         break;
       case 'cholesterol':
-        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol'};
+        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol', measureUnit: 'g'};
         break;
       case 'sugars':
-        this.dataValues = {yName: "Sugars", seriesName: 'Sugars'};
+        this.dataValues = {yName: "Sugars", seriesName: 'Sugars', measureUnit: 'g'};
         break;
       case 'proteins':
-        this.dataValues = {yName: "Proteins", seriesName: 'Proteins'};
+        this.dataValues = {yName: "Proteins", seriesName: 'Proteins', measureUnit: 'g'};
         break;
       default:
         this._toastrService.error("Data type not supported");
         break;
     }
-  }
-
-  onChartInit(e: any): void {
-    this.chart = e;
-    this.loadData();
   }
 
   changeMonth(next: boolean) {
@@ -104,21 +100,44 @@ export class ScatterGraphComponent implements OnInit {
       23, 59, 59, 999);
 
     this.loadData();
+    this.loadOptions();
   }
+
   updateChart() {
-    if (this.chart !== undefined) {
-      const series = this.options.series as SeriesOption;
-      series.data = this.data.map(d => [d.date, d.value]);
+    const dailyTotals = this._graphService.computeTotals(this.data);
+    const scatterData = [];
+    const daysInMonth = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0).getDate();
 
-      const xAxis = this.options.xAxis;
-      // @ts-ignore
-      xAxis!.min = this.startDate;
-      // @ts-ignore
-      xAxis!.max = this.endDate;
+    // Iterate through each day of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+      // Create the date for each day
+      const date = new Date(this.startDate.getFullYear(), this.startDate.getMonth(), day);
+      const dayString = this._datePipe.transform(date, 'yyyy-MM-dd') || '';
 
-      // @ts-ignore
-      this.chart.setOption(this.options);
+      // Add the data for the day, or 0 if no data for that day
+      scatterData.push([date.getTime(), dailyTotals[dayString] || 0]);
     }
+
+
+    this.updateOptions = {
+      xAxis: {
+        min: this.startDate,
+        max: this.endDate,
+      },
+      series: [{
+        data: scatterData,
+      }],
+      tooltip: {
+        trigger: 'axis',
+        formatter: (params: any) => {
+          const data = params[0].data;
+          return `<div class="text-center">
+                    <div><b>${data[1].toFixed(2)}${this.dataValues.measureUnit}</b></div>
+                    <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
+                </div>`;
+        },
+      },
+    };
   }
 
   loadOptions() {
@@ -126,11 +145,6 @@ export class ScatterGraphComponent implements OnInit {
       xAxis: {
         name: 'Time',
         type: 'time',
-        axisLabel: {
-          formatter: (value: number) => {
-            return `${this._datePipe.transform(value, 'd/M/y')}`;
-          },
-        },
         nameTextStyle: {
           fontWeight: 'bold',
         },
@@ -148,20 +162,9 @@ export class ScatterGraphComponent implements OnInit {
           show: true,
         }
       },
-      tooltip: {
-        trigger: 'axis',
-        formatter: (params: any) => {
-          const data = params[0].data;
-          return `<div class="text-center">
-                    <div><b>${data[1]}g ${this.dataType}</b></div>
-                    <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
-                </div>`;
-        },
-      },
       series: {
         name: this.dataValues.seriesName,
         type: 'line',
-        data: this.data.map(d => [this._datePipe.transform(d.date, 'yyyy-MM-dd'), d.value]),
         symbol: 'circle',
         symbolSize: 10,
         itemStyle: {

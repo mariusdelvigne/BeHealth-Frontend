@@ -1,27 +1,28 @@
 import {Component, OnInit} from '@angular/core';
+import {DatePipe} from "@angular/common";
+import {NgxEchartsDirective} from "ngx-echarts";
 import {GraphData} from '../utils/graph-data';
 import {DatedValue} from '../../utils/DatedValue';
 import {EChartsOption} from 'echarts';
-import {NgxEchartsDirective} from 'ngx-echarts';
-import {DatePipe} from '@angular/common';
 import {UserFoodService} from '../../../../shared/services/user-food.service';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {firstValueFrom} from 'rxjs';
+import {GraphService} from '../services/graph.service';
 
 @Component({
-  selector: 'app-bar-graph',
+  selector: 'app-stacked-bar-graph',
   standalone: true,
-  imports: [
-    DatePipe,
-    NgxEchartsDirective
-  ],
-  templateUrl: './bar-graph.component.html',
-  styleUrl: './bar-graph.component.scss'
+    imports: [
+        DatePipe,
+        NgxEchartsDirective
+    ],
+  templateUrl: './stacked-bar-graph.component.html',
+  styleUrl: './stacked-bar-graph.component.scss'
 })
-export class BarGraphComponent implements OnInit {
+export class StackedBarGraphComponent implements OnInit {
   dataType: string = '';
-  dataValues: GraphData = {yName: '', seriesName: ''};
+  dataValues: GraphData = {yName: '', seriesName: '', measureUnit: ''};
   startDate: Date = new Date();
   endDate: Date = new Date();
 
@@ -30,7 +31,7 @@ export class BarGraphComponent implements OnInit {
   options!: EChartsOption;
   updateOptions!: EChartsOption;
 
-  constructor(private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
+  constructor(private _graphService: GraphService, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
   }
 
   ngOnInit(): void {
@@ -47,10 +48,12 @@ export class BarGraphComponent implements OnInit {
 
     // week start => Monday
     monday.setDate(monday.getDate() + diff);
+    monday.setHours(1, 0, 0, 0);
     this.startDate =  monday;
 
     // week end => Sunday
     this.endDate.setDate(this.startDate.getDate() + 6);
+    this.endDate.setHours(24, 59, 59, 999);
 
     this.loadOptions()
     this.loadData();
@@ -66,6 +69,7 @@ export class BarGraphComponent implements OnInit {
       let response = await firstValueFrom(this._userFoodService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
       dataToAdd = response.userFoods.map((d: any) => ({
         date: new Date(d.eatenDatetime),
+        food: d.name,
         value: d[this.dataType],
       }));
 
@@ -80,16 +84,16 @@ export class BarGraphComponent implements OnInit {
   loadType() {
     switch (this.dataType) {
       case 'calories':
-        this.dataValues = {yName: "Calories", seriesName: 'Calories'};
+        this.dataValues = {yName: "Calories", seriesName: 'Calories', measureUnit: 'kcal'};
         break;
       case 'cholesterol':
-        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol'};
+        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol', measureUnit: 'g'};
         break;
       case 'sugars':
-        this.dataValues = {yName: "Sugars", seriesName: 'Sugars'};
+        this.dataValues = {yName: "Sugars", seriesName: 'Sugars', measureUnit: 'g'};
         break;
       case 'proteins':
-        this.dataValues = {yName: "Proteins", seriesName: 'Proteins'};
+        this.dataValues = {yName: "Proteins", seriesName: 'Proteins', measureUnit: 'g'};
         break;
       default:
         this._toastrService.error("Data type not supported");
@@ -103,14 +107,32 @@ export class BarGraphComponent implements OnInit {
     this.endDate= new Date(this.endDate.setDate(this.endDate.getDate() + (next ? 7 : -7)));
 
     this.loadData();
+    this.loadOptions();
   }
 
   updateChart() {
-    this.updateOptions = {
-      series: {
-        data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),
-      },
-    };
+    const groupedData = this._graphService.groupDataByDayAndFood(this.data);
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+      this.updateOptions = {
+        series: Object.keys(groupedData).map(food => ({
+          name: food,
+          type: 'bar',
+          stack: 'total',
+          barWidth: '60%',
+          label: {
+            show: true,
+            formatter: (params: any) => params.value == 0 ? `` : `${params.seriesName}`,
+          },
+          data: days.map(day => groupedData[food][day]),
+        })),
+        tooltip: {
+          trigger: 'item',
+          formatter: (params: any) => {
+            return `${params.value.toFixed(2)}${this.dataValues.measureUnit}`
+          }
+        },
+      };
   }
 
   loadOptions() {
@@ -130,24 +152,6 @@ export class BarGraphComponent implements OnInit {
           show: true,
         },
       },
-      series: {
-        name: this.dataValues.seriesName,
-        type: 'bar',
-        data: this.data.map(d => [d.date.toLocaleString('en-US', {weekday: "short"}), d.value]),
-        itemStyle: {
-          color: '#424874',
-        },
-      },
-      tooltip: {
-        trigger: 'axis',
-        formatter: (params: any) => {
-          const data = params[0].data;
-          return `<div class="text-center">
-                    <div><b>${data[1].toFixed(2)}g ${this.dataType}</b></div>
-                </div>`;
-        },
-      },
     };
   }
-
 }

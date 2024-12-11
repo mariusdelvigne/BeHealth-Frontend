@@ -48,7 +48,6 @@ import {FoodGraphManagerComponent} from './features/profile/components/profile/f
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
 import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/scatter-graph.component';
-import {BarGraphComponent} from './features/profile/shared/bar-graph/bar-graph.component';
 import {BmiGraphComponent} from './features/profile/components/profile/physical-graph/bmi-graph/bmi-graph.component';
 import {NotificationsComponent} from './features/notifications/components/notifications/notifications.component';
 import {DashboardComponent} from './features/dashboard/components/dashboard/dashboard.component';
@@ -58,6 +57,7 @@ import {
 import {
   AccountChangePasswordComponent
 } from './features/account/components/account/account-change-password/account-change-password.component';
+import {StackedBarGraphComponent} from './features/profile/shared/stacked-bar-graph/stacked-bar-graph.component';
 
 export const routes: Routes = [
   {
@@ -360,8 +360,8 @@ export const routes: Routes = [
             component: ScatterGraphComponent,
           },
           {
-            path: 'bar-graph/:dataType',
-            component: BarGraphComponent,
+            path: 'stacked-bar-graph/:dataType',
+            component: StackedBarGraphComponent,
           },
         ]
       },
