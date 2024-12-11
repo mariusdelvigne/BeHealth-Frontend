@@ -128,10 +128,14 @@ export class ScatterGraphComponent implements OnInit {
         data: scatterData,
       }],
       tooltip: {
-        trigger: 'item',
+        trigger: 'axis',
         formatter: (params: any) => {
-          return `${params.value.toFixed(2)}${this.dataValues.measureUnit}`
-        }
+          const data = params[0].data;
+          return `<div class="text-center">
+                    <div><b>${data[1].toFixed(2)}${this.dataValues.measureUnit}</b></div>
+                    <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
+                </div>`;
+        },
       },
     };
   }
@@ -163,20 +167,9 @@ export class ScatterGraphComponent implements OnInit {
           show: true,
         }
       },
-      tooltip: {
-        trigger: 'axis',
-        formatter: (params: any) => {
-          const data = params[0].data;
-          return `<div class="text-center">
-                    <div><b>${data[1].toFixed(2)}${this.dataValues.measureUnit}</b></div>
-                    <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
-                </div>`;
-        },
-      },
       series: {
         name: this.dataValues.seriesName,
         type: 'line',
-        data: this.data.map(d => [this._datePipe.transform(d.date, 'yyyy-MM-dd'), d.value]),
         symbol: 'circle',
         symbolSize: 10,
         itemStyle: {
