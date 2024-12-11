@@ -12,7 +12,7 @@ import {ToastrService} from 'ngx-toastr';
     RouterLink
   ],
   templateUrl: './notifications-dropdown-view.component.html',
-  styleUrl: './notifications-dropdown-view.component.css'
+  styleUrl: './notifications-dropdown-view.component.scss'
 })
 export class NotificationsDropdownViewComponent implements OnInit {
   notificationsNotRead: NotificationSearchOutput[] = [];
@@ -34,6 +34,17 @@ export class NotificationsDropdownViewComponent implements OnInit {
 
   toggleNotifications() {
     this.showNotifications = !this.showNotifications;
+  }
+
+  get unreadCount(): number {
+    return this.notificationsNotRead.length;
+  }
+
+  get unreadCountDisplay(): string {
+    if (this.notificationsNotRead.length > 99) {
+      return "99+"
+    }
+    return this.notificationsNotRead.length.toString();
   }
 
   @HostListener('document:click', ['$event'])
