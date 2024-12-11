@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {DatedValue} from '../../utils/DatedValue';
 import {DatePipe} from '@angular/common';
+import {GraphData} from '../utils/graph-data';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GraphService {
 
-  constructor(private _datePipe: DatePipe) { }
+  constructor(private _datePipe: DatePipe, private _toastrService: ToastrService) { }
 
   groupDataByDayAndFood(data: DatedValue[]) {
     // Example : "Apple": { Mon: 100, Tue: 0, Wed: 450, Thu: 0, Fri: 0, Sat: 0, Sun: 0 }
@@ -44,5 +46,31 @@ export class GraphService {
     });
 
     return totals;
+  }
+
+  loadType(dataType: string, dataValues: GraphData) {
+    dataValues = {yName: '', seriesName: '', measureUnit: ''};
+    switch (dataType) {
+      case 'calories':
+        dataValues = {yName: "Calories", seriesName: 'Calories', measureUnit: 'kcal'};
+        break;
+      case 'cholesterol':
+        dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol', measureUnit: 'g'};
+        break;
+      case 'sugars':
+        dataValues = {yName: "Sugars", seriesName: 'Sugars', measureUnit: 'g'};
+        break;
+      case 'proteins':
+        dataValues = {yName: "Proteins", seriesName: 'Proteins', measureUnit: 'g'};
+        break;
+      case 'periods':
+        dataValues = {yName: "Periods", seriesName: 'Periods', measureUnit: 'd'};
+        break;
+      default:
+        this._toastrService.error("Data type not supported");
+        break;
+    }
+
+    return dataValues;
   }
 }

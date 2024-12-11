@@ -37,7 +37,7 @@ export class StackedBarGraphComponent implements OnInit {
   ngOnInit(): void {
     this._route.paramMap.subscribe(() => {
       this.dataType = this._route.snapshot.params['dataType'];
-      this.loadType()
+      this.dataValues = this._graphService.loadType(this.dataType, this.dataValues);
       this.loadOptions()
       this.loadData();
     });
@@ -79,26 +79,6 @@ export class StackedBarGraphComponent implements OnInit {
     this.data.sort((a, b) => a.date.getTime() - b.date.getTime());
 
     this.updateChart();
-  }
-
-  loadType() {
-    switch (this.dataType) {
-      case 'calories':
-        this.dataValues = {yName: "Calories", seriesName: 'Calories', measureUnit: 'kcal'};
-        break;
-      case 'cholesterol':
-        this.dataValues = {yName: "Cholesterol", seriesName: 'Cholesterol', measureUnit: 'g'};
-        break;
-      case 'sugars':
-        this.dataValues = {yName: "Sugars", seriesName: 'Sugars', measureUnit: 'g'};
-        break;
-      case 'proteins':
-        this.dataValues = {yName: "Proteins", seriesName: 'Proteins', measureUnit: 'g'};
-        break;
-      default:
-        this._toastrService.error("Data type not supported");
-        break;
-    }
   }
 
   changeWeek(next: boolean) {
