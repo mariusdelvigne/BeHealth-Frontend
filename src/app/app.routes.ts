@@ -51,6 +51,9 @@ import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/sca
 import {BarGraphComponent} from './features/profile/shared/bar-graph/bar-graph.component';
 import {BmiGraphComponent} from './features/profile/components/profile/physical-graph/bmi-graph/bmi-graph.component';
 import {DashboardComponent} from './features/dashboard/components/dashboard/dashboard.component';
+import {
+  AccountChangePasswordComponent
+} from './features/account/components/account/account-change-password/account-change-password.component';
 
 export const routes: Routes = [
   {
@@ -102,6 +105,10 @@ export const routes: Routes = [
           {
             path: '',
             component: AccountInformationComponent,
+          },
+          {
+            path: 'password',
+            component: AccountChangePasswordComponent,
           },
           {
             path: 'modify',
