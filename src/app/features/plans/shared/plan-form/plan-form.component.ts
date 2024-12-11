@@ -4,6 +4,7 @@ import {PlanService} from '../../services/plan.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {debounceTime} from 'rxjs';
 
 @Component({
   selector: 'app-plan-form',
@@ -43,6 +44,10 @@ export class PlanFormComponent implements OnInit {
     description: new FormControl('', [Validators.required, Validators.min(1)])
   });
 
+  tags: {id: number, name: string} [] = [];
+  tagsList: {id: number, name: string} [] = [];
+  tagIdCounter = 0;
+
   constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
@@ -56,14 +61,32 @@ export class PlanFormComponent implements OnInit {
           privacy: this.plan.privacy,
           category: this.plan.category,
           durationInDays: this.plan.durationInDays,
-          description: this.plan.description
+          description: this.plan.description,
+          // A VERIF
+          tagList: this.plan.tagsList,
         });
       }
     });
+    this.form.get('tagInput')?.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(value => {
+        this.updateTagList(value);
+      });
   }
 
   submit() {
     if (this.mode == "create") {
+      for(let tag of this.tagsList) {
+        this._planService.createTag(this._authService.getId(), tag.name).subscribe({
+          next: () => {
+            console.log(tag);
+          },
+          error: (error) => {
+            this._toastrService.error("Error creating the tag : " + error.message);
+          }
+        })
+      }
+
       this._planService.create(this.form.value, this._authService.getId()).subscribe({
         next: () => {
           this._toastrService.success("Plan created successfully");
@@ -86,5 +109,24 @@ export class PlanFormComponent implements OnInit {
 
   get colorChange() {
     return this.form.invalid ? 'grey' : 'blue';
+  }
+
+  updateTagList(name: string) {
+    this._planService.getAllTagsStartingWith(name)
+      .subscribe({
+        next: response => this.tags = response.tags,
+      })
+  }
+
+  addTag(tagInput: HTMLInputElement) {
+    const tag = tagInput.value;
+    if (tag && !this.tagsList.find(t => t.name === tag)) {
+      this.tagsList.push({ id: this.tagIdCounter++, name: tag });
+      tagInput.value = '';
+    }
+  }
+
+  removeTag(tag: any) {
+    this.tagsList = this.tagsList.filter(t => t.id !== tag.id);
   }
 }

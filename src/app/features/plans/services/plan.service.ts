@@ -54,4 +54,20 @@ export class PlanService {
   public getTags(planId: number): Observable<any> {
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/getAll`, {withCredentials: true});
   }
+
+  public getAllTagsStartingWith(text?: string): Observable<any> {
+    let params = new HttpParams();
+
+    if (text)
+      params = params.set('text', text);
+
+    return this._httpClient.get<any>(`${PlanService.URL_USERS}/tags`, {withCredentials: true, params: params});
+  }
+
+  public createTag(userId: number, name: string): Observable<any> {
+    const body = { name: name, category: 'sport' };
+
+    return this._httpClient.post<any>(`${PlanService.URL_USERS}/${userId}/tags`, body, {withCredentials: true});
+  }
+
 }
