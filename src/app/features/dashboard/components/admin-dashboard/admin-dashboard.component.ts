@@ -1,16 +1,9 @@
-import { Component } from '@angular/core';
-import {DatePipe} from '@angular/common';
-import {RouterLink} from '@angular/router';
-import {TimePipe} from '../../../../shared/utils/time.pipe';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [
-    DatePipe,
-    RouterLink,
-    TimePipe
-  ],
+  imports: [],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.scss'
 })
