@@ -4,7 +4,7 @@ import {PlanService} from '../../services/plan.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {debounceTime, firstValueFrom} from 'rxjs';
+import {debounceTime} from 'rxjs';
 
 @Component({
   selector: 'app-plan-form',
@@ -44,7 +44,7 @@ export class PlanFormComponent implements OnInit {
     description: new FormControl('', [Validators.required, Validators.min(1)])
   });
 
-  tags: {id: number, name: string} [] = [];
+  tags: any [] = [];
   tagsList: {id: number, name: string} [] = [];
   tagIdCounter = 0;
   tagNames: string[] = [];
@@ -63,14 +63,16 @@ export class PlanFormComponent implements OnInit {
           category: this.plan.category,
           durationInDays: this.plan.durationInDays,
           description: this.plan.description,
+          tagInput: '',
           // A VERIF
           tagList: this.plan.tagsList,
         });
       }
     });
-    this.form.get('tagInput')?.valueChanges
+    this.form.get('name')?.valueChanges
       .pipe(debounceTime(300))
       .subscribe(value => {
+        console.log("ok")
         this.updateTagList(value);
       });
   }
@@ -78,7 +80,7 @@ export class PlanFormComponent implements OnInit {
    submit() {
       if(this.mode == "create") {
         this._planService.create({...this.form.value, tagNames: this.tagNames}, this._authService.getId()).subscribe({
-          next: (plan) => {
+          next: () => {
             this._toastrService.success("Plan created successfully");
           },
           error: (error) => {

@@ -35,18 +35,10 @@
           <input class="btn btn-primary h-100 w-50 custom-btn" type="submit" [disabled]="form.invalid" value="Save">
         </div>
       }
-<!--      <div>-->
-<!--        <input class="form-control w-25" type="text" placeholder="Tags" list="tagList" formControlName="name" id="name">-->
-<!--        <datalist id="tagList">-->
-<!--          @for (tag of tags; track tag.id) {-->
-<!--            <option [value]="tag.name"></option>-->
-<!--          }-->
-<!--        </datalist>-->
-<!--      </div>-->
     </div>
 
       <div>
-        <input #tagInput class="form-control w-25" type="text" placeholder="Tags" list="tagList" formControlName="tagInput" (keydown.enter)="addTag(tagInput)" id="tagInput">
+        <input #tagInput class="form-control w-25" type="text" placeholder="Tags" list="tagList" formControlName="name" (keydown.enter)="addTag(tagInput)" id="name" >
         <datalist id="tagList">
           @for (tag of tags; track tag.id) {
             <option [value]="tag.name"></option>
