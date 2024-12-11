@@ -12,16 +12,18 @@
           <td class="col-3">{{ user.username }}</td>
           <td class="col-6">{{ user.mail }}</td>
           <td class="col-2">{{ user.role }}</td>
-          <td>
-            <app-user-ban class="bg-transparent"
-              [userIsBanned]="user.isBanned"
-              (userIsBannedChange)="onUserBanStatusChange(user.id, $event)"
-              (deleteUserPlans)="deleteAllPlansOfUser(user.id, $event)"
-              (deleteUserPrograms)="deleteAllProgramsOfUser(user.id, $event)"
-              (deleteUserFeedbacks)="deleteAllFeedbacksOfUser(user.id, $event)"
-            >
-            </app-user-ban>
-          </td>
+          @if (getRoleIsAdmin()) {
+            <td>
+              <app-user-ban class="bg-transparent"
+                            [userIsBanned]="user.isBanned"
+                            (userIsBannedChange)="onUserBanStatusChange(user.id, $event)"
+                            (deleteUserPlans)="deleteAllPlansOfUser(user.id, $event)"
+                            (deleteUserPrograms)="deleteAllProgramsOfUser(user.id, $event)"
+                            (deleteUserFeedbacks)="deleteAllFeedbacksOfUser(user.id, $event)"
+              >
+              </app-user-ban>
+            </td>
+          }
         </tr>
       }
     </table>

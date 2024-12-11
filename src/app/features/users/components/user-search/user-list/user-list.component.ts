@@ -8,6 +8,7 @@ import {UserBanComponent} from './user-ban/user-ban.component';
 import {UserEventBusService} from '../../../utils/user-event-bus.service';
 import {Subscription} from 'rxjs';
 import {UserBanDeleteChoice} from '../../../utils/user-ban-delete-choice';
+import {AuthService} from '../../../../../core/auth/services/auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -27,7 +28,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   @Output()
   userIsBanned: EventEmitter<UserBanCommand> = new EventEmitter()
 
-  constructor(private _userService: UserService, private _toastrService: ToastrService, private _userBanEventBus: UserEventBusService) {
+  constructor(private _userService: UserService, private _toastrService: ToastrService, private _userBanEventBus: UserEventBusService, private _authService: AuthService) {
   }
 
   ngOnInit() {
@@ -44,6 +45,10 @@ export class UserListComponent implements OnInit, OnDestroy {
     if (this._userBanStatusSubscription) {
       this._userBanStatusSubscription.unsubscribe();
     }
+  }
+
+  getRoleIsAdmin(): boolean {
+    return this._authService.isAdmin();
   }
 
   onUserBanStatusChange(userId: number, isBanned: boolean) {
