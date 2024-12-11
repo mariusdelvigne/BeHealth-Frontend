@@ -1,9 +1,10 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {NavigationEnd, Router, RouterLink} from "@angular/router";
 import {NotificationSearchOutput} from '../../../shared/utils/notification-search-output';
 import {NotificationService} from '../../../shared/services/notification.service';
 import {AuthService} from '../../auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-notifications-dropdown-view',
@@ -18,18 +19,28 @@ export class NotificationsDropdownViewComponent implements OnInit {
   notificationsNotRead: NotificationSearchOutput[] = [];
   showNotifications = false;
 
-  constructor(private _notificationService: NotificationService, private _authService: AuthService, private _toastrService: ToastrService) {}
+  constructor(private _notificationService: NotificationService, private _authService: AuthService, private _toastrService: ToastrService, private _router: Router) {}
 
   ngOnInit() {
+    this.loadNotifications();
+
+    this._router.events.pipe(
+        filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.loadNotifications();
+    });
+  }
+
+  loadNotifications() {
     this._notificationService.getNotificationReadByUserId(this._authService.getId(), false).subscribe({
       next: (notifications) => {
         this.notificationsNotRead = notifications.notifications;
       },
       error: (error) => {
         console.log(error);
-        this._toastrService.error("Error : "+ error.message);
+        this._toastrService.error("Error : " + error.message);
       }
-    })
+    });
   }
 
   toggleNotifications() {

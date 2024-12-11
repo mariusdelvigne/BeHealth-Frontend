@@ -1,8 +1,10 @@
 <form [formGroup]="formSearch" class="row gap-2 justify-content-center">
-  <label for="category" class="form-label">Filter notifications by:</label>
+  <label for="category" class="form-label">
+    <h4>Filter notifications by :</h4>
+  </label>
 
   <div>
-    Category:
+    <h5>Category:</h5>
     <select id="category" class="dropdown form-select" formControlName="category">
       @for (category of allCategories; track $index) {
         <option [value]="category.value">
@@ -13,7 +15,7 @@
   </div>
 
   <div>
-    Is Read:
+    <h5>Is Read:</h5>
     <select id="read" class="dropdown form-select" formControlName="isRead">
       <option value="all">All</option>
       <option value="read">Read</option>
