@@ -50,4 +50,10 @@ export class UserBanModalDeleteChoiceComponent {
     };
     this._userBanEventBus.publish(eventDeleted);
   }
+
+  deleteUserAll() {
+    this.deleteUserPlan();
+    this.deleteUserProgram();
+    this.deleteUserFeedback();
+  }
 }

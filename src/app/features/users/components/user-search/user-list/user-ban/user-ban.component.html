@@ -1,3 +1,8 @@
-<button type="button" class="custom-btn rounded-3" (click)="userBan()">
-  {{ userIsBanned ? 'Unban' : 'Ban' }}
-</button>
+<div class="rounded-3">
+  <button type="button" class="custom-btn rounded-3" (click)="userBan()">
+    {{ userIsBanned ? 'Unban' : 'Ban' }}
+  </button>
+  <button type="button" class="custom-btn rounded-3" (click)="openModal()">
+    Clear
+  </button>
+</div>
