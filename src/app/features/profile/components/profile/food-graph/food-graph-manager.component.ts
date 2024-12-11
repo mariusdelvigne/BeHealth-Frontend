@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {DatedValue} from '../../../utils/DatedValue';
 
 @Component({
   selector: 'app-food-scatter-graph',
@@ -32,5 +33,4 @@ export class FoodGraphManagerComponent {
   goToGraph() {
     this._router.navigate([`/profile/food-graph-manager/${this.graphType}-graph`, this.dataType]);
   }
-
 }

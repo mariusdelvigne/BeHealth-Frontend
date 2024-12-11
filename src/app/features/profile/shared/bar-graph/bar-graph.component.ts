@@ -47,10 +47,12 @@ export class BarGraphComponent implements OnInit {
 
     // week start => Monday
     monday.setDate(monday.getDate() + diff);
-    this.startDate =  monday;
+    monday.setHours(1, 0, 0, 0);
+    this.startDate = monday;
 
     // week end => Sunday
     this.endDate.setDate(this.startDate.getDate() + 6);
+    this.endDate.setHours(24, 59, 59, 999);
 
     this.loadOptions()
     this.loadData();
@@ -103,6 +105,7 @@ export class BarGraphComponent implements OnInit {
     this.endDate= new Date(this.endDate.setDate(this.endDate.getDate() + (next ? 7 : -7)));
 
     this.loadData();
+    this.loadOptions();
   }
 
   updateChart() {

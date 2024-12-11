@@ -8,6 +8,7 @@ import {UserFoodService} from '../../../../shared/services/user-food.service';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {firstValueFrom} from 'rxjs';
+import {GraphService} from '../services/graph.service';
 
 @Component({
   selector: 'app-stacked-bar-graph',
@@ -30,7 +31,7 @@ export class StackedBarGraphComponent implements OnInit {
   options!: EChartsOption;
   updateOptions!: EChartsOption;
 
-  constructor(private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
+  constructor(private _graphService: GraphService, private _datePipe: DatePipe, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
   }
 
   ngOnInit(): void {
@@ -47,10 +48,12 @@ export class StackedBarGraphComponent implements OnInit {
 
     // week start => Monday
     monday.setDate(monday.getDate() + diff);
+    monday.setHours(1, 0, 0, 0);
     this.startDate =  monday;
 
     // week end => Sunday
     this.endDate.setDate(this.startDate.getDate() + 6);
+    this.endDate.setHours(24, 59, 59, 999);
 
     this.loadOptions()
     this.loadData();
@@ -104,29 +107,11 @@ export class StackedBarGraphComponent implements OnInit {
     this.endDate= new Date(this.endDate.setDate(this.endDate.getDate() + (next ? 7 : -7)));
 
     this.loadData();
-  }
-
-  groupDataByDayAndFood(data: DatedValue[]) {
-    // Example : "Apple": { Mon: 100, Tue: 0, Wed: 450, Thu: 0, Fri: 0, Sat: 0, Sun: 0 }
-    const grouped: { [food: string]: { [day: string]: number } } = {};
-
-    data.forEach(d => {
-      const day = d.date.toLocaleString('en-US', { weekday: 'short' });
-
-      // Initialize the food group if it doesn't exist
-      if (!grouped[d.food]) {
-        grouped[d.food] = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
-      }
-      // Add the value of the userFood to the current value
-      // To the specific food and day
-      grouped[d.food][day] += d.value;
-    });
-
-    return grouped;
+    this.loadOptions();
   }
 
   updateChart() {
-    const groupedData = this.groupDataByDayAndFood(this.data);
+    const groupedData = this._graphService.groupDataByDayAndFood(this.data);
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
     this.updateOptions = {
@@ -144,7 +129,7 @@ export class StackedBarGraphComponent implements OnInit {
       tooltip: {
         trigger: 'item',
         formatter: (params: any) => {
-          return `${params.value}${this.dataValues.measureUnit}`
+          return `${params.value.toFixed(2)}${this.dataValues.measureUnit}`
         }
       },
     };

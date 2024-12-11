@@ -43,9 +43,9 @@ export class ScatterGraphComponent implements OnInit {
     });
 
     this.startDate.setDate(1);
-    this.startDate.setHours(0, 0, 0, 0);
+    this.startDate.setHours(1, 0, 0, 0);
     this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0,
-      23, 59, 59, 999);
+      24, 59, 59, 999);
 
     this.loadOptions()
     this.loadData();
@@ -104,7 +104,9 @@ export class ScatterGraphComponent implements OnInit {
       23, 59, 59, 999);
 
     this.loadData();
+    this.loadOptions();
   }
+
   updateChart() {
     if (this.chart !== undefined) {
       const series = this.options.series as SeriesOption;
@@ -153,7 +155,7 @@ export class ScatterGraphComponent implements OnInit {
         formatter: (params: any) => {
           const data = params[0].data;
           return `<div class="text-center">
-                    <div><b>${data[1]}${this.dataValues.measureUnit}</b></div>
+                    <div><b>${data[1].toFixed(2)}${this.dataValues.measureUnit}</b></div>
                     <div>${this._datePipe.transform(data[0], 'd/M/y')}</div>
                 </div>`;
         },
