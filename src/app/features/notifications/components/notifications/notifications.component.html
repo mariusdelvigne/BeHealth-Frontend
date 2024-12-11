@@ -2,5 +2,5 @@
   <h2>Here are all you notifications !</h2>
   <h3>You can filter them or search one of them.</h3>
 </div>
-<app-notification-filter-form (selectedCategory)="filteredByCategory($event)"></app-notification-filter-form>
-<app-notification-list></app-notification-list>
+<app-notification-filter-form (filtersNotification)="applyFiltersNotifications($event)"></app-notification-filter-form>
+<app-notification-list [notifications]="notifications" ></app-notification-list>

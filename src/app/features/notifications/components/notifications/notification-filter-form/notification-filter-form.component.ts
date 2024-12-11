@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {MdbDropdownModule} from 'mdb-angular-ui-kit/dropdown';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NotificationGetByCategoryCommand} from '../../../utils/notification-get-by-category-command';
 
 @Component({
   selector: 'app-notification-filter-form',
@@ -14,12 +13,11 @@ import {NotificationGetByCategoryCommand} from '../../../utils/notification-get-
   styleUrls: ['./notification-filter-form.component.css']
 })
 export class NotificationFilterFormComponent {
-  @Output() selectedCategory: EventEmitter<NotificationGetByCategoryCommand> = new EventEmitter();
-  @Output() selectedRead: EventEmitter<string> = new EventEmitter();
+  @Output() filtersNotification: EventEmitter<{ category: string, isRead: string }> = new EventEmitter();
 
   formSearch: FormGroup = new FormGroup({
-    category: new FormControl('', [Validators.required]),
-    isRead: new FormControl('', [Validators.required]) // Corrected name here
+    category: new FormControl('All categories', [Validators.required]),
+    isRead: new FormControl('all', [Validators.required])
   });
 
   allCategories: string[] = [
@@ -27,16 +25,10 @@ export class NotificationFilterFormComponent {
   ];
 
   filterNotifications() {
-    const selectedCategory = this.formSearch.get('category')?.value;
-    const selectedRead = this.formSearch.get('isRead')?.value;
+    const selectedCategory = this.formSearch.get('category')?.value || "all";
+    const selectedRead = this.formSearch.get('isRead')?.value || "all";
 
-    console.log('Filtered by category:', selectedCategory, 'and read:', selectedRead);
-
-    if (selectedCategory) {
-      this.selectedCategory.emit(selectedCategory);
-    }
-    if (selectedRead) {
-      this.selectedRead.emit(selectedRead);
-    }
+    console.log('Filters changed:', { category: selectedCategory, isRead: selectedRead });
+    this.filtersNotification.emit({ category: selectedCategory, isRead: selectedRead });
   }
 }

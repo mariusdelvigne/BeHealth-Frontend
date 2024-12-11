@@ -1,17 +1,17 @@
 <form [formGroup]="formSearch" class="row gap-2 justify-content-center">
   <label for="category" class="form-label">Filter notifications by:</label>
 
-  <!-- Dropdown for Categories -->
   <div>
     Category:
     <select id="category" class="dropdown form-select" formControlName="category">
       @for (category of allCategories; track $index) {
-        <option [value]="category">{{ category }}</option>
+        <option [value]="category">
+          {{ category }}
+        </option>
       }
     </select>
   </div>
 
-  <!-- Dropdown for Read Status -->
   <div>
     Read:
     <select id="read" class="dropdown form-select" formControlName="isRead">

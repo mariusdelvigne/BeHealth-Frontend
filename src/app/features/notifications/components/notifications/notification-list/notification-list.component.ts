@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NotificationService} from '../../../../../shared/services/notification.service';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {NotificationSearchOutput} from '../../../../../shared/utils/notification-search-output';
@@ -15,7 +15,7 @@ import {RouterLink} from '@angular/router';
   styleUrl: './notification-list.component.css'
 })
 export class NotificationListComponent implements OnInit {
-  notifications: NotificationSearchOutput[] = [];
+  @Input() notifications: NotificationSearchOutput[] = [];
 
   constructor(private _notificationService: NotificationService, private _authService: AuthService, private _toastrService: ToastrService) {}
 
