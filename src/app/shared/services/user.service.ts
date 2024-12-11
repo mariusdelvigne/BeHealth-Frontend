@@ -7,6 +7,7 @@ import {UserCreateOutput} from '../../core/auth/utils/user-create-output';
 import {UserSearchQuery} from '../utils/user-search-query';
 import {UserUpdateCommand} from '../utils/user-update-command';
 import {UserBanCommand} from '../utils/user-ban-command';
+import {UserPasswordCreateCommand} from '../utils/user-password-create-command';
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,9 @@ export class UserService {
 
   public getCurrentData(userId: number): Observable<any> {
     return this._httpClient.get<any>(`${UserService.URL}/${userId}/data`, {withCredentials: true,});
+  }
+
+  public createPassword(userId: number, command: UserPasswordCreateCommand): Observable<void> {
+    return this._httpClient.post<void>(`${UserService.URL}/${userId}/passwords`, command, {withCredentials: true});
   }
 }

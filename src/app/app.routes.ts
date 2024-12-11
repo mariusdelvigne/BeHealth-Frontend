@@ -55,6 +55,9 @@ import {DashboardComponent} from './features/dashboard/components/dashboard/dash
 import {
   NotificationReadComponent
 } from './features/notifications/components/notifications/notification-list/notification-read/notification-read.component';
+import {
+  AccountChangePasswordComponent
+} from './features/account/components/account/account-change-password/account-change-password.component';
 
 export const routes: Routes = [
   {
@@ -106,6 +109,10 @@ export const routes: Routes = [
           {
             path: '',
             component: AccountInformationComponent,
+          },
+          {
+            path: 'password',
+            component: AccountChangePasswordComponent,
           },
           {
             path: 'modify',
