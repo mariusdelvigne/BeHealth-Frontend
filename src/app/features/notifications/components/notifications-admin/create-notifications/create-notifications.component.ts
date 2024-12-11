@@ -39,6 +39,10 @@ export class CreateNotificationsComponent implements OnInit {
     this._userService.getAllUsers().subscribe({
       next: (user) => {
         this.users = user.users;
+
+        if (this.users.length > 0) {
+          this.formCreateNotification.get('user')?.setValue(this.users[0].id);
+        }
       },
       error: (error) => {
         this._toastrService.error('Error :' + error.message);
