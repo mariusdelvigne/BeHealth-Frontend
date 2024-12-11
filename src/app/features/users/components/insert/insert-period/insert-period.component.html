@@ -1,13 +1,13 @@
 <form [formGroup]="form" (submit)="emitUserPeriod()" class="m-3 p-3 rounded" [@colorChange]="colorChange">
   <h3>Insert periods</h3>
   <div class="row">
-    <label for="startDatetime" class="col-sm-2 col-form-label fw-bold">Start</label>
+    <label for="startDate" class="col-sm-2 col-form-label fw-bold">Start</label>
     <div class="col-sm-4">
-      <input class="form-control w-100" type="datetime-local" formControlName="startDatetime" id="startDatetime">
+      <input class="form-control w-100" type="datetime-local" formControlName="startDate" id="startDate">
     </div>
-    <label for="endDatetime" class="col-sm-2 col-form-label fw-bold">End</label>
+    <label for="endDate" class="col-sm-2 col-form-label fw-bold">End</label>
     <div class="col-sm-4">
-      <input class="form-control w-100" type="datetime-local" formControlName="endDatetime" id="endDatetime">
+      <input class="form-control w-100" type="datetime-local" formControlName="endDate" id="endDate">
     </div>
   </div>
   <input class="btn btn-primary w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
