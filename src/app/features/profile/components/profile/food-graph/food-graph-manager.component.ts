@@ -32,5 +32,4 @@ export class FoodGraphManagerComponent {
   goToGraph() {
     this._router.navigate([`/profile/food-graph-manager/${this.graphType}-graph`, this.dataType]);
   }
-
 }

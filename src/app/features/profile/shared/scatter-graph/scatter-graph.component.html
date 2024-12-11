@@ -3,4 +3,4 @@
   <h3 class="m-0 ms-3 me-3">{{startDate | date: 'M-y'}}</h3>
   <span class="col m-auto"><input type="button" class="page-btn custom-btn rounded-2 p-2" value="Next" (click)="changeMonth(true)"></span>
 </div>
-<div echarts [options]="options" (chartInit)="onChartInit($event)"></div>
+<div echarts [options]="options" [merge]="updateOptions"></div>
