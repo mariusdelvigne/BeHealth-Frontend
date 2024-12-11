@@ -59,6 +59,15 @@ import {
 } from './features/account/components/account/account-change-password/account-change-password.component';
 import {StackedBarGraphComponent} from './features/profile/shared/stacked-bar-graph/stacked-bar-graph.component';
 import {AdminDashboardComponent} from './features/dashboard/components/admin-dashboard/admin-dashboard.component';
+import {
+  NotificationsAdminComponent
+} from './features/notifications/components/notifications-admin/notifications-admin.component';
+import {
+  CreateNotificationsComponent
+} from './features/notifications/components/notifications-admin/create-notifications/create-notifications.component';
+import {
+  ViewAllNotificationsComponent
+} from './features/notifications/components/notifications-admin/view-all-notifications/view-all-notifications.component';
 
 export const routes: Routes = [
   {
@@ -407,5 +416,22 @@ export const routes: Routes = [
     path: 'notifications-reads/:id',
     component: NotificationReadComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: 'notifications-admin',
+    component: NotificationsAdminComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'create',
+        component: CreateNotificationsComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'view-all',
+        component: ViewAllNotificationsComponent,
+        canActivate: [authGuard],
+      }
+    ]
   }
 ]
