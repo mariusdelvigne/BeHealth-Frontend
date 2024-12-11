@@ -6,7 +6,15 @@ import {provideHttpClient} from '@angular/common/http';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideToastr} from 'ngx-toastr';
 import {provideEcharts} from 'ngx-echarts';
-import {DatePipe} from '@angular/common';
+import {DatePipe, I18nPluralPipe} from '@angular/common';
+import {
+  CalendarA11y,
+  CalendarDateFormatter,
+  CalendarEventTitleFormatter,
+  CalendarUtils,
+  DateAdapter
+} from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +24,17 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideToastr(),
     provideEcharts(),
-    DatePipe
+    DatePipe,
+    CalendarDateFormatter,
+    CalendarUtils,
+    CalendarA11y,
+    I18nPluralPipe,
+    CalendarEventTitleFormatter,
+
+
+    {
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    },
   ]
 };

@@ -59,8 +59,9 @@ import {
 } from './features/account/components/account/account-change-password/account-change-password.component';
 import {StackedBarGraphComponent} from './features/profile/shared/stacked-bar-graph/stacked-bar-graph.component';
 import {
-  PeriodGraphManagerComponent
-} from './features/profile/components/profile/period-graph-manager/period-graph-manager.component';
+  PeriodDataManagerComponent
+} from './features/profile/components/profile/period-data-manager/period-data-manager.component';
+import {PeriodCalendarComponent} from './features/profile/shared/period-calendar/period-calendar.component';
 
 export const routes: Routes = [
   {
@@ -369,12 +370,12 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'period-graph-manager',
-        component: PeriodGraphManagerComponent,
+        path: 'period-data-manager',
+        component: PeriodDataManagerComponent,
         children: [
           {
-            path: 'scatter-graph/:dataType',
-            component: ScatterGraphComponent,
+            path: 'period-calendar',
+            component: PeriodCalendarComponent,
           },
         ]
       },

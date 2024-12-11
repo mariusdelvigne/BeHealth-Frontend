@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PeriodGraphManagerComponent } from './period-graph-manager.component';
+import { PeriodDataManagerComponent } from './period-data-manager.component';
 
 describe('PeriodGraphComponent', () => {
-  let component: PeriodGraphManagerComponent;
-  let fixture: ComponentFixture<PeriodGraphManagerComponent>;
+  let component: PeriodDataManagerComponent;
+  let fixture: ComponentFixture<PeriodDataManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PeriodGraphManagerComponent]
+      imports: [PeriodDataManagerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PeriodGraphManagerComponent);
+    fixture = TestBed.createComponent(PeriodDataManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
