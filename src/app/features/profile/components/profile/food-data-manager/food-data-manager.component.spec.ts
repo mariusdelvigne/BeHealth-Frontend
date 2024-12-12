@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FoodGraphManagerComponent } from './food-graph-manager.component';
+import { FoodDataManagerComponent } from './food-data-manager.component';
 
 describe('FoodGraphComponent', () => {
-  let component: FoodGraphManagerComponent;
-  let fixture: ComponentFixture<FoodGraphManagerComponent>;
+  let component: FoodDataManagerComponent;
+  let fixture: ComponentFixture<FoodDataManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FoodGraphManagerComponent]
+      imports: [FoodDataManagerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FoodGraphManagerComponent);
+    fixture = TestBed.createComponent(FoodDataManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -44,7 +44,7 @@ import {authGuard} from './auth-guards/auth.guard';
 import {AuthService} from './core/auth/services/auth.service';
 import {AppComponent} from './app.component';
 import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
-import {FoodGraphManagerComponent} from './features/profile/components/profile/food-graph-manager/food-graph-manager.component';
+import {FoodDataManagerComponent} from './features/profile/components/profile/food-data-manager/food-data-manager.component';
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
 import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/scatter-graph.component';
@@ -372,8 +372,8 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'food-graph-manager',
-        component: FoodGraphManagerComponent,
+        path: 'food-data-manager',
+        component: FoodDataManagerComponent,
         children: [
           {
             path: 'scatter-graph/:dataType',
@@ -392,6 +392,16 @@ export const routes: Routes = [
           {
             path: 'period-calendar',
             component: PeriodCalendarComponent,
+          },
+        ]
+      },
+      {
+        path: 'sleep-data-manager',
+        component: FoodDataManagerComponent,
+        children: [
+          {
+            path: 'stacked-bar-graph/:dataType',
+            component: StackedBarGraphComponent,
           },
         ]
       },
