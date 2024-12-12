@@ -59,20 +59,20 @@ import {
 } from './features/account/components/account/account-change-password/account-change-password.component';
 import {StackedBarGraphComponent} from './features/profile/shared/stacked-bar-graph/stacked-bar-graph.component';
 import {AdminDashboardComponent} from './features/dashboard/components/admin-dashboard/admin-dashboard.component';
-import {
-  NotificationsAdminComponent
-} from './features/notifications/components/notifications-admin/notifications-admin.component';
-import {
-  CreateNotificationsComponent
-} from './features/notifications/components/notifications-admin/create-notifications/create-notifications.component';
-import {
-  ViewAllNotificationsComponent
-} from './features/notifications/components/notifications-admin/view-all-notifications/view-all-notifications.component';
 import {adminGuard} from './auth-guards/admin.guard';
 import {
   PeriodDataManagerComponent
 } from './features/profile/components/profile/period-data-manager/period-data-manager.component';
 import {PeriodCalendarComponent} from './features/profile/shared/period-calendar/period-calendar.component';
+import {
+  NotificationsAdminComponent
+} from './features/amdin-communication/components/notifications-admin/notifications-admin.component';
+import {
+  CreateNotificationsComponent
+} from './features/amdin-communication/components/notifications-admin/create-notifications/create-notifications.component';
+import {
+  ViewAllNotificationsComponent
+} from './features/amdin-communication/components/notifications-admin/view-all-notifications/view-all-notifications.component';
 
 export const routes: Routes = [
   {
@@ -88,7 +88,7 @@ export const routes: Routes = [
       {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,
-        canActivate: [authGuard],
+        canActivate: [adminGuard],
       },
       {
         path: '',

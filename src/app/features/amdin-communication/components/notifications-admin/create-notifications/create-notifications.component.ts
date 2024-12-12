@@ -4,7 +4,7 @@ import {UserService} from '../../../../../shared/services/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
 import {NotificationService} from '../../../../../shared/services/notification.service';
-import {NotificationCreateCommand} from '../../../utils/notification-create-command';
+import {NotificationCreateCommand} from '../../../../notifications/utils/notification-create-command';
 
 @Component({
   selector: 'app-create-notifications',

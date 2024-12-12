@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {NotificationsGetAllOutput} from '../../../utils/notifications-get-all-output';
 import {NotificationService} from '../../../../../shared/services/notification.service';
 import {ToastrService} from 'ngx-toastr';
 import {UserService} from '../../../../../shared/services/user.service';
+import {NotificationsGetAllOutput} from '../../../../notifications/utils/notifications-get-all-output';
 
 @Component({
   selector: 'app-view-all-notifications',
