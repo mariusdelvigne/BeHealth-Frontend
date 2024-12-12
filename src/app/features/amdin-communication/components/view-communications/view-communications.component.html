@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center align-items-center form-check form-switch toggle-admin-dashboard">
+  <input
+    mdbCheckbox
+    class="form-check-input large-toggle"
+    type="checkbox"
+    id="communicationViewChecked"
+    [checked]="false"
+    (change)="viewAllGlobalMessages = !viewAllGlobalMessages"
+  />
+  <label class="form-check-label font-weight-bold" for="communicationViewChecked">
+    Global Messages
+  </label>
+</div>
+@if (viewAllGlobalMessages) {
+  <app-view-all-global-message></app-view-all-global-message>
+} @else {
+  <app-view-all-notifications></app-view-all-notifications>
+}

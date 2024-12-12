@@ -44,7 +44,9 @@ import {authGuard} from './auth-guards/auth.guard';
 import {AuthService} from './core/auth/services/auth.service';
 import {AppComponent} from './app.component';
 import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
-import {FoodGraphManagerComponent} from './features/profile/components/profile/food-graph-manager/food-graph-manager.component';
+import {
+  FoodGraphManagerComponent
+} from './features/profile/components/profile/food-graph-manager/food-graph-manager.component';
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
 import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/scatter-graph.component';
@@ -65,14 +67,23 @@ import {
 } from './features/profile/components/profile/period-data-manager/period-data-manager.component';
 import {PeriodCalendarComponent} from './features/profile/shared/period-calendar/period-calendar.component';
 import {
-  NotificationsAdminComponent
-} from './features/amdin-communication/components/notifications-admin/notifications-admin.component';
-import {
   CreateNotificationsComponent
-} from './features/amdin-communication/components/notifications-admin/create-notifications/create-notifications.component';
+} from './features/amdin-communication/components/create-communications/create-notifications/create-notifications.component';
 import {
   ViewAllNotificationsComponent
-} from './features/amdin-communication/components/notifications-admin/view-all-notifications/view-all-notifications.component';
+} from './features/amdin-communication/components/view-communications/view-all-notifications/view-all-notifications.component';
+import {
+  ViewCommunicationsComponent
+} from './features/amdin-communication/components/view-communications/view-communications.component';
+import {
+  CreateCommunicationsComponent
+} from './features/amdin-communication/components/create-communications/create-communications.component';
+import {
+  ViewAllGlobalMessageComponent
+} from './features/amdin-communication/components/view-communications/view-all-global-message/view-all-global-message.component';
+import {
+  CreateGlobalMessagesComponent
+} from './features/amdin-communication/components/create-communications/create-global-messages/create-global-messages.component';
 
 export const routes: Routes = [
   {
@@ -433,20 +444,33 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'notifications-admin',
-    component: NotificationsAdminComponent,
+    path: 'view-communication-admin',
+    component: ViewCommunicationsComponent,
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'view-all-notifications',
+    component: ViewAllNotificationsComponent,
     canActivate: [adminGuard],
-    children: [
-      {
-        path: 'create',
-        component: CreateNotificationsComponent,
-        canActivate: [adminGuard],
-      },
-      {
-        path: 'view-all',
-        component: ViewAllNotificationsComponent,
-        canActivate: [adminGuard],
-      }
-    ]
+  },
+  {
+    path: 'view-all-global-message',
+    component: ViewAllGlobalMessageComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'create-communication-admin',
+    component: CreateCommunicationsComponent,
+    canActivate: [adminGuard]
+  },
+  {
+    path: 'create-notification',
+    component: CreateNotificationsComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'create-global-message',
+    component: CreateGlobalMessagesComponent,
+    canActivate: [adminGuard],
   }
 ]
