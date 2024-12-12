@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {MdbModalRef} from 'mdb-angular-ui-kit/modal';
 import {UserBanCustomEvent} from '../../../../../utils/user-ban-custom-event';
 import {UserEventBusService} from '../../../../../utils/user-event-bus.service';
@@ -19,7 +19,9 @@ export class UserBanModalDeleteChoiceComponent {
   @Output() deleteUserPrograms = new EventEmitter<boolean>();
   @Output() deleteUserFeedbacks = new EventEmitter<boolean>();
 
-  constructor(private _userBanEventBus: UserEventBusService, public modalRef: MdbModalRef<UserBanModalDeleteChoiceComponent>) { }
+  private _userBanEventBus: UserEventBusService = inject(UserEventBusService);
+
+  constructor(public modalRef: MdbModalRef<UserBanModalDeleteChoiceComponent>) { }
 
   deleteUserPlan() {
     console.log('Delete User Plan button clicked.');

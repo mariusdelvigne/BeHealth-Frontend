@@ -1,7 +1,1 @@
-<form [formGroup]="formSearch" (submit)="searchUser()" class="row gap-2 justify-content-center">
-  <input type="text" formControlName="username" class="col-6 rounded-3" placeholder="Username">
-  <button type="submit" class="custom-btn rounded-3 col-3" [disabled]="formSearch.invalid"
-          (click)="onButtonClick($event)">
-    Search
-  </button>
-</form>
+<input type="text"  class="col-6 rounded-3" placeholder="Username" [(ngModel)]="search" (input)="debouncedSearchUser()">
