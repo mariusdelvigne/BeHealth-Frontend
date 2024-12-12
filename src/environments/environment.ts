@@ -15,4 +15,5 @@ export const apis = {
   NUTRITION_CALCULATOR_URL: "",
   SPORT_CALCULATOR_URL: "",
   NOTIFICATIONS_URL: "",
+  GLOBAL_MESSAGES_URL: "",
 };
