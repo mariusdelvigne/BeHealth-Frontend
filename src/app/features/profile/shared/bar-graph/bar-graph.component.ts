@@ -5,22 +5,21 @@ import {GraphData} from '../utils/graph-data';
 import {EChartsOption} from 'echarts';
 import {GraphService} from '../services/graph.service';
 import {ActivatedRoute} from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
 import {firstValueFrom} from 'rxjs';
 import {UserSleepService} from '../../../../shared/services/user-sleep.service';
 import {SleepInfo} from '../utils/sleep-info';
 
 @Component({
-  selector: 'app-stacked-horizontal-bar-graph',
+  selector: 'app-bar-graph',
   standalone: true,
     imports: [
         DatePipe,
         NgxEchartsDirective
     ],
-  templateUrl: './stacked-horizontal-bar-graph.component.html',
-  styleUrl: './stacked-horizontal-bar-graph.component.scss'
+  templateUrl: './bar-graph.component.html',
+  styleUrl: './bar-graph.component.scss'
 })
-export class StackedHorizontalBarGraphComponent implements OnInit {
+export class BarGraphComponent implements OnInit {
   dataValues: GraphData = {yName: '', seriesName: '', measureUnit: ''};
   startDate: Date = new Date();
   endDate: Date = new Date();
@@ -30,7 +29,7 @@ export class StackedHorizontalBarGraphComponent implements OnInit {
   options!: EChartsOption;
   updateOptions!: EChartsOption;
 
-  constructor(private _graphService: GraphService, private _userSleepService: UserSleepService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
+  constructor(private _graphService: GraphService, private _userSleepService: UserSleepService, private _route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -88,7 +87,7 @@ export class StackedHorizontalBarGraphComponent implements OnInit {
   }
 
   updateChart() {
-    const groupedData = this._graphService.groupDataByDayAndSleep(this.data, this.endDate);
+    const groupedData = this._graphService.groupDataByDayAndSleep(this.data);
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
     this.updateOptions = {
@@ -107,7 +106,7 @@ export class StackedHorizontalBarGraphComponent implements OnInit {
       tooltip: {
         trigger: 'item',
         formatter: (params: any) => {
-          return `${params.value.toFixed(2)} hours`;
+          return `${params.value} hours`;
         }
       },
     };

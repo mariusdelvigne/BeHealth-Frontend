@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StackedHorizontalBarGraphComponent } from './stacked-horizontal-bar-graph.component';
+import { BarGraphComponent } from './bar-graph.component';
 
 describe('StackedHorizontalBarGraphComponent', () => {
-  let component: StackedHorizontalBarGraphComponent;
-  let fixture: ComponentFixture<StackedHorizontalBarGraphComponent>;
+  let component: BarGraphComponent;
+  let fixture: ComponentFixture<BarGraphComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StackedHorizontalBarGraphComponent]
+      imports: [BarGraphComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(StackedHorizontalBarGraphComponent);
+    fixture = TestBed.createComponent(BarGraphComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

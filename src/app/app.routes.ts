@@ -74,8 +74,8 @@ import {
 } from './features/profile/components/profile/period-data-manager/period-data-manager.component';
 import {PeriodCalendarComponent} from './features/profile/shared/period-calendar/period-calendar.component';
 import {
-  StackedHorizontalBarGraphComponent
-} from './features/profile/shared/stacked-horizontal-bar-graph/stacked-horizontal-bar-graph.component';
+  BarGraphComponent
+} from './features/profile/shared/bar-graph/bar-graph.component';
 import {
   SleepDataManagerComponent
 } from './features/profile/components/profile/sleep-data-manager/sleep-data-manager.component';
@@ -406,8 +406,8 @@ export const routes: Routes = [
         component: SleepDataManagerComponent,
         children: [
           {
-            path: 'stacked-horizontal-bar-graph',
-            component: StackedHorizontalBarGraphComponent,
+            path: 'bar-graph',
+            component: BarGraphComponent,
           },
         ]
       },

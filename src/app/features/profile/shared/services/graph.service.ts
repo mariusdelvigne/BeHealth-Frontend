@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {DatedValue} from '../../utils/DatedValue';
 import {DatePipe} from '@angular/common';
 import {GraphData} from '../utils/graph-data';
@@ -10,18 +10,19 @@ import {SleepInfo} from '../utils/sleep-info';
 })
 export class GraphService {
 
-  constructor(private _datePipe: DatePipe, private _toastrService: ToastrService) { }
+  constructor(private _datePipe: DatePipe, private _toastrService: ToastrService) {
+  }
 
   groupDataByDayAndFood(data: DatedValue[]) {
     // Example : "Apple": { Mon: 100, Tue: 0, Wed: 450, Thu: 0, Fri: 0, Sat: 0, Sun: 0 }
     const grouped: { [food: string]: { [day: string]: number } } = {};
 
     data.forEach(d => {
-      const day = d.date.toLocaleString('en-US', { weekday: 'short' });
+      const day = d.date.toLocaleString('en-US', {weekday: 'short'});
 
       // Initialize the food group if it doesn't exist
       if (!grouped[d.food]) {
-        grouped[d.food] = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
+        grouped[d.food] = {Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0};
       }
       // Add the value of the userFood to the current value
       // to the specific food and day
@@ -31,39 +32,23 @@ export class GraphService {
     return grouped;
   }
 
-  groupDataByDayAndSleep(data: SleepInfo[], endWeek: Date) {
+  groupDataByDayAndSleep(data: SleepInfo[]) {
     // { 'Sleeping': { Mon: 8, Tue: 7 }}
     const grouped: { [phase: string]: { [day: string]: number } } = {
-      'Sleeping' : { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0},
+      'Sleeping': {Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0},
     };
 
     data.forEach(sleep => {
-      let startTime = new Date(sleep.startDatetime);
-      let endTime = new Date(sleep.endDatetime);
 
-      while (startTime < endTime) {
-        const day = startTime.toLocaleString('en-US', { weekday: 'short' });
+      const day = sleep.startDatetime.toLocaleString('en-US', {weekday: 'short'});
 
-        // Hours before next day
-        const nextDay = new Date(startTime);
-        nextDay.setHours(24, 0, 0, 0);
+      const duration = sleep.endDatetime.getTime() - sleep.startDatetime.getTime();
 
-        // Example : sleep (22PM, 6AM) MIN(Tomorrow 6AM, Tomorrow 24PM) => 24 PM - 22) => 2 hours for this day
-        const duration = Math.min(endTime.getTime(), nextDay.getTime()) - startTime.getTime();
+      // Convert Date => hours
+      const hours = duration / (1000 * 60 * 60);
 
-        // Convert Date => hours
-        const hours = duration / (1000 * 60 * 60);
-
-        // Add hours to the sleep phase of this day
-        grouped['Sleeping'][day] += hours;
-
-        // Next Day
-        startTime = new Date(nextDay);
-
-        // Don't display the data for a sleep phase that end next week
-        if (endTime >= endWeek)
-          break;
-      }
+      // Add hours to the sleep phase of this day
+      grouped['Sleeping'][day] += hours;
     });
 
     return grouped;

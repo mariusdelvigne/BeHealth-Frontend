@@ -16,6 +16,6 @@ export class SleepDataManagerComponent {
   }
 
   goToGraph() {
-    this._router.navigate([`/profile/sleep-data-manager/stacked-horizontal-bar-graph`]);
+    this._router.navigate([`/profile/sleep-data-manager/bar-graph`]);
   }
 }
