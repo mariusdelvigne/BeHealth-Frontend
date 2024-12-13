@@ -125,4 +125,12 @@ export class PlanFormComponent implements OnInit {
 
     this.planSports.splice(pos, 0, planSport);
   }
+
+  addPlanFood(planFood: any) {
+    let pos: number = this.planFoods.findIndex(f => f.dayNumber > planFood.dayNumber ||
+      (f.dayNumber == planFood.dayNumber && f.dayTime > planFood.dayTime));
+    pos = (pos !== -1 ? pos : this.planFoods.length);
+
+    this.planFoods.splice(pos, 0, planFood);
+  }
 }
