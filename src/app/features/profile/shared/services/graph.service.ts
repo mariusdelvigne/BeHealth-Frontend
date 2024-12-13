@@ -3,6 +3,7 @@ import {DatedValue} from '../../utils/DatedValue';
 import {DatePipe} from '@angular/common';
 import {GraphData} from '../utils/graph-data';
 import {ToastrService} from 'ngx-toastr';
+import {SleepInfo} from '../utils/sleep-info';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,46 @@ export class GraphService {
         grouped[d.food] = { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0 };
       }
       // Add the value of the userFood to the current value
-      // To the specific food and day
+      // to the specific food and day
       grouped[d.food][day] += d.value;
+    });
+
+    return grouped;
+  }
+
+  groupDataByDayAndSleep(data: SleepInfo[], endWeek: Date) {
+    // { 'Sleeping': { Mon: 8, Tue: 7 }}
+    const grouped: { [phase: string]: { [day: string]: number } } = {
+      'Sleeping' : { Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0},
+    };
+
+    data.forEach(sleep => {
+      let startTime = new Date(sleep.startDatetime);
+      let endTime = new Date(sleep.endDatetime);
+
+      while (startTime < endTime) {
+        const day = startTime.toLocaleString('en-US', { weekday: 'short' });
+
+        // Hours before next day
+        const nextDay = new Date(startTime);
+        nextDay.setHours(24, 0, 0, 0);
+
+        // Example : sleep (22PM, 6AM) MIN(Tomorrow 6AM, Tomorrow 24PM) => 24 PM - 22) => 2 hours for this day
+        const duration = Math.min(endTime.getTime(), nextDay.getTime()) - startTime.getTime();
+
+        // Convert Date => hours
+        const hours = duration / (1000 * 60 * 60);
+
+        // Add hours to the sleep phase of this day
+        grouped['Sleeping'][day] += hours;
+
+        // Next Day
+        startTime = new Date(nextDay);
+
+        // Don't display the data for a sleep phase that end next week
+        if (endTime >= endWeek)
+          break;
+      }
     });
 
     return grouped;
@@ -65,6 +104,9 @@ export class GraphService {
         break;
       case 'periods':
         dataValues = {yName: "Periods", seriesName: 'Periods', measureUnit: 'd'};
+        break;
+      case 'sleeps':
+        dataValues = {yName: "Sleeps", seriesName: 'Sleeps', measureUnit: 'h'};
         break;
       default:
         this._toastrService.error("Data type not supported");
