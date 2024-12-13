@@ -47,5 +47,11 @@
       <hr>
       <app-plan-sport-create (onPlanSportCreated)="addPlanSport($event)"></app-plan-sport-create>
     </div>
+  } @else if (planCategory === 'food') {
+    <div class="table-responsive">
+      <app-plan-food-list [planFoods]="planFoods"></app-plan-food-list>
+      <hr>
+      <app-plan-food-create (onPlanFoodCreated)="addPlanFood($event)"></app-plan-food-create>
+    </div>
   }
 </div>
