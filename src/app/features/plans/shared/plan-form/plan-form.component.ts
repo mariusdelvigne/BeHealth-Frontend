@@ -6,6 +6,8 @@ import {ToastrService} from 'ngx-toastr';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {PlanSportListComponent} from './components/plan-sport-list/plan-sport-list.component';
 import {PlanSportCreateComponent} from './components/plan-sport-create/plan-sport-create.component';
+import {PlanFoodListComponent} from './components/plan-food-list/plan-food-list.component';
+import {PlanFoodCreateComponent} from './components/plan-food-create/plan-food-create.component';
 
 @Component({
   selector: 'app-plan-form',
@@ -14,6 +16,8 @@ import {PlanSportCreateComponent} from './components/plan-sport-create/plan-spor
     ReactiveFormsModule,
     PlanSportListComponent,
     PlanSportCreateComponent,
+    PlanFoodListComponent,
+    PlanFoodCreateComponent,
   ],
   templateUrl: './plan-form.component.html',
   styleUrls: [
@@ -48,6 +52,7 @@ export class PlanFormComponent implements OnInit {
   });
 
   planSports: any[] = [];
+  planFoods: any[] = [];
 
   constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) { }
 
@@ -113,7 +118,11 @@ export class PlanFormComponent implements OnInit {
     return this.form.invalid ? 'grey' : 'blue';
   }
 
-  createPlanSport(planSport: any) {
-    this.planSports.push(planSport);
+  addPlanSport(planSport: any) {
+    let pos: number = this.planSports.findIndex(s => s.dayNumber > planSport.dayNumber ||
+      (s.dayNumber == planSport.dayNumber && s.dayTime > planSport.dayTime));
+    pos = (pos !== -1 ? pos : this.planSports.length);
+
+    this.planSports.splice(pos, 0, planSport);
   }
 }

@@ -15,15 +15,18 @@ export class PlanSportCreateComponent {
   onPlanSportCreated = new EventEmitter<any>();
 
   form: FormGroup =  new FormGroup({
-    name: new FormControl('', Validators.required),
-    dayNumber: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    dayNumber: new FormControl('', [Validators.required, Validators.min(1)]),
     dayTime: new FormControl('', Validators.required),
-    durationInMin: new FormControl('', Validators.required),
+    durationInMin: new FormControl('', [Validators.required, Validators.min(1)]),
   });
 
   addPlanSport(event: SubmitEvent) {
     event.preventDefault();
     this.onPlanSportCreated.emit(this.form.value);
+
     this.form.reset();
+    const sportNameInput = document.querySelector('#sport-name') as HTMLInputElement;
+    sportNameInput.focus();
   }
 }

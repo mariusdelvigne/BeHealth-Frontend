@@ -2,16 +2,16 @@
   <table class="table">
     <tr>
       <td class="col-5">
-        <input type="text" formControlName="name" class="w-100">
+        <input type="text" formControlName="name" class="w-100" id="sport-name">
       </td>
       <td class="col-2">
-        <input type="number" formControlName="dayNumber" class="w-100">
+        <input type="number" formControlName="dayNumber" class="w-100" min="1">
       </td>
       <td class="col-2">
         <input type="time" formControlName="dayTime" class="w-100">
       </td>
       <td class="col-2">
-        <input type="number" formControlName="durationInMin" class="w-100">
+        <input type="number" formControlName="durationInMin" class="w-100" min="1">
       </td>
       <td class="col-1">
         <input type="submit" value="Add" [disabled]="form.invalid">
