@@ -5,12 +5,20 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {debounceTime} from 'rxjs';
+import {PlanSportListComponent} from './components/plan-sport-list/plan-sport-list.component';
+import {PlanSportCreateComponent} from './components/plan-sport-create/plan-sport-create.component';
+import {PlanFoodListComponent} from './components/plan-food-list/plan-food-list.component';
+import {PlanFoodCreateComponent} from './components/plan-food-create/plan-food-create.component';
 
 @Component({
   selector: 'app-plan-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    PlanSportListComponent,
+    PlanSportCreateComponent,
+    PlanFoodListComponent,
+    PlanFoodCreateComponent,
   ],
   templateUrl: './plan-form.component.html',
   styleUrls: [
@@ -44,13 +52,15 @@ export class PlanFormComponent implements OnInit {
     description: new FormControl('', [Validators.required, Validators.min(1)])
   });
 
+  planSports: any[] = [];
+  planFoods: any[] = [];
+
   tags: any [] = [];
   tagsList: {id: number, name: string} [] = [];
   tagIdCounter = 0;
   tagNames: string[] = [];
 
-  constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) {
-  }
+  constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
     this._planService.getPlansById(this.planId).subscribe( {
@@ -64,7 +74,7 @@ export class PlanFormComponent implements OnInit {
           durationInDays: this.plan.durationInDays,
           description: this.plan.description,
           tagInput: '',
-          // A VERIF
+          // TODO: Verif
           tagList: this.plan.tagsList,
         });
       }
@@ -77,17 +87,32 @@ export class PlanFormComponent implements OnInit {
       });
   }
 
-   submit() {
-      if(this.mode == "create") {
-        this._planService.create({...this.form.value, tagNames: this.tagNames}, this._authService.getId()).subscribe({
-          next: () => {
-            this._toastrService.success("Plan created successfully");
-          },
-          error: (error) => {
-            this._toastrService.error("Error creating new plan: " + error.message);
-          }
-        });
+  submit() {
+    if (this.mode == "create") {
+      // TODO Change tagNames when implemented
+      this._planService.create({...this.form.value, tagNames: this.tagNames}, this._authService.getId()).subscribe({
+        next: response => {
+          this._toastrService.success("Plan created successfully");
 
+          if (this.planCategory === 'sport') {
+            // Needed because C# needs TimeSpan in XX:XX:XX format and JS sends it in XX:XX format
+            const planSports = this.planSports.map(sport => ({...sport, dayTime: sport.dayTime + ":00"}));
+
+            this._planService.updatePlanSports(this._authService.getId(), response.id, {sports: planSports})
+              .subscribe({
+                next: response => {
+                  this._toastrService.success("Sports added successfully");
+                },
+                error: () => {
+                  this._toastrService.error("Error adding sports");
+                }
+              });
+          }
+        },
+        error: (error) => {
+          this._toastrService.error("Error creating the plan : " + error.message);
+        }
+      })
     } else if (this.mode == "update") {
       this._planService.updatePlan(this._authService.getId(), this.plan.id, this.form.value).subscribe({
         next: () => {
@@ -100,8 +125,28 @@ export class PlanFormComponent implements OnInit {
     }
   }
 
+  get planCategory(): string {
+    return this.form.value.category;
+  }
+
   get colorChange() {
     return this.form.invalid ? 'grey' : 'blue';
+  }
+
+  addPlanSport(planSport: any) {
+    let pos: number = this.planSports.findIndex(s => s.dayNumber > planSport.dayNumber ||
+      (s.dayNumber == planSport.dayNumber && s.dayTime > planSport.dayTime));
+    pos = (pos !== -1 ? pos : this.planSports.length);
+
+    this.planSports.splice(pos, 0, planSport);
+  }
+
+  addPlanFood(planFood: any) {
+    let pos: number = this.planFoods.findIndex(f => f.dayNumber > planFood.dayNumber ||
+      (f.dayNumber == planFood.dayNumber && f.dayTime > planFood.dayTime));
+    pos = (pos !== -1 ? pos : this.planFoods.length);
+
+    this.planFoods.splice(pos, 0, planFood);
   }
 
   updateTagList(name: string) {
