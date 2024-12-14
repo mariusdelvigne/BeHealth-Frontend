@@ -47,6 +47,7 @@ import {RelationsComponent} from './features/profile/components/profile/relation
 import {
   FoodGraphManagerComponent
 } from './features/profile/components/profile/food-graph-manager/food-graph-manager.component';
+import {FoodDataManagerComponent} from './features/profile/components/profile/food-data-manager/food-data-manager.component';
 import {PlanUpdateComponent} from './features/plans/components/plan-update/plan-update.component';
 import {ProgramUpdateComponent} from './features/programs/components/program-update/program-update.component';
 import {ScatterGraphComponent} from './features/profile/shared/scatter-graph/scatter-graph.component';
@@ -84,6 +85,15 @@ import {
 import {
   CreateGlobalMessagesComponent
 } from './features/amdin-communication/components/create-communications/create-global-messages/create-global-messages.component';
+  PeriodDataManagerComponent
+} from './features/profile/components/profile/period-data-manager/period-data-manager.component';
+import {PeriodCalendarComponent} from './features/profile/shared/period-calendar/period-calendar.component';
+import {
+  BarGraphComponent
+} from './features/profile/shared/bar-graph/bar-graph.component';
+import {
+  SleepDataManagerComponent
+} from './features/profile/components/profile/sleep-data-manager/sleep-data-manager.component';
 
 export const routes: Routes = [
   {
@@ -383,8 +393,8 @@ export const routes: Routes = [
         ]
       },
       {
-        path: 'food-graph-manager',
-        component: FoodGraphManagerComponent,
+        path: 'food-data-manager',
+        component: FoodDataManagerComponent,
         children: [
           {
             path: 'scatter-graph/:dataType',
@@ -403,6 +413,16 @@ export const routes: Routes = [
           {
             path: 'period-calendar',
             component: PeriodCalendarComponent,
+          },
+        ]
+      },
+      {
+        path: 'sleep-data-manager',
+        component: SleepDataManagerComponent,
+        children: [
+          {
+            path: 'bar-graph',
+            component: BarGraphComponent,
           },
         ]
       },

@@ -63,4 +63,8 @@ export class PlanService {
 
     return this._httpClient.get<any>(`${PlanService.URL_USERS}/tags`, {withCredentials: true, params: params});
   }
+
+  public updatePlanSports(userId: number, planId: number, command: any) : Observable<void> {
+    return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sports`, command, {withCredentials: true});
+  }
 }

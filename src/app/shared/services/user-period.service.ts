@@ -21,15 +21,18 @@ export class UserPeriodService {
     });
   }
 
-  public getAll(pageNumber: number, pageSize: number): Observable<any> {
+  public getAllBetween(from: Date, to: Date, pageNumber: number, pageSize: number): Observable<any> {
     let userId = this._authService.getId();
 
     let params = new HttpParams()
+      .set('from', from.toISOString())
+      .set('to', to.toISOString())
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
     return this._httpClient.get<any>(UserPeriodService.URL_USERS + `/${userId}/periods`, {
       params: params,
-      withCredentials: true});
+      withCredentials: true
+    });
   }
 }

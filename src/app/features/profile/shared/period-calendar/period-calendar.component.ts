@@ -3,6 +3,8 @@ import {CalendarCommonModule, CalendarEvent, CalendarMonthModule, CalendarView} 
 import {NgSwitch, NgSwitchCase} from '@angular/common';
 import {UserPeriodService} from '../../../../shared/services/user-period.service';
 import {ToastrService} from 'ngx-toastr';
+import {firstValueFrom} from 'rxjs';
+import {PeriodInfo} from '../utils/period-info';
 
 @Component({
   selector: 'app-period-calendar',
@@ -22,47 +24,69 @@ export class PeriodCalendarComponent implements OnInit {
   CalendarView = CalendarView;
   events: CalendarEvent[] = [];
 
-  periods: any;
+  periods: PeriodInfo[] = [];
+  startMonth: Date = new Date();
+  endMonth: Date = new Date();
 
   constructor(private _userPeriodService: UserPeriodService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
+    this.changeMonth();
     this.setView(CalendarView.Month);
-    this.loadData();
+
+    this.loadPeriods().then(() => {
+      this.loadEvents();
+      this.goToToday();
+    });
   }
 
-  loadData() {
+  changeMonth() {
+    // Start to the month before if a period is between 2 month
+    this.startMonth = new Date(this.viewDate.getFullYear(), this.viewDate.getMonth() -1, 1);
+    this.endMonth = new Date(this.viewDate.getFullYear(), this.viewDate.getMonth() + 1, 0);
+  }
+
+  async loadPeriods() {
+    this.periods = [];
+    let dataToAdd: PeriodInfo[] = [];
     let pageNumber = 0;
     const pageSize: number = 20;
 
-    this._userPeriodService.getAll(pageNumber, pageSize).subscribe({
-      next: (response) => {
-        this.periods = response.userPeriods;
+    // Retrieve periods
+    do {
+      let response = await firstValueFrom(this._userPeriodService.getAllBetween(this.startMonth, this.endMonth, pageNumber++, pageSize));
+      dataToAdd = response.userPeriods.map((d: any) => ({
+        startDate: new Date(d.startDate),
+        endDate: new Date(d.endDate),
+      }));
 
-        console.log(this.periods);
-        let nbPeriods = 1;
-        this.periods.forEach((period: { id: any; startDate: any; endDate: any; }) => {
+      this.periods = this.periods.concat(dataToAdd);
+    } while (dataToAdd.length == pageSize);
 
-          const event = {
-            title: `Period ${nbPeriods}`,
-            start: new Date(period.startDate),
-            end: new Date(period.endDate),
-          }
-          nbPeriods += 1;
+    this.periods.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
+  }
 
-          this.events.push(event);
-        })
-
-        console.log(this.events);
-      },
-      error: (error) => {
-        this._toastrService.error(error);
+  loadEvents() {
+    let nbPeriods = 1;
+    this.periods.forEach((period: { startDate: any; endDate: any; }) => {
+      const event = {
+        title: `Period ${nbPeriods}`,
+        start: new Date(period.startDate),
+        end: new Date(period.endDate),
       }
+      nbPeriods += 1;
+
+      this.events.push(event);
     });
   }
 
   setView(view: CalendarView) {
     this.view = view;
+    this.changeMonth();
+  }
+
+  goToToday() {
+    this.viewDate = new Date();
   }
 }
