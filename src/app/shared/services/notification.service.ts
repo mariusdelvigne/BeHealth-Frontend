@@ -43,7 +43,7 @@ export class NotificationService {
   }
 
   public readNotification(userId: number, notificationId: number, isRead: boolean): Observable<any> {
-    return this._httpClient.put(`${NotificationService.URL_USERS}/${userId}/notifications/${notificationId}/read/${isRead}`, {withCredentials: true});
+    return this._httpClient.put(`${NotificationService.URL_USERS}/${userId}/notifications/${notificationId}/read/${isRead}`, {});
   }
 
   public deleteNotification(notificationId: number): Observable<any> {
@@ -51,6 +51,6 @@ export class NotificationService {
   }
 
   public createNotification(notification: NotificationCreateCommand): Observable<any> {
-    return this._httpClient.post(`${NotificationService.URL_NOTIFICATIONS}`, notification, {withCredentials: true});
+    return this._httpClient.post(`${NotificationService.URL_NOTIFICATIONS}`, notification);
   }
 }

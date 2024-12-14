@@ -18,20 +18,16 @@ export class UserService {
   constructor(private _httpClient: HttpClient) { }
 
   public signUp(userCreateCommand: UserCreateCommand): Observable<UserCreateOutput> {
-    return this._httpClient.post<UserCreateOutput>(UserService.URL, userCreateCommand, {withCredentials: true});
+    return this._httpClient.post<UserCreateOutput>(UserService.URL, userCreateCommand);
   }
 
   public getById(userId: number): Observable<any> {
     console.log(`${UserService.URL}/${userId}`)
-    return this._httpClient.get<any>(`${UserService.URL}/${userId}`, {
-      withCredentials: true,
-    });
+    return this._httpClient.get<any>(`${UserService.URL}/${userId}`);
   }
 
   public update(userId: number, userUpdateCommand: UserUpdateCommand): Observable<void> {
-    return this._httpClient.put<void>(`${UserService.URL}/${userId}`, userUpdateCommand, {
-      withCredentials: true,
-    });
+    return this._httpClient.put<void>(`${UserService.URL}/${userId}`, userUpdateCommand);
   }
 
   getAllUsers(): Observable<any> {
@@ -43,26 +39,26 @@ export class UserService {
   }
 
   public banUser(userBanCommand: UserBanCommand): Observable<void> {
-    return this._httpClient.put<void>(`${UserService.URL}/${userBanCommand.userId}/ban/${userBanCommand.isBanned}`, {withCredentials: true});
+    return this._httpClient.put<void>(`${UserService.URL}/${userBanCommand.userId}/ban/${userBanCommand.isBanned}`, {});
   }
 
   public deleteAllPlanByUserId(userId: number): Observable<any> {
-    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/plans`, {withCredentials: true,});
+    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/plans`);
   }
 
   public deleteAllProgramsByUserId(userId: number): Observable<any> {
-    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/programs`, {withCredentials: true,});
+    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/programs`);
   }
 
   public deleteAllFeedbackByUserId(userId: number): Observable<any> {
-    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/feedbacks`, {withCredentials: true,});
+    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/feedbacks`);
   }
 
   public getCurrentData(userId: number): Observable<any> {
-    return this._httpClient.get<any>(`${UserService.URL}/${userId}/data`, {withCredentials: true,});
+    return this._httpClient.get<any>(`${UserService.URL}/${userId}/data`);
   }
 
   public createPassword(userId: number, command: UserPasswordCreateCommand): Observable<void> {
-    return this._httpClient.post<void>(`${UserService.URL}/${userId}/passwords`, command, {withCredentials: true});
+    return this._httpClient.post<void>(`${UserService.URL}/${userId}/passwords`, command);
   }
 }

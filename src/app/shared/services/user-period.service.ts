@@ -16,9 +16,7 @@ export class UserPeriodService {
 
   public create(userPeriodCreateCommand: UserPeriodCreateCommand): Observable<UserPeriodCreateOutput> {
     let userId = this._authService.getId();
-    return this._httpClient.post<UserPeriodCreateOutput>(UserPeriodService.URL_USERS + `/${userId}/periods`, userPeriodCreateCommand, {
-      withCredentials: true,
-    });
+    return this._httpClient.post<UserPeriodCreateOutput>(UserPeriodService.URL_USERS + `/${userId}/periods`, userPeriodCreateCommand);
   }
 
   public getAllBetween(from: Date, to: Date, pageNumber: number, pageSize: number): Observable<any> {
@@ -30,9 +28,6 @@ export class UserPeriodService {
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
-    return this._httpClient.get<any>(UserPeriodService.URL_USERS + `/${userId}/periods`, {
-      params: params,
-      withCredentials: true
-    });
+    return this._httpClient.get<any>(UserPeriodService.URL_USERS + `/${userId}/periods`, {params: params});
   }
 }

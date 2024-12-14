@@ -21,10 +21,7 @@ export class UserBmiService {
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
-    return this._httpClient.get<any>(UserBmiService.URL + `/${userId}/bmis`, {
-      params: params,
-      withCredentials: true
-    });
+    return this._httpClient.get<any>(UserBmiService.URL + `/${userId}/bmis`, {params: params});
   }
 
 }

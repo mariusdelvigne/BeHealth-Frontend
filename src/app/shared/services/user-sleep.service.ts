@@ -16,9 +16,7 @@ export class UserSleepService {
 
   public create(createUserSleepCommand: UserSportCreateCommand): Observable<UserSleepCreateOutput> {
     let userId = this._authService.getId();
-    return this._httpClient.post<UserSleepCreateOutput>(UserSleepService.URL + `/${userId}/sleeps`, createUserSleepCommand, {
-      withCredentials: true,
-    });
+    return this._httpClient.post<UserSleepCreateOutput>(UserSleepService.URL + `/${userId}/sleeps`, createUserSleepCommand);
   }
 
   public getAllBetween(from: Date, to: Date, pageNumber: number, pageSize: number): Observable<any> {
@@ -30,9 +28,6 @@ export class UserSleepService {
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
-    return this._httpClient.get<any>(UserSleepService.URL + `/${userId}/sleeps`, {
-      params: params,
-      withCredentials: true
-    });
+    return this._httpClient.get<any>(UserSleepService.URL + `/${userId}/sleeps`, {params: params});
   }
 }

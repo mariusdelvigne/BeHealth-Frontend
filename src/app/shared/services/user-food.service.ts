@@ -23,17 +23,11 @@ export class UserFoodService {
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
-    return this._httpClient.get<any>(UserFoodService.URL + `/${userId}/foods`, {
-      params: params,
-      withCredentials: true
-    });
+    return this._httpClient.get<any>(UserFoodService.URL + `/${userId}/foods`, {params: params});
   }
 
   public create(userFoodCreate: UserFoodCreateCommand): Observable<UserFoodCreateOutput> {
     let userId = this._authService.getId();
-    return this._httpClient.post<UserFoodCreateOutput>(UserFoodService.URL + `/${userId}/foods`, userFoodCreate,
-      {
-        withCredentials: true,
-      });
+    return this._httpClient.post<UserFoodCreateOutput>(UserFoodService.URL + `/${userId}/foods`, userFoodCreate);
   }
 }

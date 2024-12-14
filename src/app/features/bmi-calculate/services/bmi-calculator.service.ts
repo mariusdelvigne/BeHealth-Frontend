@@ -14,6 +14,6 @@ export class BmiCalculatorService {
   constructor(private _httpClient: HttpClient) { }
 
   public calculBmi(calculBmiCommand: BmiCalculatorCommand): Observable<BmiCalculatorOutput> {
-    return this._httpClient.post<BmiCalculatorOutput>(BmiCalculatorService.URL, calculBmiCommand, {withCredentials: true});
+    return this._httpClient.post<BmiCalculatorOutput>(BmiCalculatorService.URL, calculBmiCommand);
   }
 }

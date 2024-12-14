@@ -16,8 +16,6 @@ export class UserSportService {
 
   public create(userSportCreateCommand: UserSportCreateCommand): Observable<UserSportCreateOutput> {
     let userId = this._authService.getId();
-    return this._httpClient.post<UserSportCreateOutput>(UserSportService.URL + `/${userId}/sports`, userSportCreateCommand, {
-      withCredentials: true,
-    });
+    return this._httpClient.post<UserSportCreateOutput>(UserSportService.URL + `/${userId}/sports`, userSportCreateCommand);
   }
 }

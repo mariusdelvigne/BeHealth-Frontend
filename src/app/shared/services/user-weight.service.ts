@@ -21,16 +21,11 @@ export class UserWeightService {
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
-    return this._httpClient.get<any>(UserWeightService.URL + `/${userId}/weights`, {
-      params: params,
-      withCredentials: true
-    });
+    return this._httpClient.get<any>(UserWeightService.URL + `/${userId}/weights`, {params: params});
   }
 
   public create(weight: number): Observable<any> {
     let userId = this._authService.getId();
-    return this._httpClient.post<any>(UserWeightService.URL + `/${userId}/weights`, {weightInG: weight}, {
-      withCredentials: true,
-    });
+    return this._httpClient.post<any>(UserWeightService.URL + `/${userId}/weights`, {weightInG: weight});
   }
 }

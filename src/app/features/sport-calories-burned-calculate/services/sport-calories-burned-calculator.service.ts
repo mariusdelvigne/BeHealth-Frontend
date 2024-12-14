@@ -14,6 +14,6 @@ export class SportCaloriesBurnedCalculatorService {
   constructor(private _httpClient: HttpClient) { }
 
   public calculateCaloriesBurned(sportCaloriesBurnedCalculatorCommand: SportCaloriesBurnedCalculatorCommand): Observable<SportCaloriesBurnedCalculatorOutput> {
-    return this._httpClient.post<SportCaloriesBurnedCalculatorOutput>(SportCaloriesBurnedCalculatorService.URL, sportCaloriesBurnedCalculatorCommand, {withCredentials: true});
+    return this._httpClient.post<SportCaloriesBurnedCalculatorOutput>(SportCaloriesBurnedCalculatorService.URL, sportCaloriesBurnedCalculatorCommand);
   }
 }

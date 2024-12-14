@@ -13,9 +13,6 @@ export class SportService {
 
   public getAllStartingWith(text: string): Observable<any> {
     const params = new HttpParams().set('text', text);
-    return this._httpClient.get<any>(SportService.URL, {
-      withCredentials: true,
-      params: params,
-    });
+    return this._httpClient.get<any>(SportService.URL, {params: params});
   }
 }

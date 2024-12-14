@@ -16,7 +16,7 @@ export class ProgramService {
   constructor(private _httpClient: HttpClient) { }
 
   public create(programCreateCommand: ProgramCreateCommand, userId: number): Observable<ProgramCreateOutput> {
-    return this._httpClient.post<ProgramCreateOutput>(`${ProgramService.URL_USERS}/${userId}/programs`, programCreateCommand, {withCredentials: true});
+    return this._httpClient.post<ProgramCreateOutput>(`${ProgramService.URL_USERS}/${userId}/programs`, programCreateCommand);
   }
 
   public getProgramsFiltered(privacy?: string, name?: string): Observable<any> {
@@ -27,44 +27,43 @@ export class ProgramService {
     if (name)
       params = params.set('name', name);
 
-    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}`, {params: params,withCredentials: true});
+    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}`, {params: params});
   }
 
   public getProgramById(programId: number): Observable<any> {
-    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/${programId}`, {withCredentials: true});
+    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/${programId}`);
   }
 
   public getProgramsByUserId(userId: number): Observable<any> {
-    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/users/${userId}`, {withCredentials: true});
+    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/users/${userId}`);
   }
 
   public deleteProgram(userId: number, programId: number) : Observable<any> {
-    return this._httpClient.delete<any>(`${ProgramService.URL_USERS}/${userId}/programs/${programId}`, {withCredentials: true});
+    return this._httpClient.delete<any>(`${ProgramService.URL_USERS}/${userId}/programs/${programId}`);
   }
 
   public updateProgram(userId: number, programId: number, command: ProgramUpdateCommand) : Observable<any> {
-    return this._httpClient.put<any>(`${ProgramService.URL_USERS}/${userId}/programs/${programId}`, command, {withCredentials: true});
+    return this._httpClient.put<any>(`${ProgramService.URL_USERS}/${userId}/programs/${programId}`, command);
   }
 
   public getProgramsByAssociations(userId: number, relation: string): Observable<any> {
-    return this._httpClient.get<any>(`${ProgramService.URL_USERS}/${userId}/associations/${relation}`, {withCredentials: true});
+    return this._httpClient.get<any>(`${ProgramService.URL_USERS}/${userId}/associations/${relation}`);
   }
 
   public postRelation(userId: number, programId: number, relation: string) : Observable<any> {
     const body = { ProgramId: programId, RelationType: relation };
-    return this._httpClient.post(`${ProgramService.URL_USERS}/${userId}/associations`, body,{withCredentials: true});
+    return this._httpClient.post(`${ProgramService.URL_USERS}/${userId}/associations`, body);
   }
 
     // public deleteRelation(userId: number, programId: number, relation: string): Observable<any> {
     // const body = { ProgramId: programId, RelationType: relation };
-    // return this._httpClient.delete(`${ProgramService.URL_USERS}/${userId}/associations/delete`, body, {withCredentials: true});
+    // return this._httpClient.delete(`${ProgramService.URL_USERS}/${userId}/associations/delete`, body);
   public deleteRelation(userId: number, programId: number, relation: string): Observable<any> {
       return this._httpClient.delete(`${ProgramService.URL_USERS}/${userId}/associations/delete`, {
         params: {
           ProgramId: programId,
           RelationType: relation
         },
-        withCredentials: true
       });
     }
 }

@@ -14,6 +14,6 @@ export class NutritionCalculatorService {
   constructor(private _httpClient: HttpClient) { }
 
   public calculEatenCalories(nutritionCalculatorCommand: NutritionCalculatorCommand): Observable<NutritionCalculatorOutput>{
-    return this._httpClient.post<NutritionCalculatorOutput>(NutritionCalculatorService.URL, nutritionCalculatorCommand, {withCredentials: true});
+    return this._httpClient.post<NutritionCalculatorOutput>(NutritionCalculatorService.URL, nutritionCalculatorCommand);
   }
 }

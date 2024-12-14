@@ -21,16 +21,11 @@ export class UserHeightService {
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
-    return this._httpClient.get<any>(UserHeightService.URL + `/${userId}/heights`, {
-      params: params,
-      withCredentials: true
-    });
+    return this._httpClient.get<any>(UserHeightService.URL + `/${userId}/heights`, {params: params});
   }
 
   public create(height: number): Observable<any> {
     let userId = this._authService.getId();
-    return this._httpClient.post<any>(UserHeightService.URL + `/${userId}/heights`, {heightInCm: height}, {
-      withCredentials: true,
-    });
+    return this._httpClient.post<any>(UserHeightService.URL + `/${userId}/heights`, {heightInCm: height});
   }
 }

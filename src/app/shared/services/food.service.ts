@@ -17,9 +17,6 @@ export class FoodService {
     if (text)
       params = params.set('text', text);
 
-    return this._httpClient.get<any>(FoodService.URL, {
-      withCredentials: true,
-      params: params,
-    });
+    return this._httpClient.get<any>(FoodService.URL, {params: params});
   }
 }

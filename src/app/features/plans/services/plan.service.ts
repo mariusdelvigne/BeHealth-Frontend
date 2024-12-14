@@ -16,7 +16,7 @@ export class PlanService {
   constructor(private _httpClient: HttpClient) { }
 
   public create(planCreateCommand: PlanCreateCommand, userId: number): Observable<PlanCreateOutput> {
-    return this._httpClient.post<PlanCreateOutput>(`${PlanService.URL_USERS}/${userId}/plans`, planCreateCommand, {withCredentials: true});
+    return this._httpClient.post<PlanCreateOutput>(`${PlanService.URL_USERS}/${userId}/plans`, planCreateCommand);
   }
 
   public getPlansFiltered(privacy?: string, name?: string, category?: string): Observable<any> {
@@ -29,10 +29,7 @@ export class PlanService {
     if (category)
       params = params.set('category', category);
 
-    return this._httpClient.get<any>(
-      `${PlanService.URL_PLANS}`,
-      {params: params, withCredentials: true
-    });
+    return this._httpClient.get<any>(`${PlanService.URL_PLANS}`, {params: params});
   }
 
   public getPlansByUserId(userId: number): Observable<any> {
@@ -44,15 +41,15 @@ export class PlanService {
   }
 
   public deletePlan(userId: number, planId: number) : Observable<any> {
-    return this._httpClient.delete<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`, {withCredentials: true});
+    return this._httpClient.delete<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`);
   }
 
   public updatePlan(userId: number, planId: number, command: PlanUpdateCommand) : Observable<any> {
-    return this._httpClient.put<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`, command, {withCredentials: true});
+    return this._httpClient.put<any>(`${PlanService.URL_USERS}/${userId}/plans/${planId}`, command);
   }
 
   public getTags(planId: number): Observable<any> {
-    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/tags`, {withCredentials: true});
+    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/tags`);
   }
 
   public getAllTagsStartingWith(text?: string): Observable<any> {
@@ -61,10 +58,10 @@ export class PlanService {
     if (text)
       params = params.set('text', text);
 
-    return this._httpClient.get<any>(`${PlanService.URL_USERS}/tags`, {withCredentials: true, params: params});
+    return this._httpClient.get<any>(`${PlanService.URL_USERS}/tags`, {params: params});
   }
 
   public updatePlanSports(userId: number, planId: number, command: any) : Observable<void> {
-    return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sports`, command, {withCredentials: true});
+    return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sports`, command);
   }
 }

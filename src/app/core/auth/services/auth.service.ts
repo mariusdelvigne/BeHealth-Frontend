@@ -18,7 +18,7 @@ export class AuthService implements Resolve<boolean> {
   }
 
   loadData(): Observable<boolean> {
-    const request = this._httpClient.get<AuthData>(AuthService.URL, {withCredentials: true});
+    const request = this._httpClient.get<AuthData>(AuthService.URL);
 
     return request.pipe(
       map(response => {
@@ -30,7 +30,7 @@ export class AuthService implements Resolve<boolean> {
   }
 
   public signIn(auth: AuthCred): Observable<AuthData> {
-    const request = this._httpClient.post<AuthData>(AuthService.URL, auth, {withCredentials: true});
+    const request = this._httpClient.post<AuthData>(AuthService.URL, auth);
 
     request.subscribe({
       next: response => {
@@ -42,7 +42,7 @@ export class AuthService implements Resolve<boolean> {
   }
 
   public signOut(): Observable<any> {
-    const request = this._httpClient.delete(AuthService.URL, {withCredentials: true});
+    const request = this._httpClient.delete(AuthService.URL);
 
     request.subscribe({
       next: _ => {
