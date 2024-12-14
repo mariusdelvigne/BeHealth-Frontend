@@ -45,7 +45,7 @@ export class PlanSearchPublicComponent implements OnInit {
   emitSearchPlan() {
     this._planService.getPlansFiltered(
       "public", this.form.value.name, this.form.value.category)
-      .subscribe(plans => this.plans = plans.plans);
+      .subscribe(response => this.plans = response.plans);
   }
 
   showPlanInfo(planId: number) {
@@ -71,9 +71,5 @@ export class PlanSearchPublicComponent implements OnInit {
         alert(error.message);
       }
     });
-  }
-
-    get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
   }
 }

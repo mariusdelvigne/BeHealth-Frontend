@@ -1,3 +1,17 @@
+<form class="d-flex flex-column justify-content-center align-items-center p-3 rounded"
+      [formGroup]="form" (submit)="emitSearchProgram()">
+  <!-- Champ Title -->
+  <div class="w-50 mb-2">
+    <input class="form-control" formControlName="title" placeholder="Title">
+  </div>
+
+  <!-- Bouton Submit -->
+  <div class="w-50 mb-2">
+    <input class="custom-btn rounded-3 w-100 mt-auto" type="submit" [disabled]="form.invalid" value="Filter">
+  </div>
+
+</form>
+
 <ul class="program-list container mt-3">
   @for (program of programs; track $index) {
     <li class="">
@@ -10,7 +24,8 @@
           <button class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'favorite')">
             <i class="far fa-star"></i>
           </button>
-          <button type="button" class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'subscription')">
+          <button type="button" class="rounded p-2 custom-btn"
+                  (click)="addToRelations($event, program.id, 'subscription')">
             Subscribe
           </button>
         </div>
