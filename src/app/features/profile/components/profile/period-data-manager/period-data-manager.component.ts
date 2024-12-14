@@ -1,21 +1,20 @@
-import {Component} from '@angular/core';
-import {Router, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Router, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-period-data-manager',
   standalone: true,
   imports: [
     RouterOutlet,
-    RouterLinkActive,
   ],
   templateUrl: './period-data-manager.component.html',
   styleUrl: './period-data-manager.component.scss'
 })
-export class PeriodDataManagerComponent{
+export class PeriodDataManagerComponent implements OnInit {
   constructor(private _router: Router) {
   }
 
-  goToCalendar() {
+  ngOnInit() {
     this._router.navigate([`/profile/period-data-manager/period-calendar`]);
   }
 }
