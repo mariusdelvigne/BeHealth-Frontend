@@ -2,7 +2,7 @@
   @if (plans.length) {
     <ul class="program-list mt-3">
       @for (plan of plans; track $index) {
-        <li (click)="showPlanInfo(plan.id)">
+        <li (click)="showPlanInfo(plan.id)" class="plan">
           <div class="d-flex">
             <div class="col-4 col-md-2 text-white text-uppercase text-center"
                  [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
