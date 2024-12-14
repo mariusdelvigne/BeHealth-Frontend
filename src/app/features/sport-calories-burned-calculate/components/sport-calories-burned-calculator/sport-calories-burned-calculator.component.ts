@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {SportCaloriesBurnedCalculatorService} from '../../services/sport-calories-burned-calculator.service';
 import {ToastrService} from 'ngx-toastr';
 import {SportCaloriesBurnedCalculatorOutput} from '../../utils/sport-calories-burned-calculator-output';
@@ -14,21 +13,6 @@ import {SportCaloriesBurnedCalculatorOutput} from '../../utils/sport-calories-bu
   ],
   templateUrl: './sport-calories-burned-calculator.component.html',
   styleUrl: './sport-calories-burned-calculator.component.scss',
-  animations: [
-    trigger('colorChange', [
-      state('grey', style({
-        backgroundColor: 'rgba(173, 181, 189, 0.3)',
-        border: '3px solid rgba(173, 181, 189, 0.5)',
-      })),
-      state('blue', style({
-        backgroundColor: 'rgba(13, 110, 253, 0.3)',
-        border: '3px solid rgba(13, 110, 253, 0.5)',
-      })),
-      transition('grey <=> blue', [
-        animate('1s ease-out')
-      ])
-    ])
-  ]
 })
 export class SportCaloriesBurnedCalculatorComponent {
   allSport: { name: string; value: string }[] = [

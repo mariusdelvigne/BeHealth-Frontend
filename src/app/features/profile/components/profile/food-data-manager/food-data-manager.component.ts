@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 @Component({
@@ -13,10 +13,14 @@ import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
     './food-data-manager.component.scss',
   ]
 })
-export class FoodDataManagerComponent {
+export class FoodDataManagerComponent implements OnInit {
   graphType: string = 'scatter';
   dataType: string = 'calories';
   constructor(private _router: Router) {
+  }
+
+  ngOnInit() {
+    this._router.navigate([`/profile/food-data-manager/${this.graphType}-graph`, this.dataType]);
   }
 
   setDataType(dataType: string) {

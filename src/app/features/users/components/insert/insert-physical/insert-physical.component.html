@@ -1,14 +1,16 @@
-<form [formGroup]="form" (submit)="emitUserPhysical()" class="m-3 p-3 rounded" [@colorChange]="colorChange">
-  <h3>Insert your physical data</h3>
-  <div class="row">
-    <label for="weight" class="col-sm-2 col-form-label fw-bold">Weight in kg</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="number" formControlName="weight" id="weight" min="0" step="0.1">
+<div class="d-flex justify-content-center align-items-center h-100">
+  <form [formGroup]="form" (submit)="emitUserPhysical()" class="custom-insert-form m-3 p-3 rounded">
+    <h3>Insert your physical data</h3>
+    <div class="row">
+      <label for="weight" class="col-sm-2 col-form-label fw-bold">Weight in kg</label>
+      <div class="col-sm-4">
+        <input class="form-control w-100" type="number" formControlName="weight" id="weight" min="0" step="0.1">
+      </div>
+      <label for="height" class="col-sm-2 col-form-label fw-bold">Height in cm</label>
+      <div class="col-sm-4">
+        <input class="form-control w-100" type="number" formControlName="height" id="height" min="0" step="1">
+      </div>
     </div>
-    <label for="height" class="col-sm-2 col-form-label fw-bold">Height in cm</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="number" formControlName="height" id="height" min="0" step="1">
-    </div>
-  </div>
-  <input class="btn btn-primary w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
-</form>
+    <input class="custom-btn w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
+  </form>
+</div>

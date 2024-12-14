@@ -5,7 +5,7 @@ import {RouterOutlet} from '@angular/router';
   selector: 'app-insert',
   standalone: true,
   imports: [
-    RouterOutlet
+    RouterOutlet,
   ],
   templateUrl: './insert.component.html',
   styleUrl: './insert.component.scss'
