@@ -55,7 +55,7 @@ export class UserService {
   }
 
   public deleteAllFeedbackByUserId(userId: number): Observable<any> {
-    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/programFeedbacks`, {withCredentials: true,});
+    return this._httpClient.delete<void>(`${UserService.URL}/${userId}/feedbacks`, {withCredentials: true,});
   }
 
   public getCurrentData(userId: number): Observable<any> {

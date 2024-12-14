@@ -52,7 +52,7 @@ export class PlanService {
   }
 
   public getTags(planId: number): Observable<any> {
-    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/getAll`, {withCredentials: true});
+    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/tags`, {withCredentials: true});
   }
 
   public getAllTagsStartingWith(text?: string): Observable<any> {
