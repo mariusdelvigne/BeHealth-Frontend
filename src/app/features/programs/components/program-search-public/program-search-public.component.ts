@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ProgramService} from '../../services/program.service';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 import {ToastrService} from 'ngx-toastr';
@@ -20,6 +20,9 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
 export class ProgramSearchPublicComponent implements OnInit {
   programs: any[] = [];
   selectedProgram: any;
+  form: FormGroup = new FormGroup({
+    title: new FormControl(''),
+  });
 
   constructor(private _programService: ProgramService, private _authService : AuthService, private _toastrService: ToastrService) {
   }
@@ -33,6 +36,12 @@ export class ProgramSearchPublicComponent implements OnInit {
         alert(error);
       }
     });
+  }
+
+  emitSearchProgram() {
+    this._programService.getProgramsFiltered(
+      "public", this.form.value.title)
+      .subscribe(response => this.programs = response.programs);
   }
 
   showProgramInfo(programId: number) {

@@ -19,13 +19,13 @@ export class ProgramService {
     return this._httpClient.post<ProgramCreateOutput>(`${ProgramService.URL_USERS}/${userId}/programs`, programCreateCommand, {withCredentials: true});
   }
 
-  public getProgramsFiltered(privacy?: string, name?: string): Observable<any> {
+  public getProgramsFiltered(privacy?: string, title?: string): Observable<any> {
     let params = new HttpParams();
 
     if (privacy)
       params = params.set('privacy', privacy);
-    if (name)
-      params = params.set('name', name);
+    if (title)
+      params = params.set('title', title);
 
     return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}`, {params: params,withCredentials: true});
   }
