@@ -91,11 +91,12 @@ textarea {
 
 .custom-btn {
   padding: 5px;
+  background-color: $alice-blue;
 }
 
 .custom-btn:hover {
   background-color: $french-gray;
-  transform: translateY(-6px);
+  transform: translateY(-3px);
   border: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   cursor: pointer;
@@ -129,11 +130,10 @@ textarea {
   li {
     margin-bottom: 10px;
     list-style: none;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    background: aliceblue;
   }
 
   .program {
-    background: aliceblue;
     transition: transform 0.5s ease, box-shadow 0.5s;
   }
 

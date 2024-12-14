@@ -11,8 +11,8 @@
 
 <ul class="program-list container mt-3">
   @for (program of programs; track $index) {
-    <li class="">
-      <div class="program pt-1 pb-1 p-1 p-md-2 p-xl-3 row align-content-between" (click)="showProgramInfo(program.id)">
+    <li class="program">
+      <div class="pt-1 pb-1 p-1 p-md-2 p-xl-3 row align-content-between" (click)="showProgramInfo(program.id)">
         <div class="col-8 col-md-10 d-flex flex-column justify-content-between">
           <p>{{ program.title }}</p>
           <p class="m-0">By : {{ program.creatorName }}</p>
