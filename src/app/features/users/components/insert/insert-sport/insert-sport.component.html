@@ -1,4 +1,5 @@
-<form [formGroup]="form" (submit)="emitUserSport()" class="m-3 p-3 rounded" [@colorChange]="colorChange" autocomplete="off">
+<div class="d-flex justify-content-center align-items-center h-100">
+<form [formGroup]="form" (submit)="emitUserSport()" class="custom-insert-form m-3 p-3 rounded" [@colorChange]="colorChange" autocomplete="off">
   <h3>Insert a sport</h3>
   <div class="row">
     <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
@@ -21,5 +22,6 @@
       <input class="form-control w-100" type="datetime-local" formControlName="endDatetime" id="endDatetime">
     </div>
   </div>
-  <input class="btn btn-primary w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
+  <input class="custom-btn w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
 </form>
+</div>

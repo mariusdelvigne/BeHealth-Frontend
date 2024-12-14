@@ -1,21 +1,20 @@
-import { Component } from '@angular/core';
-import {Router, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Router, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-sleep-data-manager',
   standalone: true,
     imports: [
-        RouterLinkActive,
         RouterOutlet
     ],
   templateUrl: './sleep-data-manager.component.html',
   styleUrl: './sleep-data-manager.component.scss'
 })
-export class SleepDataManagerComponent {
+export class SleepDataManagerComponent implements OnInit {
   constructor(private _router: Router) {
   }
 
-  goToGraph() {
+  ngOnInit() {
     this._router.navigate([`/profile/sleep-data-manager/bar-graph`]);
   }
 }
