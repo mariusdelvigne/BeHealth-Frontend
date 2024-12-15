@@ -1,1 +1,10 @@
-<p>global-message works!</p>
+@if (nbGlobalMessages > 0) {
+  @for (messages of globalMessage; track $index){
+    @if (messages.isVisible) {
+      <div class="alert alert-danger text-center m-0" role="alert">
+        <strong>{{ messages.description }}</strong>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeBanner(messages.id)"></button>
+      </div>
+    }
+  }
+}

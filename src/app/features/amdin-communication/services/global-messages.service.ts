@@ -1,9 +1,17 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {apis, environment} from '../../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalMessagesService {
+  private static URL_GLOBAL_MESSAGES: string = `${environment.API_URL}/${apis.GLOBAL_MESSAGES_URL}`;
 
-  constructor() { }
+  constructor(private _httpClient: HttpClient) {}
+
+  public getAllGlobalMessages(): Observable<any> {
+    return this._httpClient.get<any>(`${GlobalMessagesService.URL_GLOBAL_MESSAGES}`);
+  }
 }
