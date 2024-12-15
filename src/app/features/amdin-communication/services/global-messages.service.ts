@@ -14,4 +14,8 @@ export class GlobalMessagesService {
   public getAllGlobalMessages(): Observable<any> {
     return this._httpClient.get<any>(`${GlobalMessagesService.URL_GLOBAL_MESSAGES}`);
   }
+
+  public deleteGlobalMessages(id: number): Observable<any> {
+    return this._httpClient.delete<any>(`${GlobalMessagesService.URL_GLOBAL_MESSAGES}/${id}`);
+  }
 }
