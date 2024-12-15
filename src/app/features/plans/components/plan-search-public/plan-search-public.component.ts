@@ -26,7 +26,7 @@ export class PlanSearchPublicComponent implements OnInit {
     name: new FormControl(''),
     category: new FormControl(''),
   });
-  selectedPlan: any;
+  selectedPlan: any = null;
 
   constructor(private _planService: PlanService) {
   }
@@ -49,24 +49,38 @@ export class PlanSearchPublicComponent implements OnInit {
   }
 
   showPlanInfo(planId: number) {
+    this.tags = [];
     if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
-      this.tags = [];
     }
     else {
       this.selectedPlan = null;
-      this.tags = [];
       this.selectedPlan = this.plans.find(plan => plan.id === planId);
-      this.loadTags(planId)
+      this.loadTags(planId);
+      this.loadContent(planId, this.selectedPlan.category);
     }
   }
 
   loadTags(planId: number) {
     this._planService.getTags(planId).subscribe({
       next: (response) => {
-        console.log(response);
         this.tags = response.astPlansTags;
         },
+      error: (error) => {
+        alert(error.message);
+      }
+    });
+  }
+
+  loadContent(planId: number, category: string) {
+    this._planService.getContent(planId, 0).subscribe({
+      next: (response) => {
+        if (category === 'sport') {
+          this.selectedPlan.sports = response.sports;
+        } else if (category === 'food') {
+          this.selectedPlan.foods = response.foods;
+        }
+      },
       error: (error) => {
         alert(error.message);
       }

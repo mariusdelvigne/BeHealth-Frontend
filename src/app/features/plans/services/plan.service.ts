@@ -64,4 +64,10 @@ export class PlanService {
   public updatePlanSports(userId: number, planId: number, command: any) : Observable<void> {
     return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sports`, command);
   }
+
+  public getContent(planId: number, pageNumber: number): Observable<any> {
+    let params = new HttpParams()
+      .set('pageNumber', pageNumber);
+    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/content`, {params: params});
+  }
 }
