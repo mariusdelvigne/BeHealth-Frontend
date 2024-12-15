@@ -1,21 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {AuthCred} from '../utils/auth-cred';
 import {catchError, map, Observable, of} from 'rxjs';
 import {AuthData} from '../utils/auth-data';
-import {ActivatedRouteSnapshot, MaybeAsync, Resolve, RouterStateSnapshot} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements Resolve<boolean> {
+export class AuthService {
   private static URL: string = `${environment.API_URL}/${apis.AUTH_URL}`;
 
   private _authData: AuthData | null = null;
 
-  constructor(private _httpClient: HttpClient) {
-  }
+  constructor(private _httpClient: HttpClient) { }
 
   loadData(): Observable<boolean> {
     const request = this._httpClient.get<AuthData>(AuthService.URL);
@@ -23,6 +21,7 @@ export class AuthService implements Resolve<boolean> {
     return request.pipe(
       map(response => {
         this._authData = response;
+        this._authData.cookieExpiration = new Date(response.cookieExpiration);
         return true;
       }),
       catchError(() => of(false))
@@ -35,6 +34,7 @@ export class AuthService implements Resolve<boolean> {
     request.subscribe({
       next: response => {
         this._authData = response;
+        this._authData.cookieExpiration = new Date(response.cookieExpiration);
       }
     });
 
@@ -75,11 +75,15 @@ export class AuthService implements Resolve<boolean> {
     throw Error('Not logged in');
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<boolean> {
-    return this.loadData();
-  }
-
   public isAdmin(): boolean {
      return !!this._authData && this._authData.role === 'Admin';
+  }
+
+  public isTokenExpired() {
+    if (!this._authData || this._authData.cookieExpiration > new Date())
+      return false;
+
+    this._authData = null;
+    return true;
   }
 }
