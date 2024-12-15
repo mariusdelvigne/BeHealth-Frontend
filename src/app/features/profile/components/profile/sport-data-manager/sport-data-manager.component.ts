@@ -2,28 +2,21 @@ import { Component } from '@angular/core';
 import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 @Component({
-  selector: 'app-food-scatter-graph',
+  selector: 'app-sport-scatter-graph',
   standalone: true,
   imports: [
     RouterLinkActive,
     RouterOutlet
   ],
-  templateUrl: './food-data-manager.component.html',
-  styleUrls: [
-    './food-data-manager.component.scss',
-  ]
+  templateUrl: './sport-data-manager.component.html',
+  styleUrl: './sport-data-manager.component.scss'
 })
-export class FoodDataManagerComponent {
+export class SportDataManagerComponent {
   graphType: string = 'scatter';
   dataType: string = 'calories';
-  type: string = 'foods';
+  type: string = 'sports';
 
   constructor(private _router: Router) {
-  }
-
-  setDataType(dataType: string) {
-    this.dataType = dataType;
-    this.goToGraph()
   }
 
   setGraphType(type: string) {
@@ -32,6 +25,6 @@ export class FoodDataManagerComponent {
   }
 
   goToGraph() {
-    this._router.navigate([`/profile/food-data-manager/${this.graphType}-graph`, this.dataType, this.type]);
+    this._router.navigate([`/profile/sport-data-manager/${this.graphType}-graph`, this.dataType, this.type]);
   }
 }

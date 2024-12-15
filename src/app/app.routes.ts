@@ -79,6 +79,9 @@ import {
 import {
   SleepDataManagerComponent
 } from './features/profile/components/profile/sleep-data-manager/sleep-data-manager.component';
+import {
+  SportDataManagerComponent
+} from './features/profile/components/profile/sport-data-manager/sport-data-manager.component';
 
 export const routes: Routes = [
   {
@@ -382,11 +385,25 @@ export const routes: Routes = [
         component: FoodDataManagerComponent,
         children: [
           {
-            path: 'scatter-graph/:dataType',
+            path: 'scatter-graph/:dataType/:type',
             component: ScatterGraphComponent,
           },
           {
-            path: 'stacked-bar-graph/:dataType',
+            path: 'stacked-bar-graph/:dataType/:type',
+            component: StackedBarGraphComponent,
+          },
+        ]
+      },
+      {
+        path: 'sport-data-manager',
+        component: SportDataManagerComponent,
+        children: [
+          {
+            path: 'scatter-graph/:dataType/:type',
+            component: ScatterGraphComponent,
+          },
+          {
+            path: 'stacked-bar-graph/:dataType/:type',
             component: StackedBarGraphComponent,
           },
         ]
