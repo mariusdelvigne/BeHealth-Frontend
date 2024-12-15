@@ -19,7 +19,7 @@ export class NotificationService {
   }
 
   public getNotificationReadByUserId(userId: number, isRead: boolean): Observable<any> {
-    return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications/read/${isRead}`);
+    return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications?isRead=${isRead}`);
   }
 
   public getNotificationByNotificationId(userId: number, notificationId: number): Observable<any> {
@@ -30,11 +30,11 @@ export class NotificationService {
     if (isRead == null && category == null) {
       return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications`);
     } else if (isRead == null) {
-      return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications/category/${category}`);
+      return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications?category=${category}`);
     } else if (category == null) {
-      return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications/read/${isRead}`);
+      return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications?isRead=${isRead}`);
     } else {
-      return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications/category/${category}/read/${isRead}`);
+      return this._httpClient.get<any>(`${NotificationService.URL_USERS}/${userId}/notifications?isRead=${isRead}&category=${category}`);
     }
   }
 
