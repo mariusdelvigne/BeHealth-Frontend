@@ -1,3 +1,5 @@
+// Variables
+
 $marian-blue: #424874;
 $periwinkle-pink: #DCD6F7;
 $periwinkle-blue: #A6B1E1;
@@ -16,9 +18,12 @@ $weight-color: rgba(43, 182, 182, 0.76);
 $height-color: rgba(182, 43, 68, 0.76);
 $search: #35608a;
 
+// Responsive Table
+
 .responsive-table {
   margin-top: 2%;
   padding-left: 0;
+
   tr {
     padding: 25px 30px;
     display: flex;
@@ -37,117 +42,77 @@ $search: #35608a;
 
   .table-row-container {
     transition: transform 0.5s ease, box-shadow 0.5s;
-  }
 
-  .table-row-container:hover {
-    transform: translateY(-6px);
-    cursor: pointer;
+    &:hover {
+      transform: translateY(-6px);
+      cursor: pointer;
+    }
   }
 
   .table-row {
     background-color: $alice-blue;
-
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   }
 }
+
+// Card Styles
 
 .card {
   transition: transform 0.5s ease, box-shadow 0.5s;
   border-radius: 10px;
   min-height: 30vh;
   position: relative;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    border-bottom: none;
+    min-height: 20vh;
+    border-radius: 15px;
+  }
 }
 
-.card-header {
-  border-bottom: none;
-  min-height: 20vh;
-  border-radius: 15px;
-}
+// Buttons and Inputs
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.icon-top-right {
-  position: absolute;
-  top: 10px;
-  right: -10px;
-  width: 40px;
-  height: 40px;
-  z-index: 10;
-}
-
-button, input[type=button], input[type=submit] {
+button,
+input[type="button"],
+input[type="submit"] {
   transition: transform 0.5s ease, box-shadow 0.5s;
   border: none;
   min-width: 50px;
   width: auto;
 }
 
-textarea {
-  background-color: $alice-blue;
-}
-
 .custom-btn-lock {
   background-color: $french-gray;
   border: none;
   transition: background-color 0.3s ease, transform 0.1s ease;
-}
 
-.custom-btn-lock:hover {
-  background-color: #C4C4D0;
+  &:hover {
+    background-color: #C4C4D0;
+  }
 }
 
 .custom-btn {
   padding: 5px;
   background-color: $alice-blue;
-}
 
-.custom-btn:hover {
-  background-color: $french-gray;
-  transform: translateY(-3px);
-  border: none;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-
-.custom-width {
-  width: 150px;
-}
-
-.graph-background {
-  background: $french-gray;
-}
-
-.program-list {
-  list-style: none;
-  padding: 0;
-
-  li {
-    margin-bottom: 10px;
-    list-style: none;
-    background: aliceblue;
-  }
-
-  .program {
-    transition: transform 0.5s ease, box-shadow 0.5s;
-  }
-
-  .program:hover {
-    transform: translateY(-6px);
+  &:hover {
+    background-color: $french-gray;
+    transform: translateY(-3px);
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
   }
 }
 
-.plan {
-  background: aliceblue;
-  transition: transform 0.5s ease, box-shadow 0.5s;
-}
+// Forms and Containers
 
-.plan:hover {
-  transform: translateY(-6px);
-  cursor: pointer;
+textarea {
+  background-color: $alice-blue;
 }
 
 .sign-form-container {
@@ -162,10 +127,11 @@ textarea {
   animation: moveBackground 10s linear infinite;
   background-size: 200% 200%;
   transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
-}
-.form-container:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  transform: scale(1.02);
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
+  }
 }
 
 .custom-form {
@@ -182,12 +148,14 @@ textarea {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+// Search Input and Button
+
 .search-input {
   border: none;
-}
 
-.search-input:focus {
-  outline: 3px solid $marian-blue;
+  &:focus {
+    outline: 3px solid $marian-blue;
+  }
 }
 
 .search-btn {
@@ -196,7 +164,47 @@ textarea {
   color: white;
 }
 
-// Backgrounds colors
+// Icons
+
+.custom-icon {
+  font-size: 3vw;
+  box-shadow: 0 0 0.1em 0 rgba(0, 0, 0, 0.5);
+}
+
+// Program and Plan Styles
+
+.program-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    margin-bottom: 10px;
+    list-style: none;
+    background: aliceblue;
+  }
+
+  .program {
+    transition: transform 0.5s ease, box-shadow 0.5s;
+
+    &:hover {
+      transform: translateY(-6px);
+      cursor: pointer;
+    }
+  }
+}
+
+.plan {
+  background: aliceblue;
+  transition: transform 0.5s ease, box-shadow 0.5s;
+
+  &:hover {
+    transform: translateY(-6px);
+    cursor: pointer;
+  }
+}
+
+// Background Colors
+
 .food-color {
   background-color: $food-color !important;
 }
@@ -220,6 +228,8 @@ textarea {
 .height-color {
   background-color: $height-color !important;
 }
+
+// Border Top Colors
 
 .border-top-food-color {
   border-top: 20px solid $food-color !important;
@@ -245,11 +255,7 @@ textarea {
   border-top: 20px solid $height-color !important;
 }
 
-// Icons
-.custom-icon {
-  font-size: 3vw;
-  box-shadow: 0 0 0.1em 0 rgba(0, 0, 0, 0.5);
-}
+// Keyframes
 
 @keyframes moveBackground {
   0% {
