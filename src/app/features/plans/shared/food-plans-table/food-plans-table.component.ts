@@ -22,7 +22,6 @@ export class FoodPlansTableComponent implements OnInit {
   @Output() emitFoodPlan = new EventEmitter();
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
-    category: new FormControl(''),
   });
 
   constructor(private _planService: PlanService) {
@@ -61,7 +60,7 @@ export class FoodPlansTableComponent implements OnInit {
 
   emitSearchPlan() {
     this._planService.getPlansFiltered(
-      "public", this.form.value.name, "food")
+      'public', this.form.value.name, 'food')
       .subscribe({
         next: (response) => {
           this.foodPlans = response.plans;
