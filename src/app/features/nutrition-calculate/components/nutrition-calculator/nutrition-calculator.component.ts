@@ -22,17 +22,17 @@ export class NutritionCalculatorComponent {
 
   resultNutriment: NutritionCalculatorOutput = {
     foodsName: "",
-    servingsWeights: 0.0,
+    servingWeights: 0.0,
     calories: 0.0,
     totalFats: 0.0,
-    saturedFats: 0.0,
+    saturatedFats: 0.0,
     cholesterol: 0.0,
     sodium: 0.0,
     totalCarbohydrates: 0.0,
     dietaryFiber: 0.0,
     sugars: 0.0,
     proteins: 0.0,
-    potassiums: 0.0,
+    potassium: 0.0,
   }
 
   constructor(private _nutritionCalculatorService: NutritionCalculatorService, private _toastrService: ToastrService) {
@@ -45,18 +45,8 @@ export class NutritionCalculatorComponent {
   calculNutrition() {
     this._nutritionCalculatorService.calculEatenCalories(this.form.value).subscribe({
       next: (response) => {
+        this.resultNutriment = response;
         this.resultNutriment.foodsName = response.foodsName;
-        this.resultNutriment.servingsWeights = response.servingsWeights;
-        this.resultNutriment.calories = response.calories;
-        this.resultNutriment.totalFats = response.totalFats;
-        this.resultNutriment.saturedFats = response.saturedFats;
-        this.resultNutriment.cholesterol = response.cholesterol;
-        this.resultNutriment.sodium = response.sodium;
-        this.resultNutriment.totalCarbohydrates = response.totalCarbohydrates;
-        this.resultNutriment.dietaryFiber = response.dietaryFiber;
-        this.resultNutriment.sugars = response.sugars;
-        this.resultNutriment.proteins = response.proteins;
-        this.resultNutriment.potassiums = response.potassiums;
         this._toastrService.success("Nutrition computed successfully");
       },
       error: (error) => {
