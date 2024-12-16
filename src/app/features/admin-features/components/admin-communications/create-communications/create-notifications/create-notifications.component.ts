@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {UserService} from '../../../../../shared/services/user.service';
 import {ToastrService} from 'ngx-toastr';
-import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
-import {NotificationService} from '../../../../../shared/services/notification.service';
-import {NotificationCreateCommand} from '../../../../notifications/utils/notification-create-command';
+import {UserSearchOutput} from '../../../../../../shared/utils/user-search-output';
+import {UserService} from '../../../../../../shared/services/user.service';
+import {NotificationService} from '../../../../../../shared/services/notification.service';
+import {NotificationCreateCommand} from '../../../../../notifications/utils/notification-create-command';
 
 @Component({
   selector: 'app-create-notifications',

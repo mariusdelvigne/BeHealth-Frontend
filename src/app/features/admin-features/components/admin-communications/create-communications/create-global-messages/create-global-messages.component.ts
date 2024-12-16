@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AuthService} from '../../../../../core/auth/services/auth.service';
-import {GlobalMessagesService} from '../../../services/global-messages.service';
-import {CreateGlobalMessageCommand} from '../../../utils/create-global-message-command';
+import {AuthService} from '../../../../../../core/auth/services/auth.service';
+import {GlobalMessagesService} from '../../../../../../core/global-messages/services/global-messages.service';
+import {CreateGlobalMessageCommand} from '../../../../utils/create-global-message-command';
 
 @Component({
   selector: 'app-create-global-messages',

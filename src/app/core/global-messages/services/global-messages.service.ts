@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {CreateGlobalMessageCommand} from '../utils/create-global-message-command';
+import {CreateGlobalMessageCommand} from '../../../features/admin-features/utils/create-global-message-command';
 
 @Injectable({
   providedIn: 'root'
