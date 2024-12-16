@@ -19,4 +19,8 @@ export class FoodService {
 
     return this._httpClient.get<any>(FoodService.URL, {params: params});
   }
+
+  public deleteFoods(id: number): Observable<any> {
+    return this._httpClient.delete<any>(FoodService.URL + '/' + id);
+  }
 }

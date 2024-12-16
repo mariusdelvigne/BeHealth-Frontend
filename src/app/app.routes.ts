@@ -89,6 +89,7 @@ import {
 import {
   CreateGlobalMessagesComponent
 } from './features/admin-communication/components/create-communications/create-global-messages/create-global-messages.component';
+import {AdminFoodsComponent} from './features/admin-foods/components/admin-foods/admin-foods.component';
 
 export const routes: Routes = [
   {
@@ -493,6 +494,11 @@ export const routes: Routes = [
   {
     path: 'create-global-message',
     component: CreateGlobalMessagesComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'admin-foods',
+    component: AdminFoodsComponent,
     canActivate: [adminGuard],
   }
 ]

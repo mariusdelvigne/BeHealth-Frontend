@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <h2>Foods List (100g)</h2>
+  <table class="table table-striped table-bordered table-responsive">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Calories</th>
+      <th>Total Fats</th>
+      <th>Proteins</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (food of foods; track $index) {
+        <tr>
+        <td>{{ food.name }}</td>
+        <td>{{ food.calories }}</td>
+        <td>{{ food.totalFats }}</td>
+        <td>{{ food.proteins }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteFood(food.id)">
+            Delete
+          </button>
+        </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
