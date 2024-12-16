@@ -16,6 +16,8 @@ import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
 export class FoodDataManagerComponent implements OnInit {
   graphType: string = 'scatter';
   dataType: string = 'calories';
+  type: string = 'foods';
+
   constructor(private _router: Router) {
   }
 
@@ -34,6 +36,6 @@ export class FoodDataManagerComponent implements OnInit {
   }
 
   goToGraph() {
-    this._router.navigate([`/profile/food-data-manager/${this.graphType}-graph`, this.dataType]);
+    this._router.navigate([`/profile/food-data-manager/${this.graphType}-graph`, this.dataType, this.type]);
   }
 }
