@@ -15,6 +15,9 @@ export class PlanSportListComponent {
   @Input()
   planSports: any[] = [];
 
+  @Input()
+  isEditMode: boolean = false;
+
   deletePlanSport(index: number) {
     this.planSports.splice(index, 1);
   }

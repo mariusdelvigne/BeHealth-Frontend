@@ -62,13 +62,13 @@
 
   @if (planCategory === 'sport') {
     <div class="table-responsive">
-      <app-plan-sport-list [planSports]="planSports"></app-plan-sport-list>
+      <app-plan-sport-list [planSports]="planSports" [isEditMode]="true"></app-plan-sport-list>
       <hr>
       <app-plan-sport-create (onPlanSportCreated)="addPlanSport($event)"></app-plan-sport-create>
     </div>
   } @else if (planCategory === 'food') {
     <div class="table-responsive">
-      <app-plan-food-list [planFoods]="planFoods"></app-plan-food-list>
+      <app-plan-food-list [planFoods]="planFoods" [isEditMode]="true"></app-plan-food-list>
       <hr>
       <app-plan-food-create (onPlanFoodCreated)="addPlanFood($event)"></app-plan-food-create>
     </div>
