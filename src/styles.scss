@@ -116,19 +116,6 @@ textarea {
   width: 150px;
 }
 
-.selected {
-  transform: scale(1.05);
-  transition: all 0.3s ease;
-}
-
-.selected::after {
-  content: '✔';
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-}
-
 .graph-background {
   background: $french-gray;
 }
