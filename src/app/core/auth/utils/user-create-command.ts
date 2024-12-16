@@ -6,4 +6,6 @@ export interface UserCreateCommand {
   birthDate: Date;
   gender: string;
   mail: string;
+  heightInCm: number;
+  weightInG: number;
 }

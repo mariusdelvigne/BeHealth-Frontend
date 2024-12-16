@@ -13,7 +13,10 @@ import {ToastrService} from 'ngx-toastr';
         ReactiveFormsModule
     ],
   templateUrl: './auth-sign-up.component.html',
-  styleUrl: './auth-sign-up.component.scss',
+  styleUrls: [
+    './auth-sign-up.component.scss',
+    '../../../../../styles.scss',
+    ],
 })
 export class AuthSignUpComponent {
   form: FormGroup = new FormGroup({
@@ -24,6 +27,8 @@ export class AuthSignUpComponent {
     birthDate: new FormControl('', Validators.required),
     gender: new FormControl('Male', Validators.required),
     mail: new FormControl('', Validators.required),
+    heightInCm: new FormControl('', [Validators.required, Validators.min(1)]),
+    weightInG: new FormControl('', [Validators.required, Validators.min(1)]),
   });
 
   constructor(private _authService: AuthService, private _userService: UserService, private _router: Router, private _toastrService: ToastrService) { }
@@ -32,8 +37,19 @@ export class AuthSignUpComponent {
     this._router.navigate(['/']);
   }
 
+  isHeightTouched() {
+    return this.form.controls['heightInCm'].touched;
+  }
+
+  isWeightTouched() {
+    return this.form.controls['weightInG'].touched;
+  }
   emitSignUp() {
-    this._userService.signUp(this.form.value).subscribe({
+    const formData = {
+      ...this.form.value, weightInG: this.form.value.weightInG * 1000
+    };
+
+    this._userService.signUp(formData).subscribe({
       next: () => {
         const auth = {
           username: this.form.value.username,
