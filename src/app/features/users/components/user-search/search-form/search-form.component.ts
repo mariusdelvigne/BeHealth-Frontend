@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserSearchQuery} from '../../../../../shared/utils/user-search-query';
 import {DebounceService} from '../../../../../shared/services/debounce.service';
 

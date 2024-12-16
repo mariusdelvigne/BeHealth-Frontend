@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SearchFormComponent} from './search-form/search-form.component';
 import {UserListComponent} from './user-list/user-list.component';
 import {UserSearchOutput} from '../../../../shared/utils/user-search-output';
@@ -19,11 +19,19 @@ import {UserBanDeleteChoice} from '../../utils/user-ban-delete-choice';
   templateUrl: './user-search.component.html',
   styleUrl: './user-search.component.scss'
 })
-export class UserSearchComponent{
+export class UserSearchComponent implements OnInit {
   @Input()
   user: UserSearchOutput[] = []
 
   constructor(private _userService: UserService) {
+  }
+
+  ngOnInit() {
+    this._userService.getAllUsers().subscribe({
+      next: (users) => {
+        this.user = users.users;
+      }
+    })
   }
 
   searchUserByName(query: UserSearchQuery) {

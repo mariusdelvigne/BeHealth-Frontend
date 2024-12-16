@@ -64,28 +64,28 @@ import {
   PeriodDataManagerComponent
 } from './features/profile/components/profile/period-data-manager/period-data-manager.component';
 import {PeriodCalendarComponent} from './features/profile/shared/period-calendar/period-calendar.component';
-import {
-  CreateNotificationsComponent
-} from './features/amdin-communication/components/create-communications/create-notifications/create-notifications.component';
-import {
-  ViewAllNotificationsComponent
-} from './features/amdin-communication/components/view-communications/view-all-notifications/view-all-notifications.component';
-import {
-  ViewCommunicationsComponent
-} from './features/amdin-communication/components/view-communications/view-communications.component';
-import {
-  CreateCommunicationsComponent
-} from './features/amdin-communication/components/create-communications/create-communications.component';
-import {
-  ViewAllGlobalMessageComponent
-} from './features/amdin-communication/components/view-communications/view-all-global-message/view-all-global-message.component';
-import {
-  CreateGlobalMessagesComponent
-} from './features/amdin-communication/components/create-communications/create-global-messages/create-global-messages.component';
 import {BarGraphComponent} from './features/profile/shared/bar-graph/bar-graph.component';
 import {
   SleepDataManagerComponent
 } from './features/profile/components/profile/sleep-data-manager/sleep-data-manager.component';
+import {
+  ViewCommunicationsComponent
+} from './features/admin-communication/components/view-communications/view-communications.component';
+import {
+  ViewAllNotificationsComponent
+} from './features/admin-communication/components/view-communications/view-all-notifications/view-all-notifications.component';
+import {
+  ViewAllGlobalMessageComponent
+} from './features/admin-communication/components/view-communications/view-all-global-message/view-all-global-message.component';
+import {
+  CreateCommunicationsComponent
+} from './features/admin-communication/components/create-communications/create-communications.component';
+import {
+  CreateNotificationsComponent
+} from './features/admin-communication/components/create-communications/create-notifications/create-notifications.component';
+import {
+  CreateGlobalMessagesComponent
+} from './features/admin-communication/components/create-communications/create-global-messages/create-global-messages.component';
 
 export const routes: Routes = [
   {

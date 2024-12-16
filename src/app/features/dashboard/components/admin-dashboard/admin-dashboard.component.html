@@ -25,10 +25,13 @@
         </div>
         <div class="card-body">
           <p class="card-text">
-            <b>Manage all the users on the site.</b>
+            <b>Manage all the users on the site.</b><br/>
+            <b>Number of users : </b> {{nbUsers}}<br/>
+            <b>Number of users banned : </b> {{nbUsersBan}}<br/>
           </p>
         </div>
         <div class="card-footer d-flex justify-content-around gap-1 m-1">
+          <a routerLink="/users" class="btn btn-dark w-100 fw-bold">Manage users</a>
         </div>
       </div>
     </div>

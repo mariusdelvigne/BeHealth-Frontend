@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetAllGlobalMessagesOutput } from '../../utils/get-all-global-messages-output';
-import { GlobalMessagesService } from '../../../../features/amdin-communication/services/global-messages.service';
 import { ToastrService } from 'ngx-toastr';
+import {GlobalMessagesService} from '../../../../features/admin-communication/services/global-messages.service';
 
 @Component({
   selector: 'app-global-message',
@@ -40,7 +40,6 @@ export class GlobalMessageComponent implements OnInit {
         });
 
         this.nbGlobalMessages = this.globalMessage.length;
-        console.log(this.globalMessage);
       },
       error: (error) => {
         this._toastrService.error("Error : " + error.message);
