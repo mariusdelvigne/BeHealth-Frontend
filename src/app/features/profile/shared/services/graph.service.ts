@@ -54,6 +54,20 @@ export class GraphService {
     return grouped;
   }
 
+  groupDataByDayAndSport(data: DatedValue[]) {
+    const grouped: { [sport: string]: { [day: string]: number } } = {};
+
+    data.forEach(d => {
+      const day = d.date.toLocaleString('en-US', {weekday: 'short'});
+      if(!grouped[d.sport]) {
+        grouped[d.sport] = {Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0};
+      }
+      grouped[d.sport][day] += d.value;
+    });
+
+    return grouped;
+  }
+
   computeTotals(data: DatedValue[]): { [day: string]: number } {
     const totals: { [day: string]: number } = {};
 
@@ -92,6 +106,9 @@ export class GraphService {
         break;
       case 'sleeps':
         dataValues = {yName: "Sleeps", seriesName: 'Sleeps', measureUnit: 'h'};
+        break;
+      case 'sports':
+        dataValues = {yName: "Calories burned", seriesName: 'Calories burned', measureUnit: 'kcal'};
         break;
       default:
         this._toastrService.error("Data type not supported");

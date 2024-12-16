@@ -9,6 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {firstValueFrom} from 'rxjs';
 import {GraphService} from '../services/graph.service';
+import {UserSportService} from '../../../../shared/services/user-sport.service';
 
 @Component({
   selector: 'app-stacked-bar-graph',
@@ -22,6 +23,7 @@ import {GraphService} from '../services/graph.service';
 })
 export class StackedBarGraphComponent implements OnInit {
   dataType: string = '';
+  type: string = '';
   dataValues: GraphData = {yName: '', seriesName: '', measureUnit: ''};
   startDate: Date = new Date();
   endDate: Date = new Date();
@@ -31,12 +33,14 @@ export class StackedBarGraphComponent implements OnInit {
   options!: EChartsOption;
   updateOptions!: EChartsOption;
 
-  constructor(private _graphService: GraphService, private _userFoodService: UserFoodService, private _route: ActivatedRoute, private _toastrService: ToastrService ) {
+  constructor(private _graphService: GraphService, private _userFoodService: UserFoodService, private _route: ActivatedRoute,
+              private _toastrService: ToastrService, private _userSportService: UserSportService ) {
   }
 
   ngOnInit(): void {
     this._route.paramMap.subscribe(() => {
       this.dataType = this._route.snapshot.params['dataType'];
+      this.type = this._route.snapshot.params['type'];
       this.dataValues = this._graphService.loadType(this.dataType, this.dataValues);
       this.loadOptions()
       this.loadData();
@@ -66,12 +70,23 @@ export class StackedBarGraphComponent implements OnInit {
     const pageSize: number = 20;
 
     do {
-      let response = await firstValueFrom(this._userFoodService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
-      dataToAdd = response.userFoods.map((d: any) => ({
-        date: new Date(d.eatenDatetime),
-        food: d.name,
-        value: d[this.dataType],
-      }));
+      if (this.type == "sports") {
+        let response = await firstValueFrom(this._userSportService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
+        console.log(response)
+        dataToAdd = response.userSports.map((d: any) => ({
+          date: new Date(d.startDatetime),
+          // sport: d.id,
+          value: d[this.dataType],
+        }));
+      }
+      else if (this.type == "foods") {
+        let response = await firstValueFrom(this._userFoodService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
+        dataToAdd = response.userFoods.map((d: any) => ({
+          date: new Date(d.eatenDatetime),
+          food: d.name,
+          value: d[this.dataType],
+        }));
+      }
 
       this.data = this.data.concat(dataToAdd);
     } while (dataToAdd.length == pageSize);
