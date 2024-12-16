@@ -25,10 +25,6 @@ export class BmiCalculatorComponent {
   constructor(private _bmiCalculatorService: BmiCalculatorService, private _toastrService: ToastrService) {
   }
 
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
   calculBmi() {
     this._bmiCalculatorService.calculBmi(this.form.value).subscribe({
       next: (response) => {

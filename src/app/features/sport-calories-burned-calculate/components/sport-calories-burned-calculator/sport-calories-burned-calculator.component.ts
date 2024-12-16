@@ -57,10 +57,6 @@ export class SportCaloriesBurnedCalculatorComponent {
   constructor(private _sportCaloriesBurnedCalculatorService: SportCaloriesBurnedCalculatorService, private _toastrService: ToastrService) {
   }
 
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
   calculCaloriesBurned() {
     this._sportCaloriesBurnedCalculatorService.calculateCaloriesBurned(this.form.value).subscribe({
       next: (response) => {

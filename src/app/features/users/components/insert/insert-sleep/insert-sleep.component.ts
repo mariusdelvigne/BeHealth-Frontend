@@ -27,9 +27,4 @@ export class InsertSleepComponent {
       error: (error) => this._toastrService.error("Error creating the sleep + " + error.message),
     });
   }
-
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
 }

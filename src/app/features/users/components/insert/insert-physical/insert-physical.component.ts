@@ -32,9 +32,4 @@ export class InsertPhysicalComponent {
       error: (error) => this._toastrService.error("Error creating the height + " + error.message),
     });
   }
-
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
 }
