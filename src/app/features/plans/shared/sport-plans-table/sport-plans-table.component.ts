@@ -17,6 +17,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular
   ]
 })
 export class SportPlansTableComponent implements OnInit{
+  isVisible: boolean = true;
   sportPlans: any;
   selectedSportPlan: any;
   @Input() program!: any;
@@ -68,5 +69,9 @@ export class SportPlansTableComponent implements OnInit{
           console.log(response.plans);
         }
       });
+  }
+
+  setVisibility(): void {
+    this.isVisible = !this.isVisible;
   }
 }
