@@ -1,13 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PlanService} from '../../../plans/services/plan.service';
 import {NgClass} from '@angular/common';
+import {PlanInfoComponent} from "../../../plans/shared/plan-info/plan-info.component";
 
 @Component({
   selector: 'app-program-info',
   standalone: true,
-  imports: [
-    NgClass
-  ],
+    imports: [
+        NgClass,
+        PlanInfoComponent
+    ],
   templateUrl: './program-info.component.html',
   styleUrls: [
     './program-info.component.scss',
@@ -19,6 +21,7 @@ export class ProgramInfoComponent implements OnInit {
   sportPlan: any;
   sleepPlan: any;
   selectedPlan: any;
+  tags: any[] = [];
 
   constructor(private _planService: PlanService) {
   }
@@ -36,12 +39,44 @@ export class ProgramInfoComponent implements OnInit {
   }
 
   showPlanInfo(planId: number) {
-    console.log(planId);
+    this.tags = [];
     if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
     } else {
       this.selectedPlan = null;
-      this._planService.getPlansById(planId).subscribe(plan => this.selectedPlan = plan);
+      this._planService.getPlansById(planId).subscribe({
+        next: (plan) => {
+          this.selectedPlan = plan;
+          this.loadTags(planId);
+          this.loadContent(planId, this.selectedPlan.category);
+        }
+      });
     }
+  }
+
+  loadTags(planId: number) {
+    this._planService.getTags(planId).subscribe({
+      next: (response) => {
+        this.tags = response.astPlansTags;
+      },
+      error: (error) => {
+        alert(error.message);
+      }
+    });
+  }
+
+  loadContent(planId: number, category: string) {
+    this._planService.getContent(planId, 0).subscribe({
+      next: (response) => {
+        if (category === 'sport') {
+          this.selectedPlan.sports = response.sports;
+        } else if (category === 'food') {
+          this.selectedPlan.foods = response.foods;
+        }
+      },
+      error: (error) => {
+        alert(error.message);
+      }
+    });
   }
 }

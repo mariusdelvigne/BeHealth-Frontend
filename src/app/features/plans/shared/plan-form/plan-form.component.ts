@@ -3,12 +3,12 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {PlanService} from '../../services/plan.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {debounceTime} from 'rxjs';
 import {PlanSportListComponent} from './components/plan-sport-list/plan-sport-list.component';
 import {PlanSportCreateComponent} from './components/plan-sport-create/plan-sport-create.component';
 import {PlanFoodListComponent} from './components/plan-food-list/plan-food-list.component';
 import {PlanFoodCreateComponent} from './components/plan-food-create/plan-food-create.component';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-plan-form',
@@ -19,26 +19,12 @@ import {PlanFoodCreateComponent} from './components/plan-food-create/plan-food-c
     PlanSportCreateComponent,
     PlanFoodListComponent,
     PlanFoodCreateComponent,
+    NgClass,
   ],
   templateUrl: './plan-form.component.html',
   styleUrls: [
     './plan-form.component.scss',
   ],
-  animations: [
-    trigger('colorChange', [
-      state('grey', style({
-        backgroundColor: 'rgba(173, 181, 189, 0.3)',
-        border: '3px solid rgba(173, 181, 189, 0.5)',
-      })),
-      state('blue', style({
-        backgroundColor: 'rgba(13, 110, 253, 0.3)',
-        border: '3px solid rgba(13, 110, 253, 0.5)',
-      })),
-      transition('grey <=> blue', [
-        animate('1s ease-out')
-      ])
-    ])
-  ]
 })
 export class PlanFormComponent implements OnInit {
   @Input() mode: string = '';
@@ -129,10 +115,6 @@ export class PlanFormComponent implements OnInit {
     return this.form.value.category;
   }
 
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
   addPlanSport(planSport: any) {
     let pos: number = this.planSports.findIndex(s => s.dayNumber > planSport.dayNumber ||
       (s.dayNumber == planSport.dayNumber && s.dayTime > planSport.dayTime));
@@ -167,5 +149,9 @@ export class PlanFormComponent implements OnInit {
 
   removeTag(tag: any) {
     this.tagsList = this.tagsList.filter(t => t.id !== tag.id);
+  }
+
+  setPrivacy() {
+    this.form.get('privacy')?.setValue(this.form.get('privacy')?.value === 'private' ? 'public' : 'private');
   }
 }
