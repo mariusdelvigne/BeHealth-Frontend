@@ -69,29 +69,30 @@ import {
   SleepDataManagerComponent
 } from './features/profile/components/profile/sleep-data-manager/sleep-data-manager.component';
 import {
-  ViewCommunicationsComponent
-} from './features/admin-communication/components/view-communications/view-communications.component';
-import {
-  ViewAllNotificationsComponent
-} from './features/admin-communication/components/view-communications/view-all-notifications/view-all-notifications.component';
-import {
-  ViewAllGlobalMessageComponent
-} from './features/admin-communication/components/view-communications/view-all-global-message/view-all-global-message.component';
-import {
-  CreateCommunicationsComponent
-} from './features/admin-communication/components/create-communications/create-communications.component';
-import {
-  CreateNotificationsComponent
-} from './features/admin-communication/components/create-communications/create-notifications/create-notifications.component';
-import {
   SportDataManagerComponent
 } from './features/profile/components/profile/sport-data-manager/sport-data-manager.component';
 import {
+  ViewCommunicationsComponent
+} from './features/admin-features/components/admin-communications/view-communications/view-communications.component';
+import {
+  ViewAllNotificationsComponent
+} from './features/admin-features/components/admin-communications/view-communications/view-all-notifications/view-all-notifications.component';
+import {
+  ViewAllGlobalMessageComponent
+} from './features/admin-features/components/admin-communications/view-communications/view-all-global-message/view-all-global-message.component';
+import {
+  CreateCommunicationsComponent
+} from './features/admin-features/components/admin-communications/create-communications/create-communications.component';
+import {
+  CreateNotificationsComponent
+} from './features/admin-features/components/admin-communications/create-communications/create-notifications/create-notifications.component';
+import {
   CreateGlobalMessagesComponent
-} from './features/admin-communication/components/create-communications/create-global-messages/create-global-messages.component';
-import {AdminFoodsComponent} from './features/admin-foods/components/admin-foods/admin-foods.component';
+} from './features/admin-features/components/admin-communications/create-communications/create-global-messages/create-global-messages.component';
+import {AdminFoodsComponent} from './features/admin-features/components/admin-foods/admin-foods.component';
 
-export const routes: Routes = [
+export let routes: Routes;
+routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -501,4 +502,4 @@ export const routes: Routes = [
     component: AdminFoodsComponent,
     canActivate: [adminGuard],
   }
-]
+];

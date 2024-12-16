@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {GetAllGlobalMessagesOutput} from '../../../../../core/global-messages/utils/get-all-global-messages-output';
-import {GlobalMessagesService} from '../../../services/global-messages.service';
 import {ToastrService} from 'ngx-toastr';
+import {GetAllGlobalMessagesOutput} from '../../../../../../core/global-messages/utils/get-all-global-messages-output';
+import {GlobalMessagesService} from '../../../../../../core/global-messages/services/global-messages.service';
 
 @Component({
   selector: 'app-view-all-global-message',
