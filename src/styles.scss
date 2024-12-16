@@ -50,6 +50,10 @@ $height-color: rgba(182, 43, 68, 0.76);
   }
 }
 
+.small-text {
+  font-size: 0.875rem;
+}
+
 .card {
   transition: transform 0.5s ease, box-shadow 0.5s;
   border-radius: 10px;

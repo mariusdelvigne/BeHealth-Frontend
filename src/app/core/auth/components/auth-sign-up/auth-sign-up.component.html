@@ -44,6 +44,26 @@
           </select>
         </div>
       </div>
+      <div class="row">
+        <label for="height" class="col-sm-2 col-form-label fw-bold">Height (in cm)</label>
+        <div class="col-sm-4">
+          <input class="form-control w-100" type="number" formControlName="heightInCm" id="height">
+          @if (form.controls['heightInCm'].invalid && isHeightTouched()) {
+            <div class="text-danger small-text">
+              Height is required and must be positive
+            </div>
+          }
+        </div>
+        <label for="weight" class="col-sm-2 col-form-label fw-bold">Weight (in kg)</label>
+        <div class="col-sm-4">
+          <input class="form-control w-100" type="number" formControlName="weightInG" id="weight">
+          @if (form.controls['weightInG'].invalid && isWeightTouched()) {
+            <div class="text-danger small-text">
+              Height is required and must be positive
+            </div>
+          }
+        </div>
+      </div>
       <input class="btn btn-dark custom-btn rounded-3 w-100 mt-5" type="submit" value="Sign up" [disabled]="form.invalid">
     </form>
   </div>
