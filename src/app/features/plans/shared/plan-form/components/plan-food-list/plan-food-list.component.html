@@ -3,7 +3,7 @@
     <th class="col-5">Food</th>
     <th class="col-2">Day</th>
     <th class="col-2">Time</th>
-    <th class="col-2">Quantity in g</th>
+    <th class="col-2">Quantity</th>
     @if (isEditMode) {
       <th class="col-1"></th>
     }
@@ -13,7 +13,7 @@
       <td>{{planFood.name}}</td>
       <td>{{planFood.dayNumber}}</td>
       <td>{{planFood.dayTime}}</td>
-      <td>{{planFood.quantityInG}}</td>
+      <td>{{planFood.quantityInG}}g</td>
       @if (isEditMode) {
         <td><input type="button" value="X" (click)="deletePlanFood($index)"></td>
       }

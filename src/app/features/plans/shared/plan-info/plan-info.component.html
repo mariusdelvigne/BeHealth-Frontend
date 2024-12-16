@@ -1,5 +1,10 @@
 @if (plan) {
   <div>
+    <ul class="p-0 d-flex flex-wrap gap-2">
+      @for (astPlansTags of tags; track $index) {
+        <li class="badge text-bg-dark p-2">{{ astPlansTags.tag.name }}</li>
+      }
+    </ul>
     <textarea type="text" class="form-control text-start" disabled [value]="plan.description" style="min-height: 25vh"></textarea>
     @if (plan.category === 'sport') {
       <app-plan-sport-list [planSports]="plan.sports" [isEditMode]="false"></app-plan-sport-list>

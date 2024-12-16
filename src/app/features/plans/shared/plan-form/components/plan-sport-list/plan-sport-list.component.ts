@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TimePipe} from '../../../../../../shared/utils/time.pipe';
 
 @Component({
   selector: 'app-plan-sport-list',
@@ -7,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   imports: [
     FormsModule,
     ReactiveFormsModule,
+    TimePipe,
   ],
   templateUrl: './plan-sport-list.component.html',
   styleUrl: './plan-sport-list.component.scss'

@@ -3,7 +3,7 @@
     <th class="col-5">Sport</th>
     <th class="col-2">Day</th>
     <th class="col-2">Time</th>
-    <th class="col-2">Duration in min</th>
+    <th class="col-2">Duration</th>
     @if (isEditMode) {
       <th class="col-1"></th>
     }
@@ -13,7 +13,7 @@
       <td>{{planSport.name}}</td>
       <td>{{planSport.dayNumber}}</td>
       <td>{{planSport.dayTime}}</td>
-      <td>{{planSport.durationInMin}}</td>
+      <td>{{planSport.durationInMin * 60 | time }}</td>
       @if (isEditMode) {
         <td><input type="button" value="X" (click)="deletePlanSport($index)"></td>
       }

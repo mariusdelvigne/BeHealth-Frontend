@@ -16,4 +16,5 @@ import {PlanFoodListComponent} from '../plan-form/components/plan-food-list/plan
 })
 export class PlanInfoComponent {
   @Input() plan: any;
+  @Input() tags: any[] = [];
 }
