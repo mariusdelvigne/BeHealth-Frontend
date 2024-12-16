@@ -27,8 +27,4 @@ export class InsertPeriodComponent {
       error: (error) => this._toastrService.error("Error creating the period : " + error.message),
     });
   }
-
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
 }

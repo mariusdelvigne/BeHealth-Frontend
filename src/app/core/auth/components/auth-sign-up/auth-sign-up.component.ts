@@ -50,9 +50,4 @@ export class AuthSignUpComponent {
       }
     });
   }
-
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
 }

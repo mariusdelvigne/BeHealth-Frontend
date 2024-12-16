@@ -41,10 +41,6 @@ export class InsertFoodComponent implements OnInit {
     });
   }
 
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
   updateFoodList(name: string) {
     this._foodService.getAllStartingWith(name)
       .subscribe({

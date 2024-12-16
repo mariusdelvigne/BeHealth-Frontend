@@ -38,10 +38,6 @@ export class NutritionCalculatorComponent {
   constructor(private _nutritionCalculatorService: NutritionCalculatorService, private _toastrService: ToastrService) {
   }
 
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
   calculNutrition() {
     this._nutritionCalculatorService.calculEatenCalories(this.form.value).subscribe({
       next: (response) => {

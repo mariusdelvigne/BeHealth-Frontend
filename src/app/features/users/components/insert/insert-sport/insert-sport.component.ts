@@ -40,11 +40,6 @@ export class InsertSportComponent implements OnInit {
       error: (error) => this._toastrService.error("Error creating the sport : " + error.message),
     });
   }
-
-  get colorChange() {
-    return this.form.invalid ? 'grey' : 'blue';
-  }
-
   updateSportList(name: string) {
     this._sportService.getAllStartingWith(name)
       .subscribe({

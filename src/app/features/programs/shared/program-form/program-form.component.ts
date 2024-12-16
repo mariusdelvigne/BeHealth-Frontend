@@ -62,24 +62,39 @@ export class ProgramFormComponent implements OnInit {
   }
 
   setSelectedSportPlan(sportPlan: any) {
-    this.selectedSportPlan = sportPlan;
-    this.form.patchValue({
-      sportPlanId: sportPlan.id,
-    })
+    if (this.selectedSportPlan?.id == sportPlan.id) {
+      this.selectedSportPlan = null;
+    }
+    else {
+      this.selectedSportPlan = sportPlan;
+      this.form.patchValue({
+        sportPlanId: sportPlan.id,
+      })
+    }
   }
 
   setSelectedSleepPlan(sleepPlan: any) {
-    this.selectedSleepPlan = sleepPlan;
-    this.form.patchValue({
-      sleepPlanId: sleepPlan.id,
-    })
+    if (this.selectedSleepPlan?.id == sleepPlan.id) {
+      this.selectedSleepPlan = null;
+    }
+    else {
+      this.selectedSleepPlan = sleepPlan;
+      this.form.patchValue({
+        sleepPlanId: sleepPlan.id,
+      })
+    }
   }
 
   setSelectedFoodPlan(foodPlan: any) {
-    this.selectedFoodPlan = foodPlan;
-    this.form.patchValue({
-      foodPlanId: foodPlan.id,
-    })
+    if (this.selectedFoodPlan?.id == foodPlan.id) {
+      this.selectedFoodPlan = null;
+    }
+    else {
+      this.selectedFoodPlan = foodPlan;
+      this.form.patchValue({
+        foodPlanId: foodPlan.id,
+      })
+    }
   }
 
   setPrivacy() {
