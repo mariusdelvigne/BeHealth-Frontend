@@ -1,12 +1,12 @@
 @if (sportPlans) {
   <div class="container overflow-hidden">
-    <div class="row g-3">
+    <div class="row g-3 mt-1">
       @for (sportPlan of sportPlans; track $index) {
         <div class="col-12">
           <div class="card pt-3 border-top-sport-color" (dblclick)="selectPlan(sportPlan)" [ngClass]="{ 'selected': isSelected(sportPlan) }">
             <div class="card-header d-flex justify-content-between align-items-center">
               <i class="fa-solid fa-person-running custom-icon p-4 rounded-1"></i>
-              <h3 class="text-truncate">{{ sportPlan.name }}</h3>
+              <h4 class="text-end">{{ sportPlan.name }}</h4>
             </div>
             <div class="card-body">
               <p><strong>Duration:</strong> {{ sportPlan.durationInDays }} days</p>

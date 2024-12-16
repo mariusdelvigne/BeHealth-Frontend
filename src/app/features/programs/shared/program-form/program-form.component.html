@@ -21,14 +21,14 @@
               formControlName="description"></textarea>
 
     <div class="row mt-4 gy-2">
-      <div class="col-12 col-md-4">
+      <div class="col-md-6 col-lg-4 col-12">
         <app-food-plans-table [program]="program" (emitFoodPlan)="setSelectedFoodPlan($event)"></app-food-plans-table>
       </div>
-      <div class="col-12 col-md-4">
+      <div class="col-md-6 col-lg-4 col-12">
         <app-sport-plans-table [program]="program"
                                (emitSportPlan)="setSelectedSportPlan($event)"></app-sport-plans-table>
       </div>
-      <div class="col-12 col-md-4">
+      <div class="col-md-6 col-lg-4 col-12">
         <app-sleep-plans-table [program]="program"
                                (emitSleepPlan)="setSelectedSleepPlan($event)"></app-sleep-plans-table>
       </div>

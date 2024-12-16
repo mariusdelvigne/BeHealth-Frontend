@@ -85,7 +85,7 @@ export class StackedBarGraphComponent implements OnInit {
     this.startDate = new Date(this.startDate.setDate(this.startDate.getDate() + (next ? 7 : -7)));
 
     this.endDate= new Date(this.endDate.setDate(this.endDate.getDate() + (next ? 7 : -7)));
-
+    
     this.loadData();
     this.loadOptions();
   }
