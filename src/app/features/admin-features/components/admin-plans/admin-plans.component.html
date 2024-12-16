@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <h2>All plans</h2>
+  <table class="table table-striped table-bordered table-responsive">
+    <thead>
+    <tr>
+      <th>Creator name</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Created date</th>
+      <th>Durations (days)</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (plan of plans; track $index) {
+        <tr>
+          <td>{{ plan.creatorName }}</td>
+          <td>{{ plan.name }}</td>
+          <td>{{ plan.description }}</td>
+          <td>{{ plan.category }}</td>
+          <!--TODO problems dates-->
+          <td>{{ plan.creationDateTime | date: 'D-M-y' }}</td>
+          <td>{{ plan.durationInDays }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deletePlan(plan)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

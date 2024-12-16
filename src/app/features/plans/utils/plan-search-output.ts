@@ -7,4 +7,5 @@ export interface PlanSearchOutput {
   description: string;
   durationInDays: number;
   creatorId: number;
+  creatorName: string;
 }
