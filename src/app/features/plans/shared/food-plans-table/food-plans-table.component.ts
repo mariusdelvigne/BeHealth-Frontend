@@ -1,12 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PlanService} from '../../services/plan.service';
 import {NgClass} from '@angular/common';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-food-plans-table',
   standalone: true,
   imports: [
     NgClass,
+    ReactiveFormsModule,
   ],
   templateUrl: './food-plans-table.component.html',
   styleUrls: [
@@ -18,12 +20,16 @@ export class FoodPlansTableComponent implements OnInit {
   selectedFoodPlan: any;
   @Input() program!: any;
   @Output() emitFoodPlan = new EventEmitter();
+  form: FormGroup = new FormGroup({
+    name: new FormControl(''),
+    category: new FormControl(''),
+  });
 
   constructor(private _planService: PlanService) {
   }
 
   ngOnInit() {
-    this._planService.getPlansFiltered('','','food').subscribe({
+    this._planService.getPlansFiltered('public','','food').subscribe({
       next: (response) => {
         this.foodPlans = response.plans;
       },
@@ -51,5 +57,16 @@ export class FoodPlansTableComponent implements OnInit {
 
   isSelected(foodPlan: any) {
     return this.selectedFoodPlan && this.selectedFoodPlan.id == foodPlan.id;
+  }
+
+  emitSearchPlan() {
+    this._planService.getPlansFiltered(
+      "public", this.form.value.name, "food")
+      .subscribe({
+        next: (response) => {
+          this.foodPlans = response.plans;
+          console.log(response.plans);
+        }
+      });
   }
 }
