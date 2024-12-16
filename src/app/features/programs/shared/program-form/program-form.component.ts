@@ -7,6 +7,7 @@ import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/fo
 import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
 import {NgClass} from '@angular/common';
+import {PlanService} from '../../../plans/services/plan.service';
 
 @Component({
   selector: 'app-program-form',
@@ -37,7 +38,7 @@ export class ProgramFormComponent implements OnInit {
   selectedSleepPlan: any = null;
   selectedFoodPlan: any = null;
 
-  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
+  constructor(private _programService: ProgramService, private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
