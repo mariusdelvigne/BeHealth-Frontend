@@ -6,6 +6,7 @@ import {ToastrService} from 'ngx-toastr';
 import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/food-plans-table.component';
 import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-program-form',
@@ -14,7 +15,8 @@ import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/
     ReactiveFormsModule,
     FoodPlansTableComponent,
     SportPlansTableComponent,
-    SleepPlansTableComponent
+    SleepPlansTableComponent,
+    NgClass
   ],
   templateUrl: './program-form.component.html',
   styleUrl: './program-form.component.scss'
@@ -79,6 +81,11 @@ export class ProgramFormComponent implements OnInit {
       foodPlanId: foodPlan.id,
     })
   }
+
+  setPrivacy() {
+    this.form.get('privacy')?.setValue(this.form.get('privacy')?.value === 'private' ? 'public' : 'private');
+  }
+
 
   submit() {
     if (this.mode == "create") {
