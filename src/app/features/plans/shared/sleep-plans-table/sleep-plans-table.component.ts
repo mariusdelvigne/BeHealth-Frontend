@@ -34,7 +34,7 @@ export class SleepPlansTableComponent implements OnInit{
 
     // Show the plan already selected (Used in update form)
     if (this.program && this.program.sleepPlanId != null) {
-      this._planService.getPlansById(this.program.sleepPlanId)
+      this._planService.getPlanById(this.program.sleepPlanId)
         .subscribe({
           next: (plan) => {
             this.selectedSleepPlan = plan;

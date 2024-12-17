@@ -49,7 +49,7 @@ export class PlanFormComponent implements OnInit {
   constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
-    this._planService.getPlansById(this.planId).subscribe( {
+    this._planService.getPlanById(this.planId).subscribe( {
       next: (plan) => {
         this.plan = plan;
 

@@ -18,6 +18,10 @@ $weight-color: rgba(43, 182, 182, 0.76);
 $height-color: rgba(182, 43, 68, 0.76);
 $search: #35608a;
 
+.max-vh-50 {
+  max-height:50vh!important
+}
+
 // Responsive Table
 
 .responsive-table {

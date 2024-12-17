@@ -57,7 +57,6 @@ export class PlanSearchPublicComponent implements OnInit {
       this.selectedPlan = null;
       this.selectedPlan = this.plans.find(plan => plan.id === planId);
       this.loadTags(planId);
-      this.loadContent(planId, this.selectedPlan.category);
     }
   }
 
@@ -66,21 +65,6 @@ export class PlanSearchPublicComponent implements OnInit {
       next: (response) => {
         this.tags = response.astPlansTags;
         },
-      error: (error) => {
-        alert(error.message);
-      }
-    });
-  }
-
-  loadContent(planId: number, category: string) {
-    this._planService.getContent(planId, 0).subscribe({
-      next: (response) => {
-        if (category === 'sport') {
-          this.selectedPlan.sports = response.sports;
-        } else if (category === 'food') {
-          this.selectedPlan.foods = response.foods;
-        }
-      },
       error: (error) => {
         alert(error.message);
       }
