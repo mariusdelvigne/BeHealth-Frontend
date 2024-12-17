@@ -4,13 +4,16 @@ import {ProgramService} from '../../services/program.service';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 import {ToastrService} from 'ngx-toastr';
 import {AuthService} from '../../../../core/auth/services/auth.service';
+import {DebounceService} from '../../../../shared/services/debounce.service';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-program-search-public',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    ProgramInfoComponent
+    ProgramInfoComponent,
+    NgClass
   ],
   templateUrl: './program-search-public.component.html',
   styleUrls: [
@@ -30,10 +33,11 @@ export class ProgramSearchPublicComponent implements OnInit {
 
   relation: string = '';
 
-  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
+  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService, private _debounceService: DebounceService) {
   }
 
   ngOnInit() {
+    this.emitSearchProgram();
     this.isAdmin ? this.loadData("admin") : this.loadData("");
   }
 
@@ -70,11 +74,11 @@ export class ProgramSearchPublicComponent implements OnInit {
     e.stopPropagation();
     const userId = this._authService.getId();
     this._programService.postRelation(userId, programId, relation).subscribe({
-      next: response => {
+      next: () => {
         this._toastrService.success(relation + " added successfully.");
         relation == "favorite" ? this.loadFavorites() : this.loadSubscribed();
       },
-      error: error => {
+      error: () => {
         this._toastrService.error(relation + " already exists!");
       }
     });
@@ -116,30 +120,32 @@ export class ProgramSearchPublicComponent implements OnInit {
   }
 
   loadData(type: any) {
-    switch (type) {
-      case 'admin':
-        this._programService.getProgramsFiltered().subscribe({
-          next: (response) => {
-            this.programs = response.programs;
-          },
-          error: (error) => {
-            this._toastrService.error(error);
-          }
-        });
-        break;
-      default:
-        this._programService.getProgramsFiltered('public').subscribe({
-          next: (response) => {
-            this.programs = response.programs;
-            this.loadFavorites();
-            this.loadSubscribed();
-          },
-          error: (error) => {
-            this._toastrService.error(error);
-          }
-        });
-        break;
-    }
+    this._debounceService.debounce(() => {
+      switch (type) {
+        case 'admin':
+          this._programService.getProgramsFiltered().subscribe({
+            next: (response) => {
+              this.programs = response.programs;
+            },
+            error: (error) => {
+              this._toastrService.error(error);
+            }
+          });
+          break;
+        default:
+          this._programService.getProgramsFiltered('public').subscribe({
+            next: (response) => {
+              this.programs = response.programs;
+              this.loadFavorites();
+              this.loadSubscribed();
+            },
+            error: (error) => {
+              this._toastrService.error(error);
+            }
+          });
+          break;
+      }
+    }, 500);
   }
 
   matchFilter(program: any) {
