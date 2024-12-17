@@ -1,8 +1,7 @@
 <div class="h-100 p-4">
-  <form class="custom-insert-form w-50 mx-auto m-3 p-3 rounded" [formGroup]="form" (submit)="calculNutrition()">
+  <form class="custom-insert-form w-50 mx-auto m-3 p-3 rounded" [formGroup]="form" (submit)="calculNutrition()" autocomplete="off">
     <div class="mb-3">
       <label for="nameFood" class="form-label">Food</label>
-<!--      <input type="text" id="nameFood" class="form-control" formControlName="nameFood">-->
       <input class="form-control w-100" type="text" placeholder="Name" list="foodList" formControlName="nameFood" id="nameFood">
       <datalist id="foodList">
         @for (food of foods; track food.id) {
@@ -22,8 +21,8 @@
   </form>
 
 </div>
-<div class="container text-center">
-  <table class="table">
+<div class="container text-center rounded-1">
+  <table class="table rounded-1">
     <thead>
     <tr>
       <th>Property</th>
