@@ -41,7 +41,6 @@ import {
 } from './features/programs/components/program-search-mine/program-search-mine.component';
 import {InsertPhysicalComponent} from './features/users/components/insert/insert-physical/insert-physical.component';
 import {authGuard} from './auth-guards/auth.guard';
-import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
 import {
   FoodDataManagerComponent
 } from './features/profile/components/profile/food-data-manager/food-data-manager.component';
@@ -231,10 +230,6 @@ routes = [
             component: BmiGraphComponent,
           },
         ]
-      },
-      {
-        path: 'relations',
-        component: RelationsComponent,
       },
     ]
   },
@@ -431,10 +426,6 @@ routes = [
             component: BarGraphComponent,
           },
         ]
-      },
-      {
-        path: 'relations',
-        component: RelationsComponent,
       },
     ]
   },

@@ -28,32 +28,13 @@ export class ProgramSearchPublicComponent implements OnInit {
     title: new FormControl(''),
   });
 
+  relation: string = '';
+
   constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
-    if (this.isAdmin) {
-      this._programService.getProgramsFiltered().subscribe({
-        next: (response) => {
-          this.programs = response.programs;
-        },
-        error: (error) => {
-          this._toastrService.error(error);
-        }
-      });
-    } else {
-      this._programService.getProgramsFiltered('public').subscribe({
-        next: (response) => {
-          this.programs = response.programs;
-
-          this.loadFavorites();
-          this.loadSubscribed();
-        },
-        error: (error) => {
-          this._toastrService.error(error);
-        }
-      });
-    }
+    this.isAdmin ? this.loadData("admin") : this.loadData("");
   }
 
   emitSearchProgram() {
@@ -100,7 +81,7 @@ export class ProgramSearchPublicComponent implements OnInit {
   }
 
   deleteRelation(programId: number, relation: string) {
-    this._programService.deleteRelation(this._authService.getId(),programId, relation).subscribe({
+    this._programService.deleteRelation(this._authService.getId(), programId, relation).subscribe({
       next: () => {
         this._toastrService.success("Program deleted successfully from your " + relation + ".");
         relation == "favorite" ? this.loadFavorites() : this.loadSubscribed();
@@ -120,14 +101,48 @@ export class ProgramSearchPublicComponent implements OnInit {
   }
 
   loadFavorites() {
-    this._programService.getProgramsByAssociations(this._authService.getId(),'favorite')
+    this._programService.getProgramsByAssociations(this._authService.getId(), 'favorite')
       .subscribe(response => this.favoritesPrograms = response.astHealthProgramUsers);
   }
 
   loadSubscribed() {
-    this._programService.getProgramsByAssociations(this._authService.getId(),'subscription')
+    this._programService.getProgramsByAssociations(this._authService.getId(), 'subscription')
       .subscribe(response => this.subscribedPrograms = response.astHealthProgramUsers);
   }
+
+  setRelation(relation: string) {
+    this.relation = relation;
+    this.isAdmin ? this.loadData("admin") : this.loadData("");
+  }
+
+  loadData(type: any) {
+    switch (type) {
+      case 'admin':
+        this._programService.getProgramsFiltered().subscribe({
+          next: (response) => {
+            this.programs = response.programs;
+          },
+          error: (error) => {
+            this._toastrService.error(error);
+          }
+        });
+        break;
+      default:
+        this._programService.getProgramsFiltered('public').subscribe({
+          next: (response) => {
+            this.programs = response.programs;
+            this.loadFavorites();
+            this.loadSubscribed();
+          },
+          error: (error) => {
+            this._toastrService.error(error);
+          }
+        });
+        break;
+    }
+  }
+
+  matchFilter(program: any) {
+    return this.relation == "favorite" && this.isStarred(program) || this.relation == "subscription" && this.isSubscribed(program) || this.relation == ""
+  }
 }
-
-
