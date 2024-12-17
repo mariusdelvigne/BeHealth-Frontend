@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NutritionCalculatorOutput} from '../../utils/nutrition-calculator-output';
 import {NutritionCalculatorService} from '../../services/nutrition-calculator.service';
 import {ToastrService} from 'ngx-toastr';
+import {FoodService} from '../../../../shared/services/food.service';
+import {debounceTime} from 'rxjs';
 
 @Component({
   selector: 'app-nutrition-calculator',
@@ -14,10 +16,10 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './nutrition-calculator.component.html',
   styleUrl: './nutrition-calculator.component.scss',
 })
-export class NutritionCalculatorComponent {
+export class NutritionCalculatorComponent implements OnInit {
   form: FormGroup = new FormGroup({
     nameFood: new FormControl('', [Validators.required]),
-    quantityInGrams: new FormControl(''),
+    quantityInGrams: new FormControl('100'),
   });
 
   resultNutriment: NutritionCalculatorOutput = {
@@ -35,7 +37,24 @@ export class NutritionCalculatorComponent {
     potassium: 0.0,
   }
 
-  constructor(private _nutritionCalculatorService: NutritionCalculatorService, private _toastrService: ToastrService) {
+  foods: any[] = [];
+
+  constructor(private _nutritionCalculatorService: NutritionCalculatorService, private _toastrService: ToastrService, private _foodService: FoodService) {
+  }
+
+  ngOnInit() {
+    this.form.get('nameFood')?.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(value => {
+        this.updateFoodList(value);
+      });
+  }
+
+  updateFoodList(name: string) {
+    this._foodService.getAllStartingWith(name)
+      .subscribe({
+        next: response => this.foods = response.foods,
+      });
   }
 
   calculNutrition() {
