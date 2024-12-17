@@ -1,11 +1,11 @@
 <div class="h-100 p-4">
-  <form class="custom-insert-form mx-auto m-3 p-3 rounded" [formGroup]="formCreateNotification"
+  <form class="custom-insert-form mx-auto m-3 p-3 rounded w-75" [formGroup]="formCreateNotification"
         (submit)="createNotification()">
     <div class="mb-3">
-      <h3>Title : </h3><input type="text" formControlName="title">
+      <h3>Title : </h3><input type="text" placeholder="Title" formControlName="title">
     </div>
     <div class="mb-3">
-      <h4>Description : </h4><input type="text" formControlName="description">
+      <h4>Description : </h4><input type="text" placeholder="Description" formControlName="description">
     </div>
     <div class="mb-3">
       <h5>Category :</h5>
@@ -19,6 +19,7 @@
     </div>
 
     <div class="mb-3">
+      <!-- TODO  mettre avec un debounce -->
       <h5>User to send :</h5>
       <select id="user" class="dropdown form-select" formControlName="user">
         @for (user of users; track $index) {

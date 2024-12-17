@@ -5,6 +5,7 @@ import {UserSearchOutput} from '../../../../../../shared/utils/user-search-outpu
 import {UserService} from '../../../../../../shared/services/user.service';
 import {NotificationService} from '../../../../../../shared/services/notification.service';
 import {NotificationCreateCommand} from '../../../../../notifications/utils/notification-create-command';
+import {firstValueFrom} from 'rxjs';
 
 @Component({
   selector: 'app-create-notifications',
@@ -50,19 +51,38 @@ export class CreateNotificationsComponent implements OnInit {
     });
   }
 
-  createNotification() {
+  async createNotification() {
     const title = this.formCreateNotification.get('title')?.value;
     const description = this.formCreateNotification.get('description')?.value;
     const category = this.formCreateNotification.get('category')?.value;
-    const user = this.formCreateNotification.get('user')?.value;
+    const userId = this.formCreateNotification.get('user')?.value;
+
+    const userToPrint =  await firstValueFrom(this._userService.getById(userId))
 
     const notificationCommand: NotificationCreateCommand = {
       title: title,
       description: description,
       category: category,
-      userId: user,
+      userId: userId,
     };
 
-    this._notificationService.createNotification(notificationCommand).subscribe();
+    const isConfirmed = window.confirm(`
+    Are you sure you want to create this notifications ?
+    Title : ${title}
+    Description : ${description}
+    Category : ${category}
+    User : ${userToPrint.username}
+    `);
+
+    if (isConfirmed) {
+      this._notificationService.createNotification(notificationCommand).subscribe(
+        () => {
+          window.location.reload();
+        },
+        (error) => {
+          this._toastrService.error(error);
+        }
+      );
+    }
   }
 }
