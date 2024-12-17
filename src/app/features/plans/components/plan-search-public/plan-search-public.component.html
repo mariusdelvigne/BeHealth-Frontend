@@ -19,7 +19,7 @@
 
   <ul class="program-list mt-3 rounded-1">
     @if (plans.length <= 0) {
-      <h4>No plans found</h4>
+      <h2>No plans found</h2>
     } @else {
       @for (plan of plans; track $index) {
         <li (click)="showPlanInfo(plan.id)" class="plan rounded-1">
