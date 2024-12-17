@@ -2,17 +2,17 @@
 
 @if (authService.isAuthenticated()) {
   @if (authService.isAdmin()) {
-    <div class="d-flex justify-content-center align-items-center form-check form-switch toggle-admin-dashboard">
+    <div class="d-flex justify-content-center align-items-center form-check form-switch toggle-admin-dashboard me-2">
       <input
         mdbCheckbox
-        class="form-check-input large-toggle"
+        class="form-check-input large-toggle me-3"
         type="checkbox"
         id="adminDashBoardChecked"
         [checked]="false"
         (change)="adminDashboardIsChecked = !adminDashboardIsChecked"
       />
       <label class="form-check-label font-weight-bold" for="adminDashBoardChecked">
-        Admin dashboard
+        {{ adminDashboardIsChecked ? 'Admin Dashboard' : 'User Dashboard' }}
       </label>
     </div>
     @if (adminDashboardIsChecked) {
