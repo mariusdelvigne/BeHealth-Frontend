@@ -1,10 +1,7 @@
-<div class="w-100 p-3 sleep-color d-flex justify-content-between">
-  <h3>Sport Plans</h3>
-  <button type="button" class="custom-btn-lock rounded-2" (click)="setVisibility()">
-    <i class="fa-solid"
-       [ngClass]="{'fa-eye': isVisible, 'fa-eye-slash': !isVisible}"></i>
-  </button>
-</div>
+<div class="border border-3" style="box-shadow: 0 0 16px rgba(0, 0, 0, 0.3)">
+  <div class="w-100 p-3 d-flex sleep-color justify-content-between" (click)="setVisibility()">
+    <h3>Sleep Plans</h3>
+  </div>
 
 @if (isVisible) {
   <form class="d-flex flex-column justify-content-center p-3 rounded"
@@ -42,3 +39,4 @@
     <h2>No Sleeps Plans Found</h2>
   }
 }
+</div>

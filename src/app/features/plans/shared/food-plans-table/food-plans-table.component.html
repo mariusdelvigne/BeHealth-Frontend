@@ -1,9 +1,6 @@
-<div class="w-100 p-3 food-color d-flex justify-content-between">
+<div class="border border-3" style="box-shadow: 0 0 16px rgba(0, 0, 0, 0.3)">
+<div class="w-100 p-3 d-flex food-color justify-content-between" (click)="setVisibility()">
   <h3>Food Plans</h3>
-  <button type="button" class="custom-btn-lock rounded-2" (click)="setVisibility()">
-    <i class="fa-solid"
-       [ngClass]="{'fa-eye': isVisible, 'fa-eye-slash': !isVisible}"></i>
-  </button>
 </div>
 
 @if (isVisible) {
@@ -43,4 +40,4 @@
     <h2>No Food Plans Found</h2>
   }
 }
-
+</div>

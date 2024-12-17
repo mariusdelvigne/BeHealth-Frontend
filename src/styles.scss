@@ -139,6 +139,7 @@ textarea {
 }
 
 .custom-form {
+
   min-height: 30vh;
   min-width: 35vw;
   background: transparent;
@@ -257,6 +258,12 @@ textarea {
 
 .border-top-height-color {
   border-top: 20px solid $height-color !important;
+}
+
+// Graphs
+
+.graph-background {
+  background: $french-gray;
 }
 
 // Keyframes
