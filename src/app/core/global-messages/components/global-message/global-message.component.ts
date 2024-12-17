@@ -51,6 +51,7 @@ export class GlobalMessageComponent implements OnInit {
     this.isVisible = false;
     localStorage.setItem(`globalMessageBannerClosed${id}`, "true");
     console.log(`globalMessageBannerClosed${id}`, "true");
+    window.location.reload();
   }
 
   convertStringToDate(dateString: string): Date {
