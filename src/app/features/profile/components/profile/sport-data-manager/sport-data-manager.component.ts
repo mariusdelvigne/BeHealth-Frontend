@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 @Component({
@@ -11,12 +11,16 @@ import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
   templateUrl: './sport-data-manager.component.html',
   styleUrl: './sport-data-manager.component.scss'
 })
-export class SportDataManagerComponent {
+export class SportDataManagerComponent implements OnInit {
   graphType: string = 'scatter';
   dataType: string = 'calories';
   type: string = 'sports';
 
   constructor(private _router: Router) {
+  }
+
+  ngOnInit() {
+    this.goToGraph();
   }
 
   setGraphType(type: string) {

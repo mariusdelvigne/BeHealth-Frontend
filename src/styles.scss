@@ -266,6 +266,16 @@ textarea {
   background: $french-gray;
 }
 
+.page-btn:hover {
+  background-color: #a5a5a5;
+}
+
+.page-btn.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
 // Keyframes
 
 @keyframes moveBackground {

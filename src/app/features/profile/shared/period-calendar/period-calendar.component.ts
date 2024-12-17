@@ -23,6 +23,7 @@ export class PeriodCalendarComponent implements OnInit {
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
   events: CalendarEvent[] = [];
+  activeButton: string = 'today';
 
   periods: PeriodInfo[] = [];
   startMonth: Date = new Date();
@@ -88,5 +89,14 @@ export class PeriodCalendarComponent implements OnInit {
 
   goToToday() {
     this.viewDate = new Date();
+  }
+
+
+  isActive(button: string): boolean {
+    return this.activeButton === button;
+  }
+
+  setActive(button: string): void {
+    this.activeButton = button;
   }
 }

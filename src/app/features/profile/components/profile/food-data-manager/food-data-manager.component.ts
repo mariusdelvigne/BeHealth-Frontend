@@ -22,7 +22,7 @@ export class FoodDataManagerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._router.navigate([`/profile/food-data-manager/${this.graphType}-graph`, this.dataType]);
+    this.goToGraph();
   }
 
   setDataType(dataType: string) {
