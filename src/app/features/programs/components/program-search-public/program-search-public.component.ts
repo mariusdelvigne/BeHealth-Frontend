@@ -4,7 +4,6 @@ import {ProgramService} from '../../services/program.service';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 import {ToastrService} from 'ngx-toastr';
 import {AuthService} from '../../../../core/auth/services/auth.service';
-import {DebounceService} from '../../../../shared/services/debounce.service';
 
 @Component({
   selector: 'app-program-search-public',
@@ -29,29 +28,13 @@ export class ProgramSearchPublicComponent implements OnInit {
     title: new FormControl(''),
   });
 
+  relation: string = '';
+
   constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
-    if (this.isAdmin) {
-      this._programService.getProgramsFiltered().subscribe({
-        next: (response) => {
-          this.programs = response.programs;
-        },
-        error: (error) => {
-          alert(error);
-        }
-      });
-    } else {
-      this._programService.getProgramsFiltered('public').subscribe({
-        next: (response) => {
-          this.programs = response.programs;
-        },
-        error: (error) => {
-          alert(error);
-        }
-      });
-    }
+    this.isAdmin ? this.loadData("admin") : this.loadData("");
   }
 
   emitSearchProgram() {
