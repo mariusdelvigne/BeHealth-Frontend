@@ -74,7 +74,7 @@
           <a routerLink="/account" class="nav-link">
             <i class="far fa-address-card"></i>
           </a>
-          <a routerLink="/sign-out" class="nav-link">Sign Out</a>
+          <a class="nav-link" (click)="openModal()">Sign Out</a>
         } @else {
           <a routerLink="/sign-in" class="nav-link">Sign In</a>
           <a routerLink="/sign-up" class="nav-link">Sign Up</a>
