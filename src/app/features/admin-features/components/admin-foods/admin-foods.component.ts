@@ -12,7 +12,7 @@ import {ToastrService} from 'ngx-toastr';
 export class AdminFoodsComponent implements OnInit {
   foods: any[] = [];
 
-  constructor(private _foodService: FoodService, private toastrService: ToastrService) {
+  constructor(private _foodService: FoodService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class AdminFoodsComponent implements OnInit {
           window.location.reload();
         },
         (error) => {
-          this.toastrService.error(error);
+          this._toastrService.error(error);
         }
       );
     }

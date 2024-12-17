@@ -91,6 +91,7 @@ import {
 } from './features/admin-features/components/admin-communications/create-communications/create-global-messages/create-global-messages.component';
 import {AdminFoodsComponent} from './features/admin-features/components/admin-foods/admin-foods.component';
 import {AdminPlansComponent} from './features/admin-features/components/admin-plans/admin-plans.component';
+import {AdminProgramsComponent} from './features/admin-features/components/admin-programs/admin-programs.component';
 
 export let routes: Routes;
 routes = [
@@ -506,6 +507,11 @@ routes = [
   {
     path: 'admin-plans',
     component: AdminPlansComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'admin-programs',
+    component: AdminProgramsComponent,
     canActivate: [adminGuard],
   }
 ];

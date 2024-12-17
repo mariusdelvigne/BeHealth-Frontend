@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ProgramService} from '../../services/program.service';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
@@ -18,24 +18,37 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
   ],
 })
 export class ProgramSearchPublicComponent implements OnInit {
+  @Input() isAdmin: boolean = false;
+
   programs: any[] = [];
   selectedProgram: any;
   form: FormGroup = new FormGroup({
     title: new FormControl(''),
   });
 
-  constructor(private _programService: ProgramService, private _authService : AuthService, private _toastrService: ToastrService) {
+  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
-    this._programService.getProgramsFiltered('public').subscribe({
-      next: (response) => {
-        this.programs = response.programs;
-      },
-      error: (error) => {
-        alert(error);
-      }
-    });
+    if (this.isAdmin) {
+      this._programService.getProgramsFiltered().subscribe({
+        next: (response) => {
+          this.programs = response.programs;
+        },
+        error: (error) => {
+          alert(error);
+        }
+      });
+    } else {
+      this._programService.getProgramsFiltered('public').subscribe({
+        next: (response) => {
+          this.programs = response.programs;
+        },
+        error: (error) => {
+          alert(error);
+        }
+      });
+    }
   }
 
   emitSearchProgram() {
@@ -47,8 +60,7 @@ export class ProgramSearchPublicComponent implements OnInit {
   showProgramInfo(programId: number) {
     if (this.selectedProgram?.id == programId) {
       this.selectedProgram = null;
-    }
-    else {
+    } else {
       this.selectedProgram = null;
       this.selectedProgram = this.programs.find(program => program.id === programId);
     }
@@ -60,16 +72,29 @@ export class ProgramSearchPublicComponent implements OnInit {
     const userId = this._authService.getId();
     this._programService.postRelation(userId, programId, relation).subscribe({
       next: response => {
-        this._toastrService.success( relation + " added successfully.");
+        this._toastrService.success(relation + " added successfully.");
         console.log(response);
       },
       error: error => {
-        this._toastrService.error( relation + " already exists!");
+        this._toastrService.error(relation + " already exists!");
         console.error(error);
       }
     });
   }
 
+  deletePrograms(program: any) {
+    const isConfirmed = window.confirm('Are you sure you want to delete this programs ?');
+    if (isConfirmed) {
+      this._programService.deleteProgram(program.creatorId, program.id).subscribe(
+        () => {
+          window.location.reload();
+        },
+        (error) => {
+          this._toastrService.error(error);
+        }
+      );
+    }
+  }
 }
 
 

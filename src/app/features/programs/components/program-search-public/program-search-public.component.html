@@ -25,6 +25,12 @@
                   (click)="addToRelations($event, program.id, 'subscription')">
             Subscribe
           </button>
+          @if (isAdmin) {
+            <button type="button" class="rounded p-2 custom-btn btn-danger"
+                    (click)="deletePrograms(program)">
+              Delete
+            </button>
+          }
         </div>
       </div>
       @if (program == selectedProgram) {
