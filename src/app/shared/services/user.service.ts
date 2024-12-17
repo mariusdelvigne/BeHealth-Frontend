@@ -35,7 +35,7 @@ export class UserService {
   }
 
   getUserByUsername(query: UserSearchQuery): Observable<any> {
-    return this._httpClient.get<any>(UserService.URL + "/" + query.username + "/usernames");
+    return this._httpClient.get<any>(UserService.URL + "/usernames?user=" + query.username);
   }
 
   public banUser(userBanCommand: UserBanCommand): Observable<void> {
