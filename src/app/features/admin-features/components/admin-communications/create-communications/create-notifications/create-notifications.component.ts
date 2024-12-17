@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
-import {UserSearchOutput} from '../../../../../../shared/utils/user-search-output';
 import {UserService} from '../../../../../../shared/services/user.service';
 import {NotificationService} from '../../../../../../shared/services/notification.service';
 import {NotificationCreateCommand} from '../../../../../notifications/utils/notification-create-command';
-import {firstValueFrom} from 'rxjs';
+import {debounceTime, firstValueFrom} from 'rxjs';
 
 @Component({
   selector: 'app-create-notifications',
@@ -31,24 +30,25 @@ export class CreateNotificationsComponent implements OnInit {
     {name: "Programs", value: "Programs"}
   ];
 
-  users: UserSearchOutput[] = [];
+  userSearch: any[] = [];
 
   constructor(private _userService: UserService, private _toastrService: ToastrService, private _notificationService: NotificationService) {
   }
 
   ngOnInit() {
-    this._userService.getAllUsers().subscribe({
-      next: (user) => {
-        this.users = user.users;
+    this.formCreateNotification.get('user')?.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(value => {
+        this.updateUserList(value);
+      })
+  }
 
-        if (this.users.length > 0) {
-          this.formCreateNotification.get('user')?.setValue(this.users[0].id);
-        }
+  updateUserList(name: string) {
+    this._userService.getListUserByUsername(name).subscribe({
+      next: (response) => {
+        this.userSearch = response.userGetByNames;
       },
-      error: (error) => {
-        this._toastrService.error('Error :' + error.message);
-      }
-    });
+    })
   }
 
   async createNotification() {

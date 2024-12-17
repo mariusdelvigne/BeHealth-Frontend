@@ -38,6 +38,10 @@ export class UserService {
     return this._httpClient.get<any>(UserService.URL + "/usernames?user=" + query.username);
   }
 
+  getListUserByUsername(name: string): Observable<any> {
+    return this._httpClient.get<any>(UserService.URL + "/usernames?user=" + name);
+  }
+
   public banUser(userBanCommand: UserBanCommand): Observable<void> {
     return this._httpClient.put<void>(`${UserService.URL}/${userBanCommand.userId}/ban/${userBanCommand.isBanned}`, {});
   }
