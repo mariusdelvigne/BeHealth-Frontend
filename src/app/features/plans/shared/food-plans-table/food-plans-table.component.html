@@ -1,22 +1,46 @@
-@if (foodPlans) {
-  <div class="container overflow-hidden">
-    <div class="row g-3 mt-1">
-      @for (foodPlan of foodPlans; track $index) {
-        <div class="col-12">
-          <div class="card pt-3 border-top-food-color" (click)="selectPlan(foodPlan)"
-               [ngClass]="{ 'selected': isSelected(foodPlan) }">
-            <div class="card-header d-flex justify-content-between align-items-center">
-              <i class="fa-solid fa-carrot custom-icon p-4 rounded-1"></i>
-              <h4 class="text-end">{{ foodPlan.name }}</h4>
-            </div>
-            <div class="card-body">
-              <p><strong>Duration:</strong> {{ foodPlan.durationInDays }} days</p>
+<div class="w-100 p-3 food-color d-flex justify-content-between">
+  <h3>Food Plans</h3>
+  <button type="button" class="custom-btn-lock rounded-2" (click)="setVisibility()">
+    <i class="fa-solid"
+       [ngClass]="{'fa-eye': isVisible, 'fa-eye-slash': !isVisible}"></i>
+  </button>
+</div>
+
+@if (isVisible) {
+
+  <form class="d-flex flex-column justify-content-center p-3 rounded"
+        [formGroup]="form" (submit)="emitSearchPlan()">
+
+    <div class="d-flex justify-content-center input-group mb-3 gap-2">
+      <input class="rounded-0 search-input w-25 p-2" formControlName="name" placeholder="Title">
+
+      <button type="submit" class="search-btn p-2 rounded-0">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+  </form>
+
+  @if (foodPlans) {
+    <div class="container overflow-hidden">
+      <div class="row g-3 mt-1">
+        @for (foodPlan of foodPlans; track $index) {
+          <div class="col-12">
+            <div class="card pt-3 border-top-food-color" (click)="selectPlan(foodPlan)"
+                 [ngClass]="{ 'selected': isSelected(foodPlan) }">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <i class="fa-solid fa-carrot custom-icon p-4 rounded-1"></i>
+                <h4 class="text-end">{{ foodPlan.name }}</h4>
+              </div>
+              <div class="card-body">
+                <p><strong>Duration:</strong> {{ foodPlan.durationInDays }} days</p>
+              </div>
             </div>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
-  </div>
-} @else {
-  <h2>No Food Plans Found</h2>
+  } @else {
+    <h2>No Food Plans Found</h2>
+  }
 }
+

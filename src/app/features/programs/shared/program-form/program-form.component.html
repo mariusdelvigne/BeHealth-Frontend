@@ -17,9 +17,6 @@
       </div>
     </div>
 
-    <textarea class="form-control w-100 mt-2" style="height: 20vh" id="" placeholder="Description"
-              formControlName="description"></textarea>
-
     <ul class="d-flex flex-wrap gap-2 mt-3">
       @if (selectedFoodPlan) {
         <li class="badge food-color p-2">{{ selectedFoodPlan.name }}</li>
@@ -31,6 +28,9 @@
         <li class="badge sleep-color p-2">{{ selectedSleepPlan.name }}</li>
       }
     </ul>
+
+    <textarea class="form-control w-100 mt-2" style="height: 20vh" id="" placeholder="Description"
+              formControlName="description"></textarea>
 
     <div class="row mt-4 gy-2">
       <div class="col-md-6 col-lg-4 col-12">

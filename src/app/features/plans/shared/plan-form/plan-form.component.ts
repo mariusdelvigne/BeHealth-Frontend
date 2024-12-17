@@ -35,7 +35,8 @@ export class PlanFormComponent implements OnInit {
     privacy: new FormControl('private', Validators.required),
     category: new FormControl('sport', Validators.required),
     durationInDays: new FormControl('', [Validators.required, Validators.min(1)]),
-    description: new FormControl('', [Validators.required, Validators.min(1)])
+    description: new FormControl('', [Validators.required, Validators.min(1)]),
+    tagInput: new FormControl(''),
   });
 
   planSports: any[] = [];
@@ -59,13 +60,10 @@ export class PlanFormComponent implements OnInit {
           category: this.plan.category,
           durationInDays: this.plan.durationInDays,
           description: this.plan.description,
-          tagInput: '',
-          // TODO: Verif
-          tagList: this.plan.tagsList,
         });
       }
     });
-    this.form.get('name')?.valueChanges
+    this.form.get('tagInput')?.valueChanges
       .pipe(debounceTime(300))
       .subscribe(value => {
         console.log("ok")
