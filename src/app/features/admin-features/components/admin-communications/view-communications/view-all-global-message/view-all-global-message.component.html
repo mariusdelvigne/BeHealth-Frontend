@@ -2,11 +2,11 @@
   <div class="row w-100">
     @for (messages of globalMessages; track $index) {
       <div class="col-12 col-md-4 mt-3">
-        <div class="card h-100 border-top-food-color">
-          <div class="card-header rounded-0 flex-row justify-content-between align-items-center">
-            <h4 class="card-title text-dark fw-bold">Id Messages : {{ messages.id }}</h4><br>
+        <div class="card border-top-food-color">
+          <div class="rounded-0 flex-row justify-content-between align-items-center mt-2 ms-3">
+            <h4 class="card-title text-dark fw-bold"><u>Id Message :</u> {{ messages.id }}</h4><br>
           </div>
-          <div class="card-body">
+          <div class="mt-2 ms-3">
             <p><b>Description :</b> {{ messages.description }}</p>
             <p><b>Start date :</b> {{ getDateTime(messages.startDatetime) }}</p>
             <p><b>End date :</b> {{ getDateTime(messages.endDatetime) }}</p>

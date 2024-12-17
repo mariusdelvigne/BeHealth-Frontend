@@ -3,11 +3,11 @@
     @for (notification of notifications; track $index) {
       <div class="col-12 col-md-4 mt-3">
         <div class="card h-100 border-top-food-color">
-          <div class="card-header rounded-0 flex-row justify-content-between align-items-center">
-            <h4 class="card-title text-dark fw-bold">Notification : {{ notification.id }}</h4><br>
-            <h4 class="card-title text-dark fw-bold">Title : {{ notification.title }}</h4>
+          <div class="rounded-0 flex-row justify-content-between align-items-center mt-2 ms-3">
+            <h4 class="text-dark fw-bold mt-1"><u>Id Notification :</u> {{ notification.id }}</h4><br>
+            <h4 class="text-dark fw-bold"><u>Title :</u> {{ notification.title }}</h4>
           </div>
-          <div class="card-body">
+          <div class="mt-2 ms-3">
             <p><b>Receiver :</b> {{ notification.userName }}</p>
             <p><b>Category :</b> {{ notification.category }}</p>
             <p><b>Description :</b> {{ notification.description }}</p>

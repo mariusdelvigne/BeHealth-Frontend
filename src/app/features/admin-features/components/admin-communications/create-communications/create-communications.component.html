@@ -1,14 +1,14 @@
 <div class="d-flex justify-content-center align-items-center form-check form-switch toggle-admin-dashboard">
   <input
     mdbCheckbox
-    class="form-check-input large-toggle"
+    class="form-check-input large-toggle me-3"
     type="checkbox"
     id="createGlobalMessagesChecked"
     [checked]="false"
     (change)="createGlobalMessages = !createGlobalMessages"
   />
   <label class="form-check-label font-weight-bold" for="createGlobalMessagesChecked">
-    Global Messages
+    {{ createGlobalMessages ? 'Create New Global Message' : 'Create New Notification' }}
   </label>
 </div>
 @if (createGlobalMessages) {

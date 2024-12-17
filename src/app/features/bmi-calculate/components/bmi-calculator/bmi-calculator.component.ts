@@ -14,7 +14,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class BmiCalculatorComponent {
   form: FormGroup = new FormGroup({
-    gender: new FormControl('Male', Validators.required),
+    gender: new FormControl('male', Validators.required),
     age: new FormControl('', Validators.required),
     heightInCm: new FormControl('', Validators.required),
     weightInKg: new FormControl('', Validators.required),

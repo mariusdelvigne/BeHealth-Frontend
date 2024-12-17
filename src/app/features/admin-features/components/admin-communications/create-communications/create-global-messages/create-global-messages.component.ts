@@ -3,6 +3,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {AuthService} from '../../../../../../core/auth/services/auth.service';
 import {GlobalMessagesService} from '../../../../../../core/global-messages/services/global-messages.service';
 import {CreateGlobalMessageCommand} from '../../../../utils/create-global-message-command';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-global-messages',
@@ -21,7 +22,7 @@ export class CreateGlobalMessagesComponent {
     endDatetime: new FormControl('', [Validators.required]),
   });
 
-  constructor(private _authService: AuthService, private _globalMessageServie: GlobalMessagesService) {
+  constructor(private _authService: AuthService, private _globalMessageServie: GlobalMessagesService, private _toastrService: ToastrService) {
   }
 
   createGlobalMessage() {
@@ -35,8 +36,24 @@ export class CreateGlobalMessagesComponent {
       description: description,
       startDateTime: startDatetime,
       endDateTime: endDatetime,
+    };
+
+    const isConfirmed = window.confirm(`
+    Are you sure you want to create this global message ?
+    Description : ${description}
+    Start Datetime : ${startDatetime}
+    End Datetime : ${endDatetime}
+    `);
+
+    if (isConfirmed) {
+      this._globalMessageServie.createGlobalMessage(globalMessageCommand).subscribe(
+        () => {
+          window.location.reload();
+        },
+        (error) => {
+          this._toastrService.error(error);
+        }
+      );
     }
-    console.log(globalMessageCommand);
-    this._globalMessageServie.createGlobalMessage(globalMessageCommand).subscribe();
   }
 }

@@ -1,5 +1,17 @@
-<form class="d-flex justify-content-center p-3 rounded-1"
+<form class="d-flex flex-column justify-content-center p-3 rounded-1"
       [formGroup]="form" (submit)="emitSearchProgram()">
+
+  <div class="d-flex justify-content-center mb-2">
+    <div class="rounded-3 overflow-hidden">
+      <input type="button" class="page-btn p-2" value="All"
+             (click)="setRelation('')" style="width: 150px">
+      <input type="button" class="page-btn p-2" value="Subscription"
+             (click)="setRelation('subscription')" style="width: 150px">
+      <input type="button" class="page-btn p-2" value="Favorite"
+             (click)="setRelation('favorite')" style="width: 150px">
+    </div>
+  </div>
+
   <div class="d-flex justify-content-center input-group mb-3 gap-2">
     <input class="rounded-1 search-input w-25 p-2" formControlName="title" placeholder="Title">
 
@@ -11,34 +23,39 @@
 
 <ul class="program-list container mt-3 rounded-1">
   @for (program of programs; track $index) {
-    <li class="program rounded-1">
-      <div class="pt-1 pb-1 p-1 p-md-2 p-xl-3 row align-content-between" (click)="showProgramInfo(program.id)">
-        <div class="col-8 col-md-10 d-flex flex-column justify-content-between">
-          <p>{{ program.title }}</p>
-          <p class="m-0">By : {{ program.creatorName }}</p>
+    @if (matchFilter(program)) {
+      <li class="program rounded-1">
+        <div class="p-2 row">
+          <div class="col-8 col-md-10 d-flex flex-column justify-content-between" (click)="showProgramInfo(program.id)">
+            <p>{{ program.title }}</p>
+            <p class="m-0">By : {{ program.creatorName }}</p>
+          </div>
+          <div class="col-4 col-md-2 d-flex flex-column gap-1">
+            @if (isAdmin) {
+              <button type="button" class="rounded p-2 custom-btn btn-danger"
+                      (click)="deletePrograms(program)">
+                Delete
+              </button>
+            } @else {
+              <button class="rounded p-2 custom-btn"
+                      (click)="isStarred(program) ? deleteRelation(program.id, 'favorite') : addToRelations($event, program.id, 'favorite')">
+                <i class="{{ isStarred(program) ? 'fas fa-star' : 'far fa-star' }}"></i>
+              </button>
+
+              <button type="button" class="rounded p-2 custom-btn"
+                      (click)="isSubscribed(program) ? deleteRelation(program.id, 'subscription') : addToRelations($event, program.id, 'subscription')">
+                {{ isSubscribed(program) ? 'Unsubscribe' : 'Subscribe' }}
+              </button>
+
+            }
+          </div>
         </div>
-        <div class="col-4 col-md-2 d-flex flex-column gap-1">
-          @if (isAdmin) {
-            <button type="button" class="rounded p-2 custom-btn btn-danger"
-                    (click)="deletePrograms(program)">
-              Delete
-            </button>
-          } @else {
-            <button class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'favorite')">
-              <i class="far fa-star"></i>
-            </button>
-            <button type="button" class="rounded p-2 custom-btn"
-                    (click)="addToRelations($event, program.id, 'subscription')">
-              Subscribe
-            </button>
-          }
-        </div>
-      </div>
-      @if (program == selectedProgram) {
-        <div class="m-1 m-md-2">
-          <app-program-info [program]="selectedProgram"></app-program-info>
-        </div>
-      }
-    </li>
+        @if (program == selectedProgram) {
+          <div class="m-1 m-md-2">
+            <app-program-info [program]="selectedProgram"></app-program-info>
+          </div>
+        }
+      </li>
+    }
   }
 </ul>

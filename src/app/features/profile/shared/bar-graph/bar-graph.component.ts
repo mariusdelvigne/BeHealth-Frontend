@@ -106,7 +106,7 @@ export class BarGraphComponent implements OnInit {
       tooltip: {
         trigger: 'item',
         formatter: (params: any) => {
-          return `${params.value} hours`;
+          return `${params.value.toFixed(2)} hours`;
         }
       },
     };
