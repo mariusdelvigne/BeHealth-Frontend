@@ -75,7 +75,7 @@ export class StackedBarGraphComponent implements OnInit {
         console.log(response)
         dataToAdd = response.userSports.map((d: any) => ({
           date: new Date(d.startDatetime),
-          // sport: d.id,
+          food: d.name,
           value: d[this.dataType],
         }));
       }
@@ -100,7 +100,7 @@ export class StackedBarGraphComponent implements OnInit {
     this.startDate = new Date(this.startDate.setDate(this.startDate.getDate() + (next ? 7 : -7)));
 
     this.endDate= new Date(this.endDate.setDate(this.endDate.getDate() + (next ? 7 : -7)));
-    
+
     this.loadData();
     this.loadOptions();
   }
