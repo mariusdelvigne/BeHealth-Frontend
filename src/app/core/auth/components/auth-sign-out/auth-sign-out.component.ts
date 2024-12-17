@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {MdbModalRef} from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-auth-sign-out',
@@ -12,16 +13,12 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class AuthSignOutComponent {
 
-  constructor(private _authService: AuthService, private _router: Router, private _toastrService: ToastrService) { }
-
-  goHome() {
-    this._router.navigate(['/']);
-  }
+  constructor(public modalRef: MdbModalRef<AuthSignOutComponent>, private _authService: AuthService, private _router: Router, private _toastrService: ToastrService) { }
 
   emitSignOut() {
     this._authService.signOut().subscribe({
       next: _ => {
-        this.goHome();
+        this.modalRef.close();
         this._toastrService.success('Logged out successfully');
       },
       error: (error) => {
