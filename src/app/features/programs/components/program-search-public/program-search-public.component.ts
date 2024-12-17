@@ -21,6 +21,8 @@ export class ProgramSearchPublicComponent implements OnInit {
   @Input() isAdmin: boolean = false;
 
   programs: any[] = [];
+  favoritesPrograms: any[] = [];
+  subscribedPrograms: any[] = [];
   selectedProgram: any;
   form: FormGroup = new FormGroup({
     title: new FormControl(''),
@@ -36,16 +38,19 @@ export class ProgramSearchPublicComponent implements OnInit {
           this.programs = response.programs;
         },
         error: (error) => {
-          alert(error);
+          this._toastrService.error(error);
         }
       });
     } else {
       this._programService.getProgramsFiltered('public').subscribe({
         next: (response) => {
           this.programs = response.programs;
+
+          this.loadFavorites();
+          this.loadSubscribed();
         },
         error: (error) => {
-          alert(error);
+          this._toastrService.error(error);
         }
       });
     }
@@ -66,22 +71,6 @@ export class ProgramSearchPublicComponent implements OnInit {
     }
   }
 
-  addToRelations(e: MouseEvent, programId: number, relation: string) {
-    e.stopPropagation();
-
-    const userId = this._authService.getId();
-    this._programService.postRelation(userId, programId, relation).subscribe({
-      next: response => {
-        this._toastrService.success(relation + " added successfully.");
-        console.log(response);
-      },
-      error: error => {
-        this._toastrService.error(relation + " already exists!");
-        console.error(error);
-      }
-    });
-  }
-
   deletePrograms(program: any) {
     const isConfirmed = window.confirm('Are you sure you want to delete this programs ?');
     if (isConfirmed) {
@@ -94,6 +83,50 @@ export class ProgramSearchPublicComponent implements OnInit {
         }
       );
     }
+  }
+
+  addToRelations(e: MouseEvent, programId: number, relation: string) {
+    e.stopPropagation();
+    const userId = this._authService.getId();
+    this._programService.postRelation(userId, programId, relation).subscribe({
+      next: response => {
+        this._toastrService.success(relation + " added successfully.");
+        relation == "favorite" ? this.loadFavorites() : this.loadSubscribed();
+      },
+      error: error => {
+        this._toastrService.error(relation + " already exists!");
+      }
+    });
+  }
+
+  deleteRelation(programId: number, relation: string) {
+    this._programService.deleteRelation(this._authService.getId(),programId, relation).subscribe({
+      next: () => {
+        this._toastrService.success("Program deleted successfully from your " + relation + ".");
+        relation == "favorite" ? this.loadFavorites() : this.loadSubscribed();
+      },
+      error: (error) => {
+        this._toastrService.error("Error deleting program: " + error.message);
+      }
+    })
+  }
+
+  isStarred(program: any) {
+    return this.favoritesPrograms.some(p => p.program.id == program.id);
+  }
+
+  isSubscribed(program: any) {
+    return this.subscribedPrograms.some(p => p.program.id == program.id);
+  }
+
+  loadFavorites() {
+    this._programService.getProgramsByAssociations(this._authService.getId(),'favorite')
+      .subscribe(response => this.favoritesPrograms = response.astHealthProgramUsers);
+  }
+
+  loadSubscribed() {
+    this._programService.getProgramsByAssociations(this._authService.getId(),'subscription')
+      .subscribe(response => this.subscribedPrograms = response.astHealthProgramUsers);
   }
 }
 
