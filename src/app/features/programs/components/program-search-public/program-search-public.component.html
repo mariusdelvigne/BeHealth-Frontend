@@ -1,17 +1,17 @@
-<form class="d-flex justify-content-center p-3 rounded"
+<form class="d-flex justify-content-center p-3 rounded-1"
       [formGroup]="form" (submit)="emitSearchProgram()">
   <div class="d-flex justify-content-center input-group mb-3 gap-2">
-    <input class="rounded-0 search-input w-25 p-2" formControlName="title" placeholder="Title">
+    <input class="rounded-1 search-input w-25 p-2" formControlName="title" placeholder="Title">
 
-    <button type="submit" class="search-btn p-2 rounded-0">
+    <button type="submit" class="search-btn p-2 rounded-1">
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
   </div>
 </form>
 
-<ul class="program-list container mt-3">
+<ul class="program-list container mt-3 rounded-1">
   @for (program of programs; track $index) {
-    <li class="program">
+    <li class="program rounded-1">
       <div class="pt-1 pb-1 p-1 p-md-2 p-xl-3 row align-content-between" (click)="showProgramInfo(program.id)">
         <div class="col-8 col-md-10 d-flex flex-column justify-content-between">
           <p>{{ program.title }}</p>
