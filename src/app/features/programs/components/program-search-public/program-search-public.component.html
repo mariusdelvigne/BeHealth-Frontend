@@ -18,17 +18,18 @@
           <p class="m-0">By : {{ program.creatorName }}</p>
         </div>
         <div class="col-4 col-md-2 d-flex flex-column gap-1">
-          <button class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'favorite')">
-            <i class="far fa-star"></i>
-          </button>
-          <button type="button" class="rounded p-2 custom-btn"
-                  (click)="addToRelations($event, program.id, 'subscription')">
-            Subscribe
-          </button>
           @if (isAdmin) {
             <button type="button" class="rounded p-2 custom-btn btn-danger"
                     (click)="deletePrograms(program)">
               Delete
+            </button>
+          } @else {
+            <button class="rounded p-2 custom-btn" (click)="addToRelations($event, program.id, 'favorite')">
+              <i class="far fa-star"></i>
+            </button>
+            <button type="button" class="rounded p-2 custom-btn"
+                    (click)="addToRelations($event, program.id, 'subscription')">
+              Subscribe
             </button>
           }
         </div>
