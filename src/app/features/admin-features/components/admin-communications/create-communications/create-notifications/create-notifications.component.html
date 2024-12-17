@@ -1,28 +1,38 @@
-<div>
-  <form [formGroup]="formCreateNotification">
-    <h3>Title : </h3><input type="text" formControlName="title">
-    <h4>Description : </h4><input type="text" formControlName="description">
-    <h5>Category:</h5>
-    <select id="category" class="dropdown form-select" formControlName="category">
-      @for (category of allCategories; track $index) {
-        <option [value]="category.value">
-          {{ category.name }}
-        </option>
-      }
-    </select>
-    <select id="user" class="dropdown form-select" formControlName="user">
-    @for (user of users; track $index) {
-      <option [value]="user.id">
-        {{ user.username }}
-      </option>
-    }
-  </select>
-    <button
-      type="submit"
-      class="custom-btn rounded-3 col-3"
-      [disabled]="formCreateNotification.invalid"
-      (click)="createNotification()">
-      Create Notification
-    </button>
+<div class="h-100 p-4">
+  <form class="custom-insert-form mx-auto m-3 p-3 rounded" [formGroup]="formCreateNotification"
+        (submit)="createNotification()">
+    <div class="mb-3">
+      <h3>Title : </h3><input type="text" formControlName="title">
+    </div>
+    <div class="mb-3">
+      <h4>Description : </h4><input type="text" formControlName="description">
+    </div>
+    <div class="mb-3">
+      <h5>Category :</h5>
+      <select id="category" class="dropdown form-select" formControlName="category">
+        @for (category of allCategories; track $index) {
+          <option [value]="category.value">
+            {{ category.name }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <h5>User to send :</h5>
+      <select id="user" class="dropdown form-select" formControlName="user">
+        @for (user of users; track $index) {
+          <option [value]="user.id">
+            {{ user.username }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <input class="custom-btn rounded-1" type="submit" value="Create new notification"
+             [disabled]="formCreateNotification.invalid">
+    </div>
+
   </form>
 </div>
