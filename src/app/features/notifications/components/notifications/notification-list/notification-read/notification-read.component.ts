@@ -63,8 +63,21 @@ export class NotificationReadComponent implements OnInit {
     return `${diffInDays} days, ${remainingHours} hours, ${remainingMinutes} minutes ago`;
   }
 
-  markAsNotRead() {
+  toggleSeen() {
     const userId = this._authService.getId();
-    this._notificationService.readNotification(userId, this.notificationId, false).subscribe();
+    const newSeenState = !this.notificationToPrint.seen;
+
+    this._notificationService.readNotification(userId, this.notificationId, newSeenState).subscribe({
+      next: () => {
+        this.notificationToPrint.seen = newSeenState;
+        this._toastrService.success(
+          `Notification marked as ${newSeenState ? 'Read' : 'Not Read'}.`
+        );
+      },
+      error: (error) => {
+        this._toastrService.error('Error updating notification: ' + error.message);
+      },
+    });
   }
+
 }

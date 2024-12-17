@@ -1,33 +1,28 @@
-<form [formGroup]="formSearch" class="row gap-2 justify-content-center">
-  <label for="category" class="form-label">
-    <h4>Filter notifications by :</h4>
-  </label>
+<div class="h-100 p-4">
+  <form class="custom-insert-form w-50 mx-auto m-3 p-3 rounded" [formGroup]="formSearch">
+    <label for="category" class="form-label">
+      <h4>Filter notifications by :</h4>
+    </label>
 
-  <div>
-    <h5>Category:</h5>
-    <select id="category" class="dropdown form-select" formControlName="category">
-      @for (category of allCategories; track $index) {
-        <option [value]="category.value">
-          {{ category.name }}
-        </option>
-      }
-    </select>
-  </div>
+    <div class="mb-3">
+      <h5>Category :</h5>
+      <select id="category" class="dropdown form-select" formControlName="category" (change)="debouncedFilterNotifications()">
+        @for (category of allCategories; track $index) {
+          <option [value]="category.value">
+            {{ category.name }}
+          </option>
+        }
+      </select>
+    </div>
 
-  <div>
-    <h5>Is Read:</h5>
-    <select id="read" class="dropdown form-select" formControlName="isRead">
-      <option value="all">All</option>
-      <option value="read">Read</option>
-      <option value="not-read">Not read</option>
-    </select>
-  </div>
+    <div class="mb-3">
+      <h5>Is Read :</h5>
+      <select id="read" class="dropdown form-select" formControlName="isRead" (change)="debouncedFilterNotifications()">
+        <option value="all">All</option>
+        <option value="read">Read</option>
+        <option value="not-read">Not read</option>
+      </select>
+    </div>
 
-  <button
-    type="submit"
-    class="custom-btn rounded-3 col-3"
-    [disabled]="formSearch.invalid"
-    (click)="filterNotifications()">
-    Filter
-  </button>
-</form>
+  </form>
+</div>
