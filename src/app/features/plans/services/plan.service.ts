@@ -36,7 +36,7 @@ export class PlanService {
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}/users/${userId}`);
   }
 
-  public getPlansById(planId: number): Observable<any> {
+  public getPlanById(planId: number): Observable<any> {
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}`);
   }
 
@@ -65,9 +65,10 @@ export class PlanService {
     return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sports`, command);
   }
 
-  public getContent(planId: number, pageNumber: number): Observable<any> {
+  public getContent(planId: number, pageNumber: number, pageSize: number): Observable<any> {
     let params = new HttpParams()
-      .set('pageNumber', pageNumber);
+      .set('pageNumber', pageNumber)
+      .set('pageSize', pageSize);
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/content`, {params: params});
   }
 }
