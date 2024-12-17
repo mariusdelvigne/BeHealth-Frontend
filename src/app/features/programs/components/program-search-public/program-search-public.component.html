@@ -1,7 +1,7 @@
 <form class="d-flex justify-content-center p-3 rounded-1"
       [formGroup]="form" (submit)="emitSearchProgram()">
   <div class="d-flex justify-content-center input-group mb-3 gap-2">
-    <input class="rounded-1 search-input w-25 p-2" formControlName="title" placeholder="Title">
+    <input class="rounded-1 search-input w-25 p-2" formControlName="title" placeholder="Title" (input)="emitSearchProgram()">
 
     <button type="submit" class="search-btn p-2 rounded-1">
       <i class="fa-solid fa-magnifying-glass"></i>
