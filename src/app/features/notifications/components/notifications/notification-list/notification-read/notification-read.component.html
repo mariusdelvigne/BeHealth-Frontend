@@ -6,13 +6,15 @@
     <div class="p-3 d-flex flex-column justify-content-between">
       <h5 class="card-title mb-2 text-dark fw-semibold">{{ notificationToPrint.title }}</h5>
       <p class="card-text text-muted mb-3">{{ notificationToPrint.description }}</p>
+      <div class="d-flex flex-column align-items-center">
       <button
-        class="btn btn-outline-primary rounded-pill"
+        class="btn btn-outline-primary rounded-pill w-25"
         data-mdb-ripple-init
-        (click)="markAsNotRead()"
+        (click)="toggleSeen()"
       >
-        Mark as Not Read
+        {{ notificationToPrint.seen ? 'Mark as Not Read' : 'Mark as Read' }}
       </button>
+      </div>
     </div>
     <div class="card-footer text-muted small text-end bg-white border-0">
       Time from receive: {{ timeFromReceive }}
