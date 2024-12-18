@@ -69,6 +69,10 @@ export class PlanService {
     return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/foods`, command);
   }
 
+  public updatePlanSleep(userId: number, planId: number, command: any) : Observable<void> {
+    return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sleep`, command);
+  }
+
   public getContent(planId: number, pageNumber: number, pageSize: number): Observable<any> {
     let params = new HttpParams()
       .set('pageNumber', pageNumber)

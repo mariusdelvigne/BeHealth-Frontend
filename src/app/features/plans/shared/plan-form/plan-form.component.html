@@ -76,6 +76,10 @@
         <hr>
         <app-plan-food-create (onPlanFoodCreated)="addPlanFood($event)"></app-plan-food-create>
       </div>
+    } @else {
+      <div>
+        <app-plan-sleep-form [planSleep]="planSleep"></app-plan-sleep-form>
+      </div>
     }
   </form>
 
