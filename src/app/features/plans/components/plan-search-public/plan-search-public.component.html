@@ -1,8 +1,15 @@
 <div class="container text-center">
   <form class="d-flex flex-column justify-content-center p-3 rounded-1"
         [formGroup]="form">
-    <div class="d-flex justify-content-center input-group mb-3 gap-2 rounded-1">
-      <input class="rounded-0 search-input w-25 p-2 rounded-1" formControlName="name" placeholder="Title" (input)="emitSearchPlan()">
+
+    <div data-mdb-input-ini class="d-flex justify-content-center input-group mb-3 gap-2 form-outline">
+
+      <div class="position-relative w-25">
+        <i class="fa-solid fa-magnifying-glass position-absolute"></i>
+        <input type="text" class="rounded-1 search-input w-100 p-2 ps-5" formControlName="name" placeholder="Title plan"
+               (input)="emitSearchPlan()">
+      </div>
+
 
       <select formControlName="category" class="rounded-1" (change)="emitSearchPlan()">
         <option value="">All</option>
@@ -10,10 +17,6 @@
         <option value="food">Food</option>
         <option value="sleep">Sleep</option>
       </select>
-
-      <button type="submit" class="search-btn p-2 rounded-1">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
     </div>
   </form>
 
