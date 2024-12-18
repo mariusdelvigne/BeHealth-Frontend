@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {apis, environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {UserCreateCommand} from '../../core/auth/utils/user-create-command';
@@ -15,7 +15,8 @@ import {UserPasswordCreateCommand} from '../utils/user-password-create-command';
 export class UserService {
   private static URL: string = `${environment.API_URL}/${apis.USERS_URL}`;
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient) {
+  }
 
   public signUp(userCreateCommand: UserCreateCommand): Observable<UserCreateOutput> {
     return this._httpClient.post<UserCreateOutput>(UserService.URL, userCreateCommand);
@@ -35,7 +36,15 @@ export class UserService {
   }
 
   getUserByUsername(query: UserSearchQuery): Observable<any> {
-    return this._httpClient.get<any>(UserService.URL + "/usernames?user=" + query.username);
+    let params = new HttpParams();
+
+    if (query.username)
+      params = params.set('user', (query.username));
+
+    params = params.set('pageNumber', (query.pageNumber).toString());
+    params = params.set('pageSize', (query.pageSize).toString());
+
+    return this._httpClient.get<any>(UserService.URL + "/usernames", {params: params});
   }
 
   getListUserByUsername(name: string): Observable<any> {

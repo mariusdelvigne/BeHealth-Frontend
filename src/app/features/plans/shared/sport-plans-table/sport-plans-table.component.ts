@@ -25,19 +25,13 @@ export class SportPlansTableComponent implements OnInit{
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
   });
+  pageNumber = 1;
 
   constructor(private _planService: PlanService) {
   }
 
   ngOnInit() {
-    this._planService.getPlansFiltered('','','sport').subscribe({
-      next: (response) => {
-        this.sportPlans = response.plans;
-      },
-      error: (error) => {
-        alert(error.message);
-      }
-    })
+    this.loadData();
 
     // Show the plan already selected (Used in update form)
     if (this.program && this.program.sportPlanId != null) {
@@ -73,5 +67,26 @@ export class SportPlansTableComponent implements OnInit{
 
   setVisibility(): void {
     this.isVisible = !this.isVisible;
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.loadData();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.loadData();
+  }
+
+  loadData() {
+    this._planService.getPlansFiltered('','','sport', this.pageNumber - 1, 10).subscribe({
+      next: (response) => {
+        this.sportPlans = response.plans;
+      },
+      error: (error) => {
+        alert(error.message);
+      }
+    })
   }
 }

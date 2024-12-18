@@ -24,19 +24,13 @@ export class FoodPlansTableComponent implements OnInit {
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
   });
+  pageNumber = 1;
 
   constructor(private _planService: PlanService) {
   }
 
   ngOnInit() {
-    this._planService.getPlansFiltered('public','','food').subscribe({
-      next: (response) => {
-        this.foodPlans = response.plans;
-      },
-      error: (error) => {
-        alert(error.message);
-      }
-    })
+    this.loadData();
 
     // Show the plan already selected (Used in update form)
     if (this.program && this.program.foodPlanId != null) {
@@ -44,6 +38,7 @@ export class FoodPlansTableComponent implements OnInit {
         .subscribe({
           next: (plan) => {
             this.selectedFoodPlan = plan;
+            console.log("onInit");
             this.emitFoodPlan.emit(plan);
           }
         });
@@ -51,6 +46,7 @@ export class FoodPlansTableComponent implements OnInit {
   }
 
   selectPlan(plan: any) {
+    console.log("selectPlan");
     this.selectedFoodPlan = plan;
     this.emitFoodPlan.emit(plan);
   }
@@ -65,12 +61,32 @@ export class FoodPlansTableComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.foodPlans = response.plans;
-          console.log(response.plans);
         }
       });
   }
 
   setVisibility(): void {
     this.isVisible = !this.isVisible;
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.loadData();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.loadData();
+  }
+
+  loadData() {
+    this._planService.getPlansFiltered('public','','food', this.pageNumber - 1).subscribe({
+      next: (response) => {
+        this.foodPlans = response.plans;
+      },
+      error: (error) => {
+        alert(error.message);
+      }
+    })
   }
 }
