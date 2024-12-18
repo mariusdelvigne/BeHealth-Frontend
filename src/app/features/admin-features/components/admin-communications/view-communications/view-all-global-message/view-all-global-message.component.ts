@@ -12,18 +12,12 @@ import {GlobalMessagesService} from '../../../../../../core/global-messages/serv
 })
 export class ViewAllGlobalMessageComponent implements OnInit {
   globalMessages: GetAllGlobalMessagesOutput[] = [];
+  pageNumber = 1;
 
   constructor(private _globalMessagesService: GlobalMessagesService, private _toastrService: ToastrService) {}
 
   ngOnInit() {
-    this._globalMessagesService.getAllGlobalMessages().subscribe({
-      next: (globalMessage) => {
-        this.globalMessages = globalMessage.messages;
-      },
-      error: (error) => {
-        this._toastrService.error("Error : " + error.message);
-      }
-    })
+    this.loadData();
   }
 
   deleteGlobalMessages(id: number) {
@@ -42,5 +36,26 @@ export class ViewAllGlobalMessageComponent implements OnInit {
     const minutes = String(date.getMinutes()).padStart(2, '0');
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.loadData();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.loadData();
+  }
+
+  loadData() {
+    this._globalMessagesService.getAllGlobalMessages(this.pageNumber - 1).subscribe({
+      next: (globalMessage) => {
+        this.globalMessages = globalMessage.messages;
+      },
+      error: (error) => {
+        this._toastrService.error("Error : " + error.message);
+      }
+    })
   }
 }

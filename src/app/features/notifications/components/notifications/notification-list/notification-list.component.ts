@@ -16,11 +16,15 @@ import {RouterLink} from '@angular/router';
 })
 export class NotificationListComponent implements OnInit {
   @Input() notifications: NotificationSearchOutput[] = [];
+  pageNumber = 1;
 
   constructor(private _notificationService: NotificationService, private _authService: AuthService, private _toastrService: ToastrService) {}
 
   ngOnInit() {
-    console.log(this._authService.getId())
+    this.loadData();
+  }
+
+  loadData() {
     this._notificationService.getNotificationByUserId(this._authService.getId()).subscribe({
       next: (notifications) => {
         this.notifications = notifications.notifications;

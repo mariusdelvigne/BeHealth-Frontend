@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CreateGlobalMessageCommand} from '../../../features/admin-features/utils/create-global-message-command';
 
@@ -12,8 +12,13 @@ export class GlobalMessagesService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  public getAllGlobalMessages(): Observable<any> {
-    return this._httpClient.get<any>(`${GlobalMessagesService.URL_GLOBAL_MESSAGES}`);
+  public getAllGlobalMessages(pageNumber?: number, pageSize?: number): Observable<any> {
+    let params = new HttpParams();
+
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
+    return this._httpClient.get<any>(`${GlobalMessagesService.URL_GLOBAL_MESSAGES}`, {params: params});
   }
 
   public deleteGlobalMessages(id: number): Observable<any> {
