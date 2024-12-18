@@ -25,19 +25,13 @@ export class PlanSearchMineComponent implements OnInit{
   plans: PlanSearchOutput[] = [];
   tags: any[] = [];
   selectedPlan: any;
+  pageNumber = 1;
 
   constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService, private _router: Router) {
   }
 
   ngOnInit() {
-    this._planService.getPlansByUserId(this._authService.getId()).subscribe({
-      next: (plans) => {
-        this.plans = plans.plans;
-      },
-      error: (error) => {
-        this._toastrService.error("Error searching plans: " + error.message);
-      }
-    });
+    this.loadData();
   }
 
   showPlanInfo(planId: number) {
@@ -77,6 +71,27 @@ export class PlanSearchMineComponent implements OnInit{
       },
       error: (error) => {
         alert(error.message);
+      }
+    });
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.loadData();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.loadData();
+  }
+
+  loadData() {
+    this._planService.getPlansByUserId(this._authService.getId(), this.pageNumber - 1).subscribe({
+      next: (plans) => {
+        this.plans = plans.plans;
+      },
+      error: (error) => {
+        this._toastrService.error("Error searching plans: " + error.message);
       }
     });
   }

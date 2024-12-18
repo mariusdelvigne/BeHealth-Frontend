@@ -28,14 +28,27 @@ export class PlanSearchPublicComponent implements OnInit {
     category: new FormControl(''),
   });
   selectedPlan: any = null;
+  pageNumber = 1;
 
   constructor(private _planService: PlanService, private _debounceService: DebounceService) {
   }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  emitSearchPlan() {
+    this._planService.getPlansFiltered(
+      "public", this.form.value.name, this.form.value.category, this.pageNumber - 1)
+      .subscribe(response => {
+        this.plans = response.plans;
+      });
+  }
+
+  loadData() {
     this.emitSearchPlan();
     this._debounceService.debounce(() => {
-      this._planService.getPlansFiltered("public").subscribe({
+      this._planService.getPlansFiltered('public', '', '', this.pageNumber - 1).subscribe({
         next: (plans) => {
           this.plans = plans.plans;
         },
@@ -44,14 +57,6 @@ export class PlanSearchPublicComponent implements OnInit {
         }
       });
     }, 500);
-  }
-
-  emitSearchPlan() {
-    this._planService.getPlansFiltered(
-      "public", this.form.value.name, this.form.value.category)
-      .subscribe(response => {
-        this.plans = response.plans;
-      });
   }
 
 
@@ -75,5 +80,15 @@ export class PlanSearchPublicComponent implements OnInit {
         alert(error.message);
       }
     });
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.loadData();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.loadData();
   }
 }

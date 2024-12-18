@@ -19,7 +19,7 @@ export class PlanService {
     return this._httpClient.post<PlanCreateOutput>(`${PlanService.URL_USERS}/${userId}/plans`, planCreateCommand);
   }
 
-  public getPlansFiltered(privacy?: string, name?: string, category?: string): Observable<any> {
+  public getPlansFiltered(privacy?: string, name?: string, category?: string, pageNumber?: number, pageSize?: number): Observable<any> {
     let params = new HttpParams();
 
     if (privacy)
@@ -29,11 +29,19 @@ export class PlanService {
     if (category)
       params = params.set('category', category);
 
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}`, {params: params});
   }
 
-  public getPlansByUserId(userId: number): Observable<any> {
-    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/users/${userId}`);
+  public getPlansByUserId(userId: number, pageNumber?: number, pageSize?: number): Observable<any> {
+    let params = new HttpParams();
+
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
+    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/users/${userId}`, {params: params});
   }
 
   public getPlanById(planId: number): Observable<any> {
@@ -67,8 +75,10 @@ export class PlanService {
 
   public getContent(planId: number, pageNumber: number, pageSize: number): Observable<any> {
     let params = new HttpParams()
-      .set('pageNumber', pageNumber)
-      .set('pageSize', pageSize);
+
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/content`, {params: params});
   }
 }
