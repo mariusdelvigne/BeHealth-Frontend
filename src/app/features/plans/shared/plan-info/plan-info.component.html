@@ -8,11 +8,16 @@
   <div class="overflow-auto max-vh-50">
     @if (plan.category === 'sport') {
       <app-plan-sport-list [planSports]="plan.sports" [isEditMode]="false"></app-plan-sport-list>
+      <div class="d-flex justify-content-center">
+        <input type="button" value="More" (click)="loadContent($event)" class="btn btn-primary" [hidden]="!contentLeft">
+      </div>
     } @else if (plan.category === 'food') {
       <app-plan-food-list [planFoods]="plan.foods" [isEditMode]="false"></app-plan-food-list>
+      <div class="d-flex justify-content-center">
+        <input type="button" value="More" (click)="loadContent($event)" class="btn btn-primary" [hidden]="!contentLeft">
+      </div>
+    } @else {
+      <app-plan-sleep-element [planSleep]="plan.sleep"></app-plan-sleep-element>
     }
-    <div class="d-flex justify-content-center">
-      <input type="button" value="More" (click)="loadContent($event)" class="btn btn-primary" [hidden]="!contentLeft">
-    </div>
   </div>
 </div>
