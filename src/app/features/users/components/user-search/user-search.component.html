@@ -1,8 +1,8 @@
-<div class="container">
-  <div class="mt-4 align-content-center">
+<div>
+  <div class="mt-3 align-content-center">
     <app-search-form (userSearch)="searchUserByName($event)"></app-search-form>
   </div>
-  <div class="mt-4 align-content-center">
+  <div class="align-content-center">
     <app-user-list [users]="user" (userIsBanned)="banUser($event)"></app-user-list>
   </div>
 </div>

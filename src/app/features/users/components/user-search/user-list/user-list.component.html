@@ -1,19 +1,19 @@
 @if (users.length) {
-  <div class="table-responsive">
-    <table class="table responsive-table table-striped">
+  <div class="m-0 m-md-3 m-lg-5">
+    <table class="table responsive-table">
       <tr class="table-header text-start">
         <th class="col-4">Username</th>
-        <th class="col-6"> Email</th>
+        <th class="col-4"> Email</th>
         <th class="col-2">Role</th>
-        <th></th>
+        <th class="col-2"></th>
       </tr>
       @for (user of users; track $index) {
         <tr class="table-row">
-          <td class="col-4 text-break">{{ user.username }}</td>
-          <td class="col-6 text-break">{{ user.mail }}</td>
-          <td class="col-2 text-break">{{ user.role }}</td>
+          <td class="col-4 text-break d-flex flex-row align-items-center">{{ user.username }}</td>
+          <td class="col-4 text-break d-flex flex-row align-items-center">{{ user.mail }}</td>
+          <td class="col-2 text-break d-flex flex-row align-items-center">{{ user.role }}</td>
           @if (getRoleIsAdmin()) {
-            <td>
+            <td class="col-2 d-flex flex-row align-items-center">
               <app-user-ban class="bg-transparent"
                             [userIsBanned]="user.isBanned"
                             (userIsBannedChange)="onUserBanStatusChange(user.id, $event)"
