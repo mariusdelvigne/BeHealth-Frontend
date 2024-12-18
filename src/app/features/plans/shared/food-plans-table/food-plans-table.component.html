@@ -17,6 +17,20 @@
     </div>
   </form>
 
+  <div class="d-flex justify-content-center mb-2">
+    <div class="rounded-3 overflow-hidden">
+      <button type="button" class="page-btn p-2" (click)="previousPage()" style="width: 50px" [disabled]="pageNumber <= 1">
+        <i class="fa-solid fa-angle-left"></i>
+      </button>
+
+      <input type="button" class="page-btn p-2" [value]="pageNumber" style="width: 100px">
+
+      <button type="button" class="page-btn p-2" (click)="nextPage()" style="width: 50px">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
   @if (foodPlans) {
     <div class="container overflow-hidden">
       <div class="row g-3 mt-1">
