@@ -1,17 +1,17 @@
 @if (users.length) {
   <div class="table-responsive">
-    <table class="w-150 table responsive-table table-striped">
+    <table class="table responsive-table table-striped">
       <tr class="table-header text-start">
-        <th class="col-3">Username</th>
+        <th class="col-4">Username</th>
         <th class="col-6"> Email</th>
         <th class="col-2">Role</th>
         <th></th>
       </tr>
       @for (user of users; track $index) {
         <tr class="table-row">
-          <td class="col-3">{{ user.username }}</td>
-          <td class="col-6">{{ user.mail }}</td>
-          <td class="col-2">{{ user.role }}</td>
+          <td class="col-4 text-break">{{ user.username }}</td>
+          <td class="col-6 text-break">{{ user.mail }}</td>
+          <td class="col-2 text-break">{{ user.role }}</td>
           @if (getRoleIsAdmin()) {
             <td>
               <app-user-ban class="bg-transparent"

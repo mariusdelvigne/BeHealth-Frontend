@@ -1,5 +1,5 @@
 <div class="h-100 p-4">
-  <form class="custom-insert-form w-50 mx-auto m-3 p-3 rounded" [formGroup]="form" (submit)="calculBmi()">
+  <form class="custom-insert-form container mx-auto m-3 p-3 rounded" [formGroup]="form" (submit)="calculBmi()">
     <div class="mb-3">
       <label for="gender" class="form-label">Gender</label>
       <select id="gender" class="form-control" formControlName="gender">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="d-flex justify-content-center">
-      <input class="custom-btn w-50 rounded-1" type="submit" [disabled]="form.invalid" value="Calculate BMI">
+      <input class="custom-btn w-75 rounded-1" type="submit" [disabled]="form.invalid" value="Calculate">
     </div>
   </form>
 
