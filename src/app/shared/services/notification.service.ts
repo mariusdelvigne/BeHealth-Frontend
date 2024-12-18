@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {apis, environment} from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {NotificationCreateCommand} from '../../features/notifications/utils/notification-create-command';
 
@@ -38,8 +38,13 @@ export class NotificationService {
     }
   }
 
-  public getAllNotifications(): Observable<any> {
-    return this._httpClient.get<any>(`${NotificationService.URL_NOTIFICATIONS}`);
+  public getAllNotifications(pageNumber?: number, pageSize?: number): Observable<any> {
+    let params = new HttpParams();
+
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
+    return this._httpClient.get<any>(`${NotificationService.URL_NOTIFICATIONS}`, {params: params});
   }
 
   public readNotification(userId: number, notificationId: number, isRead: boolean): Observable<any> {
