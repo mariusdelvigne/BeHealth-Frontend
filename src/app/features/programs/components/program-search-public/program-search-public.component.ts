@@ -32,18 +32,19 @@ export class ProgramSearchPublicComponent implements OnInit {
   });
 
   relation: string = '';
+  pageNumber = 1;
 
   constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService, private _debounceService: DebounceService) {
   }
 
   ngOnInit() {
     this.emitSearchProgram();
-    this.isAdmin ? this.loadData("admin") : this.loadData("");
+    this.loadData();
   }
 
   emitSearchProgram() {
     this._programService.getProgramsFiltered(
-      "public", this.form.value.title)
+      "public", this.form.value.title, this.pageNumber - 1)
       .subscribe(response => this.programs = response.programs);
   }
 
@@ -105,50 +106,59 @@ export class ProgramSearchPublicComponent implements OnInit {
   }
 
   loadFavorites() {
-    this._programService.getProgramsByAssociations(this._authService.getId(), 'favorite')
+    this._programService.getProgramsByAssociations(this._authService.getId(), 'favorite', this.pageNumber - 1)
       .subscribe(response => this.favoritesPrograms = response.astHealthProgramUsers);
   }
 
   loadSubscribed() {
-    this._programService.getProgramsByAssociations(this._authService.getId(), 'subscription')
+    this._programService.getProgramsByAssociations(this._authService.getId(), 'subscription', this.pageNumber - 1)
       .subscribe(response => this.subscribedPrograms = response.astHealthProgramUsers);
   }
 
   setRelation(relation: string) {
     this.relation = relation;
-    this.isAdmin ? this.loadData("admin") : this.loadData("");
+    this.loadData();
   }
 
-  loadData(type: any) {
+  loadData() {
+    this.emitSearchProgram();
     this._debounceService.debounce(() => {
-      switch (type) {
-        case 'admin':
-          this._programService.getProgramsFiltered().subscribe({
-            next: (response) => {
-              this.programs = response.programs;
-            },
-            error: (error) => {
-              this._toastrService.error(error);
-            }
-          });
-          break;
-        default:
-          this._programService.getProgramsFiltered('public').subscribe({
-            next: (response) => {
-              this.programs = response.programs;
-              this.loadFavorites();
-              this.loadSubscribed();
-            },
-            error: (error) => {
-              this._toastrService.error(error);
-            }
-          });
-          break;
+      if (this.isAdmin) {
+        this._programService.getProgramsFiltered('', '', this.pageNumber - 1).subscribe({
+          next: (response) => {
+            this.programs = response.programs;
+          },
+          error: (error) => {
+            this._toastrService.error(error);
+          }
+        });
+      } else {
+        this._programService.getProgramsFiltered('public', '', this.pageNumber - 1).subscribe({
+          next: (response) => {
+            this.programs = response.programs;
+            this.loadFavorites();
+            this.loadSubscribed();
+          },
+          error: (error) => {
+            this._toastrService.error(error);
+          }
+
+        });
       }
     }, 500);
   }
 
   matchFilter(program: any) {
     return this.relation == "favorite" && this.isStarred(program) || this.relation == "subscription" && this.isSubscribed(program) || this.relation == ""
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.loadData();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.loadData();
   }
 }

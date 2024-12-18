@@ -19,19 +19,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ProgramSearchMineComponent implements OnInit{
   programs: any[] = [];
   selectedProgram: any
+  pageNumber = 1;
 
   constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService, private _route: ActivatedRoute, private _router: Router) {
   }
 
   ngOnInit() {
-    this._programService.getProgramsByUserId(this._authService.getId()).subscribe({
-      next: (response) => {
-        this.programs = response.programs;
-      },
-      error: (error) => {
-        this._toastrService.error("Error Getting programs: " + error);
-      }
-    });
+    this.loadData();
   }
 
   showProgramInfo(programId: number) {
@@ -57,5 +51,26 @@ export class ProgramSearchMineComponent implements OnInit{
 
   goToUpdateForm(programId: number) {
     this._router.navigate(['program-update', programId]);
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.loadData();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.loadData();
+  }
+
+  loadData() {
+    this._programService.getProgramsByUserId(this._authService.getId(), this.pageNumber - 1).subscribe({
+      next: (response) => {
+        this.programs = response.programs;
+      },
+      error: (error) => {
+        this._toastrService.error("Error Getting programs: " + error);
+      }
+    });
   }
 }

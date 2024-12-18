@@ -19,7 +19,7 @@ export class ProgramService {
     return this._httpClient.post<ProgramCreateOutput>(`${ProgramService.URL_USERS}/${userId}/programs`, programCreateCommand);
   }
 
-  public getProgramsFiltered(privacy?: string, title?: string): Observable<any> {
+  public getProgramsFiltered(privacy?: string, title?: string, pageNumber?: number, pageSize?: number): Observable<any> {
     let params = new HttpParams();
 
     if (privacy)
@@ -27,15 +27,32 @@ export class ProgramService {
     if (title)
       params = params.set('title', title);
 
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
     return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}`, {params: params});
+  }
+
+  public getProgramsByUserId(userId: number, pageNumber?: number, pageSize?: number): Observable<any> {
+    let params = new HttpParams();
+
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
+    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/users/${userId}`, {params: params});
+  }
+
+  public getProgramsByAssociations(userId: number, relation: string, pageNumber?: number, pageSize?: number): Observable<any> {
+    let params = new HttpParams();
+
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
+    return this._httpClient.get<any>(`${ProgramService.URL_USERS}/${userId}/associations/${relation}`, {params: params});
   }
 
   public getProgramById(programId: number): Observable<any> {
     return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/${programId}`);
-  }
-
-  public getProgramsByUserId(userId: number): Observable<any> {
-    return this._httpClient.get<any>(`${ProgramService.URL_PROGRAMS}/users/${userId}`);
   }
 
   public deleteProgram(userId: number, programId: number) : Observable<any> {
@@ -44,10 +61,6 @@ export class ProgramService {
 
   public updateProgram(userId: number, programId: number, command: ProgramUpdateCommand) : Observable<any> {
     return this._httpClient.put<any>(`${ProgramService.URL_USERS}/${userId}/programs/${programId}`, command);
-  }
-
-  public getProgramsByAssociations(userId: number, relation: string): Observable<any> {
-    return this._httpClient.get<any>(`${ProgramService.URL_USERS}/${userId}/associations/${relation}`);
   }
 
   public postRelation(userId: number, programId: number, relation: string) : Observable<any> {
