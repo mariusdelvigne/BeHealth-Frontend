@@ -1,62 +1,63 @@
-<div class="container text-center">
-  <form class="custom-insert-form w-50 mx-auto m-3 p-3 rounded" [formGroup]="form" (submit)="calculCaloriesBurned()">
-    <div class="mb-3">
-      <label for="sport" class="form-label">Sport</label>
-      <select id="sport" class="form-control" formControlName="sport">
-        @for (sportName of allSport; track $index) {
-          <option value="{{sportName.value}}">{{ sportName.name }}</option>
-        }
-      </select>
-    </div>
+<div class="h-100 ms-3 me-3">
+  <form class="custom-insert-form container mx-auto m-3 p-3 rounded" [formGroup]="form" (submit)="calculCaloriesBurned()">
+    <div class="row">
+      <div class="mb-3 col-12 col-md-8">
+        <label for="sport" class="form-label">Sport</label>
+        <select id="sport" class="form-control" formControlName="sport">
+          @for (sportName of allSport; track $index) {
+            <option value="{{sportName.value}}">{{ sportName.name }}</option>
+          }
+        </select>
+      </div>
 
-    <div class="mb-3">
-      <label for="durationInMinute" class="form-label">Duration (Minutes)</label>
-      <input type="number" id="durationInMinute" class="form-control" formControlName="durationInMinute">
-    </div>
+      <div class="mb-3 col-12 col-md-4">
+        <label for="durationInMinute" class="form-label">Duration (min)</label>
+        <input type="number" id="durationInMinute" class="form-control" formControlName="durationInMinute">
+      </div>
 
-    <div class="mb-3">
-      <label for="weightInKg" class="form-label">Weight (Kilograms)</label>
-      <input type="number" id="weightInKg" class="form-control" formControlName="weightInKg">
-    </div>
+      <div class="mb-3 col-12 col-md-6">
+        <label for="heightInCm" class="form-label">Height (cm)</label>
+        <input type="number" id="heightInCm" class="form-control" formControlName="heightInCm">
+      </div>
 
-    <div class="mb-3">
-      <label for="gender" class="form-label">Gender</label>
-      <select id="gender" class="form-control" formControlName="gender">
-        <option value="male" selected>Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
-    </div>
+      <div class="mb-3 col-12 col-md-6">
+        <label for="weightInKg" class="form-label">Weight (kg)</label>
+        <input type="number" id="weightInKg" class="form-control" formControlName="weightInKg">
+      </div>
 
-    <div class="mb-3">
-      <label for="heightInCm" class="form-label">Height (Centimeters)</label>
-      <input type="number" id="heightInCm" class="form-control" formControlName="heightInCm">
-    </div>
+      <div class="mb-3 col-12 col-md-6">
+        <label for="gender" class="form-label">Gender</label>
+        <select id="gender" class="form-control" formControlName="gender">
+          <option value="male" selected>Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
 
-    <div class="mb-3">
-      <label for="age" class="form-label">Age</label>
-      <input type="number" id="age" class="form-control" formControlName="age">
-    </div>
+      <div class="mb-3 col-12 col-md-6">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" id="age" class="form-control" formControlName="age">
+      </div>
 
-    <div class="d-flex justify-content-center">
-      <input class="custom-btn w-75 rounded-1" type="submit" [disabled]="form.invalid" value="Calculate">
+      <div class="d-flex justify-content-center">
+        <input class="custom-btn w-75 rounded-1" type="submit" [disabled]="form.invalid" value="Calculate">
+      </div>
     </div>
   </form>
-
 </div>
-<div class="container mt-4">
-  <table class="table table-striped table-bordered text-center">
-    <thead class="table-dark">
+<div class="container p-1 bg-white rounded mt-3">
+  <table class="table table-striped text-center">
+    <thead>
     <tr>
       <th>Sport</th>
-      <th>Duration (Minutes)</th>
+      <th>Duration</th>
       <th>Calories Burned</th>
     </tr>
     </thead>
     <tbody>
     <tr>
       <td>{{ resultCaloriesBurned.nameSport }}</td>
-      <td>{{ resultCaloriesBurned.durationMinutes }}</td>
+      <td>{{ resultCaloriesBurned.durationMinutes }} min</td>
       <td>{{ resultCaloriesBurned.calories }}</td>
     </tr>
     </tbody>
