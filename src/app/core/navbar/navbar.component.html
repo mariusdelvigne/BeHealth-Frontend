@@ -35,6 +35,13 @@
             Programs
           </a>
           <div class="dropdown-menu">
+            @if (authService.isAuthenticated()) {
+              <h6 class="dropdown-header">My programs</h6>
+              <a class="dropdown-item" routerLink="/program-search-mine">Created</a>
+              <a class="dropdown-item" routerLink="/profile/relations">Relations</a>
+              <hr class="dropdown-divider">
+              <h6 class="dropdown-header">All programs</h6>
+            }
             <a class="dropdown-item" routerLink="/program-search-public">
               <i class="fas fa-magnifying-glass me-2"></i>Search
             </a>
@@ -49,28 +56,18 @@
             Plans
           </a>
           <div class="dropdown-menu">
+            @if (authService.isAuthenticated()) {
+              <h6 class="dropdown-header">My plans</h6>
+              <a class="dropdown-item" routerLink="/plan-search-mine">Created</a>
+              <hr class="dropdown-divider">
+              <h6 class="dropdown-header">All plans</h6>
+            }
             <a routerLink="/plan-search-public" class="dropdown-item">
               <i class="fas fa-magnifying-glass me-2"></i>Search
             </a>
             <a routerLink="/plan-create" class="dropdown-item">
               <i class="far fa-square-plus me-2"></i>Create
             </a>
-          </div>
-        </div>
-        <!--  Profile  -->
-        <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Profile
-          </a>
-          <div class="dropdown-menu">
-            <h6 class="dropdown-header">Programs</h6>
-            <a class="dropdown-item" routerLink="/program-search-mine">Created</a>
-            <a class="dropdown-item" routerLink="/profile/relations">Relations</a>
-            <hr class="dropdown-divider">
-
-            <h6 class="dropdown-header">Plans</h6>
-            <a class="dropdown-item" routerLink="/plan-search-mine">Created</a>
-            <a class="dropdown-item" href="#">Favorites</a>
           </div>
         </div>
       </div>

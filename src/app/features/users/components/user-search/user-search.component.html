@@ -2,7 +2,7 @@
   <div class="mt-4 align-content-center">
     <app-search-form (userSearch)="searchUserByName($event)"></app-search-form>
   </div>
-  <div class="mt-4">
+  <div class="mt-4 align-content-center">
     <app-user-list [users]="user" (userIsBanned)="banUser($event)"></app-user-list>
   </div>
 </div>
