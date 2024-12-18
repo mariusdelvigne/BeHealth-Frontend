@@ -1,37 +1,44 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {MdbDropdownModule} from 'mdb-angular-ui-kit/dropdown';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {DebounceService} from '../../../../../shared/services/debounce.service';
 
 @Component({
-    selector: 'app-notification-filter-form',
-    standalone: true,
-    imports: [
-        MdbDropdownModule,
-        ReactiveFormsModule
-    ],
-    templateUrl: './notification-filter-form.component.html',
-    styleUrls: ['./notification-filter-form.component.css']
+  selector: 'app-notification-filter-form',
+  standalone: true,
+  imports: [
+    MdbDropdownModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
+  templateUrl: './notification-filter-form.component.html',
+  styleUrls: ['./notification-filter-form.component.css']
 })
 export class NotificationFilterFormComponent {
-    @Output() filtersNotification: EventEmitter<{ category: string, isRead: string }> = new EventEmitter();
+  @Output() filtersNotification: EventEmitter<{ category: string, isRead: string }> = new EventEmitter();
 
-    formSearch: FormGroup = new FormGroup({
-        category: new FormControl('All categories', [Validators.required]),
-        isRead: new FormControl('all', [Validators.required])
-    });
+  formSearch: FormGroup = new FormGroup({
+    category: new FormControl('All categories', [Validators.required]),
+    isRead: new FormControl('all', [Validators.required])
+  });
 
-    allCategories: { name: string; value: string }[] = [
-        {name: "All categories", value: "All categories"},
-        {name: "General", value: "general"},
-        {name: "Plans", value: "plans"},
-        {name: "Programs", value: "programs"}
-    ];
+  allCategories: { name: string; value: string }[] = [
+    {name: "All categories", value: "All categories"},
+    {name: "General", value: "general"},
+    {name: "Plans", value: "plans"},
+    {name: "Programs", value: "programs"}
+  ];
 
-    filterNotifications() {
-        const selectedCategory = this.formSearch.get('category')?.value || "all";
-        const selectedRead = this.formSearch.get('isRead')?.value || "all";
+  constructor(private _debounceService: DebounceService) {
+  }
 
-        console.log('Filters changed:', {category: selectedCategory, isRead: selectedRead});
-        this.filtersNotification.emit({category: selectedCategory, isRead: selectedRead});
-    }
+  get debouncedFilterNotifications(): () => void {
+    return this._debounceService.debounce(() => {
+      const selectedCategory = this.formSearch.get('category')?.value || "all";
+      const selectedRead = this.formSearch.get('isRead')?.value || "all";
+
+      console.log('Filters changed:', {category: selectedCategory, isRead: selectedRead});
+      this.filtersNotification.emit({category: selectedCategory, isRead: selectedRead});
+    }, 200);
+  }
 }

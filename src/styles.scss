@@ -18,6 +18,10 @@ $weight-color: rgba(43, 182, 182, 0.76);
 $height-color: rgba(182, 43, 68, 0.76);
 $search: #35608a;
 
+.max-vh-50 {
+  max-height:50vh!important
+}
+
 // Responsive Table
 
 .responsive-table {
@@ -56,6 +60,10 @@ $search: #35608a;
 }
 
 // Card Styles
+
+.small-text {
+  font-size: 0.875rem;
+}
 
 .card {
   transition: transform 0.5s ease, box-shadow 0.5s;
@@ -115,29 +123,15 @@ textarea {
   background-color: $alice-blue;
 }
 
-.sign-form-container {
-  height: 100vh;
-  width: 100vw;
-}
-
 .form-container {
   min-height: 80vh;
   min-width: 80vw;
-  background: linear-gradient(to bottom right, rgba(197, 213, 234, 0.67) 50%, #d4e0f1 50%);
-  animation: moveBackground 10s linear infinite;
-  background-size: 200% 200%;
-  transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
-
-  &:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    transform: scale(1.02);
-  }
 }
 
 .custom-form {
   min-height: 30vh;
   min-width: 35vw;
-  background: transparent;
+  background-color: $alice-blue;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
   border-radius: 15px;
 }
@@ -149,13 +143,21 @@ textarea {
 }
 
 // Search Input and Button
-
 .search-input {
   border: none;
 
   &:focus {
     outline: 3px solid $marian-blue;
   }
+}
+
+.form-outline i {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  //transform: translateY(-50%);
+  //transform: translateX(-850%);
+  pointer-events: none;
 }
 
 .search-btn {
@@ -253,6 +255,16 @@ textarea {
 
 .border-top-height-color {
   border-top: 20px solid $height-color !important;
+}
+
+// Graphs
+
+.graph-background {
+  background: $french-gray;
+}
+
+.page-btn:hover {
+  background-color: #a5a5a5;
 }
 
 // Keyframes

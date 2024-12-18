@@ -17,12 +17,24 @@ export class SearchFormComponent {
   @Output() userSearch: EventEmitter<UserSearchQuery> = new EventEmitter()
 
   search: string = "";
+  pageNumber = 1;
 
-  constructor(private _debounceService: DebounceService) { }
+  constructor(private _debounceService: DebounceService) {
+  }
 
   get debouncedSearchUser(): () => void {
     return this._debounceService.debounce(() => {
-      this.userSearch.emit({ username: this.search });
-    }, 500);
+      this.userSearch.emit({username: this.search, pageNumber: this.pageNumber - 1, pageSize: 10});
+    }, 200);
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.debouncedSearchUser();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.debouncedSearchUser();
   }
 }

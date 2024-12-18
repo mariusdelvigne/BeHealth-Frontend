@@ -41,7 +41,6 @@ import {
 } from './features/programs/components/program-search-mine/program-search-mine.component';
 import {InsertPhysicalComponent} from './features/users/components/insert/insert-physical/insert-physical.component';
 import {authGuard} from './auth-guards/auth.guard';
-import {RelationsComponent} from './features/profile/components/profile/relations/relations.component';
 import {
   FoodDataManagerComponent
 } from './features/profile/components/profile/food-data-manager/food-data-manager.component';
@@ -90,6 +89,8 @@ import {
   CreateGlobalMessagesComponent
 } from './features/admin-features/components/admin-communications/create-communications/create-global-messages/create-global-messages.component';
 import {AdminFoodsComponent} from './features/admin-features/components/admin-foods/admin-foods.component';
+import {AdminPlansComponent} from './features/admin-features/components/admin-plans/admin-plans.component';
+import {AdminProgramsComponent} from './features/admin-features/components/admin-programs/admin-programs.component';
 
 export let routes: Routes;
 routes = [
@@ -229,10 +230,6 @@ routes = [
             component: BmiGraphComponent,
           },
         ]
-      },
-      {
-        path: 'relations',
-        component: RelationsComponent,
       },
     ]
   },
@@ -430,10 +427,6 @@ routes = [
           },
         ]
       },
-      {
-        path: 'relations',
-        component: RelationsComponent,
-      },
     ]
   },
   {
@@ -500,6 +493,16 @@ routes = [
   {
     path: 'admin-foods',
     component: AdminFoodsComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'admin-plans',
+    component: AdminPlansComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'admin-programs',
+    component: AdminProgramsComponent,
     canActivate: [adminGuard],
   }
 ];

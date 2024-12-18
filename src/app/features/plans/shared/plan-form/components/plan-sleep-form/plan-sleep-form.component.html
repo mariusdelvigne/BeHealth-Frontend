@@ -1,0 +1,10 @@
+<form #form="ngForm">
+  <label>
+    Start time
+    <input type="time" step="60" name="startTime" [(ngModel)]="planSleep.startTime" required>
+  </label>
+  <label>
+    Duration in min
+    <input type="number" min="1" step="1" name="durationInMin" [(ngModel)]="planSleep.durationInMin" required>
+  </label>
+</form>

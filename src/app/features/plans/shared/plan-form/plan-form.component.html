@@ -18,24 +18,27 @@
 
       <div class="row gy-2">
         <div class="col-12 col-md-4">
-          <select class="form-control h-100" formControlName="category">
-            <option value="sport">Sport</option>
-            <option value="food">Food</option>
-            <option value="sleep">Sleep</option>
-          </select>
+          <label class="w-100">
+            Category
+            <select class="form-control h-100" formControlName="category">
+              <option value="sport">sport</option>
+              <option value="food">food</option>
+              <option value="sleep">sleep</option>
+            </select>
+          </label>
         </div>
 
         <div class="col-12 col-md-4">
-          <label>
+          <label class="w-100">
             Duration (days) <input type="number" class="form-control h-100" formControlName="durationInDays">
           </label>
         </div>
 
         <div class="col-12 col-md-4">
-          <label>
+          <label class="w-100">
           Tags <input #tagInput class="form-control w-100 h-100" type="text" list="tagList"
-                 formControlName="name"
-                 (keydown.enter)="addTag(tagInput)" id="name">
+                 formControlName="tagInput"
+                 (keydown.enter)="addTag(tagInput)" id="tagInput">
           <datalist id="tagList">
             @for (tag of tags; track tag.id) {
               <option [value]="tag.name"></option>
@@ -72,6 +75,10 @@
         <app-plan-food-list [planFoods]="planFoods" [isEditMode]="true"></app-plan-food-list>
         <hr>
         <app-plan-food-create (onPlanFoodCreated)="addPlanFood($event)"></app-plan-food-create>
+      </div>
+    } @else {
+      <div>
+        <app-plan-sleep-form [planSleep]="planSleep"></app-plan-sleep-form>
       </div>
     }
   </form>

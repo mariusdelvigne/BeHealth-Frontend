@@ -1,0 +1,19 @@
+.btn-danger {
+  margin-top: 5px;
+  background-color: rgba(224, 102, 102, 0.7);
+  border-color: rgba(255, 0, 0, 0.7);
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.btn-danger:hover {
+  background-color: rgb(198, 80, 80);
+  border-color: rgba(255, 0, 0, 1);
+}
+
+.active-btn {
+  background-color: #d3d3d3; /* Gris clair */
+  color: #000; /* Texte noir */
+  font-weight: bold; /* Texte en gras pour indiquer l'état actif */
+  border: 1px solid #b0b0b0; /* Bordure grise pour plus de visibilité */
+}

@@ -1,10 +1,10 @@
 <div>
-  <div class="d-flex justify-content-center mt-1 gap-5">
-    <input type="button" class="page-btn custom-btn rounded-2 p-2" value="Previous" mwlCalendarPreviousView [(viewDate)]="viewDate" [view]="view">
-    <input type="button" class="page-btn custom-btn rounded-2 p-2" value="Today" mwlCalendarToday [(viewDate)]="viewDate">
-    <input type="button" class="page-btn custom-btn rounded-2 p-2" value="Next" mwlCalendarNextView [(viewDate)]="viewDate" [view]="view">
+  <div class="d-flex justify-content-center">
+    <input type="button" class="page-btn p-2" value="Previous" mwlCalendarPreviousView [(viewDate)]="viewDate" [view]="view" [class.active]="isActive('previous')" (click)="setActive('previous')" style="width: 10vw;">
+    <input type="button" class="page-btn p-2" value="Today" mwlCalendarToday [(viewDate)]="viewDate" [class.active]="isActive('today')" (click)="setActive('today')" style="width: 10vw;">
+    <input type="button" class="page-btn p-2" value="Next" mwlCalendarNextView [(viewDate)]="viewDate" [view]="view" [class.active]="isActive('next')" (click)="setActive('next')" style="width: 10vw;">
   </div>
-  <div>{{ viewDate | calendarDate:(view + 'ViewTitle') : 'en' }}</div>
+  <div class="d-flex justify-content-center p-2">{{ viewDate | calendarDate:(view + 'ViewTitle') : 'en' }}</div>
 
   <span [ngSwitch]="view">
     <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"></mwl-calendar-month-view>

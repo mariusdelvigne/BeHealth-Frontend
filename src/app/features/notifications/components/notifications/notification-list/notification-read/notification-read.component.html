@@ -1,11 +1,23 @@
-<div class="card text-center">
-  <div class="card-header">
-    <h3>{{ notificationToPrint.category }}</h3>
+<div class="container mt-3 rounded-3 notification-read p-4 d-flex shadow-sm">
+  <div class="program rounded-3 w-100 bg-light">
+    <div class="pt-2 pb-2 px-3 row align-content-between border-bottom">
+      <h3 class="fw-bold">{{ notificationToPrint.category }}</h3>
+    </div>
+    <div class="p-3 d-flex flex-column justify-content-between">
+      <h5 class="card-title mb-2 text-dark fw-semibold">{{ notificationToPrint.title }}</h5>
+      <p class="card-text text-muted mb-3">{{ notificationToPrint.description }}</p>
+      <div class="d-flex flex-column align-items-center">
+      <button
+        class="btn btn-outline-primary rounded-pill w-25"
+        data-mdb-ripple-init
+        (click)="toggleSeen()"
+      >
+        {{ notificationToPrint.seen ? 'Mark as Not Read' : 'Mark as Read' }}
+      </button>
+      </div>
+    </div>
+    <div class="card-footer text-muted small text-end bg-white border-0">
+      Time from receive: {{ timeFromReceive }}
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">{{ notificationToPrint.title }}</h5>
-    <p class="card-text">{{ notificationToPrint.description }}</p>
-    <button class="btn btn-secondary" data-mdb-ripple-init (click)="markAsNotRead()">Mark as Not Read</button>
-  </div>
-  <div class="card-footer text-muted">Time from receive : {{ timeFromReceive }}</div>
 </div>

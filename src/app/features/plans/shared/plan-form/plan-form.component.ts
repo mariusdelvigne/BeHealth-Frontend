@@ -3,12 +3,13 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {PlanService} from '../../services/plan.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
-import {debounceTime} from 'rxjs';
+import {debounceTime, firstValueFrom} from 'rxjs';
 import {PlanSportListComponent} from './components/plan-sport-list/plan-sport-list.component';
 import {PlanSportCreateComponent} from './components/plan-sport-create/plan-sport-create.component';
 import {PlanFoodListComponent} from './components/plan-food-list/plan-food-list.component';
 import {PlanFoodCreateComponent} from './components/plan-food-create/plan-food-create.component';
 import {NgClass} from '@angular/common';
+import {PlanSleepFormComponent} from './components/plan-sleep-form/plan-sleep-form.component';
 
 @Component({
   selector: 'app-plan-form',
@@ -20,6 +21,7 @@ import {NgClass} from '@angular/common';
     PlanFoodListComponent,
     PlanFoodCreateComponent,
     NgClass,
+    PlanSleepFormComponent,
   ],
   templateUrl: './plan-form.component.html',
   styleUrls: [
@@ -35,11 +37,16 @@ export class PlanFormComponent implements OnInit {
     privacy: new FormControl('private', Validators.required),
     category: new FormControl('sport', Validators.required),
     durationInDays: new FormControl('', [Validators.required, Validators.min(1)]),
-    description: new FormControl('', [Validators.required, Validators.min(1)])
+    description: new FormControl('', [Validators.required, Validators.min(1)]),
+    tagInput: new FormControl(''),
   });
 
   planSports: any[] = [];
   planFoods: any[] = [];
+  planSleep: any = {
+    startTime: '',
+    durationInMin: 0,
+  };
 
   tags: any [] = [];
   tagsList: {id: number, name: string} [] = [];
@@ -49,23 +56,11 @@ export class PlanFormComponent implements OnInit {
   constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
-    this._planService.getPlansById(this.planId).subscribe( {
-      next: (plan) => {
-        this.plan = plan;
+    if (this.mode === 'update')
+      this.form.get('category')?.disable();
 
-        this.form.patchValue({
-          name: this.plan.name,
-          privacy: this.plan.privacy,
-          category: this.plan.category,
-          durationInDays: this.plan.durationInDays,
-          description: this.plan.description,
-          tagInput: '',
-          // TODO: Verif
-          tagList: this.plan.tagsList,
-        });
-      }
-    });
-    this.form.get('name')?.valueChanges
+    this.loadPlan();
+    this.form.get('tagInput')?.valueChanges
       .pipe(debounceTime(300))
       .subscribe(value => {
         console.log("ok")
@@ -73,41 +68,79 @@ export class PlanFormComponent implements OnInit {
       });
   }
 
-  submit() {
-    if (this.mode == "create") {
-      // TODO Change tagNames when implemented
-      this._planService.create({...this.form.value, tagNames: this.tagNames}, this._authService.getId()).subscribe({
-        next: response => {
-          this._toastrService.success("Plan created successfully");
+  async loadPlan() {
+    this.plan = await firstValueFrom(this._planService.getPlanById(this.planId));
+    this.form.patchValue({
+      name: this.plan.name,
+      privacy: this.plan.privacy,
+      category: this.plan.category,
+      durationInDays: this.plan.durationInDays,
+      description: this.plan.description,
+    });
 
-          if (this.planCategory === 'sport') {
-            // Needed because C# needs TimeSpan in XX:XX:XX format and JS sends it in XX:XX format
-            const planSports = this.planSports.map(sport => ({...sport, dayTime: sport.dayTime + ":00"}));
+    const pageSize = 20;
+    let pageNumber = 0;
+    let fetchQuantity: number = 0;
 
-            this._planService.updatePlanSports(this._authService.getId(), response.id, {sports: planSports})
-              .subscribe({
-                next: response => {
-                  this._toastrService.success("Sports added successfully");
-                },
-                error: () => {
-                  this._toastrService.error("Error adding sports");
-                }
-              });
-          }
-        },
-        error: (error) => {
-          this._toastrService.error("Error creating the plan : " + error.message);
-        }
-      })
-    } else if (this.mode == "update") {
-      this._planService.updatePlan(this._authService.getId(), this.plan.id, this.form.value).subscribe({
-        next: () => {
-          this._toastrService.success("Plan updated successfully");
-        },
-        error: (error) => {
-          this._toastrService.error("Error updating the plan : " + error.message);
-        }
-      });
+    if (this.plan.category === 'sleep') {
+      const planContent = await firstValueFrom(this._planService.getContent(this.planId, 0, 10));
+      this.planSleep = {...planContent.sleep, startTime: planContent.sleep.startTime.substring(0, 5)};
+      return;
+    }
+
+    do {
+      const planContent = await firstValueFrom(this._planService.getContent(this.planId, pageNumber++, pageSize));
+
+      if (this.plan.category === 'sport') {
+        fetchQuantity = planContent.sports.length;
+        this.planSports.push(...planContent.sports);
+      } else if (this.plan.category === 'food') {
+        fetchQuantity = planContent.foods.length;
+        this.planFoods.push(...planContent.foods);
+      }
+    } while (fetchQuantity === pageSize);
+  }
+
+  async submit() {
+    try {
+      if (this.mode == "create") {
+        const response = await firstValueFrom(this._planService.create({
+          ...this.form.value,
+          tagNames: this.tagNames
+        }, this._authService.getId()));
+        this.planId = response.id;
+        this._toastrService.success("Plan created successfully");
+      } else if (this.mode == "update") {
+        const {command, category} = this.form.value;
+        await firstValueFrom(this._planService.updatePlan(
+          this._authService.getId(),
+          this.plan.id,
+          command));
+        this._toastrService.success("Plan updated successfully");
+      }
+    } catch (error: any) {
+      this._toastrService.error("Error creating the plan : " + error.message);
+    }
+
+    try {
+      if (this.form.value.category === 'sport') {
+        const sports = this.planSports.map(sport => ({...sport, dayTime: sport.dayTime + ":00"}));
+        await firstValueFrom(this._planService.updatePlanSports(this._authService.getId(), this.planId, {sports}));
+      } else if (this.form.value.category === 'food') {
+        const foods = this.planFoods.map(food => ({...food, dayTime: food.dayTime + ":00"}));
+        await firstValueFrom(this._planService.updatePlanFoods(this._authService.getId(), this.planId, {foods}));
+      } else {
+        const sleep = {...this.planSleep, startTime: this.planSleep.startTime + ":00"};
+        await firstValueFrom(this._planService.updatePlanSleep(this._authService.getId(), this.planId, {sleep}));
+      }
+
+      if (this.mode === 'create') {
+        window.location.reload();
+      }
+
+      this._toastrService.success("Data added successfully");
+    } catch (error: any) {
+      this._toastrService.error("Error adding content");
     }
   }
 

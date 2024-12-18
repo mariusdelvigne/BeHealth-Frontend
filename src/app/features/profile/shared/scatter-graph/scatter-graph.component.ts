@@ -14,13 +14,15 @@ import {
 } from '../../../sport-calories-burned-calculate/services/sport-calories-burned-calculator.service';
 import {UserService} from '../../../../shared/services/user.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
+import {CalendarCommonModule} from 'angular-calendar';
 
 @Component({
   selector: 'app-scatter-graph',
   standalone: true,
   imports: [
     DatePipe,
-    NgxEchartsDirective
+    NgxEchartsDirective,
+    CalendarCommonModule
   ],
   templateUrl: './scatter-graph.component.html',
   styleUrl: './scatter-graph.component.scss'

@@ -19,7 +19,7 @@ export class PlanService {
     return this._httpClient.post<PlanCreateOutput>(`${PlanService.URL_USERS}/${userId}/plans`, planCreateCommand);
   }
 
-  public getPlansFiltered(privacy?: string, name?: string, category?: string): Observable<any> {
+  public getPlansFiltered(privacy?: string, name?: string, category?: string, pageNumber?: number, pageSize?: number): Observable<any> {
     let params = new HttpParams();
 
     if (privacy)
@@ -29,14 +29,22 @@ export class PlanService {
     if (category)
       params = params.set('category', category);
 
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}`, {params: params});
   }
 
-  public getPlansByUserId(userId: number): Observable<any> {
-    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/users/${userId}`);
+  public getPlansByUserId(userId: number, pageNumber?: number, pageSize?: number): Observable<any> {
+    let params = new HttpParams();
+
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
+    return this._httpClient.get<any>(`${PlanService.URL_PLANS}/users/${userId}`, {params: params});
   }
 
-  public getPlansById(planId: number): Observable<any> {
+  public getPlanById(planId: number): Observable<any> {
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}`);
   }
 
@@ -65,9 +73,20 @@ export class PlanService {
     return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sports`, command);
   }
 
-  public getContent(planId: number, pageNumber: number): Observable<any> {
+  public updatePlanFoods(userId: number, planId: number, command: any) : Observable<void> {
+    return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/foods`, command);
+  }
+
+  public updatePlanSleep(userId: number, planId: number, command: any) : Observable<void> {
+    return this._httpClient.put<void>(`${PlanService.URL_USERS}/${userId}/plans/${planId}/sleep`, command);
+  }
+
+  public getContent(planId: number, pageNumber: number, pageSize: number): Observable<any> {
     let params = new HttpParams()
-      .set('pageNumber', pageNumber);
+
+    params = params.set('pageNumber', (pageNumber ?? 0).toString());
+    params = params.set('pageSize', (pageSize ?? 10).toString());
+
     return this._httpClient.get<any>(`${PlanService.URL_PLANS}/${planId}/content`, {params: params});
   }
 }

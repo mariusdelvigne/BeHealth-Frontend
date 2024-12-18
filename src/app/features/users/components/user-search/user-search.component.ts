@@ -23,15 +23,15 @@ export class UserSearchComponent implements OnInit {
   @Input()
   user: UserSearchOutput[] = []
 
+  userSearch: UserSearchQuery = {
+    pageSize:10, pageNumber:0, username:""
+  };
+
   constructor(private _userService: UserService) {
   }
 
   ngOnInit() {
-    this._userService.getAllUsers().subscribe({
-      next: (users) => {
-        this.user = users.users;
-      }
-    })
+    this.searchUserByName(this.userSearch);
   }
 
   searchUserByName(query: UserSearchQuery) {

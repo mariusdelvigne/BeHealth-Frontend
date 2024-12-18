@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubscriptionsComponent } from './subscriptions.component';
+import { PlanSleepFormComponent } from './plan-sleep-form.component';
 
-describe('SubscriptionsComponent', () => {
-  let component: SubscriptionsComponent;
-  let fixture: ComponentFixture<SubscriptionsComponent>;
+describe('PlanSleepFormComponent', () => {
+  let component: PlanSleepFormComponent;
+  let fixture: ComponentFixture<PlanSleepFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SubscriptionsComponent]
+      imports: [PlanSleepFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SubscriptionsComponent);
+    fixture = TestBed.createComponent(PlanSleepFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
