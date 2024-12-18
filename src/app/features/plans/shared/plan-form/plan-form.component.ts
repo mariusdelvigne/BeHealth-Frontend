@@ -9,6 +9,7 @@ import {PlanSportCreateComponent} from './components/plan-sport-create/plan-spor
 import {PlanFoodListComponent} from './components/plan-food-list/plan-food-list.component';
 import {PlanFoodCreateComponent} from './components/plan-food-create/plan-food-create.component';
 import {NgClass} from '@angular/common';
+import {PlanSleepFormComponent} from './components/plan-sleep-form/plan-sleep-form.component';
 
 @Component({
   selector: 'app-plan-form',
@@ -20,6 +21,7 @@ import {NgClass} from '@angular/common';
     PlanFoodListComponent,
     PlanFoodCreateComponent,
     NgClass,
+    PlanSleepFormComponent,
   ],
   templateUrl: './plan-form.component.html',
   styleUrls: [
@@ -41,6 +43,10 @@ export class PlanFormComponent implements OnInit {
 
   planSports: any[] = [];
   planFoods: any[] = [];
+  planSleep: any = {
+    startTime: '',
+    durationInMin: 0,
+  };
 
   tags: any [] = [];
   tagsList: {id: number, name: string} [] = [];
@@ -72,10 +78,15 @@ export class PlanFormComponent implements OnInit {
       description: this.plan.description,
     });
 
-
     const pageSize = 20;
     let pageNumber = 0;
     let fetchQuantity: number = 0;
+
+    if (this.plan.category === 'sleep') {
+      const planContent = await firstValueFrom(this._planService.getContent(this.planId, 0, 10));
+      this.planSleep = {...planContent.sleep, startTime: planContent.sleep.startTime.substring(0, 5)};
+      return;
+    }
 
     do {
       const planContent = await firstValueFrom(this._planService.getContent(this.planId, pageNumber++, pageSize));
@@ -118,6 +129,13 @@ export class PlanFormComponent implements OnInit {
       } else if (this.form.value.category === 'food') {
         const foods = this.planFoods.map(food => ({...food, dayTime: food.dayTime + ":00"}));
         await firstValueFrom(this._planService.updatePlanFoods(this._authService.getId(), this.planId, {foods}));
+      } else {
+        const sleep = {...this.planSleep, startTime: this.planSleep.startTime + ":00"};
+        await firstValueFrom(this._planService.updatePlanSleep(this._authService.getId(), this.planId, {sleep}));
+      }
+
+      if (this.mode === 'create') {
+        window.location.reload();
       }
 
       this._toastrService.success("Data added successfully");

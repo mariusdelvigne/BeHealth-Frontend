@@ -45,7 +45,13 @@ export class ProgramSearchPublicComponent implements OnInit {
   emitSearchProgram() {
     this._programService.getProgramsFiltered(
       "public", this.form.value.title, this.pageNumber - 1)
-      .subscribe(response => this.programs = response.programs);
+      .subscribe({
+        next: (response) => {
+          this.programs = response.programs;
+          this.loadFavorites();
+          this.loadSubscribed();
+        }
+      });
   }
 
   showProgramInfo(programId: number) {
@@ -107,7 +113,10 @@ export class ProgramSearchPublicComponent implements OnInit {
 
   loadFavorites() {
     this._programService.getProgramsByAssociations(this._authService.getId(), 'favorite', this.pageNumber - 1)
-      .subscribe(response => this.favoritesPrograms = response.astHealthProgramUsers);
+      .subscribe(response => {
+        this.favoritesPrograms = response.astHealthProgramUsers;
+        console.log(this.favoritesPrograms)
+      });
   }
 
   loadSubscribed() {

@@ -41,6 +41,7 @@ export class ProgramSearchMineComponent implements OnInit{
   deleteProgram(programId: number) {
     this._programService.deleteProgram(this._authService.getId(), programId).subscribe({
       next: () => {
+        this.programs = this.programs.filter(program => program.id !== programId);
         this._toastrService.success("Program deleted successfully.");
       },
       error: (error) => {

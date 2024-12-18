@@ -51,6 +51,7 @@ export class PlanSearchMineComponent implements OnInit{
   deletePlan(planId: number) {
     this._planService.deletePlan(this._authService.getId(), planId).subscribe({
       next: () => {
+        this.plans = this.plans.filter(p => p.id !== planId);
         this._toastrService.success("Plan deleted successfully.");
       },
       error: (error) => {
