@@ -50,6 +50,9 @@ export class PlanFormComponent implements OnInit {
   constructor(private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) { }
 
   ngOnInit() {
+    if (this.mode === 'update')
+      this.form.get('category')?.disable();
+
     this.loadPlan();
     this.form.get('tagInput')?.valueChanges
       .pipe(debounceTime(300))
@@ -97,10 +100,11 @@ export class PlanFormComponent implements OnInit {
         this.planId = response.id;
         this._toastrService.success("Plan created successfully");
       } else if (this.mode == "update") {
+        const {command, category} = this.form.value;
         await firstValueFrom(this._planService.updatePlan(
           this._authService.getId(),
           this.plan.id,
-          this.form.value));
+          command));
         this._toastrService.success("Plan updated successfully");
       }
     } catch (error: any) {

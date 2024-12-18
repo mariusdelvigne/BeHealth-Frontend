@@ -18,21 +18,24 @@
 
       <div class="row gy-2">
         <div class="col-12 col-md-4">
-          <select class="form-control h-100" formControlName="category">
-            <option value="sport">sport</option>
-            <option value="food">food</option>
-            <option value="sleep">sleep</option>
-          </select>
+          <label class="w-100">
+            Category
+            <select class="form-control h-100" formControlName="category">
+              <option value="sport">sport</option>
+              <option value="food">food</option>
+              <option value="sleep">sleep</option>
+            </select>
+          </label>
         </div>
 
         <div class="col-12 col-md-4">
-          <label>
+          <label class="w-100">
             Duration (days) <input type="number" class="form-control h-100" formControlName="durationInDays">
           </label>
         </div>
 
         <div class="col-12 col-md-4">
-          <label>
+          <label class="w-100">
           Tags <input #tagInput class="form-control w-100 h-100" type="text" list="tagList"
                  formControlName="tagInput"
                  (keydown.enter)="addTag(tagInput)" id="tagInput">
