@@ -98,10 +98,14 @@ export class PlanFormComponent implements OnInit {
 
       if (this.plan.category === 'sport') {
         fetchQuantity = planContent.sports.length;
-        this.planSports.push(...planContent.sports);
+        this.planSports.push(...planContent.sports.map((sport: any) => ({
+          ...sport, dayTime: sport.dayTime.substring(0, 5),
+        })));
       } else if (this.plan.category === 'food') {
         fetchQuantity = planContent.foods.length;
-        this.planFoods.push(...planContent.foods);
+        this.planFoods.push(...planContent.foods.map((food: any) => ({
+          ...food, dayTime: food.dayTime.substring(0, 5),
+        })));
       }
     } while (fetchQuantity === pageSize);
   }
@@ -116,13 +120,19 @@ export class PlanFormComponent implements OnInit {
         this.planId = response.id;
         this._toastrService.success("Plan created successfully");
       } else if (this.mode == "update") {
-        const {command, category} = this.form.value;
         await firstValueFrom(this._planService.updatePlan(
           this._authService.getId(),
           this.plan.id,
-          command));
+          this.form.value));
         this._toastrService.success("Plan updated successfully");
       }
+      this.planSports.splice(0, this.planSports.length);
+      this.planFoods.splice(0, this.planFoods.length);
+      // this.planSleep.splice(0, this.planSleep.length);
+      this.planSleep = {
+        startTime: '',
+        durationInMin: 0,
+      };
     } catch (error: any) {
       this.mode == "create"
       ? this._toastrService.error("Error creating the plan : " + error.message)
@@ -130,10 +140,11 @@ export class PlanFormComponent implements OnInit {
     }
 
     try {
-      if (this.form.value.category === 'sport') {
+      console.log(this.form.getRawValue().category)
+      if (this.form.getRawValue().category === 'sport') {
         const sports = this.planSports.map(sport => ({...sport, dayTime: sport.dayTime + ":00"}));
         await firstValueFrom(this._planService.updatePlanSports(this._authService.getId(), this.planId, {sports}));
-      } else if (this.form.value.category === 'food') {
+      } else if (this.form.getRawValue().category === 'food') {
         const foods = this.planFoods.map(food => ({...food, dayTime: food.dayTime + ":00"}));
         await firstValueFrom(this._planService.updatePlanFoods(this._authService.getId(), this.planId, {foods}));
       } else {
@@ -193,5 +204,9 @@ export class PlanFormComponent implements OnInit {
 
   setPrivacy() {
     this.form.get('privacy')?.setValue(this.form.get('privacy')?.value === 'private' ? 'public' : 'private');
+  }
+
+  get planRawCategory() {
+    return this.form.getRawValue().category;
   }
 }
