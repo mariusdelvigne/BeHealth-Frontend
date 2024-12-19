@@ -4,7 +4,7 @@ import {ProgramService} from '../../services/program.service';
 import {ProgramInfoComponent} from '../../shared/program-info/program-info.component';
 import {ToastrService} from 'ngx-toastr';
 import {AuthService} from '../../../../core/auth/services/auth.service';
-import {DebounceService} from '../../../../shared/services/debounce.service';
+import {DebounceService} from '../../../../shared/utils/debounce.service';
 import {NgClass} from '@angular/common';
 
 @Component({

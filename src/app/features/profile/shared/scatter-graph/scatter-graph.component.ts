@@ -3,12 +3,12 @@ import {DatedValue} from '../../utils/DatedValue';
 import {EChartsOption} from 'echarts';
 import {NgxEchartsDirective} from 'ngx-echarts';
 import {DatePipe} from '@angular/common';
-import {UserFoodService} from '../../../../shared/services/user-food.service';
+import {UserFoodService} from '../../../services/user-food.service';
 import {firstValueFrom} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {GraphData} from '../utils/graph-data';
 import {GraphService} from '../services/graph.service';
-import {UserSportService} from '../../../../shared/services/user-sport.service';
+import {UserSportService} from '../../../services/user-sport.service';
 import {
   SportCaloriesBurnedCalculatorService
 } from '../../../sport-calories-burned-calculate/services/sport-calories-burned-calculator.service';

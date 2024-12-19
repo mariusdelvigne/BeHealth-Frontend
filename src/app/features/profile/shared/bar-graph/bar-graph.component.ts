@@ -6,7 +6,7 @@ import {EChartsOption} from 'echarts';
 import {GraphService} from '../services/graph.service';
 import {ActivatedRoute} from '@angular/router';
 import {firstValueFrom} from 'rxjs';
-import {UserSleepService} from '../../../../shared/services/user-sleep.service';
+import {UserSleepService} from '../../../services/user-sleep.service';
 import {SleepInfo} from '../utils/sleep-info';
 
 @Component({

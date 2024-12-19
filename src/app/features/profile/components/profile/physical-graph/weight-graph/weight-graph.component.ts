@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgxEchartsDirective} from 'ngx-echarts';
 import {DatePipe} from '@angular/common';
-import {UserWeightService} from '../../../../../../shared/services/user-weight.service';
+import {UserWeightService} from '../../../../../services/user-weight.service';
 import {GraphBase} from '../../graphs/utils/graph-base';
 import {GetWeightGraphOptions} from '../../graphs/utils/WeightGraphOptions';
 import {map, Observable} from 'rxjs';

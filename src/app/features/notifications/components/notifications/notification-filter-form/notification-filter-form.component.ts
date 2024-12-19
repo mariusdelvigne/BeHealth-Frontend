@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {MdbDropdownModule} from 'mdb-angular-ui-kit/dropdown';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {DebounceService} from '../../../../../shared/services/debounce.service';
+import {DebounceService} from '../../../../../shared/utils/debounce.service';
 
 @Component({
   selector: 'app-notification-filter-form',
