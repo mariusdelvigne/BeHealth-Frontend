@@ -9,7 +9,7 @@
       <div class="navbar-nav">
         @if (authService.isAdmin()) {
           <!--  Users  -->
-          <a routerLink="/users" class="nav-link">Users</a>
+          <a routerLink="/users" class="nav-link" (click)="collapseNavbar()">Users</a>
         }
         <!-- Calculators -->
         <div class="nav-item dropdown">
