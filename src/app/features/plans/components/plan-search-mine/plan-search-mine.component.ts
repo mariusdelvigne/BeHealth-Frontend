@@ -48,16 +48,19 @@ export class PlanSearchMineComponent implements OnInit{
     }
   }
 
-  deletePlan(planId: number) {
-    this._planService.deletePlan(this._authService.getId(), planId).subscribe({
-      next: () => {
-        this.plans = this.plans.filter(p => p.id !== planId);
-        this._toastrService.success("Plan deleted successfully.");
-      },
-      error: (error) => {
-        this._toastrService.error("Error deleting plan: " + error.message);
-      }
-    });
+  deletePlan(event: Event, planId: number) {
+    event.stopPropagation();
+    if (confirm("Are you sure you want to delete this plan?")) {
+      this._planService.deletePlan(this._authService.getId(), planId).subscribe({
+        next: () => {
+          this.plans = this.plans.filter(p => p.id !== planId);
+          this._toastrService.success("Plan deleted successfully.");
+        },
+        error: (error) => {
+          this._toastrService.error("Error deleting plan: " + error.message);
+        }
+      });
+    };
   }
 
   goToUpdateForm(planId: number) {

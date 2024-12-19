@@ -38,16 +38,19 @@ export class ProgramSearchMineComponent implements OnInit{
     }
   }
 
-  deleteProgram(programId: number) {
-    this._programService.deleteProgram(this._authService.getId(), programId).subscribe({
-      next: () => {
-        this.programs = this.programs.filter(program => program.id !== programId);
-        this._toastrService.success("Program deleted successfully.");
-      },
-      error: (error) => {
-        this._toastrService.error("Error deleting program: " + error.message);
-      }
-    });
+  deleteProgram(event: Event, programId: number) {
+    event.stopPropagation();
+    if (confirm("Are you sure you want to delete this program?")) {
+      this._programService.deleteProgram(this._authService.getId(), programId).subscribe({
+        next: () => {
+          this.programs = this.programs.filter(program => program.id !== programId);
+          this._toastrService.success("Program deleted successfully.");
+        },
+        error: (error) => {
+          this._toastrService.error("Error deleting program: " + error.message);
+        }
+      });
+    }
   }
 
   goToUpdateForm(programId: number) {

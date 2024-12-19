@@ -27,7 +27,7 @@
                       (click)="goToUpdateForm(program.id)">Update
               </button>
               <button class="rounded text-uppercase p-2 custom-btn w-50"
-                      (click)="deleteProgram(program.id)">Delete
+                      (click)="deleteProgram($event, program.id)">Delete
               </button>
             </div>
           </div>
@@ -42,7 +42,7 @@
   </ul>
 } @else {
   <div class="alert alert-warning text-center mt-4" role="alert">
-    <h1 class="display-4">You have no Programs !</h1>
+    <h1 class="display-4">No programs found</h1>
   </div>
 }
 
