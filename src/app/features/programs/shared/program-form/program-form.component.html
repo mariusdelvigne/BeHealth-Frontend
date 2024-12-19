@@ -17,18 +17,6 @@
       </div>
     </div>
 
-    <ul class="d-flex flex-wrap gap-2 mt-3">
-      @if (selectedFoodPlan) {
-        <li class="badge food-color p-2">{{ selectedFoodPlan.name }}</li>
-      }
-      @if (selectedSportPlan) {
-        <li class="badge sport-color p-2">{{ selectedSportPlan.name }}</li>
-      }
-      @if (selectedSleepPlan) {
-        <li class="badge sleep-color p-2">{{ selectedSleepPlan.name }}</li>
-      }
-    </ul>
-
     <textarea class="form-control w-100 mt-2" style="height: 20vh" id="" placeholder="Description"
               formControlName="description"></textarea>
 
