@@ -7,9 +7,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TimePipe implements PipeTransform {
 
   transform(seconds: number): string {
-    let minutes = Math.floor(seconds / 60 % 60);
-    let hours = Math.floor(seconds / 3600);
-    return `${hours}h ${minutes}min`;
-  }
+    const minutes = Math.floor(seconds / 60 % 60);
+    const hours = Math.floor(seconds / 3600);
 
+    let display = `${minutes} min`;
+    if (hours > 0)
+      display = `${hours} h` + display;
+
+    return  display
+  }
 }
