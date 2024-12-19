@@ -50,8 +50,7 @@ export class ScatterGraphComponent implements OnInit {
       this.dataType = this._route.snapshot.params['dataType'];
       this.type = this._route.snapshot.params['type'];
       this.dataValues = this._graphService.loadType(this.dataType, this.dataValues);
-      this.loadOptions()
-      this.loadData();
+
     });
 
     this.startDate.setDate(1);
@@ -99,7 +98,7 @@ export class ScatterGraphComponent implements OnInit {
       .setMonth(this.startDate.getMonth() + (next ? 1 : -1))
     );
     this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0,
-      23, 59, 59, 999);
+      24, 59, 59, 999);
 
     this.loadData();
     this.loadOptions();

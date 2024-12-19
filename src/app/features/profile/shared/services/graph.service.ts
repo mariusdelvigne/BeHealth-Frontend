@@ -40,9 +40,12 @@ export class GraphService {
 
     data.forEach(sleep => {
 
-      const day = sleep.startDatetime.toLocaleString('en-US', {weekday: 'short'});
+      const start = new Date(sleep.startDatetime);
+      const end = new Date(sleep.endDatetime);
 
-      const duration = sleep.endDatetime.getTime() - sleep.startDatetime.getTime();
+      const day = start.toLocaleString('en-US', {weekday: 'short'});
+
+      const duration = end.getTime() - start.getTime();
 
       // Convert Date => hours
       const hours = duration / (1000 * 60 * 60);

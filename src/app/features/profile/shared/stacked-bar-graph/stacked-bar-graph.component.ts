@@ -42,8 +42,6 @@ export class StackedBarGraphComponent implements OnInit {
       this.dataType = this._route.snapshot.params['dataType'];
       this.type = this._route.snapshot.params['type'];
       this.dataValues = this._graphService.loadType(this.dataType, this.dataValues);
-      this.loadOptions()
-      this.loadData();
     });
 
     // 0 : sunday, 1 : monday, ...
