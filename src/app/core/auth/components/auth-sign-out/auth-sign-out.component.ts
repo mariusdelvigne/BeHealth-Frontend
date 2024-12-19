@@ -20,6 +20,7 @@ export class AuthSignOutComponent {
       next: _ => {
         this.modalRef.close();
         this._toastrService.success('Logged out successfully');
+        this._router.navigate(['/']);
       },
       error: (error) => {
         this._toastrService.error("Error signing you out : " + error.message);

@@ -74,9 +74,10 @@
         @if (authService.isAuthenticated()) {
           <app-notifications-dropdown-view></app-notifications-dropdown-view>
           <a routerLink="/account" class="nav-link">
-            <i class="far fa-address-card"></i>
+            <i class="far fa-address-card d-none d-lg-block"></i>
+            <span class="d-lg-none">Account</span>
           </a>
-          <a class="btn btn-link nav-link" (click)="openModal()">Sign Out</a>
+          <a class="nav-link" (click)="openModal()">Sign Out</a>
         } @else {
           <a routerLink="/sign-in" class="nav-link">Sign In</a>
           <a routerLink="/sign-up" class="nav-link">Sign Up</a>

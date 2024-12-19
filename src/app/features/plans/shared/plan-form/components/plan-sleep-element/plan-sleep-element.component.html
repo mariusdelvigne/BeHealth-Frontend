@@ -1,8 +1,10 @@
-<div class="row mb-0 mt-1">
-  <div class="col-12 col-lg-6">
-    Start time : {{planSleep.startTime}}
+@if (planSleep) {
+  <div class="row mb-0 mt-1">
+    <div class="col-12 col-lg-6">
+      Start time : {{planSleep.startTime}}
+    </div>
+    <div class="col-12 col-lg-6">
+      Duration : {{planSleep.durationInMin | time}}
+    </div>
   </div>
-  <div class="col-12 col-lg-6">
-    Duration : {{planSleep.durationInMin | time}}
-  </div>
-</div>
+}
