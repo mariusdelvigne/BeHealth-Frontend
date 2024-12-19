@@ -22,11 +22,11 @@ export class AuthSignUpComponent {
   form: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    name: new FormControl('', Validators.required),
+    name: new FormControl('', [Validators.required]),
     surname: new FormControl('', Validators.required),
     birthDate: new FormControl('', Validators.required),
     gender: new FormControl('Male', Validators.required),
-    mail: new FormControl('', Validators.required),
+    mail: new FormControl('', [Validators.required, Validators.email]),
     heightInCm: new FormControl('', [Validators.required, Validators.min(1)]),
     weightInG: new FormControl('', [Validators.required, Validators.min(1)]),
   });
