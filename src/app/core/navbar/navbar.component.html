@@ -18,15 +18,15 @@
           </a>
           <div class="dropdown-menu">
             <!-- Bmi Calculator -->
-            <a class="dropdown-item" routerLink="/bmi-calculator">
+            <a class="dropdown-item" routerLink="/bmi-calculator" (click)="collapseNavbar()">
               <i class="fas fa-calculator me-2"></i>BMI
             </a>
             <!-- Nutrition calculator -->
-            <a class="dropdown-item" routerLink="/nutrition-calculator">
+            <a class="dropdown-item" routerLink="/nutrition-calculator" (click)="collapseNavbar()">
               <i class="fas fa-utensils me-2"></i>Nutrition
             </a>
             <!-- Sport Calories Burned calculator -->
-            <a class="dropdown-item" routerLink="/sport-calories-burned-calculator">
+            <a class="dropdown-item" routerLink="/sport-calories-burned-calculator" (click)="collapseNavbar()">
               <i class="fas fa-fire me-2"></i>Sport
             </a>
           </div>
@@ -39,17 +39,17 @@
           <div class="dropdown-menu">
             @if (authService.isAuthenticated()) {
               <h6 class="dropdown-header">My programs</h6>
-              <a class="dropdown-item" routerLink="/program-search-mine">
+              <a class="dropdown-item" routerLink="/program-search-mine" (click)="collapseNavbar()">
                 <i class="far fa-user me-2"></i>Created
               </a>
               <hr class="dropdown-divider">
               <h6 class="dropdown-header">All programs</h6>
             }
-            <a class="dropdown-item" routerLink="/program-search-public">
+            <a class="dropdown-item" routerLink="/program-search-public" (click)="collapseNavbar()">
               <i class="fas fa-magnifying-glass me-2"></i>Search
             </a>
             @if (authService.isAuthenticated()) {
-              <a class="dropdown-item" routerLink="/program-create">
+              <a class="dropdown-item" routerLink="/program-create" (click)="collapseNavbar()">
                 <i class="far fa-square-plus me-2"></i>Create
               </a>
             }
@@ -63,17 +63,17 @@
           <div class="dropdown-menu">
             @if (authService.isAuthenticated()) {
               <h6 class="dropdown-header">My plans</h6>
-              <a class="dropdown-item" routerLink="/plan-search-mine">
+              <a class="dropdown-item" routerLink="/plan-search-mine" (click)="collapseNavbar()">
                 <i class="far fa-user me-2"></i>Created
               </a>
               <hr class="dropdown-divider">
               <h6 class="dropdown-header">All plans</h6>
             }
-            <a routerLink="/plan-search-public" class="dropdown-item">
+            <a routerLink="/plan-search-public" class="dropdown-item" (click)="collapseNavbar()">
               <i class="fas fa-magnifying-glass me-2"></i>Search
             </a>
             @if (authService.isAuthenticated()) {
-              <a routerLink="/plan-create" class="dropdown-item">
+              <a routerLink="/plan-create" class="dropdown-item" (click)="collapseNavbar()">
                 <i class="far fa-square-plus me-2"></i>Create
               </a>
             }
@@ -83,13 +83,13 @@
       <div class="navbar-nav ms-auto">
         @if (authService.isAuthenticated()) {
           <app-notifications-dropdown-view></app-notifications-dropdown-view>
-          <a routerLink="/account" class="nav-link">
+          <a routerLink="/account" class="nav-link" (click)="collapseNavbar()">
             <i class="far fa-address-card"></i>
           </a>
-          <a class="btn btn-link nav-link" (click)="openModal()">Sign Out</a>
+          <a class="btn btn-link nav-link" (click)="openModal(); collapseNavbar()">Sign Out</a>
         } @else {
-          <a routerLink="/sign-in" class="nav-link">Sign In</a>
-          <a routerLink="/sign-up" class="nav-link">Sign Up</a>
+          <a routerLink="/sign-in" class="nav-link" (click)="collapseNavbar()">Sign In</a>
+          <a routerLink="/sign-up" class="nav-link" (click)="collapseNavbar()">Sign Up</a>
         }
       </div>
     </div>
