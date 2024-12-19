@@ -22,7 +22,8 @@
 
   <div class="d-flex justify-content-center mb-2">
     <div class="rounded-3 overflow-hidden">
-      <button type="button" class="page-btn p-2" (click)="previousPage()" style="width: 50px" [disabled]="pageNumber <= 1">
+      <button type="button" class="page-btn p-2" (click)="previousPage()" style="width: 50px"
+              [disabled]="pageNumber <= 1">
         <i class="fa-solid fa-angle-left"></i>
       </button>
 
@@ -35,9 +36,7 @@
   </div>
 
   <ul class="program-list mt-3 rounded-1">
-    @if (plans.length <= 0) {
-      <h2>No plans found</h2>
-    } @else {
+    @if (plans.length > 0) {
       @for (plan of plans; track $index) {
         <li (click)="showPlanInfo(plan.id)" class="plan rounded-1">
           <div class="d-flex rounded-1">
@@ -72,6 +71,9 @@
 
         </li>
       }
+    } @else {
+      <h2>No plans found</h2>
     }
+
   </ul>
 </div>

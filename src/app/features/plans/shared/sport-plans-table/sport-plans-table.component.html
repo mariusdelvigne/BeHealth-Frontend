@@ -1,6 +1,9 @@
 <div class="border border-3" style="box-shadow: 0 0 16px rgba(0, 0, 0, 0.3)">
   <div class="w-100 p-3 d-flex sport-color justify-content-between" (click)="setVisibility()">
     <h3>Sport Plans</h3>
+    @if (selectedSportPlan) {
+      <li class="badge bg-dark p-2 w-auto text-center">{{ selectedSportPlan.name }}</li>
+    }
   </div>
 
 @if (isVisible) {
