@@ -1,10 +1,10 @@
-<div class="d-flex justify-content-center align-items-center h-100">
-<form [formGroup]="form" (submit)="emitUserSport()" class="custom-insert-form m-3 p-3 rounded" autocomplete="off">
+<div class="centered p-1">
+<form [formGroup]="form" (submit)="emitUserSport()" class="custom-insert-form p-3 rounded container" autocomplete="off">
   <h3>Insert a sport</h3>
   <div class="row">
-    <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
-    <div class="col-sm-10">
-      <input class="form-control w-100" type="text" placeholder="Name" list="sportList" formControlName="name" id="name">
+    <label for="name" class="col-form-label fw-bold mt-1">Name</label>
+    <div class="mt-0">
+      <input class="form-control" type="text" placeholder="Name" list="sportList" formControlName="name" id="name">
       <datalist id="sportList">
         @for (sport of sports; track sport.id) {
           <option [value]="sport.name"></option>
@@ -13,15 +13,17 @@
     </div>
   </div>
   <div class="row">
-    <label for="startDatetime" class="col-sm-2 col-form-label fw-bold">Start</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="datetime-local" formControlName="startDatetime" id="startDatetime">
+    <div class="col-sm-6 mt-0">
+      <label for="startDatetime" class="col-form-label fw-bold mt-1">Start</label>
+      <input class="form-control" type="datetime-local" formControlName="startDatetime" id="startDatetime">
     </div>
-    <label for="endDatetime" class="col-sm-2 col-form-label fw-bold">End</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="datetime-local" formControlName="endDatetime" id="endDatetime">
+    <div class="col-sm-6 mt-0">
+      <label for="endDatetime" class="col-form-label fw-bold mt-1">End</label>
+      <input class="form-control" type="datetime-local" formControlName="endDatetime" id="endDatetime">
     </div>
   </div>
-  <input class="custom-btn w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
+  <div class="d-flex justify-content-center">
+    <input class="custom-btn w-50 fw-bold mt-3 rounded" type="submit" value="Insert" [disabled]="form.invalid">
+  </div>
 </form>
 </div>
