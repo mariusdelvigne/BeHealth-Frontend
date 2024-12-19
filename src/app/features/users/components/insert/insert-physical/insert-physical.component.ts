@@ -31,5 +31,7 @@ export class InsertPhysicalComponent {
       next: () => this._toastrService.success("Height created successfully."),
       error: (error) => this._toastrService.error("Error creating the height + " + error.message),
     });
+
+    this.form.reset()
   }
 }

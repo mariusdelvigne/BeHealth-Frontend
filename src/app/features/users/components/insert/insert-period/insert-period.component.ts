@@ -26,5 +26,6 @@ export class InsertPeriodComponent {
       next: () => this._toastrService.success("Period created successfully"),
       error: (error) => this._toastrService.error("Error creating the period : " + error.message),
     });
+    this.form.reset();
   }
 }

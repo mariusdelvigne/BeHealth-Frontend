@@ -39,6 +39,7 @@ export class InsertSportComponent implements OnInit {
       next: () => this._toastrService.success("Created Sport successfully."),
       error: (error) => this._toastrService.error("Error creating the sport : " + error.message),
     });
+    this.form.reset();
   }
   updateSportList(name: string) {
     this._sportService.getAllStartingWith(name)
