@@ -1,12 +1,12 @@
-<div class="d-flex flex-column justify-content-center align-items-center h-100 p-5">
-  <form class="custom-insert-form p-5" [formGroup]="form" (submit)="submit()">
+<div class="d-flex justify-content-center align-items-center h-100 p-md-1 p-lg-3 pt-3 rounded">
+  <form class="custom-insert-form p-1 p-lg-5 rounded-1 w-100" [formGroup]="form" (submit)="submit()">
     <h3>Create a plan</h3>
 
-    <div class="row gy-2">
-      <div class="col-12 col-md-6">
-        <input class="form-control h-100" formControlName="name" placeholder="Title">
+    <div class="row">
+      <div class="col-12 col-md-8 mt-1">
+        <input class="form-control" formControlName="name" placeholder="Title">
       </div>
-      <div class="col-12 col-md-6 d-flex justify-content-center gap-1">
+      <div class="col-12 col-md-4 d-flex justify-content-center gap-1 mt-1">
         <button type="button" class="custom-btn-lock rounded-2" (click)="setPrivacy()">
           <i class="fa-solid"
              [ngClass]="{'fa-lock': form.get('privacy')?.value == 'private', 'fa-lock-open': form.get('privacy')?.value == 'public'}"></i>
@@ -15,47 +15,42 @@
         <input class="custom-btn rounded-2 custom-btn-lock w-100" type="submit"
                [value]="mode === 'create' ? 'Create' : 'Save'" [disabled]="form.invalid">
       </div>
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-4 mt-1">
+        <label for="category">Category</label>
+        <select class="form-control" formControlName="category" id="category">
+          <option value="sport">sport</option>
+          <option value="food">food</option>
+          <option value="sleep">sleep</option>
+        </select>
+      </div>
 
-      <div class="row gy-2">
-        <div class="col-12 col-md-4">
-          <label class="w-100">
-            Category
-            <select class="form-control h-100" formControlName="category">
-              <option value="sport">sport</option>
-              <option value="food">food</option>
-              <option value="sleep">sleep</option>
-            </select>
-          </label>
-        </div>
+      <div class="col-6 col-md-4 mt-1">
+        <label for="durationInDays">Duration (days)</label>
+        <input type="number" class="form-control" formControlName="durationInDays" id="durationInDays">
+      </div>
 
-        <div class="col-12 col-md-4">
-          <label class="w-100">
-            Duration (days) <input type="number" class="form-control h-100" formControlName="durationInDays">
-          </label>
-        </div>
-
-        <div class="col-12 col-md-4">
-          <label class="w-100">
-          Tags <input #tagInput class="form-control w-100 h-100" type="text" list="tagList"
-                 formControlName="tagInput"
-                 (keydown.enter)="addTag(tagInput)" id="tagInput">
-          <datalist id="tagList">
-            @for (tag of tags; track tag.id) {
-              <option [value]="tag.name"></option>
-            }
-          </datalist>
-          </label>
-        </div>
+      <div class="col-12 col-md-4 mt-1">
+        <label for="tagInput">Tags</label>
+        <input #tagInput class="form-control" type="text" list="tagList"
+             formControlName="tagInput"
+             (keydown.enter)="addTag(tagInput)" id="tagInput">
+        <datalist id="tagList">
+          @for (tag of tags; track tag.id) {
+            <option [value]="tag.name"></option>
+          }
+        </datalist>
       </div>
     </div>
 
-    <div>
+    <div class="overflow-auto d-flex pt-3" style="max-height: 20vh">
       @for (tag of planTags; track tag.id) {
-        <span class="badge bg-secondary m-1">
+        <div class="rounded bg-dark-subtle d-flex justify-content-center pt-1 pb-1 ps-2">
             {{ tag.name }}
-          <button type="button" class="btn-close btn-close-white ms-2" aria-label="Close" (click)="removeTag(tag)">
+          <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="removeTag(tag)">
           </button>
-          </span>
+          </div>
       }
     </div>
 
@@ -67,13 +62,13 @@
     @if (planCategory === 'sport') {
       <div class="table-responsive mt-2">
         <app-plan-sport-list [planSports]="planSports" [isEditMode]="true"></app-plan-sport-list>
-        <hr>
+        <hr class="mb-0">
         <app-plan-sport-create (onPlanSportCreated)="addPlanSport($event)"></app-plan-sport-create>
       </div>
     } @else if (planCategory === 'food') {
       <div class="table-responsive mt-5">
         <app-plan-food-list [planFoods]="planFoods" [isEditMode]="true"></app-plan-food-list>
-        <hr>
+        <hr class="mb-0">
         <app-plan-food-create (onPlanFoodCreated)="addPlanFood($event)"></app-plan-food-create>
       </div>
     } @else {
