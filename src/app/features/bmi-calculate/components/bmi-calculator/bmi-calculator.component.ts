@@ -31,6 +31,7 @@ export class BmiCalculatorComponent {
         this.resultBmi = Number(response.bmi.toFixed(2));
         this.resultBmiInterpretation = response.bmiInterpretetion;
         this._toastrService.success("BMI computed successfully")
+        this.form.reset();
       },
       error: (error) => {
         this._toastrService.error("BMI computing failed : " + error.message);
