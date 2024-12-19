@@ -4,6 +4,7 @@ import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {UserService} from '../../../../../shared/services/user.service';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Location } from '@angular/common';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-account-information',
@@ -22,12 +23,12 @@ export class AccountInformationComponent implements OnInit {
     surname: new FormControl('', Validators.required),
     birthDate: new FormControl('', Validators.required),
     gender: new FormControl('Male', Validators.required),
-    mail: new FormControl('', Validators.required),
+    mail: new FormControl('', [Validators.required, Validators.email]),
   });
 
   modifyState: boolean = false;
 
-  constructor(private _authService: AuthService, private _userService: UserService, private _location: Location) { }
+  constructor(private _authService: AuthService, private _userService: UserService, private _location: Location, private _toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this._location.onUrlChange(url => {
@@ -58,6 +59,9 @@ export class AccountInformationComponent implements OnInit {
       next: () => {
         this._location.go('account');
       },
+      error: () => {
+        this._toastrService.error("An error occurred while updating account");
+      }
     })
   }
 
