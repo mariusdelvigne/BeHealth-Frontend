@@ -49,7 +49,7 @@ export class PlanFormComponent implements OnInit {
   };
 
   tags: any [] = [];
-  tagsList: {id: number, name: string} [] = [];
+  planTags: {id: number, name: string} [] = [];
   tagIdCounter = 0;
   tagNames: string[] = [];
 
@@ -63,19 +63,24 @@ export class PlanFormComponent implements OnInit {
     this.form.get('tagInput')?.valueChanges
       .pipe(debounceTime(300))
       .subscribe(value => {
-        console.log("ok")
         this.updateTagList(value);
       });
   }
 
   async loadPlan() {
     this.plan = await firstValueFrom(this._planService.getPlanById(this.planId));
+    var response = await firstValueFrom(this._planService.getTags(this.planId));
+    if (response && response.astPlansTags) {
+      this.planTags = response.astPlansTags.map((tagObj: any) => tagObj.tag);
+    }
+    console.log(this.planTags);
     this.form.patchValue({
       name: this.plan.name,
       privacy: this.plan.privacy,
       category: this.plan.category,
       durationInDays: this.plan.durationInDays,
       description: this.plan.description,
+      planTags: this.planTags,
     });
 
     const pageSize = 20;
@@ -173,15 +178,15 @@ export class PlanFormComponent implements OnInit {
 
   addTag(tagInput: HTMLInputElement) {
     const tag = tagInput.value;
-    if (tag && !this.tagsList.find(t => t.name === tag)) {
-      this.tagsList.push({ id: this.tagIdCounter++, name: tag });
+    if (tag && !this.planTags.find(t => t.name === tag)) {
+      this.planTags.push({ id: this.tagIdCounter++, name: tag });
       this.tagNames.push(tag)
       tagInput.value = '';
     }
   }
 
   removeTag(tag: any) {
-    this.tagsList = this.tagsList.filter(t => t.id !== tag.id);
+    this.planTags = this.planTags.filter(t => t.id !== tag.id);
   }
 
   setPrivacy() {
