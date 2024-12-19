@@ -23,7 +23,7 @@ export class NotificationFilterFormComponent {
   });
 
   allCategories: { name: string; value: string }[] = [
-    {name: "All categories", value: "All categories"},
+    {name: "All", value: "All categories"},
     {name: "General", value: "general"},
     {name: "Plans", value: "plans"},
     {name: "Programs", value: "programs"}
