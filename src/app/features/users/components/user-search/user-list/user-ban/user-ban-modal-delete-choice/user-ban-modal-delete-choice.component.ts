@@ -24,7 +24,6 @@ export class UserBanModalDeleteChoiceComponent {
   constructor(public modalRef: MdbModalRef<UserBanModalDeleteChoiceComponent>) { }
 
   deleteUserPlan() {
-    console.log('Delete User Plan button clicked.');
     this.deleteUserPlans.emit(this.userDeletePlans);
     const eventDeleted: UserBanCustomEvent = {
       name: 'deleteAllPlansOfUser',
@@ -34,7 +33,6 @@ export class UserBanModalDeleteChoiceComponent {
   }
 
   deleteUserProgram() {
-    console.log('Delete User programs button clicked.');
     this.deleteUserPrograms.emit(this.userDeletePrograms);
     const eventDeleted: UserBanCustomEvent = {
       name: 'deleteAllProgramsOfUSer',
@@ -44,7 +42,6 @@ export class UserBanModalDeleteChoiceComponent {
   }
 
   deleteUserFeedback() {
-    console.log('Delete User feedback button clicked.');
     this.deleteUserFeedbacks.emit(this.userDeleteFeedbacks);
     const eventDeleted: UserBanCustomEvent = {
       name: 'deleteAllFeedbacks',

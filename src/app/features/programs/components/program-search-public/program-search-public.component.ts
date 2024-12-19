@@ -115,7 +115,6 @@ export class ProgramSearchPublicComponent implements OnInit {
     this._programService.getProgramsByAssociations(this._authService.getId(), 'favorite', this.pageNumber - 1)
       .subscribe(response => {
         this.favoritesPrograms = response.astHealthProgramUsers;
-        console.log(this.favoritesPrograms)
       });
   }
 

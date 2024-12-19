@@ -76,11 +76,9 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this._userService.deleteAllPlanByUserId(userId).subscribe({
         next: () => {
-          console.log(`Plans for user ${userId} deleted successfully`);
           this._toastrService.success(`All plans of ${user?.username} are deleted successfully`)
         },
         error: (error) => {
-          console.error(`Error deleting plans for user ${userId}:`, error);
           this._toastrService.error(`Unable to delete plan of ${user?.username}` + error.message);
         }
       }
@@ -93,11 +91,9 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this._userService.deleteAllProgramsByUserId(userId).subscribe({
       next: () => {
-        console.log(`Programs for user ${userId} deleted successfully`);
         this._toastrService.success(`All programs of ${user?.username} are deleted successfully`)
       },
       error: (error) => {
-        console.error(`Error deleting programs for user ${userId}:`, error);
         this._toastrService.error(`Unable to delete programs of ${user?.username}` + error.message);
       }
     })
@@ -109,11 +105,9 @@ export class UserListComponent implements OnInit, OnDestroy {
 
     this._userService.deleteAllFeedbackByUserId(userId).subscribe({
       next: () => {
-        console.log(`Feedbacks for user ${userId} deleted successfully`);
         this._toastrService.success(`All feedbacks of ${user?.username} are deleted successfully`)
       },
       error: (error) => {
-        console.error(`Error deleting feedbacks for user ${userId}:`, error);
         this._toastrService.error(`Unable to delete feedbacks of ${user?.username}` + error.message);
       }
     })

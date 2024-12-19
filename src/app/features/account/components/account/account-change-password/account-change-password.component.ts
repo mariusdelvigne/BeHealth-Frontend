@@ -29,7 +29,7 @@ export class AccountChangePasswordComponent {
 
   emitChangePassword(event: SubmitEvent) {
     event.preventDefault();
-    console.log("Entered");
+
     const userId = this._authService.getId();
     this._userService.createPassword(userId, {...this.form.value})
       .subscribe({

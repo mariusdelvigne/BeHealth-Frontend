@@ -4,6 +4,7 @@ import {NotificationListComponent} from './notification-list/notification-list.c
 import {NotificationSearchOutput} from '../../../../shared/utils/notification-search-output';
 import {NotificationService} from '../../../../shared/services/notification.service';
 import {AuthService} from '../../../../core/auth/services/auth.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-notifications',
@@ -18,7 +19,7 @@ import {AuthService} from '../../../../core/auth/services/auth.service';
 export class NotificationsComponent {
   @Input() notifications: NotificationSearchOutput[] = [];
 
-  constructor(private _notificationService: NotificationService, private _authService: AuthService) {
+  constructor(private _notificationService: NotificationService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   applyFiltersNotifications($event: { category: string; isRead: string }) {
@@ -33,10 +34,9 @@ export class NotificationsComponent {
     this._notificationService.getFilteredNotifications(userId, isRead, category).subscribe({
       next: (notifications) => {
         this.notifications = notifications.notifications;
-        console.log("Filtered notifications:", this.notifications);
       },
       error: (error) => {
-        console.error("Error fetching filtered notifications:", error);
+        this._toastrService.error('Error : ' + error.message);
       }
     });
   }

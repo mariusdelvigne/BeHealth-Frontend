@@ -72,7 +72,7 @@ export class StackedBarGraphComponent implements OnInit {
     do {
       if (this.type == "sports") {
         let response = await firstValueFrom(this._userSportService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
-        console.log(response)
+
         dataToAdd = response.userSports.map((d: any) => ({
           date: new Date(d.startDatetime),
           food: d.name,

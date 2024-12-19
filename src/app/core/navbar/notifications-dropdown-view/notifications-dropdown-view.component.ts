@@ -39,7 +39,6 @@ export class NotificationsDropdownViewComponent implements OnInit {
         this.notificationsNotRead = notifications.notifications;
       },
       error: (error) => {
-        console.log(error);
         this._toastrService.error("Error : " + error.message);
       }
     });

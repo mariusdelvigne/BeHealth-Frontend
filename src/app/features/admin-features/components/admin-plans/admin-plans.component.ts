@@ -24,7 +24,6 @@ export class AdminPlansComponent implements OnInit {
     this._planService.getPlansFiltered().subscribe({
       next: results => {
         this.plans = results.plans;
-        console.log(this.plans);
         this.plans.forEach((plan, index) => {
           this.getCreatorName(plan, index);
         })

@@ -69,11 +69,10 @@ export class ScatterGraphComponent implements OnInit {
     let pageNumber = 0;
     const pageSize: number = 20;
 
-    console.log(this.dataType)
     do {
       if (this.type == "sports") {
         let response = await firstValueFrom(this._userSportService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
-        console.log(response)
+
         dataToAdd = response.userSports.map((d: any) => ({
           date: new Date(d.startDatetime),
           value: d[this.dataType],

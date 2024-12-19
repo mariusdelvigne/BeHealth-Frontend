@@ -73,7 +73,7 @@ export class PlanFormComponent implements OnInit {
     if (response && response.astPlansTags) {
       this.planTags = response.astPlansTags.map((tagObj: any) => tagObj.tag);
     }
-    console.log(this.planTags);
+
     this.form.patchValue({
       name: this.plan.name,
       privacy: this.plan.privacy,
