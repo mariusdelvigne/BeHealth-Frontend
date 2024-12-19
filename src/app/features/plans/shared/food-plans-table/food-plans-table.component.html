@@ -4,11 +4,10 @@
 </div>
 
 @if (isVisible) {
-
   <form class="d-flex flex-column justify-content-center p-3 rounded"
         [formGroup]="form" (submit)="emitSearchPlan()">
 
-    <div class="d-flex justify-content-center input-group mb-3 gap-2">
+    <div class="d-flex justify-content-center input-group gap-2">
       <input class="rounded-0 search-input p-2 w-75" formControlName="name" placeholder="Title">
 
       <button type="submit" class="search-btn p-2 rounded-0">
@@ -30,7 +29,7 @@
       </button>
     </div>
   </div>
-
+  <hr class="m-0">
   @if (foodPlans) {
     <div class="container overflow-hidden">
       <div class="row g-3 mt-1 max-vh-50 overflow-auto">
