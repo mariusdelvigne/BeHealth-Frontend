@@ -4,6 +4,7 @@ import {UserService} from '../../../../../shared/services/user.service';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-account-change-password',
@@ -22,7 +23,7 @@ export class AccountChangePasswordComponent {
     confirmPassword: new FormControl('', Validators.required),
   });
 
-  constructor(private _authService: AuthService, private _userService: UserService, private _toastrService: ToastrService) { }
+  constructor(private _authService: AuthService, private _userService: UserService, private _toastrService: ToastrService, private _router: Router) { }
 
   isFormValid() {
     return this.form.valid &&
@@ -35,7 +36,10 @@ export class AccountChangePasswordComponent {
     const userId = this._authService.getId();
     this._userService.createPassword(userId, {...this.form.value})
       .subscribe({
-        next: () => this._toastrService.success('Password changed successfully'),
+        next: () => {
+          this._router.navigate(['/account']);
+          this._toastrService.success('Password changed successfully')
+        },
         error: e => {
           if (e.status === 400)
             this._toastrService.error('New password must contain at least 8 characters');

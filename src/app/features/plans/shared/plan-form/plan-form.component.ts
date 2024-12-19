@@ -126,21 +126,14 @@ export class PlanFormComponent implements OnInit {
           this.form.value));
         this._toastrService.success("Plan updated successfully");
       }
-      this.planSports.splice(0, this.planSports.length);
-      this.planFoods.splice(0, this.planFoods.length);
-      // this.planSleep.splice(0, this.planSleep.length);
-      this.planSleep = {
-        startTime: '',
-        durationInMin: 0,
-      };
     } catch (error: any) {
       this.mode == "create"
       ? this._toastrService.error("Error creating the plan : " + error.message)
       : this._toastrService.error("Error updating the plan : " + error.message);
+      return;
     }
 
     try {
-      console.log(this.form.getRawValue().category)
       if (this.form.getRawValue().category === 'sport') {
         const sports = this.planSports.map(sport => ({...sport, dayTime: sport.dayTime + ":00"}));
         await firstValueFrom(this._planService.updatePlanSports(this._authService.getId(), this.planId, {sports}));
@@ -152,7 +145,7 @@ export class PlanFormComponent implements OnInit {
         await firstValueFrom(this._planService.updatePlanSleep(this._authService.getId(), this.planId, {sleep}));
       }
 
-      if (this.mode === 'create') {
+      if (this.mode == "create") {
         window.location.reload();
       }
 

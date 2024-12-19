@@ -60,6 +60,7 @@ export class NutritionCalculatorComponent implements OnInit {
   calculNutrition() {
     this._nutritionCalculatorService.calculEatenCalories(this.form.value).subscribe({
       next: (response) => {
+        this.form.reset();
         this.resultNutriment = response;
         this.resultNutriment.foodsName = response.foodsName;
         this._toastrService.success("Nutrition computed successfully");
