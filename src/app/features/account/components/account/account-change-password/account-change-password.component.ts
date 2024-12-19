@@ -3,12 +3,14 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {UserService} from '../../../../../shared/services/user.service';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-account-change-password',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './account-change-password.component.html',
   styleUrl: './account-change-password.component.scss'
