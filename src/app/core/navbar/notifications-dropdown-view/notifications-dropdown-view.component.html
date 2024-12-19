@@ -3,13 +3,13 @@
     <div class="d-none d-lg-block">
       <i class="far fa-message"></i>
       @if (unreadCount > 0){
-        <span class="badge bg-danger badge-dot">{{ unreadCountDisplay }}</span>
+        <span class="badge bg-danger badge-dot rounded-circle d-flex justify-content-center">{{ unreadCountDisplay }}</span>
       }
     </div>
     <div class="d-lg-none">
       <span>Notifications</span>
       @if (unreadCount > 0){
-        <span class="badge bg-danger rounded-5 ms-1">{{ unreadCountDisplay }}</span>
+        <span class="badge bg-danger rounded-circle ms-1">{{ unreadCountDisplay }}</span>
       }
     </div>
   </button>
