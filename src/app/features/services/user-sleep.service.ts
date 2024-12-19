@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import {apis, environment} from '../../../environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {UserPeriodCreateCommand} from '../utils/user-period-create-command';
-import {UserPeriodCreateOutput} from '../utils/user-period-create-output';
-import {Observable} from 'rxjs';
 import {AuthService} from '../../core/auth/services/auth.service';
+import {UserSportCreateCommand} from '../../shared/utils/user-sport-create-command';
+import {UserSleepCreateOutput} from '../../shared/utils/user-sleep-create-output';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserPeriodService {
-  private static URL_USERS: string = `${environment.API_URL}/${apis.USERS_URL}`;
+export class UserSleepService {
+  private static URL: string = `${environment.API_URL}/${apis.USERS_URL}`;
 
   constructor(private _httpClient: HttpClient, private _authService: AuthService) { }
 
-  public create(userPeriodCreateCommand: UserPeriodCreateCommand): Observable<UserPeriodCreateOutput> {
+  public create(createUserSleepCommand: UserSportCreateCommand): Observable<UserSleepCreateOutput> {
     let userId = this._authService.getId();
-    return this._httpClient.post<UserPeriodCreateOutput>(UserPeriodService.URL_USERS + `/${userId}/periods`, userPeriodCreateCommand);
+    return this._httpClient.post<UserSleepCreateOutput>(UserSleepService.URL + `/${userId}/sleeps`, createUserSleepCommand);
   }
 
   public getAllBetween(from: Date, to: Date, pageNumber: number, pageSize: number): Observable<any> {
@@ -28,6 +28,6 @@ export class UserPeriodService {
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
-    return this._httpClient.get<any>(UserPeriodService.URL_USERS + `/${userId}/periods`, {params: params});
+    return this._httpClient.get<any>(UserSleepService.URL + `/${userId}/sleeps`, {params: params});
   }
 }

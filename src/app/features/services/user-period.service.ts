@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {UserSportCreateCommand} from '../utils/user-sport-create-command';
-import {Observable} from 'rxjs';
-import {UserSportCreateOutput} from '../utils/user-sport-create-output';
 import {apis, environment} from '../../../environments/environment';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {UserPeriodCreateCommand} from '../../shared/utils/user-period-create-command';
+import {UserPeriodCreateOutput} from '../../shared/utils/user-period-create-output';
+import {Observable} from 'rxjs';
 import {AuthService} from '../../core/auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserSportService {
-  private static URL: string = `${environment.API_URL}/${apis.USERS_URL}`;
+export class UserPeriodService {
+  private static URL_USERS: string = `${environment.API_URL}/${apis.USERS_URL}`;
 
   constructor(private _httpClient: HttpClient, private _authService: AuthService) { }
 
-  public create(userSportCreateCommand: UserSportCreateCommand): Observable<UserSportCreateOutput> {
+  public create(userPeriodCreateCommand: UserPeriodCreateCommand): Observable<UserPeriodCreateOutput> {
     let userId = this._authService.getId();
-    return this._httpClient.post<UserSportCreateOutput>(UserSportService.URL + `/${userId}/sports`, userSportCreateCommand);
+    return this._httpClient.post<UserPeriodCreateOutput>(UserPeriodService.URL_USERS + `/${userId}/periods`, userPeriodCreateCommand);
   }
 
   public getAllBetween(from: Date, to: Date, pageNumber: number, pageSize: number): Observable<any> {
@@ -28,9 +28,6 @@ export class UserSportService {
       .set('pageNumber', pageNumber)
       .set('pageSize', pageSize);
 
-    return this._httpClient.get<any>(UserSportService.URL + `/${userId}/sports`, {
-      params: params,
-      withCredentials: true
-    });
+    return this._httpClient.get<any>(UserPeriodService.URL_USERS + `/${userId}/periods`, {params: params});
   }
 }

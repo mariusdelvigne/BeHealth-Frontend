@@ -4,12 +4,12 @@ import {NgxEchartsDirective} from "ngx-echarts";
 import {GraphData} from '../utils/graph-data';
 import {DatedValue} from '../../utils/DatedValue';
 import {EChartsOption} from 'echarts';
-import {UserFoodService} from '../../../../shared/services/user-food.service';
+import {UserFoodService} from '../../../services/user-food.service';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {firstValueFrom} from 'rxjs';
 import {GraphService} from '../services/graph.service';
-import {UserSportService} from '../../../../shared/services/user-sport.service';
+import {UserSportService} from '../../../services/user-sport.service';
 
 @Component({
   selector: 'app-stacked-bar-graph',

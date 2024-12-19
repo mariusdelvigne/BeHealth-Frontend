@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {UserSportService} from '../../../../../shared/services/user-sport.service';
+import {UserSportService} from '../../../../services/user-sport.service';
 import {debounceTime} from 'rxjs';
-import {SportService} from '../../../../../shared/services/sport.service';
+import {SportService} from '../../../services/sport.service';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -36,7 +36,7 @@ export class InsertSportComponent implements OnInit {
 
   emitUserSport() {
     this._userSportService.create(this.form.value).subscribe({
-      next: response => this._toastrService.success("Created Sport successfully."),
+      next: () => this._toastrService.success("Created Sport successfully."),
       error: (error) => this._toastrService.error("Error creating the sport : " + error.message),
     });
   }

@@ -5,7 +5,7 @@ import {GraphBase} from '../../graphs/utils/graph-base';
 import {map, Observable} from 'rxjs';
 import {DatedValue} from '../../../../utils/DatedValue';
 import {GetBmiGraphOptions} from '../../graphs/utils/BmiGraphOptions';
-import {UserBmiService} from '../../../../../../shared/services/user-bmi.service';
+import {UserBmiService} from '../../graphs/service/user-bmi.service';
 
 @Component({
   selector: 'app-bmi-graph',

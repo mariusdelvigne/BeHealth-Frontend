@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CalendarCommonModule, CalendarEvent, CalendarMonthModule, CalendarView} from 'angular-calendar';
 import {NgSwitch, NgSwitchCase} from '@angular/common';
-import {UserPeriodService} from '../../../../shared/services/user-period.service';
+import {UserPeriodService} from '../../../services/user-period.service';
 import {ToastrService} from 'ngx-toastr';
 import {firstValueFrom} from 'rxjs';
 import {PeriodInfo} from '../utils/period-info';

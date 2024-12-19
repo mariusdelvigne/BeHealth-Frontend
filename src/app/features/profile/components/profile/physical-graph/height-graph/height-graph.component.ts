@@ -3,7 +3,7 @@ import {DatedValue} from '../../../../utils/DatedValue';
 import {NgxEchartsDirective} from 'ngx-echarts';
 import {DatePipe} from '@angular/common';
 import {map, Observable} from 'rxjs';
-import {UserHeightService} from '../../../../../../shared/services/user-height.service';
+import {UserHeightService} from '../../../../../services/user-height.service';
 import {GraphBase} from '../../graphs/utils/graph-base';
 import {GetHeightGraphOptions} from '../../graphs/utils/HeightGraphOptions';
 

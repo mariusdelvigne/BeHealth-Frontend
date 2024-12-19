@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {UserFoodService} from '../../../../../shared/services/user-food.service';
+import {UserFoodService} from '../../../../services/user-food.service';
 import {debounceTime} from 'rxjs';
-import {FoodService} from '../../../../../shared/services/food.service';
+import {FoodService} from '../../../../services/food.service';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -36,7 +36,7 @@ export class InsertFoodComponent implements OnInit {
 
   emitUserFood() {
     this._userFoodService.create(this.form.value).subscribe({
-      next: response => this._toastrService.success("Created Food successfully."),
+      next: () => this._toastrService.success("Created Food successfully."),
       error: (error) => this._toastrService.error("Error creating the food : " + error.message)
     });
   }

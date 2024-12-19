@@ -15,7 +15,7 @@ import {
   DateAdapter
 } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import {authInterceptor} from './shared/services/auth.interceptor';
+import {authInterceptor} from './shared/utils/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
