@@ -39,6 +39,7 @@ export class InsertFoodComponent implements OnInit {
       next: () => this._toastrService.success("Created Food successfully."),
       error: (error) => this._toastrService.error("Error creating the food : " + error.message)
     });
+    this.form.reset();
   }
 
   updateFoodList(name: string) {
