@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {apis, environment} from '../../../environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {AuthService} from '../../core/auth/services/auth.service';
-import {UserSportCreateCommand} from '../../shared/utils/user-sport-create-command';
-import {UserSleepCreateOutput} from '../../shared/utils/user-sleep-create-output';
+import {UserSportCreateCommand} from '../utils/user-sport-create-command';
+import {UserSleepCreateOutput} from '../utils/user-sleep-create-output';
 import {Observable} from 'rxjs';
 
 @Injectable({

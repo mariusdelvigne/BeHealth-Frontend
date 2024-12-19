@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {UserSearchQuery} from '../../../../../shared/utils/user-search-query';
+import {UserSearchQuery} from '../../../../utils/user-search-query';
 import {DebounceService} from '../../../../../shared/utils/debounce.service';
 
 @Component({

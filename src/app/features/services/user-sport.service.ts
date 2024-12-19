@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {UserSportCreateCommand} from '../../shared/utils/user-sport-create-command';
+import {UserSportCreateCommand} from '../utils/user-sport-create-command';
 import {Observable} from 'rxjs';
-import {UserSportCreateOutput} from '../../shared/utils/user-sport-create-output';
+import {UserSportCreateOutput} from '../utils/user-sport-create-output';
 import {apis, environment} from '../../../environments/environment';
 import {AuthService} from '../../core/auth/services/auth.service';
 

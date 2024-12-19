@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {apis, environment} from '../../../environments/environment';
-import {UserFoodCreateCommand} from '../../shared/utils/user-food-create-command';
+import {UserFoodCreateCommand} from '../utils/user-food-create-command';
 import {Observable} from 'rxjs';
-import {UserFoodCreateOutput} from '../../shared/utils/user-food-create-output';
+import {UserFoodCreateOutput} from '../utils/user-food-create-output';
 import {AuthService} from '../../core/auth/services/auth.service';
 
 @Injectable({

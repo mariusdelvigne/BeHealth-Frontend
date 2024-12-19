@@ -5,7 +5,7 @@ import {UserService} from '../../../../../../shared/services/user.service';
 import {NotificationService} from '../../../../../../shared/services/notification.service';
 import {NotificationCreateCommand} from '../../../../../notifications/utils/notification-create-command';
 import {debounceTime, firstValueFrom} from 'rxjs';
-import {UserSearchQuery} from '../../../../../../shared/utils/user-search-query';
+import {UserSearchQuery} from '../../../../../utils/user-search-query';
 
 @Component({
   selector: 'app-create-notifications',

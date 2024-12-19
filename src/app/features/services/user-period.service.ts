@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {apis, environment} from '../../../environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {UserPeriodCreateCommand} from '../../shared/utils/user-period-create-command';
-import {UserPeriodCreateOutput} from '../../shared/utils/user-period-create-output';
+import {UserPeriodCreateCommand} from '../utils/user-period-create-command';
+import {UserPeriodCreateOutput} from '../utils/user-period-create-output';
 import {Observable} from 'rxjs';
 import {AuthService} from '../../core/auth/services/auth.service';
 

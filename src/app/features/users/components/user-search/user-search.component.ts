@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SearchFormComponent} from './search-form/search-form.component';
 import {UserListComponent} from './user-list/user-list.component';
-import {UserSearchOutput} from '../../../../shared/utils/user-search-output';
-import {UserSearchQuery} from '../../../../shared/utils/user-search-query';
+import {UserSearchOutput} from '../../../utils/user-search-output';
+import {UserSearchQuery} from '../../../utils/user-search-query';
 import {UserService} from '../../../../shared/services/user.service';
-import {UserBanCommand} from '../../../../shared/utils/user-ban-command';
+import {UserBanCommand} from '../../utils/user-ban-command';
 import {UserBanDeleteChoice} from '../../utils/user-ban-delete-choice';
 
 @Component({
