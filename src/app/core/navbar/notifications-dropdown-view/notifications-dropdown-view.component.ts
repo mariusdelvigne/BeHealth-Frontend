@@ -6,6 +6,8 @@ import {AuthService} from '../../auth/services/auth.service';
 import {ToastrService} from 'ngx-toastr';
 import {filter} from "rxjs";
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-notifications-dropdown-view',
   standalone: true,
@@ -56,6 +58,15 @@ export class NotificationsDropdownViewComponent implements OnInit {
       return "99+"
     }
     return this.notificationsNotRead.length.toString();
+  }
+
+  collapseNavbar() {
+    const navbar = document.getElementById('navbarNavAltMarkup');
+    if (navbar) {
+      new bootstrap.Collapse(navbar, {
+        toggle: true
+      });
+    }
   }
 
   @HostListener('document:click', ['$event'])

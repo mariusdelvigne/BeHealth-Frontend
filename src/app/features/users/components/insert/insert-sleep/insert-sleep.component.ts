@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {UserSleepService} from '../../../../../shared/services/user-sleep.service';
+import {UserSleepService} from '../../../../services/user-sleep.service';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -23,7 +23,7 @@ export class InsertSleepComponent {
 
   emitUserSleep() {
     this._userSleepService.create(this.form.value).subscribe({
-      next: response => this._toastrService.success("Sleep created successfully."),
+      next: () => this._toastrService.success("Sleep created successfully."),
       error: (error) => this._toastrService.error("Error creating the sleep + " + error.message),
     });
   }

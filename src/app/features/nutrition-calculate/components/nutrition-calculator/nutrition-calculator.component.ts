@@ -3,7 +3,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {NutritionCalculatorOutput} from '../../utils/nutrition-calculator-output';
 import {NutritionCalculatorService} from '../../services/nutrition-calculator.service';
 import {ToastrService} from 'ngx-toastr';
-import {FoodService} from '../../../../shared/services/food.service';
+import {FoodService} from '../../../services/food.service';
 import {debounceTime} from 'rxjs';
 
 @Component({

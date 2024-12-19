@@ -13,23 +13,13 @@ import {UserService} from '../../../../../../shared/services/user.service';
 })
 export class ViewAllNotificationsComponent implements OnInit {
   notifications: NotificationsGetAllOutput[] = [];
+  pageNumber = 1;
 
   constructor(private _notificationService: NotificationService, private _toastrService: ToastrService, private _userService: UserService) {
   }
 
   ngOnInit() {
-    this._notificationService.getAllNotifications().subscribe({
-      next: (notifications) => {
-        this.notifications = notifications.notifications;
-
-        this.notifications.forEach((notification, index) => {
-          this.getUserReceiver(notification, index);
-        });
-      },
-      error: (error) => {
-        this._toastrService.error("Error : " + error.message);
-      }
-    });
+    this.loadData();
   }
 
   getUserReceiver(notification: NotificationsGetAllOutput, index: number) {
@@ -60,5 +50,30 @@ export class ViewAllNotificationsComponent implements OnInit {
   deleteNotification(id: number) {
     this._notificationService.deleteNotification(id).subscribe();
     window.location.reload();
+  }
+
+  previousPage() {
+    this.pageNumber--;
+    this.loadData();
+  }
+
+  nextPage() {
+    this.pageNumber++;
+    this.loadData();
+  }
+
+  loadData() {
+    this._notificationService.getAllNotifications(this.pageNumber - 1).subscribe({
+      next: (notifications) => {
+        this.notifications = notifications.notifications;
+
+        this.notifications.forEach((notification, index) => {
+          this.getUserReceiver(notification, index);
+        });
+      },
+      error: (error) => {
+        this._toastrService.error("Error : " + error.message);
+      }
+    });
   }
 }

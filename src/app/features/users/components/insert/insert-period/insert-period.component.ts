@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {UserPeriodService} from '../../../../../shared/services/user-period.service';
+import {UserPeriodService} from '../../../../services/user-period.service';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({
@@ -23,7 +23,7 @@ export class InsertPeriodComponent {
 
   emitUserPeriod() {
     this._userPeriodService.create(this.form.value).subscribe({
-      next: response => this._toastrService.success("Period created successfully"),
+      next: () => this._toastrService.success("Period created successfully"),
       error: (error) => this._toastrService.error("Error creating the period : " + error.message),
     });
   }

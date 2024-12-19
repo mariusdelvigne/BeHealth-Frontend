@@ -4,7 +4,7 @@ import {PlanSearchOutput} from '../../utils/plan-search-output';
 import {PlanService} from '../../services/plan.service';
 import {PlanInfoComponent} from '../../shared/plan-info/plan-info.component';
 import {NgClass} from '@angular/common';
-import {DebounceService} from '../../../../shared/services/debounce.service';
+import {DebounceService} from '../../../../shared/utils/debounce.service';
 
 @Component({
   selector: 'app-plan-search-public',

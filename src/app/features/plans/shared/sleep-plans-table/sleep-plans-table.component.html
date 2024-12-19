@@ -1,6 +1,9 @@
 <div class="border border-3" style="box-shadow: 0 0 16px rgba(0, 0, 0, 0.3)">
   <div class="w-100 p-3 d-flex sleep-color justify-content-between" (click)="setVisibility()">
     <h3>Sleep Plans</h3>
+    @if (selectedSleepPlan) {
+      <li class="badge bg-dark p-2 text-center text-break w-100">{{ selectedSleepPlan.name }}</li>
+    }
   </div>
 
 @if (isVisible) {

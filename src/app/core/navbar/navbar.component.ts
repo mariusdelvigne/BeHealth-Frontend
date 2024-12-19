@@ -4,6 +4,9 @@ import {AuthService} from '../auth/services/auth.service';
 import {NotificationsDropdownViewComponent} from './notifications-dropdown-view/notifications-dropdown-view.component';
 import {MdbModalModule, MdbModalRef, MdbModalService} from 'mdb-angular-ui-kit/modal';
 import {AuthSignOutComponent} from '../auth/components/auth-sign-out/auth-sign-out.component';
+import {NgClass} from '@angular/common';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +14,8 @@ import {AuthSignOutComponent} from '../auth/components/auth-sign-out/auth-sign-o
   imports: [
     RouterLink,
     NotificationsDropdownViewComponent,
-    MdbModalModule
+    MdbModalModule,
+    NgClass
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
@@ -26,5 +30,14 @@ export class NavbarComponent {
       animation: true,
       backdrop: false,
     });
+  }
+
+  collapseNavbar() {
+    const navbar = document.getElementById('navbarNavAltMarkup');
+    if (navbar) {
+      new bootstrap.Collapse(navbar, {
+        toggle: true
+      });
+    }
   }
 }

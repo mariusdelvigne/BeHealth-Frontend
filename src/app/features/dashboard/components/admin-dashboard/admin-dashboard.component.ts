@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {UserService} from '../../../../shared/services/user.service';
 import {ToastrService} from 'ngx-toastr';
-import {UserSearchOutput} from '../../../../shared/utils/user-search-output';
+import {UserSearchOutput} from '../../../utils/user-search-output';
 
 @Component({
   selector: 'app-admin-dashboard',

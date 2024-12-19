@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {UserSearchOutput} from '../../../../../shared/utils/user-search-output';
+import {UserSearchOutput} from '../../../../utils/user-search-output';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {UserBanCommand} from '../../../../../shared/utils/user-ban-command';
+import {UserBanCommand} from '../../../utils/user-ban-command';
 import {UserService} from '../../../../../shared/services/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {UserBanComponent} from './user-ban/user-ban.component';

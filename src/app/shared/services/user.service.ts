@@ -4,9 +4,9 @@ import {apis, environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {UserCreateCommand} from '../../core/auth/utils/user-create-command';
 import {UserCreateOutput} from '../../core/auth/utils/user-create-output';
-import {UserSearchQuery} from '../utils/user-search-query';
+import {UserSearchQuery} from '../../features/utils/user-search-query';
 import {UserUpdateCommand} from '../utils/user-update-command';
-import {UserBanCommand} from '../utils/user-ban-command';
+import {UserBanCommand} from '../../features/users/utils/user-ban-command';
 import {UserPasswordCreateCommand} from '../utils/user-password-create-command';
 
 @Injectable({
