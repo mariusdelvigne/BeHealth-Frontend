@@ -84,6 +84,7 @@ export class CreateNotificationsComponent implements OnInit {
     if (isConfirmed) {
       this._notificationService.createNotification(notificationCommand).subscribe(
         () => {
+          this.formCreateNotification.reset();
           window.location.reload();
         },
         (error) => {

@@ -48,6 +48,7 @@ export class CreateGlobalMessagesComponent {
     if (isConfirmed) {
       this._globalMessageServie.createGlobalMessage(globalMessageCommand).subscribe(
         () => {
+          this.formCreateGlobalMessage.reset();
           window.location.reload();
         },
         (error) => {

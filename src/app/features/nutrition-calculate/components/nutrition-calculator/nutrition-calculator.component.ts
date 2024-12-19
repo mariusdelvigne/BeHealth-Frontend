@@ -63,6 +63,7 @@ export class NutritionCalculatorComponent implements OnInit {
         this.resultNutriment = response;
         this.resultNutriment.foodsName = response.foodsName;
         this._toastrService.success("Nutrition computed successfully");
+        this.form.reset();
       },
       error: (error) => {
         this._toastrService.error("Nutrition computing failed : " + error.message)
