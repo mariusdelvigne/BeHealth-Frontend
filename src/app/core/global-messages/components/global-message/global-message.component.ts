@@ -50,7 +50,6 @@ export class GlobalMessageComponent implements OnInit {
   closeBanner(id: number) {
     this.isVisible = false;
     localStorage.setItem(`globalMessageBannerClosed${id}`, "true");
-    console.log(`globalMessageBannerClosed${id}`, "true");
     window.location.reload();
   }
 

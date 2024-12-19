@@ -42,8 +42,6 @@ export class StackedBarGraphComponent implements OnInit {
       this.dataType = this._route.snapshot.params['dataType'];
       this.type = this._route.snapshot.params['type'];
       this.dataValues = this._graphService.loadType(this.dataType, this.dataValues);
-      this.loadOptions()
-      this.loadData();
     });
 
     // 0 : sunday, 1 : monday, ...
@@ -72,7 +70,7 @@ export class StackedBarGraphComponent implements OnInit {
     do {
       if (this.type == "sports") {
         let response = await firstValueFrom(this._userSportService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
-        console.log(response)
+
         dataToAdd = response.userSports.map((d: any) => ({
           date: new Date(d.startDatetime),
           food: d.name,

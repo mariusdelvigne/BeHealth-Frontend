@@ -50,8 +50,7 @@ export class ScatterGraphComponent implements OnInit {
       this.dataType = this._route.snapshot.params['dataType'];
       this.type = this._route.snapshot.params['type'];
       this.dataValues = this._graphService.loadType(this.dataType, this.dataValues);
-      this.loadOptions()
-      this.loadData();
+
     });
 
     this.startDate.setDate(1);
@@ -69,11 +68,10 @@ export class ScatterGraphComponent implements OnInit {
     let pageNumber = 0;
     const pageSize: number = 20;
 
-    console.log(this.dataType)
     do {
       if (this.type == "sports") {
         let response = await firstValueFrom(this._userSportService.getAllBetween(this.startDate, this.endDate, pageNumber++, pageSize));
-        console.log(response)
+
         dataToAdd = response.userSports.map((d: any) => ({
           date: new Date(d.startDatetime),
           value: d[this.dataType],
@@ -100,7 +98,7 @@ export class ScatterGraphComponent implements OnInit {
       .setMonth(this.startDate.getMonth() + (next ? 1 : -1))
     );
     this.endDate = new Date(this.startDate.getFullYear(), this.startDate.getMonth() + 1, 0,
-      23, 59, 59, 999);
+      24, 59, 59, 999);
 
     this.loadData();
     this.loadOptions();

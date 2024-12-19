@@ -38,7 +38,6 @@ export class FoodPlansTableComponent implements OnInit {
         .subscribe({
           next: (plan) => {
             this.selectedFoodPlan = plan;
-            console.log("onInit");
             this.emitFoodPlan.emit(plan);
           }
         });
@@ -46,7 +45,6 @@ export class FoodPlansTableComponent implements OnInit {
   }
 
   selectPlan(plan: any) {
-    console.log("selectPlan");
     this.selectedFoodPlan = plan;
     this.emitFoodPlan.emit(plan);
   }

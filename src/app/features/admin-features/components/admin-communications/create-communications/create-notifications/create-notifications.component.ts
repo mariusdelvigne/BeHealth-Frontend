@@ -66,16 +66,12 @@ export class CreateNotificationsComponent implements OnInit {
 
     const userId = userToSend.userGetByNames;
 
-    console.log(userId[0].id);
-
     const notificationCommand: NotificationCreateCommand = {
       title: title,
       description: description,
       category: category,
       userId: userId[0].id,
     };
-
-    console.log(notificationCommand);
 
     const isConfirmed = window.confirm(`
     Are you sure you want to create this notifications ?

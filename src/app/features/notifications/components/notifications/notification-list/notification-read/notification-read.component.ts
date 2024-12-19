@@ -36,7 +36,6 @@ export class NotificationReadComponent implements OnInit {
           next: (notifications) => {
             this.notificationToPrint = notifications;
             this.timeFromReceive = this.getTimeFromReceive(notifications.sendingDateTime);
-            console.log(this.timeFromReceive);
           },
           error: (error) => {
             this._toastrService.error("Error : " + error.message);

@@ -8,7 +8,12 @@
   <div class="row">
     <label for="mail" class="col-sm-2 col-form-label fw-bold">Mail</label>
     <div class="col-sm-10">
-      <input class="form-control w-100" type="text" placeholder="Mail" formControlName="mail" id="mail">
+      <input class="form-control w-100" type="email" placeholder="Mail" formControlName="mail" id="mail">
+      @if (form.controls['mail'].invalid && form.controls['mail'].value.length > 0){
+        <div class="text-danger small-text">
+          Invalid email entered.
+        </div>
+      }
     </div>
   </div>
   <div class="row">

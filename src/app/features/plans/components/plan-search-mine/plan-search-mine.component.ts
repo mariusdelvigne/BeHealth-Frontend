@@ -35,7 +35,6 @@ export class PlanSearchMineComponent implements OnInit{
   }
 
   showPlanInfo(planId: number) {
-    console.log("fezb");
     if (this.selectedPlan?.id == planId) {
       this.selectedPlan = null;
       this.tags = [];
@@ -60,7 +59,7 @@ export class PlanSearchMineComponent implements OnInit{
           this._toastrService.error("Error deleting plan: " + error.message);
         }
       });
-    };
+    }
   }
 
   goToUpdateForm(planId: number) {
@@ -70,7 +69,6 @@ export class PlanSearchMineComponent implements OnInit{
   loadTags(planId: number) {
     this._planService.getTags(planId).subscribe({
       next: (response) => {
-        console.log(response);
         this.tags = response.astPlansTags;
       },
       error: (error) => {

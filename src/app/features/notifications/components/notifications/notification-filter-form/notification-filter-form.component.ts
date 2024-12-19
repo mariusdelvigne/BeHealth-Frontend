@@ -37,7 +37,6 @@ export class NotificationFilterFormComponent {
       const selectedCategory = this.formSearch.get('category')?.value || "all";
       const selectedRead = this.formSearch.get('isRead')?.value || "all";
 
-      console.log('Filters changed:', {category: selectedCategory, isRead: selectedRead});
       this.filtersNotification.emit({category: selectedCategory, isRead: selectedRead});
     }, 200);
   }

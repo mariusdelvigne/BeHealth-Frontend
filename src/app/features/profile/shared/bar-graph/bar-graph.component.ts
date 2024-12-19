@@ -5,7 +5,7 @@ import {GraphData} from '../utils/graph-data';
 import {EChartsOption} from 'echarts';
 import {GraphService} from '../services/graph.service';
 import {ActivatedRoute} from '@angular/router';
-import {firstValueFrom} from 'rxjs';
+import {firstValueFrom, isEmpty} from 'rxjs';
 import {UserSleepService} from '../../../services/user-sleep.service';
 import {SleepInfo} from '../utils/sleep-info';
 
@@ -35,8 +35,6 @@ export class BarGraphComponent implements OnInit {
   ngOnInit(): void {
     this._route.paramMap.subscribe(() => {
       this.dataValues = this._graphService.loadType('sleeps', this.dataValues);
-      this.loadOptions()
-      this.loadData();
     });
 
     // 0 : sunday, 1 : monday, ...
@@ -45,12 +43,12 @@ export class BarGraphComponent implements OnInit {
 
     // week start => Monday
     monday.setDate(monday.getDate() + diff);
-    monday.setHours(0, 0, 0, 0);
+    monday.setHours(1, 0, 0, 0);
     this.startDate =  monday;
 
     // week end => Sunday
     this.endDate.setDate(this.startDate.getDate() + 6);
-    this.endDate.setHours(23, 59, 59, 999);
+    this.endDate.setHours(24, 59, 59, 999);
 
     this.loadOptions()
     this.loadData();
@@ -90,6 +88,18 @@ export class BarGraphComponent implements OnInit {
     const groupedData = this._graphService.groupDataByDayAndSleep(this.data);
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
+    // Calculate the max duration for one day
+    let maxHours = 0;
+    Object.keys(groupedData).forEach(sleepPhase => {
+      days.forEach(day => {
+        maxHours = Math.max(maxHours, groupedData[sleepPhase][day]);
+      });
+    });
+
+    // If no data set the maxYAxis to 24
+    // Else a little more than the max duration
+    const maxYAxis = !this.data[0] ? 24 :  Math.ceil(maxHours * 1.1);
+
     this.updateOptions = {
       series: Object.keys(groupedData).map(sleepPhase => ({
         name: '',
@@ -108,6 +118,9 @@ export class BarGraphComponent implements OnInit {
         formatter: (params: any) => {
           return `${params.value.toFixed(2)} hours`;
         }
+      },
+      yAxis: {
+        max: maxYAxis,
       },
     };
   }
@@ -130,7 +143,7 @@ export class BarGraphComponent implements OnInit {
         name: 'Time (hours)',
         type: 'value',
         min: 0,
-        max: 24,
+        max: 48,
         nameTextStyle: {
           fontWeight: 'bold',
         },

@@ -60,7 +60,6 @@ export class SleepPlansTableComponent implements OnInit{
       .subscribe({
         next: (response) => {
           this.sleepPlans = response.plans;
-          console.log(response.plans);
         }
       });
   }

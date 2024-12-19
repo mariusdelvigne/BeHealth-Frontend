@@ -11,7 +11,6 @@ import {PlanSleepElementComponent} from '../plan-form/components/plan-sleep-elem
   imports: [
     PlanSportListComponent,
     PlanFoodListComponent,
-    PlanSleepFormComponent,
     PlanSleepElementComponent
   ],
   templateUrl: './plan-info.component.html',
@@ -44,11 +43,15 @@ export class PlanInfoComponent implements OnInit {
         if (this.plan.category === 'sport') {
           if (response.sports.length < pageSize)
             this.contentLeft = false;
-          this.plan.sports.splice(this.plan.sports.length, 0, ...response.sports);
+
+          if (this.plan.sports)
+            this.plan.sports.splice(this.plan.sports.length, 0, ...response.sports);
         } else if (this.plan.category === 'food') {
           if (response.foods.length < pageSize)
             this.contentLeft = false;
-          this.plan.foods.splice(this.plan.foods.length, 0, ...response.foods);
+
+          if (this.plan.foods)
+            this.plan.foods.splice(this.plan.foods.length, 0, ...response.foods);
         }
       },
       error: (error) => {

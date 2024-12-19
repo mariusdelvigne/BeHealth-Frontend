@@ -30,7 +30,6 @@ export class NotificationListComponent implements OnInit {
         this.notifications = notifications.notifications;
       },
       error: (error) => {
-        console.log(error);
         this._toastrService.error("Error : "+ error.message);
       }
     })

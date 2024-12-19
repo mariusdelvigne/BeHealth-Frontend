@@ -73,7 +73,7 @@ export class PlanFormComponent implements OnInit {
     if (response && response.astPlansTags) {
       this.planTags = response.astPlansTags.map((tagObj: any) => tagObj.tag);
     }
-    console.log(this.planTags);
+
     this.form.patchValue({
       name: this.plan.name,
       privacy: this.plan.privacy,
@@ -124,7 +124,9 @@ export class PlanFormComponent implements OnInit {
         this._toastrService.success("Plan updated successfully");
       }
     } catch (error: any) {
-      this._toastrService.error("Error creating the plan : " + error.message);
+      this.mode == "create"
+      ? this._toastrService.error("Error creating the plan : " + error.message)
+      : this._toastrService.error("Error updating the plan : " + error.message);
     }
 
     try {

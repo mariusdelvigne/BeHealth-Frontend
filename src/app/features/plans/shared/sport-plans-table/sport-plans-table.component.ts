@@ -60,7 +60,6 @@ export class SportPlansTableComponent implements OnInit{
       .subscribe({
         next: (response) => {
           this.sportPlans = response.plans;
-          console.log(response.plans);
         }
       });
   }
