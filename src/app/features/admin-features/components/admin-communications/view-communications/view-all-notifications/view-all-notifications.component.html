@@ -12,13 +12,13 @@
   </div>
 </div>
 
-<div class="d-flex flex-column justify-content-center align-items-center me-5 ms-5 mt-2 mb-2">
-  <div class="row w-100">
+<div class="container">
+  <div class="overflow-auto row" style="height: 80vh">
     @for (notification of notifications; track $index) {
-      <div class="col-12 col-md-4 mt-3">
-        <div class="card h-100 border-top-food-color">
+      <div class="col-12 col-md-6 mt-3">
+        <div class="card border-top-food-color">
           <div class="rounded-0 flex-row justify-content-between align-items-center mt-2 ms-3">
-            <h4 class="text-dark fw-bold mt-1"><u>Id Notification :</u> {{ notification.id }}</h4><br>
+            <h4 class="text-dark fw-bold mt-1"><u>Id :</u> {{ notification.id }}</h4><br>
             <h4 class="text-dark fw-bold"><u>Title :</u> {{ notification.title }}</h4>
           </div>
           <div class="mt-2 ms-3">

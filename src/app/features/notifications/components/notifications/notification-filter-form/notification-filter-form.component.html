@@ -1,11 +1,11 @@
-<div class="h-100 p-4">
-  <form class="custom-insert-form w-50 mx-auto m-3 p-3 rounded" [formGroup]="formSearch">
+<div class="ps-3 pe-3">
+  <form class="custom-insert-form mx-auto pt-3 rounded container" [formGroup]="formSearch">
     <label for="category" class="form-label">
-      <h4>Filter notifications by :</h4>
+      <h5>Filter by :</h5>
     </label>
 
     <div class="mb-3">
-      <h5>Category :</h5>
+      <p class="mb-0">Category :</p>
       <select id="category" class="dropdown form-select" formControlName="category" (change)="debouncedFilterNotifications()">
         @for (category of allCategories; track $index) {
           <option [value]="category.value">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="mb-3">
-      <h5>Is Read :</h5>
+      <p class="mb-0">Is Read :</p>
       <select id="read" class="dropdown form-select" formControlName="isRead" (change)="debouncedFilterNotifications()">
         <option value="all">All</option>
         <option value="read">Read</option>

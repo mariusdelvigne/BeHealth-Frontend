@@ -1,6 +1,12 @@
 <form [formGroup]="form" (submit)="addPlanSport($event)">
   <table class="table">
     <tr>
+      <td class="col-5 text-center">Sport</td>
+      <td class="col-2 text-center">Day</td>
+      <td class="col-2 text-center">Time</td>
+      <td class="col-2 text-center">Duration (min)</td>
+    </tr>
+    <tr>
       <td class="col-5">
         <input type="text" formControlName="name" class="w-100" id="sport-name">
       </td>
@@ -14,7 +20,7 @@
         <input type="number" formControlName="durationInMin" class="w-100" min="1">
       </td>
       <td class="col-1">
-        <input type="submit" value="Add" [disabled]="form.invalid">
+        <input type="submit" class="w-100" value="Add" [disabled]="form.invalid">
       </td>
     </tr>
   </table>

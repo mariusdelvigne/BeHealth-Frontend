@@ -9,14 +9,13 @@
 @if (isVisible) {
   <form class="d-flex flex-column justify-content-center p-3 rounded"
         [formGroup]="form" (submit)="emitSearchPlan()">
-    <div class="d-flex justify-content-center input-group mb-3 gap-2">
-      <input class="rounded-0 search-input w-25 p-2" formControlName="name" placeholder="Title">
+    <div class="d-flex justify-content-center input-group gap-2">
+      <input class="rounded-0 search-input w-75 p-2" formControlName="name" placeholder="Title">
 
       <button type="submit" class="search-btn p-2 rounded-0">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </div>
-
   </form>
 
   <div class="d-flex justify-content-center mb-2">
@@ -32,16 +31,16 @@
       </button>
     </div>
   </div>
-
+  <hr class="m-0">
   @if (sportPlans) {
     <div class="container overflow-hidden">
-      <div class="row g-3 mt-1">
+      <div class="row g-3 mt-1 max-vh-50 overflow-auto">
         @for (sportPlan of sportPlans; track $index) {
           <div class="col-12">
             <div class="card pt-3 border-top-sport-color" (click)="selectPlan(sportPlan)"
                  [ngClass]="{ 'selected': isSelected(sportPlan) }">
               <div class="card-header d-flex justify-content-between align-items-center">
-                <i class="fa-solid fa-person-running custom-icon p-4 rounded-1"></i>
+                <i class="fa-solid fa-person-running custom-icon p-3 rounded-1"></i>
                 <h4 class="text-end">{{ sportPlan.name }}</h4>
               </div>
               <div class="card-body">

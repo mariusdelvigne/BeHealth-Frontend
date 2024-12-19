@@ -9,7 +9,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
 
   if (authService.isTokenExpired()) {
-    router.navigate(['/']);
+    router.navigate(['/sign-in']);
     return throwError(() => new Error('Token expired'));
   }
 

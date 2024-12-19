@@ -1,84 +1,84 @@
-<div class="h-100 p-4">
-  <form class="custom-insert-form w-50 mx-auto m-3 p-3 rounded" [formGroup]="form" (submit)="calculNutrition()" autocomplete="off">
-    <div class="mb-3">
-      <label for="nameFood" class="form-label">Food</label>
-      <input class="form-control w-100" type="text" placeholder="Name" list="foodList" formControlName="nameFood" id="nameFood">
-      <datalist id="foodList">
-        @for (food of foods; track food.id) {
-          <option [value]="food.name"></option>
-        }
-      </datalist>
-    </div>
+<div class="h-100 ms-3 me-3">
+  <form class="custom-insert-form container mx-auto m-3 p-3 rounded" [formGroup]="form" (submit)="calculNutrition()" autocomplete="off">
+    <div class="row">
+      <div class="mb-3 col-8">
+        <label for="nameFood" class="form-label">Food</label>
+        <input class="form-control w-100" type="text" placeholder="Name" list="foodList" formControlName="nameFood" id="nameFood">
+        <datalist id="foodList">
+          @for (food of foods; track food.id) {
+            <option [value]="food.name"></option>
+          }
+        </datalist>
+      </div>
 
-    <div class="mb-3">
-      <label for="quantityInGrams" class="form-label">Quantity (grams)</label>
-      <input type="number" id="quantityInGrams" class="form-control" formControlName="quantityInGrams">
-    </div>
+      <div class="mb-3 col-4">
+        <label for="quantityInGrams" class="form-label">Quantity (g)</label>
+        <input type="number" id="quantityInGrams" class="form-control" formControlName="quantityInGrams">
+      </div>
 
-    <div class="d-flex justify-content-center">
-      <input class="custom-btn w-50" type="submit" [disabled]="form.invalid" value="Calculate Nutrients">
+      <div class="d-flex justify-content-center">
+        <input class="custom-btn w-75 rounded-1" type="submit" [disabled]="form.invalid" value="Calculate">
+      </div>
     </div>
   </form>
-
 </div>
-<div class="container text-center rounded-1">
-  <table class="table rounded-1">
+<div class="container p-1 bg-white rounded">
+  <table class="table table-striped text-center">
     <thead>
-    <tr>
-      <th>Property</th>
-      <th>Value</th>
-    </tr>
+      <tr>
+        <th>Property</th>
+        <th>Value</th>
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Food name</td>
-      <td>{{ resultNutriment.foodsName }}</td>
-    </tr>
-    <tr>
-      <td>Serving weights</td>
-      <td>{{ resultNutriment.servingWeights }} g</td>
-    </tr>
-    <tr>
-      <td>Calories</td>
-      <td>{{ resultNutriment.calories }} kcal</td>
-    </tr>
-    <tr>
-      <td>Total fats</td>
-      <td>{{ resultNutriment.totalFats }} g</td>
-    </tr>
-    <tr>
-      <td>Saturated fats</td>
-      <td>{{ resultNutriment.saturatedFats }} g</td>
-    </tr>
-    <tr>
-      <td>Cholesterol</td>
-      <td>{{ resultNutriment.cholesterol }} mg</td>
-    </tr>
-    <tr>
-      <td>Sodium</td>
-      <td>{{ resultNutriment.sodium }} mg</td>
-    </tr>
-    <tr>
-      <td>Total carbohydrates</td>
-      <td>{{ resultNutriment.totalCarbohydrates }} g</td>
-    </tr>
-    <tr>
-      <td>Dietary fiber</td>
-      <td>{{ resultNutriment.dietaryFiber }} g</td>
-    </tr>
-    <tr>
-      <td>Sugars</td>
-      <td>{{ resultNutriment.sugars }} g</td>
-    </tr>
-    <tr>
-      <td>Proteins</td>
-      <td>{{ resultNutriment.proteins }} g</td>
-    </tr>
-    <tr>
-      <td>Potassium</td>
-      <td>{{ resultNutriment.potassium }} mg</td>
-    </tr>
+      <tr>
+        <td>Food name</td>
+        <td>{{ resultNutriment.foodsName }}</td>
+      </tr>
+      <tr>
+        <td>Serving weights</td>
+        <td>{{ resultNutriment.servingWeights }} g</td>
+      </tr>
+      <tr>
+        <td>Calories</td>
+        <td>{{ resultNutriment.calories }} kcal</td>
+      </tr>
+      <tr>
+        <td>Total fats</td>
+        <td>{{ resultNutriment.totalFats }} g</td>
+      </tr>
+      <tr>
+        <td>Saturated fats</td>
+        <td>{{ resultNutriment.saturatedFats }} g</td>
+      </tr>
+      <tr>
+        <td>Cholesterol</td>
+        <td>{{ resultNutriment.cholesterol }} mg</td>
+      </tr>
+      <tr>
+        <td>Sodium</td>
+        <td>{{ resultNutriment.sodium }} mg</td>
+      </tr>
+      <tr>
+        <td>Total carbohydrates</td>
+        <td>{{ resultNutriment.totalCarbohydrates }} g</td>
+      </tr>
+      <tr>
+        <td>Dietary fiber</td>
+        <td>{{ resultNutriment.dietaryFiber }} g</td>
+      </tr>
+      <tr>
+        <td>Sugars</td>
+        <td>{{ resultNutriment.sugars }} g</td>
+      </tr>
+      <tr>
+        <td>Proteins</td>
+        <td>{{ resultNutriment.proteins }} g</td>
+      </tr>
+      <tr>
+        <td>Potassium</td>
+        <td>{{ resultNutriment.potassium }} mg</td>
+      </tr>
     </tbody>
   </table>
-
 </div>

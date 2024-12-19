@@ -1,7 +1,7 @@
-<textarea class="form-control w-100" style="height: 20vh" disabled [value]="program.description"></textarea>
+<textarea class="form-control w-100 " style="height: 20vh" disabled [value]="program.description"></textarea>
 
 <div class="d-flex flex-column">
-  <ul class="w-100 p-3">
+  <ul class="w-100 pt-3 p-1 p-md-2 p-lg-3">
     @for (plan of [foodPlan, sportPlan, sleepPlan]; track $index) {
       @if (plan) {
         <li (click)="showPlanInfo(plan.id)" class="plan">
@@ -10,16 +10,16 @@
                  [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
               {{ plan.category }}
             </div>
-            <div class="col-8 col-md-4 ps-3 text-start">
-              Duration: {{ plan.durationInDays }} days
+            <div class="col-auto ps-3 pe-3 text-start border-top border-end border-dark-subtle">
+              Duration : {{ plan.durationInDays }} days
             </div>
           </div>
-          <div class="p-3 bg-dark-subtle border-4 border-light-subtle border-bottom">
-              <div class="text-start">
-                {{ plan.name }}
-              </div>
+          <div class="pt-3 pb-3 p-1 ps-md-2 pe-md-2 p-lg-3 bg-dark-subtle border-3 border-light-subtle border-bottom">
+            <div class="text-start text-break">
+              {{ plan.name }}
+            </div>
             @if (selectedPlan && plan.id == selectedPlan.id) {
-              <hr>
+              <hr class="mt-1 mb-2">
               <div>
                 <app-plan-info [plan]="selectedPlan" [tags]="tags"></app-plan-info>
               </div>

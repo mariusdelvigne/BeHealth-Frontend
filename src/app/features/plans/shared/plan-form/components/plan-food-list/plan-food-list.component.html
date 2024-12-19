@@ -1,22 +1,24 @@
-<table class="table">
-  <tr>
-    <th class="col-5">Food</th>
-    <th class="col-2">Day</th>
-    <th class="col-2">Time</th>
-    <th class="col-2">Quantity</th>
-    @if (isEditMode) {
-      <th class="col-1"></th>
-    }
-  </tr>
-  @for (planFood of planFoods; track $index) {
-    <tr>
-      <td>{{planFood.name}}</td>
-      <td>{{planFood.dayNumber}}</td>
-      <td>{{planFood.dayTime}}</td>
-      <td>{{planFood.quantityInG}}g</td>
+@if (planFoods.length) {
+  <table class="table mb-0 mt-1">
+    <tr class="border-bottom border-dark-subtle">
+      <th class="col-auto">Food</th>
+      <th>Day</th>
+      <th>Time</th>
+      <th>Quantity</th>
       @if (isEditMode) {
-        <td><input type="button" value="X" (click)="deletePlanFood($index)"></td>
+        <th></th>
       }
     </tr>
-  }
-</table>
+    @for (planFood of planFoods; track $index) {
+      <tr>
+        <td class="text-break">{{planFood.name}}</td>
+        <td>{{planFood.dayNumber}}</td>
+        <td>{{planFood.dayTime}}</td>
+        <td>{{planFood.quantityInG}}g</td>
+        @if (isEditMode) {
+          <td><input type="button" value="X" (click)="deletePlanFood($index)"></td>
+        }
+      </tr>
+    }
+  </table>
+}

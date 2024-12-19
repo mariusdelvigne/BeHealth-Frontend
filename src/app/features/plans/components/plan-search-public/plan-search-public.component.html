@@ -1,79 +1,66 @@
-<div class="container text-center">
-  <form class="d-flex flex-column justify-content-center p-3 rounded-1"
-        [formGroup]="form">
-
-    <div data-mdb-input-ini class="d-flex justify-content-center input-group mb-3 gap-2 form-outline">
-
-      <div class="position-relative w-25">
-        <i class="fa-solid fa-magnifying-glass position-absolute"></i>
-        <input type="text" class="rounded-1 search-input w-100 p-2 ps-5" formControlName="name" placeholder="Title plan"
-               (input)="emitSearchPlan()">
+<form class="container flex-column justify-content-center pt-3 rounded-1" [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-8 col-md-10">
+      <div data-mdb-input-ini class="d-flex justify-content-center input-group mb-3 gap-2 form-outline w-100">
+        <div class="position-relative w-100">
+          <i class="fa-solid fa-magnifying-glass position-absolute"></i>
+          <input type="text" class="rounded-1 search-input w-100 p-2 ps-5" formControlName="name" placeholder="Title"
+                 (input)="emitSearchPlan()">
+        </div>
       </div>
-
-
-      <select formControlName="category" class="rounded-1" (change)="emitSearchPlan()">
+    </div>
+    <div class="col-sm-4 col-md-2 mb-3">
+      <select formControlName="category" class="form-control" (change)="emitSearchPlan()">
         <option value="">All</option>
         <option value="sport" selected>Sport</option>
         <option value="food">Food</option>
         <option value="sleep">Sleep</option>
       </select>
     </div>
-  </form>
-
-  <div class="d-flex justify-content-center mb-2">
-    <div class="rounded-3 overflow-hidden">
-      <button type="button" class="page-btn p-2" (click)="previousPage()" style="width: 50px"
-              [disabled]="pageNumber <= 1">
-        <i class="fa-solid fa-angle-left"></i>
-      </button>
-
-      <input type="button" class="page-btn p-2" [value]="pageNumber" style="width: 100px">
-
-      <button type="button" class="page-btn p-2" (click)="nextPage()" style="width: 50px">
-        <i class="fa-solid fa-chevron-right"></i>
-      </button>
-    </div>
   </div>
+</form>
 
-  <ul class="program-list mt-3 rounded-1">
-    @if (plans.length > 0) {
-      @for (plan of plans; track $index) {
-        <li (click)="showPlanInfo(plan.id)" class="plan rounded-1">
-          <div class="d-flex rounded-1">
-            <div class="col-4 col-md-2 text-white text-uppercase text-center rounded-1"
-                 [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
-              {{ plan.category }}
-            </div>
-            <div class="col-8 col-md-4 ps-3 text-start rounded-1">
-              Duration: {{ plan.durationInDays }} days
-            </div>
-          </div>
-          <div class="p-1 bg-dark-subtle  border-4 border-light-subtle border-bottom rounded-1">
-            <div class="p-3 d-flex justify-content-between align-items-center rounded-1">
-              <div class="text-start rounded-1">
-                {{ plan.name }}
-              </div>
-              @if (plan == selectedPlan) {
-                <ul class="d-flex flex-wrap gap-2 rounded-1">
-                  @for (astPlansTags of tags; track $index) {
-                    <li class="badge text-bg-dark p-2 rounded-1">{{ astPlansTags.tag.name }}</li>
-                  }
-                </ul>
-              }
-            </div>
+<div class="d-flex justify-content-center">
+  <div class="rounded-3 overflow-hidden">
+    <button type="button" class="page-btn p-2" (click)="previousPage()" style="width: 50px" [disabled]="pageNumber <= 1">
+      <i class="fa-solid fa-angle-left"></i>
+    </button>
 
-            @if (plan == selectedPlan) {
-              <div>
-                <app-plan-info [plan]="selectedPlan"></app-plan-info>
-              </div>
-            }
-          </div>
+    <input type="button" class="page-btn p-2" [value]="pageNumber" style="width: 100px">
 
-        </li>
-      }
-    } @else {
-      <h2>No plans found</h2>
-    }
-
-  </ul>
+    <button type="button" class="page-btn p-2" (click)="nextPage()" style="width: 50px">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
 </div>
+
+<ul class="program-list container mt-1 overflow-auto p-3" style="height: 70vh">
+  @if (!plans.length) {
+    <h2>No plans found</h2>
+  } @else {
+    @for (plan of plans; track $index) {
+      <li (click)="showPlanInfo(plan.id)" class="plan">
+        <div class="d-flex">
+          <div class="col-4 col-md-2 text-white text-uppercase text-center"
+               [ngClass]="{'food-color': plan.category == 'food','sport-color': plan.category == 'sport','sleep-color': plan.category == 'sleep'}">
+            {{ plan.category }}
+          </div>
+          <div class="col-auto ps-3 pe-3 text-start border-top border-end border-dark-subtle">
+            Duration : {{ plan.durationInDays }} days
+          </div>
+        </div>
+        <div class="pt-3 pb-3 p-1 ps-md-2 pe-md-2 p-lg-3 bg-dark-subtle border-3 border-light-subtle border-bottom">
+          <div class="text-start text-break">
+            {{ plan.name }}
+          </div>
+          @if (selectedPlan && plan.id == selectedPlan.id) {
+            <hr class="mt-1 mb-2">
+            <div>
+              <app-plan-info [plan]="selectedPlan" [tags]="tags"></app-plan-info>
+            </div>
+          }
+        </div>
+      </li>
+    }
+  }
+</ul>

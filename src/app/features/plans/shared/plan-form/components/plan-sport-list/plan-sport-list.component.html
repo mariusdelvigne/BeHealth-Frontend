@@ -1,22 +1,26 @@
-<table class="table">
-  <tr>
-    <th class="col-auto">Sport</th>
-    <th class="">Day</th>
-    <th class="">Time</th>
-    <th class="">Duration</th>
-    @if (isEditMode) {
-      <th class=""></th>
-    }
-  </tr>
-  @for (planSport of planSports; track $index) {
-    <tr>
-      <td>{{planSport.name}}</td>
-      <td>{{planSport.dayNumber}}</td>
-      <td>{{planSport.dayTime}}</td>
-      <td>{{planSport.durationInMin * 60 | time }}</td>
-      @if (isEditMode) {
-        <td><input type="button" value="X" (click)="deletePlanSport($index)"></td>
+@if (planSports.length) {
+  <div class="table-responsive w-100">
+    <table class="table mb-0 mt-1">
+      <tr class="border-bottom border-dark-subtle">
+        <th class="col-auto">Sport</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Duration</th>
+        @if (isEditMode) {
+          <th></th>
+        }
+      </tr>
+      @for (planSport of planSports; track $index) {
+        <tr>
+          <td class="text-break">{{planSport.name}}</td>
+          <td>{{planSport.dayNumber}}</td>
+          <td>{{planSport.dayTime}}</td>
+          <td>{{planSport.durationInMin * 60 | time }}</td>
+          @if (isEditMode) {
+            <td><input type="button" value="X" (click)="deletePlanSport($index)"></td>
+          }
+        </tr>
       }
-    </tr>
-  }
-</table>
+    </table>
+  </div>
+}

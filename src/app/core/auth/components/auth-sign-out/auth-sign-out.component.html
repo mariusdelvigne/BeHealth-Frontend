@@ -1,11 +1,7 @@
-<div class="modal-header">
-  <h5 class="modal-title">Sign out</h5>
-  <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+<div class="modal-header d-flex justify-content-center">
+  <h5 class="modal-title">Sign out?</h5>
 </div>
-<div class="modal-body">
-  <h3>Do you want to sign out?</h3>
-</div>
-<div class="modal-footer">
-  <button type="button" class="custom-btn page-btn" data-bs-dismiss="modal" (click)="modalRef.close()">Back</button>
-  <button type="button" class="btn btn-danger page-btn" (click)="emitSignOut()">Ok</button>
+<div class="modal-footer d-flex justify-content-center gap-3">
+  <button type="button" class="custom-btn page-btn rounded" data-bs-dismiss="modal" (click)="modalRef.close()">Back</button>
+  <button type="button" class="btn btn-primary page-btn" (click)="emitSignOut()">Ok</button>
 </div>

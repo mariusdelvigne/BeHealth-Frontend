@@ -22,7 +22,7 @@ export class PlanInfoComponent implements OnInit {
   @Input() plan: any;
   @Input() tags: any[] = [];
   pageNumber: number = 0;
-  contentLeft: boolean = true;
+  contentLeft: boolean = false;
 
   constructor(private _planService: PlanService) { }
 

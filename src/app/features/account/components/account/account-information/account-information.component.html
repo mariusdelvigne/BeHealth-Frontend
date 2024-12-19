@@ -1,51 +1,59 @@
-<form [formGroup]="form" class="m-3 p-3 rounded custom-insert-form" (submit)="emitUserUpdate()">
-  <div class="row">
-    <label for="username" class="col-sm-2 col-form-label fw-bold">Username</label>
-    <div class="col-sm-10">
-      <input class="form-control w-100" type="text" placeholder="Username" formControlName="username" id="username">
+<div class="centered p-1">
+  <form [formGroup]="form" class="p-3 rounded custom-insert-form container" (submit)="emitUserUpdate()">
+    <div class="row">
+      <label for="username" class="col-form-label fw-bold mt-1">Username</label>
+      <div class="mt-0">
+        <input class="form-control" type="text" placeholder="Username" formControlName="username" id="username">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <label for="mail" class="col-sm-2 col-form-label fw-bold">Mail</label>
-    <div class="col-sm-10">
-      <input class="form-control w-100" type="email" placeholder="Mail" formControlName="mail" id="mail">
-      @if (form.controls['mail'].invalid && form.controls['mail'].value.length > 0){
-        <div class="text-danger small-text">
-          Invalid email entered.
-        </div>
-      }
+    <div class="row">
+      <label for="mail" class="col-form-label fw-bold mt-1">Mail</label>
+      <div class="mt-0">
+        <input class="form-control" type="email" placeholder="Mail" formControlName="mail" id="mail">
+        @if (form.controls['mail'].invalid && form.controls['mail'].value.length > 0){
+          <div class="text-danger small-text">
+            Invalid email entered.
+          </div>
+        }
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="text" placeholder="Name" formControlName="name" id="name">
+
+    <div class="row">
+      <div class="col-md-6 mt-0">
+        <label for="name" class="col-form-label fw-bold mt-1">Name</label>
+        <input class="form-control" type="text" placeholder="Name" formControlName="name" id="name">
+      </div>
+      <div class="col-md-6 mt-0">
+        <label for="surname" class="col-form-label fw-bold mt-1">Surname</label>
+        <input class="form-control" type="text" placeholder="Surname" formControlName="surname" id="surname">
+      </div>
     </div>
-    <label for="surname" class="col-sm-2 col-form-label fw-bold">Surname</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="text" placeholder="Surname" formControlName="surname" id="surname">
+
+    <div class="row">
+      <div class="col-6 mt-0">
+        <label for="birth-date" class="col-form-label fw-bold mt-1">Birth Date</label>
+        <input class="form-control" type="date" formControlName="birthDate" id="birth-date">
+      </div>
+      <div class="col-6 mt-0">
+        <label for="gender" class="col-form-label fw-bold mt-1">Gender</label>
+        <select class="form-control" formControlName="gender" id="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <label for="birth-date" class="col-sm-2 col-form-label fw-bold">Birth Date</label>
-    <div class="col-sm-4">
-      <input class="form-control w-100" type="date" formControlName="birthDate" id="birth-date">
-    </div>
-    <label for="gender" class="col-sm-2 col-form-label fw-bold">Gender</label>
-    <div class="col-sm-4">
-      <select class="form-control w-100" formControlName="gender" id="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-  </div>
-  @if (modifyState) {
-    <input class="custom-btn fw-bold w-100 mt-5" type="submit" value="Modify" [disabled]="form.invalid">
-    <input routerLink="/account" class="btn btn-danger fw-bold w-100 mt-1" type="button" value="Cancel">
-  } @else {
-    <input routerLink="password" class="custom-btn fw-bold w-100 mt-5" type="button" value="Change password">
-    <input (click)="activateModifyState()" class="custom-btn  w-100 fw-bold mt-1" type="button" value="Modify">
-    <input routerLink="delete" class="btn btn-danger w-100 fw-bold mt-1" type="button" value="Delete">
-  }
-</form>
+    @if (modifyState) {
+      <div class="d-flex flex-column align-items-center mt-3">
+        <input class="custom-btn fw-bold w-50 rounded" type="submit" value="Modify" [disabled]="form.invalid">
+        <input routerLink="/account" class="custom-btn fw-bold w-50 mt-1 rounded" type="button" value="Cancel">
+      </div>
+    } @else {
+      <div class="d-flex flex-column align-items-center mt-3">
+        <input routerLink="password" class="custom-btn fw-bold w-50 rounded" type="button" value="Change password">
+        <input (click)="activateModifyState()" class="custom-btn w-50 fw-bold mt-1 rounded" type="button" value="Modify">
+        <input routerLink="delete" class="custom-btn bg-danger text-white w-50 fw-bold mt-1 rounded" type="button" value="Delete">
+      </div>
+    }
+  </form>
+</div>

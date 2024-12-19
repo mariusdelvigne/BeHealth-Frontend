@@ -1,10 +1,10 @@
-<div class="d-flex justify-content-center align-items-center h-100">
-  <form [formGroup]="form" (submit)="emitUserFood()" class="custom-insert-form m-3 p-3 rounded w-50" autocomplete="off">
+<div class="centered p-1">
+  <form [formGroup]="form" (submit)="emitUserFood()" class="custom-insert-form p-3 rounded container" autocomplete="off">
     <h3>Insert a food</h3>
     <div class="row">
-      <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
-      <div class="col-sm-10">
-        <input class="form-control w-100" type="text" placeholder="Name" list="foodList" formControlName="name"
+      <label for="name" class="col-form-label fw-bold mt-1">Name</label>
+      <div class="mt-0">
+        <input class="form-control" type="text" placeholder="Name" list="foodList" formControlName="name"
                id="name">
         <datalist id="foodList">
           @for (food of foods; track food.id) {
@@ -14,17 +14,17 @@
       </div>
     </div>
     <div class="row">
-      <label for="quantityInG" class="col-sm-2 col-form-label fw-bold">Quantity in grams</label>
-      <div class="col-sm-10">
-        <input class="form-control w-100" type="number" formControlName="quantityInG" id="quantityInG">
+      <div class="col-sm-6 mt-0">
+        <label for="quantityInG" class="col-form-label fw-bold mt-1">Quantity (g)</label>
+        <input class="form-control" type="number" formControlName="quantityInG" id="quantityInG">
+      </div>
+      <div class="col-sm-6 mt-0">
+        <label for="eatenDatetime" class="col-form-label fw-bold mt-1">Date</label>
+        <input class="form-control" type="datetime-local" formControlName="eatenDatetime" id="eatenDatetime">
       </div>
     </div>
-    <div class="row">
-      <label for="eatenDatetime" class="col-sm-2 col-form-label fw-bold">Eaten</label>
-      <div class="col-sm-10">
-        <input class="form-control w-100" type="datetime-local" formControlName="eatenDatetime" id="eatenDatetime">
-      </div>
+    <div class="d-flex justify-content-center">
+      <input class="custom-btn w-50 fw-bold mt-3 rounded" type="submit" value="Insert" [disabled]="form.invalid">
     </div>
-    <input class="custom-btn w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
   </form>
 </div>

@@ -1,16 +1,18 @@
-<div class="d-flex justify-content-center align-items-center h-100">
-  <form [formGroup]="form" (submit)="emitUserPeriod()" class="custom-insert-form m-3 p-3 rounded">
+<div class="centered p-1">
+  <form [formGroup]="form" (submit)="emitUserPeriod()" class="custom-insert-form p-3 rounded container">
     <h3>Insert periods</h3>
     <div class="row">
-      <label for="startDate" class="col-sm-2 col-form-label fw-bold">Start</label>
-      <div class="col-sm-4">
-        <input class="form-control w-100" type="datetime-local" formControlName="startDate" id="startDate">
+      <div class="col-sm-6 mt-0">
+        <label for="startDate" class="col-form-label fw-bold mt-1">Start</label>
+        <input class="form-control" type="datetime-local" formControlName="startDate" id="startDate">
       </div>
-      <label for="endDate" class="col-sm-2 col-form-label fw-bold">End</label>
-      <div class="col-sm-4">
-        <input class="form-control w-100" type="datetime-local" formControlName="endDate" id="endDate">
+      <div class="col-sm-6 mt-0">
+        <label for="endDate" class="col-form-label fw-bold mt-1">End</label>
+        <input class="form-control" type="datetime-local" formControlName="endDate" id="endDate">
       </div>
     </div>
-    <input class="custom-btn w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
+    <div class="d-flex justify-content-center">
+      <input class="custom-btn w-50 fw-bold mt-3 rounded" type="submit" value="Insert" [disabled]="form.invalid">
+    </div>
   </form>
 </div>

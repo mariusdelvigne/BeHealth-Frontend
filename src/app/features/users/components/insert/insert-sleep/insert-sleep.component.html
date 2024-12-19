@@ -1,16 +1,18 @@
-<div class="d-flex justify-content-center align-items-center h-100">
-  <form [formGroup]="form" (submit)="emitUserSleep()" class="custom-insert-form m-3 p-3 rounded">
+<div class="centered p-1">
+  <form [formGroup]="form" (submit)="emitUserSleep()" class="custom-insert-form p-3 rounded container">
     <h3>Insert a sleep</h3>
     <div class="row">
-      <label for="startDatetime" class="col-sm-2 col-form-label fw-bold">Start</label>
-      <div class="col-sm-4">
-        <input class="form-control w-100" type="datetime-local" formControlName="startDatetime" id="startDatetime">
+      <div class="col-sm-6 mt-0">
+        <label for="startDatetime" class="col-form-label fw-bold mt-1">Start</label>
+        <input class="form-control" type="datetime-local" formControlName="startDatetime" id="startDatetime">
       </div>
-      <label for="endDatetime" class="col-sm-2 col-form-label fw-bold">End</label>
-      <div class="col-sm-4">
-        <input class="form-control w-100" type="datetime-local" formControlName="endDatetime" id="endDatetime">
+      <div class="col-sm-6 mt-0">
+        <label for="endDatetime" class="col-form-label fw-bold mt-1">End</label>
+        <input class="form-control" type="datetime-local" formControlName="endDatetime" id="endDatetime">
       </div>
     </div>
-    <input class="custom-btn w-100 fw-bold mt-5" type="submit" value="Insert" [disabled]="form.invalid">
+    <div class="d-flex justify-content-center">
+      <input class="custom-btn w-50 fw-bold mt-3 rounded" type="submit" value="Insert" [disabled]="form.invalid">
+    </div>
   </form>
 </div>

@@ -3,7 +3,7 @@ export interface PlanSearchOutput {
   name: string;
   category: string;
   privacy: string;
-  creationDateTime: string;
+  creationDatetime: string;
   description: string;
   durationInDays: number;
   creatorId: number;

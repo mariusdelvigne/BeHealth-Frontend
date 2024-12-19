@@ -52,14 +52,14 @@ export class AdminPlansComponent implements OnInit {
     const isConfirmed = window.confirm('Are you sure you want to delete this plans ?');
 
     if (isConfirmed) {
-      this._planService.deletePlan(creatorId, planId).subscribe(
-        () => {
+      this._planService.deletePlan(creatorId, planId).subscribe({
+        next: () => {
           window.location.reload();
         },
-        (error) => {
-          this._toastrService.error(error);
+        error: (err) => {
+          this._toastrService.error(err);
         }
-      );
+      });
     }
   }
 }

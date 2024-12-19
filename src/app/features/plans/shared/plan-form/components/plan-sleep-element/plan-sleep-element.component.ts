@@ -1,11 +1,13 @@
 import {Component, Input} from '@angular/core';
 import {DatePipe} from '@angular/common';
+import {TimePipe} from '../../../../../../shared/utils/time.pipe';
 
 @Component({
   selector: 'app-plan-sleep-element',
   standalone: true,
   imports: [
-    DatePipe
+    DatePipe,
+    TimePipe
   ],
   templateUrl: './plan-sleep-element.component.html',
   styleUrl: './plan-sleep-element.component.scss'
