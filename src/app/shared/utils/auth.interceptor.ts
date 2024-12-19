@@ -1,4 +1,4 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import {HttpInterceptorFn} from '@angular/common/http';
 import {AuthService} from '../../core/auth/services/auth.service';
 import {inject} from '@angular/core';
 import {Router} from '@angular/router';

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InsertSleepComponent } from './insert-sleep.component';
+import {InsertSleepComponent} from './insert-sleep.component';
 
 describe('InsertSleepComponent', () => {
   let component: InsertSleepComponent;

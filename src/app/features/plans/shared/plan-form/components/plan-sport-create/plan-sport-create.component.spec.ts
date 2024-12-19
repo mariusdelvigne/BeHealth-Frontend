@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PlanSportCreateComponent } from './plan-sport-create.component';
+import {PlanSportCreateComponent} from './plan-sport-create.component';
 
 describe('PlanSportCreateComponent', () => {
   let component: PlanSportCreateComponent;

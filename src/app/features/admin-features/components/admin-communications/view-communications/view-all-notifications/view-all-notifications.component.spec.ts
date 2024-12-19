@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewAllNotificationsComponent } from './view-all-notifications.component';
+import {ViewAllNotificationsComponent} from './view-all-notifications.component';
 
 describe('ViewAllNotificationsComponent', () => {
   let component: ViewAllNotificationsComponent;

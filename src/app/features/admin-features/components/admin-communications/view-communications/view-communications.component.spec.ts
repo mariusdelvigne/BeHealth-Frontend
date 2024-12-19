@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewCommunicationsComponent } from './view-communications.component';
+import {ViewCommunicationsComponent} from './view-communications.component';
 
 describe('ViewCommunicationsComponent', () => {
   let component: ViewCommunicationsComponent;

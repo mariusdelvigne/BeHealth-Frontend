@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {apis, environment} from '../../../environments/environment';
 import {UserFoodCreateCommand} from '../utils/user-food-create-command';

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HeightGraphComponent } from './height-graph.component';
+import {HeightGraphComponent} from './height-graph.component';
 
 describe('HeightGraphComponent', () => {
   let component: HeightGraphComponent;

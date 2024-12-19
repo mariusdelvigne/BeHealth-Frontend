@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { NutritionCalculatorService } from './nutrition-calculator.service';
+import {NutritionCalculatorService} from './nutrition-calculator.service';
 
 describe('NutritionCalculatorService', () => {
   let service: NutritionCalculatorService;

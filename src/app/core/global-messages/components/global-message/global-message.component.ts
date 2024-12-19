@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { GetAllGlobalMessagesOutput } from '../../utils/get-all-global-messages-output';
-import { ToastrService } from 'ngx-toastr';
+import {Component, OnInit} from '@angular/core';
+import {GetAllGlobalMessagesOutput} from '../../utils/get-all-global-messages-output';
+import {ToastrService} from 'ngx-toastr';
 import {GlobalMessagesService} from '../../services/global-messages.service';
 
 @Component({

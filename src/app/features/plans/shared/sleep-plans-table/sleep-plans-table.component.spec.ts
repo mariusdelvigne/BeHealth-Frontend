@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SleepPlansTableComponent } from './sleep-plans-table.component';
+import {SleepPlansTableComponent} from './sleep-plans-table.component';
 
 describe('SleepPlansTableComponent', () => {
   let component: SleepPlansTableComponent;

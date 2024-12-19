@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InsertPeriodComponent } from './insert-period.component';
+import {InsertPeriodComponent} from './insert-period.component';
 
 describe('InsertPeriodComponent', () => {
   let component: InsertPeriodComponent;

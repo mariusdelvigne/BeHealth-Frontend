@@ -3,14 +3,11 @@ import {PlanService} from '../../../plans/services/plan.service';
 import {ToastrService} from 'ngx-toastr';
 import {PlanSearchOutput} from '../../../plans/utils/plan-search-output';
 import {UserService} from '../../../../shared/services/user.service';
-import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-admin-plans',
   standalone: true,
-  imports: [
-    DatePipe
-  ],
+  imports: [],
   templateUrl: './admin-plans.component.html',
   styleUrl: './admin-plans.component.scss'
 })

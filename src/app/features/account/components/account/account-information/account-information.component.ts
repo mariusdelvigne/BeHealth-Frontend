@@ -3,7 +3,7 @@ import {RouterLink} from '@angular/router';
 import {AuthService} from '../../../../../core/auth/services/auth.service';
 import {UserService} from '../../../../../shared/services/user.service';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 
 @Component({

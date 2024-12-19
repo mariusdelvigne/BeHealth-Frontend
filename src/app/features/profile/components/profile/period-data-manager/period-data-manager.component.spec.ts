@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PeriodDataManagerComponent } from './period-data-manager.component';
+import {PeriodDataManagerComponent} from './period-data-manager.component';
 
 describe('PeriodGraphComponent', () => {
   let component: PeriodDataManagerComponent;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NotificationFilterFormComponent } from './notification-filter-form.component';
+import {NotificationFilterFormComponent} from './notification-filter-form.component';
 
 describe('NotificationFilterFormComponent', () => {
   let component: NotificationFilterFormComponent;

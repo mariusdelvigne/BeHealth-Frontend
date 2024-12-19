@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { UserHeightService } from './user-height.service';
+import {UserHeightService} from './user-height.service';
 
 describe('UserHeightService', () => {
   let service: UserHeightService;

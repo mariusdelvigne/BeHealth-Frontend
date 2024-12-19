@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProgramUpdateComponent } from './program-update.component';
+import {ProgramUpdateComponent} from './program-update.component';
 
 describe('ProgramUpdateComponent', () => {
   let component: ProgramUpdateComponent;

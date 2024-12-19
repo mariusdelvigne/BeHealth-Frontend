@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BarGraphComponent } from './bar-graph.component';
+import {BarGraphComponent} from './bar-graph.component';
 
 describe('StackedHorizontalBarGraphComponent', () => {
   let component: BarGraphComponent;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PlanSearchPublicComponent } from './plan-search-public.component';
+import {PlanSearchPublicComponent} from './plan-search-public.component';
 
 describe('PlanSearchComponent', () => {
   let component: PlanSearchPublicComponent;

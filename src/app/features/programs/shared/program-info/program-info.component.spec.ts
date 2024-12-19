@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProgramInfoComponent } from './program-info.component';
+import {ProgramInfoComponent} from './program-info.component';
 
 describe('ProgramInfoComponent', () => {
   let component: ProgramInfoComponent;

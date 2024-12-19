@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { GlobalMessagesService } from './global-messages.service';
+import {GlobalMessagesService} from './global-messages.service';
 
 describe('GlobalMessagesService', () => {
   let service: GlobalMessagesService;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SportDataManagerComponent } from './sport-data-manager.component';
+import {SportDataManagerComponent} from './sport-data-manager.component';
 
 describe('SportDataManagerComponent', () => {
   let component: SportDataManagerComponent;

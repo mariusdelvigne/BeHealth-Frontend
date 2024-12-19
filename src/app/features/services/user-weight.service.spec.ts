@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { UserWeightService } from './user-weight.service';
+import {UserWeightService} from './user-weight.service';
 
 describe('UserWeightService', () => {
   let service: UserWeightService;

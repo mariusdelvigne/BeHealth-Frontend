@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { DebounceService } from './debounce.service';
+import {DebounceService} from './debounce.service';
 
 describe('DebounceService', () => {
   let service: DebounceService;

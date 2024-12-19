@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UserBanModalDeleteChoiceComponent } from './user-ban-modal-delete-choice.component';
+import {UserBanModalDeleteChoiceComponent} from './user-ban-modal-delete-choice.component';
 
 describe('UserBanModalDeleteChoiceComponent', () => {
   let component: UserBanModalDeleteChoiceComponent;

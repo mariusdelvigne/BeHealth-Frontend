@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { WeightGraphComponent } from './weight-graph.component';
+import {WeightGraphComponent} from './weight-graph.component';
 
 describe('WeightGraphComponent', () => {
   let component: WeightGraphComponent;

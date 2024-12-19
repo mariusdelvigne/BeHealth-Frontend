@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NutritionCalculatorComponent } from './nutrition-calculator.component';
+import {NutritionCalculatorComponent} from './nutrition-calculator.component';
 
 describe('NutrionCalculatorComponent', () => {
   let component: NutritionCalculatorComponent;

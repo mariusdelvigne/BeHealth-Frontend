@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {Router, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-sport-scatter-graph',
   standalone: true,
   imports: [
-    RouterLinkActive,
     RouterOutlet
   ],
   templateUrl: './sport-data-manager.component.html',

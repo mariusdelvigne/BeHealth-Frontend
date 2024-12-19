@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PhysicalGraphComponent } from './physical-graph.component';
+import {PhysicalGraphComponent} from './physical-graph.component';
 
 describe('PhysicalGraph', () => {
   let component: PhysicalGraphComponent;

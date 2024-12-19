@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SportCaloriesBurnedCalculatorComponent } from './sport-calories-burned-calculator.component';
+import {SportCaloriesBurnedCalculatorComponent} from './sport-calories-burned-calculator.component';
 
 describe('SportCaloriesBurnedCalculatorComponent', () => {
   let component: SportCaloriesBurnedCalculatorComponent;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SleepDataManagerComponent } from './sleep-data-manager.component';
+import {SleepDataManagerComponent} from './sleep-data-manager.component';
 
 describe('SleepDataManagerComponent', () => {
   let component: SleepDataManagerComponent;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InsertFoodComponent } from './insert-food.component';
+import {InsertFoodComponent} from './insert-food.component';
 
 describe('InsertFoodComponent', () => {
   let component: InsertFoodComponent;

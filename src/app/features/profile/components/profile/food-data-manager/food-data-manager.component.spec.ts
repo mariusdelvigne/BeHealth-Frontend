@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FoodDataManagerComponent } from './food-data-manager.component';
+import {FoodDataManagerComponent} from './food-data-manager.component';
 
 describe('FoodGraphComponent', () => {
   let component: FoodDataManagerComponent;

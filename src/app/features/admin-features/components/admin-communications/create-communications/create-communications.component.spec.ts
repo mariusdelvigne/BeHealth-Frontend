@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CreateCommunicationsComponent } from './create-communications.component';
+import {CreateCommunicationsComponent} from './create-communications.component';
 
 describe('CreateCommunicationsComponent', () => {
   let component: CreateCommunicationsComponent;

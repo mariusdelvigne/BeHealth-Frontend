@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ToastrService} from 'ngx-toastr';
 import {UserWeightService} from '../../../../services/user-weight.service';

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NotificationReadComponent } from './notification-read.component';
+import {NotificationReadComponent} from './notification-read.component';
 
 describe('NotificationReadComponent', () => {
   let component: NotificationReadComponent;

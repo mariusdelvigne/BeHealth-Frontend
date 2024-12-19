@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NotificationsDropdownViewComponent } from './notifications-dropdown-view.component';
+import {NotificationsDropdownViewComponent} from './notifications-dropdown-view.component';
 
 describe('NotificationsDropdownViewComponent', () => {
   let component: NotificationsDropdownViewComponent;

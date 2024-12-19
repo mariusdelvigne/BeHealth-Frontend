@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {ProfileService} from '../../../services/profile.service';
 import {ProfileDeleteCommand} from '../../../utils/profile-delete-command';

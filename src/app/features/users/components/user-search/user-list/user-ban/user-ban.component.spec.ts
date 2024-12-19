@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UserBanComponent } from './user-ban.component';
+import {UserBanComponent} from './user-ban.component';
 
 describe('UserBanComponent', () => {
   let component: UserBanComponent;

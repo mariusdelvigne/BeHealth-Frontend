@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PeriodCalendarComponent } from './period-calendar.component';
+import {PeriodCalendarComponent} from './period-calendar.component';
 
 describe('PeriodCalendarComponent', () => {
   let component: PeriodCalendarComponent;

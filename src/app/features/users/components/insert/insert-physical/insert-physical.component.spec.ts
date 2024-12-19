@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { InsertPhysicalComponent } from './insert-physical.component';
+import {InsertPhysicalComponent} from './insert-physical.component';
 
 describe('InsertPhysicalComponent', () => {
   let component: InsertPhysicalComponent;

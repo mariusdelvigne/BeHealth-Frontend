@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PlanSportListComponent} from '../plan-form/components/plan-sport-list/plan-sport-list.component';
 import {PlanFoodListComponent} from '../plan-form/components/plan-food-list/plan-food-list.component';
 import {PlanService} from '../../services/plan.service';
-import {PlanSleepFormComponent} from '../plan-form/components/plan-sleep-form/plan-sleep-form.component';
 import {PlanSleepElementComponent} from '../plan-form/components/plan-sleep-element/plan-sleep-element.component';
 
 @Component({

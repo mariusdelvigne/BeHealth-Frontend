@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewAllGlobalMessageComponent } from './view-all-global-message.component';
+import {ViewAllGlobalMessageComponent} from './view-all-global-message.component';
 
 describe('ViewAllGlobalMessageComponent', () => {
   let component: ViewAllGlobalMessageComponent;

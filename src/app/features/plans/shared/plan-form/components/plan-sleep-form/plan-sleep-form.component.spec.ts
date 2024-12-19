@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PlanSleepFormComponent } from './plan-sleep-form.component';
+import {PlanSleepFormComponent} from './plan-sleep-form.component';
 
 describe('PlanSleepFormComponent', () => {
   let component: PlanSleepFormComponent;

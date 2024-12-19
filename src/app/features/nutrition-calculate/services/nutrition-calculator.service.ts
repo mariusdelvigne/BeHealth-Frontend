@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {NutritionCalculatorCommand} from '../utils/nutrition-calculator-command';

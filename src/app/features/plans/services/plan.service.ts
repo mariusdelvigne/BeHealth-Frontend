@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {apis, environment} from '../../../../environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {PlanCreateCommand} from '../utils/plan-create-command';

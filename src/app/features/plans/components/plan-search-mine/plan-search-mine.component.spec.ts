@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PlanSearchMineComponent } from './plan-search-mine.component';
+import {PlanSearchMineComponent} from './plan-search-mine.component';
 
 describe('PlanSearchMineComponent', () => {
   let component: PlanSearchMineComponent;

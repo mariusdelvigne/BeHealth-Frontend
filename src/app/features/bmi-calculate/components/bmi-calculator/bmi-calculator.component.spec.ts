@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BmiCalculatorComponent } from './bmi-calculator.component';
+import {BmiCalculatorComponent} from './bmi-calculator.component';
 
 describe('BmiCalculatorComponent', () => {
   let component: BmiCalculatorComponent;
