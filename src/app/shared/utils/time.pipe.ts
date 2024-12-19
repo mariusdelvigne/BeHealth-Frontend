@@ -12,7 +12,7 @@ export class TimePipe implements PipeTransform {
 
     let display = `${minutes} min`;
     if (hours > 0)
-      display = `${hours} h` + display;
+      display = `${hours} h ` + display;
 
     return  display
   }
