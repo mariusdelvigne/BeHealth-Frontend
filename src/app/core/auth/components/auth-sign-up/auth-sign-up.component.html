@@ -1,51 +1,63 @@
-<div class="form-container d-flex justify-content-center align-items-center rounded-3 m-auto">
-  <form [formGroup]="form" (submit)="emitSignUp()" class="p-3 rounded custom-form" style="max-width: 50vw">
+<div class="centered p-1">
+  <form [formGroup]="form" (submit)="emitSignUp()" class="p-3 rounded custom-form container">
     <div class="row">
-      <label for="username" class="col-sm-2 col-form-label fw-bold">Username</label>
-      <div class="col-sm-10">
-        <input class="form-control w-100" type="text" placeholder="Username" formControlName="username" id="username">
+      <label for="username" class="col-form-label fw-bold mt-1">Username</label>
+      <div class="mt-0">
+        <input class="form-control" type="text" placeholder="Username" formControlName="username" id="username">
       </div>
     </div>
+
     <div class="row">
-      <label for="mail" class="col-sm-2 col-form-label fw-bold">Mail</label>
-      <div class="col-sm-10">
-        <input class="form-control w-100" type="text" placeholder="Mail" formControlName="mail" id="mail">
+      <label for="mail" class="col-form-label fw-bold mt-1">Mail</label>
+      <div class="mt-0">
+        <input class="form-control" type="text" placeholder="Mail" formControlName="mail" id="mail">
       </div>
     </div>
+
     <div class="row">
-      <label for="password" class="col-sm-2 col-form-label fw-bold">Password</label>
-      <div class="col-sm-10">
-        <input class="form-control w-100" type="password" placeholder="Password" formControlName="password"
-               id="password">
+      <label for="password" class="col-form-label fw-bold mt-1">Password</label>
+      <div class="mt-0">
+        <input class="form-control" type="password" placeholder="Password" formControlName="password" id="password">
       </div>
     </div>
+
     <div class="row">
-      <label for="name" class="col-sm-2 col-form-label fw-bold">Name</label>
-      <div class="col-sm-4">
-        <input class="form-control w-100" type="text" placeholder="Name" formControlName="name" id="name">
+      <div class="col-md-6 mt-0">
+        <label for="name" class="col-form-label fw-bold mt-1">Name</label>
+        <div class="mt-0">
+          <input class="form-control" type="text" placeholder="Name" formControlName="name" id="name">
+        </div>
       </div>
-      <label for="surname" class="col-sm-2 col-form-label fw-bold">Surname</label>
-      <div class="col-sm-4">
-        <input class="form-control w-100" type="text" placeholder="Surname" formControlName="surname" id="surname">
+      <div class="col-md-6 mt-0">
+        <label for="surname" class="col-form-label fw-bold mt-1">Surname</label>
+        <div class="mt-0">
+          <input class="form-control" type="text" placeholder="Surname" formControlName="surname" id="surname">
+        </div>
       </div>
     </div>
+
     <div class="row">
-      <label for="birth-date" class="col-sm-2 col-form-label fw-bold">Birth Date</label>
-      <div class="col-sm-4">
-        <input class="form-control w-100" type="date" formControlName="birthDate" id="birth-date">
+      <div class="col-6 mt-0">
+        <label for="birth-date" class="col-form-label fw-bold mt-1">Birth Date</label>
+        <div class="mt-0">
+          <input class="form-control" type="date" formControlName="birthDate" id="birth-date">
+        </div>
       </div>
-      <label for="gender" class="col-sm-2 col-form-label fw-bold">Gender</label>
-      <div class="col-sm-4">
-        <select class="form-control w-100" formControlName="gender" id="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
+      <div class="col-6 mt-0">
+        <label for="gender" class="col-form-label fw-bold mt-1">Gender</label>
+        <div class="mt-0">
+          <select class="form-control w-100" formControlName="gender" id="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
       </div>
     </div>
+
     <div class="row">
-      <label for="height" class="col-sm-2 col-form-label fw-bold">Height (in cm)</label>
-      <div class="col-sm-4">
+      <div class="col-6 mt-0">
+        <label for="height" class="col-form-label fw-bold mt-1">Height (cm)</label>
         <input class="form-control w-100" type="number" formControlName="heightInCm" id="height">
         @if (form.controls['heightInCm'].invalid && isHeightTouched()) {
           <div class="text-danger small-text">
@@ -53,8 +65,8 @@
           </div>
         }
       </div>
-      <label for="weight" class="col-sm-2 col-form-label fw-bold">Weight (in kg)</label>
-      <div class="col-sm-4">
+      <div class="col-6 mt-0">
+        <label for="weight" class="col-form-label fw-bold mt-1">Weight (kg)</label>
         <input class="form-control w-100" type="number" formControlName="weightInG" id="weight">
         @if (form.controls['weightInG'].invalid && isWeightTouched()) {
           <div class="text-danger small-text">
@@ -63,6 +75,6 @@
         }
       </div>
     </div>
-    <input class="btn btn-dark rounded-3 w-100 mt-5" type="submit" value="Sign up" [disabled]="form.invalid">
+    <input class="btn btn-dark rounded-3 w-100 mt-3" type="submit" value="Sign up" [disabled]="form.invalid">
   </form>
 </div>

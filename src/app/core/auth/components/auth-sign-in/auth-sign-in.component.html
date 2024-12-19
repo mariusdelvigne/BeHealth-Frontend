@@ -1,22 +1,18 @@
-<div class="sign-form-container d-flex justify-content-center align-items-center mt-2">
-  <div class="form-container d-flex justify-content-center align-items-center rounded-3">
-    <form [formGroup]="form" (submit)="emitSignIn()" class="p-3 rounded custom-form d-flex flex-column" style="max-width: 50vw">
-      <!-- Champ pour le nom d'utilisateur avec l'icône à gauche -->
-      <div class="input-group mb-3">
-        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
-        <input class="form-control" type="text" placeholder="Username" formControlName="username" id="username">
-      </div>
+<div class="centered">
+  <form [formGroup]="form" (submit)="emitSignIn()" class="p-3 rounded custom-form container">
+    <!-- Champ pour le nom d'utilisateur avec l'icône à gauche -->
+    <div class="input-group mb-3">
+      <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+      <input class="form-control" type="text" placeholder="Username" formControlName="username" id="username">
+    </div>
 
-      <!-- Champ pour le mot de passe avec l'icône à gauche -->
-      <div class="input-group mb-3">
-        <span class="input-group-text"><i class="fa fa-key"></i></span>
-        <input class="form-control" type="password" placeholder="Password" formControlName="password" id="password">
-      </div>
+    <!-- Champ pour le mot de passe avec l'icône à gauche -->
+    <div class="input-group mb-3">
+      <span class="input-group-text"><i class="fa fa-key"></i></span>
+      <input class="form-control" type="password" placeholder="Password" formControlName="password" id="password">
+    </div>
 
-      <!-- Bouton de soumission -->
-      <input class="btn btn-dark rounded-3 w-100 mt-auto" type="submit" value="Sign in" [disabled]="form.invalid">
-
-    </form>
-  </div>
-
+    <!-- Bouton de soumission -->
+    <input class="btn btn-dark rounded-3 w-100 mt-3" type="submit" value="Sign in" [disabled]="form.invalid">
+  </form>
 </div>
