@@ -19,7 +19,7 @@
     </div>
     <div class="px-3 py-2 max-vh-50 overflow-auto">
       @for (notification of notificationsNotRead; track $index) {
-        <a class="dropdown-item border-bottom border-1 border-dark-subtle" [routerLink]="['/notifications-reads', notification.id]">{{ notification.title }}</a>
+        <a  class="dropdown-item border-bottom border-1 border-dark-subtle" (click)="collapseNavbar()" [routerLink]="['/notifications-reads', notification.id]">{{ notification.title }}</a>
       }
     </div>
     <hr class="dropdown-divider">
