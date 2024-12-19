@@ -1,15 +1,17 @@
-<div class="d-flex justify-content-center align-items-center form-check form-switch toggle-admin-dashboard">
-  <input
-    mdbCheckbox
-    class="form-check-input large-toggle me-3"
-    type="checkbox"
-    id="createGlobalMessagesChecked"
-    [checked]="false"
-    (change)="createGlobalMessages = !createGlobalMessages"
-  />
-  <label class="form-check-label font-weight-bold" for="createGlobalMessagesChecked">
-    {{ createGlobalMessages ? 'Create New Global Message' : 'Create New Notification' }}
-  </label>
+<div class="mt-3 d-flex justify-content-center form-check form-switch toggle-admin-dashboard">
+  <div class="mb-1">
+    <input
+      mdbCheckbox
+      class="form-check-input large-toggle me-3"
+      type="checkbox"
+      id="createGlobalMessagesChecked"
+      [checked]="false"
+      (change)="createGlobalMessages = !createGlobalMessages"
+    />
+    <label class="form-check-label font-weight-bold" for="createGlobalMessagesChecked">
+      {{ createGlobalMessages ? 'Create New Global Message' : 'Create New Notification' }}
+    </label>
+  </div>
 </div>
 @if (createGlobalMessages) {
   <app-create-global-messages></app-create-global-messages>

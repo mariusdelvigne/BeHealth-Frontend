@@ -1,18 +1,27 @@
-<div class="h-100 p-4">
-  <form class="custom-insert-form mx-auto m-3 p-3 rounded w-75" [formGroup]="formCreateGlobalMessage"
+<div class="centered p-1">
+  <form class="custom-insert-form p-3 rounded container" [formGroup]="formCreateGlobalMessage"
         (submit)="createGlobalMessage()">
-    <div class="mb-3">
-      <h4>Description : </h4><input type="text" placeholder="Description" formControlName="description"><br/>
+    <div class="row">
+      <div class="mt-0">
+        <label for="description" class="col-form-label fw-bold mt-1">Description</label>
+        <input type="text" placeholder="Description" formControlName="description" id="description" class="form-control">
+      </div>
     </div>
-    <div class="mb-3">
-      <h4>Start date : </h4><input type="datetime-local" formControlName="startDatetime"><br/>
+
+    <div class="row">
+        <div class="col-6">
+          <label for="startDate" class="col-form-label fw-bold mt-1">Start date</label>
+          <input type="datetime-local" formControlName="startDatetime" id="startDate" class="form-control">
+        </div>
+        <div class="col-6">
+          <label for="endDatetime" class="col-form-label fw-bold mt-1">End date</label>
+          <input type="datetime-local" formControlName="endDatetime" id="endDatetime" class="form-control">
+        </div>
     </div>
-    <div class="mb-3">
-      <h4>End date : </h4><input type="datetime-local" formControlName="endDatetime"><br/>
-    </div>
-    <div class="d-flex justify-content-center">
-      <input class="custom-btn rounded-1" type="submit" value="Create Global Message"
+    <div class="d-flex justify-content-center mt-3">
+      <input class="custom-btn rounded-1 w-25" type="submit" value="Create"
              [disabled]="formCreateGlobalMessage.invalid">
     </div>
+
   </form>
 </div>

@@ -12,13 +12,13 @@
   </div>
 </div>
 
-<div class="d-flex flex-column justify-content-center align-items-center me-5 ms-5 mt-2 mb-2">
-  <div class="row w-100">
+<div class="container">
+  <div class="overflow-auto row" style="height: 80vh">
     @for (messages of globalMessages; track $index) {
-      <div class="col-12 col-md-4 mt-3">
+      <div class="col-12 col-md-6 mt-3">
         <div class="card border-top-food-color">
           <div class="rounded-0 flex-row justify-content-between align-items-center mt-2 ms-3">
-            <h4 class="card-title text-dark fw-bold"><u>Id Message :</u> {{ messages.id }}</h4><br>
+            <h4 class="card-title text-dark fw-bold"><u>Id :</u> {{ messages.id }}</h4><br>
           </div>
           <div class="mt-2 ms-3">
             <p><b>Description :</b> {{ messages.description }}</p>

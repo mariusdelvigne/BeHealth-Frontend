@@ -1,15 +1,17 @@
-<div class="d-flex justify-content-center align-items-center form-check form-switch toggle-admin-dashboard">
-  <input
-    mdbCheckbox
-    class="form-check-input large-toggle me-3"
-    type="checkbox"
-    id="communicationViewChecked"
-    [checked]="false"
-    (change)="viewAllGlobalMessages = !viewAllGlobalMessages"
-  />
-  <label class="form-check-label font-weight-bold" for="communicationViewChecked">
-    {{ viewAllGlobalMessages ? 'View All Global Message' : 'View All New Notification' }}
-  </label>
+<div class="mt-3 d-flex justify-content-center form-check form-switch toggle-admin-dashboard">
+  <div class="mb-1">
+    <input
+      mdbCheckbox
+      class="form-check-input large-toggle me-3"
+      type="checkbox"
+      id="communicationViewChecked"
+      [checked]="false"
+      (change)="viewAllGlobalMessages = !viewAllGlobalMessages"
+    />
+    <label class="form-check-label font-weight-bold" for="communicationViewChecked">
+      {{ viewAllGlobalMessages ? 'Global Messages' : 'Notifications' }}
+    </label>
+  </div>
 </div>
 @if (viewAllGlobalMessages) {
   <app-view-all-global-message></app-view-all-global-message>
