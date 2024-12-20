@@ -7,7 +7,6 @@ import {FoodPlansTableComponent} from '../../../plans/shared/food-plans-table/fo
 import {SportPlansTableComponent} from '../../../plans/shared/sport-plans-table/sport-plans-table.component';
 import {SleepPlansTableComponent} from '../../../plans/shared/sleep-plans-table/sleep-plans-table.component';
 import {NgClass} from '@angular/common';
-import {PlanService} from '../../../plans/services/plan.service';
 
 @Component({
   selector: 'app-program-form',
@@ -25,7 +24,7 @@ import {PlanService} from '../../../plans/services/plan.service';
 export class ProgramFormComponent implements OnInit {
   @Input() mode: string = '';
   @Input() programId!: number;
-  program: any;
+  program: any = {};
   form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
     privacy: new FormControl('private', Validators.required),
@@ -38,16 +37,14 @@ export class ProgramFormComponent implements OnInit {
   selectedSleepPlan: any = null;
   selectedFoodPlan: any = null;
 
-  constructor(private _programService: ProgramService, private _planService: PlanService, private _authService: AuthService, private _toastrService: ToastrService) {
+  constructor(private _programService: ProgramService, private _authService: AuthService, private _toastrService: ToastrService) {
   }
 
   ngOnInit() {
-    if (this.mode == "create") {
-
-    } else if (this.mode == "update") {
-      this._programService.getProgramById(this.programId).subscribe( {
+    if (this.mode == "update") {
+      this._programService.getProgramById(this.programId).subscribe({
         next: (program) => {
-          this.program = program;
+          Object.assign(this.program, program);
 
           this.form.patchValue({
             title: this.program.title,
@@ -65,8 +62,7 @@ export class ProgramFormComponent implements OnInit {
   setSelectedSportPlan(sportPlan: any) {
     if (this.selectedSportPlan?.id == sportPlan.id) {
       this.selectedSportPlan = null;
-    }
-    else {
+    } else {
       this.selectedSportPlan = sportPlan;
       this.form.patchValue({
         sportPlanId: sportPlan.id,
@@ -77,8 +73,7 @@ export class ProgramFormComponent implements OnInit {
   setSelectedSleepPlan(sleepPlan: any) {
     if (this.selectedSleepPlan?.id == sleepPlan.id) {
       this.selectedSleepPlan = null;
-    }
-    else {
+    } else {
       this.selectedSleepPlan = sleepPlan;
       this.form.patchValue({
         sleepPlanId: sleepPlan.id,
@@ -89,8 +84,7 @@ export class ProgramFormComponent implements OnInit {
   setSelectedFoodPlan(foodPlan: any) {
     if (this.selectedFoodPlan?.id == foodPlan.id) {
       this.selectedFoodPlan = null;
-    }
-    else {
+    } else {
       this.selectedFoodPlan = foodPlan;
       this.form.patchValue({
         foodPlanId: foodPlan.id,
@@ -115,7 +109,7 @@ export class ProgramFormComponent implements OnInit {
         }
       });
     } else if (this.mode == "update") {
-      this._programService.updateProgram( this._authService.getId(), this.program.id, this.form.value).subscribe({
+      this._programService.updateProgram(this._authService.getId(), this.program.id, this.form.value).subscribe({
         next: () => {
           this._toastrService.success("Program updated successfully");
         },

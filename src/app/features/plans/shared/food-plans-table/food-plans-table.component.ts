@@ -1,13 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PlanService} from '../../services/plan.service';
-import {NgClass} from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-food-plans-table',
   standalone: true,
   imports: [
-    NgClass,
     ReactiveFormsModule,
   ],
   templateUrl: './food-plans-table.component.html',
@@ -31,26 +29,11 @@ export class FoodPlansTableComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
-
-    // Show the plan already selected (Used in update form)
-    if (this.program && this.program.foodPlanId != null) {
-      this._planService.getPlanById(this.program.foodPlanId)
-        .subscribe({
-          next: (plan) => {
-            this.selectedFoodPlan = plan;
-            this.emitFoodPlan.emit(plan);
-          }
-        });
-    }
   }
 
   selectPlan(plan: any) {
     this.selectedFoodPlan = plan;
     this.emitFoodPlan.emit(plan);
-  }
-
-  isSelected(foodPlan: any) {
-    return this.selectedFoodPlan && this.selectedFoodPlan.id == foodPlan.id;
   }
 
   emitSearchPlan() {
@@ -81,6 +64,17 @@ export class FoodPlansTableComponent implements OnInit {
     this._planService.getPlansFiltered('public','','food', this.pageNumber - 1).subscribe({
       next: (response) => {
         this.foodPlans = response.plans;
+
+        // Show the plan already selected
+        if (this.program && this.program.foodPlanId != null) {
+          this._planService.getPlanById(this.program.foodPlanId)
+            .subscribe({
+              next: (plan) => {
+                this.selectedFoodPlan = plan;
+                this.emitFoodPlan.emit(plan);
+              }
+            });
+        }
       },
       error: (error) => {
         alert(error.message);
