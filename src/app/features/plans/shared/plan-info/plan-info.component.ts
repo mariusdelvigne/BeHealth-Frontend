@@ -27,6 +27,9 @@ export class PlanInfoComponent implements OnInit {
 
   ngOnInit() {
     this.loadContent(null);
+      this.plan.sports = [];
+      this.plan.foods = [];
+      this.plan.sleep = [];
   }
 
   loadContent(e: Event | null) {
