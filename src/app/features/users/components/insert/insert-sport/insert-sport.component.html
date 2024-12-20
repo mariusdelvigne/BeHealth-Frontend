@@ -2,14 +2,13 @@
 <form [formGroup]="form" (submit)="emitUserSport()" class="custom-insert-form p-3 rounded container" autocomplete="off">
   <h3>Insert a sport</h3>
   <div class="row">
-    <label for="name" class="col-form-label fw-bold mt-1">Name</label>
     <div class="mt-0">
-      <input class="form-control" type="text" placeholder="Name" list="sportList" formControlName="name" id="name">
-      <datalist id="sportList">
-        @for (sport of sports; track sport.id) {
-          <option [value]="sport.name"></option>
+      <label for="name" class="form-label fw-bold mt-1">Name</label>
+      <select class="form-control" type="text" list="sportList" formControlName="name" id="name">
+        @for (sportName of allSport; track $index) {
+          <option value="{{sportName.value}}">{{ sportName.name }}</option>
         }
-      </datalist>
+      </select>
     </div>
   </div>
   <div class="row">

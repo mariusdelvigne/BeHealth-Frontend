@@ -16,6 +16,30 @@ import {ToastrService} from 'ngx-toastr';
   styleUrl: './insert-sport.component.scss',
 })
 export class InsertSportComponent implements OnInit {
+  allSport: { name: string; value: string }[] = [
+    { name: "Running", value: "running" },
+    { name: "Football", value: "soccer" },
+    { name: "Basketball", value: "basketball" },
+    { name: "Swimming", value: "swimming" },
+    { name: "Road Cycling", value: "road cycling" },
+    { name: "Yoga", value: "yoga" },
+    { name: "Boxing", value: "boxing" },
+    { name: "American football", value: "american football" },
+    { name: "Tennis", value: "tennis" },
+    { name: "Hiking", value: "hiking" },
+    { name: "Rowing", value: "rowing" },
+    { name: "Weight lifting", value: "weight lifting" },
+    { name: "Trampoline", value: "trampoline" },
+    { name: "Skiing", value: "skiing" },
+    { name: "Surfing", value: "surfing" },
+    { name: "Dancing", value: "dancing" },
+    { name: "Walking", value: "walking" },
+    { name: "Road Climbing", value: "road climbing" },
+    { name: "Martial Art", value: "martial art" },
+    { name: "Stretching", value: "stretching" },
+    { name: "Bowling", value: "bowling" }
+  ];
+
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     startDatetime: new FormControl('', Validators.required),
