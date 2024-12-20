@@ -1,13 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PlanService} from '../../services/plan.service';
-import {NgClass} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-sport-plans-table',
   standalone: true,
   imports: [
-    NgClass,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -32,26 +30,11 @@ export class SportPlansTableComponent implements OnInit{
 
   ngOnInit() {
     this.loadData();
-
-    // Show the plan already selected (Used in update form)
-    if (this.program && this.program.sportPlanId != null) {
-      this._planService.getPlanById(this.program.sportPlanId)
-        .subscribe({
-          next: (plan) => {
-            this.selectedSportPlan = plan;
-            this.emitSportPlan.emit(plan);
-          }
-        });
-    }
   }
 
   selectPlan(plan: any) {
     this.selectedSportPlan = plan;
     this.emitSportPlan.emit(plan);
-  }
-
-  isSelected(sportPlan: any) {
-    return this.selectedSportPlan && this.selectedSportPlan.id == sportPlan.id;
   }
 
   emitSearchPlan() {
@@ -79,9 +62,20 @@ export class SportPlansTableComponent implements OnInit{
   }
 
   loadData() {
-    this._planService.getPlansFiltered('','','sport', this.pageNumber - 1, 10).subscribe({
+    this._planService.getPlansFiltered('public','','sport', this.pageNumber - 1, 10).subscribe({
       next: (response) => {
         this.sportPlans = response.plans;
+
+        // Show the plan already selected
+        if (this.program && this.program.sportPlanId != null) {
+          this._planService.getPlanById(this.program.sportPlanId)
+            .subscribe({
+              next: (plan) => {
+                this.selectedSportPlan = plan;
+                this.emitSportPlan.emit(plan);
+              }
+            });
+        }
       },
       error: (error) => {
         alert(error.message);
