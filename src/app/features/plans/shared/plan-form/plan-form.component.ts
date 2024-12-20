@@ -72,6 +72,7 @@ export class PlanFormComponent implements OnInit {
     var response = await firstValueFrom(this._planService.getTags(this.planId));
     if (response && response.astPlansTags) {
       this.planTags = response.astPlansTags.map((tagObj: any) => tagObj.tag);
+      this.tagNames.push(...this.planTags.map(p => p.name));
     }
 
     this.form.patchValue({
@@ -123,7 +124,8 @@ export class PlanFormComponent implements OnInit {
         await firstValueFrom(this._planService.updatePlan(
           this._authService.getId(),
           this.plan.id,
-          this.form.value));
+          {...this.form.value, tagNames: this.tagNames},
+          ));
         this._toastrService.success("Plan updated successfully");
       }
     } catch (error: any) {
@@ -193,6 +195,7 @@ export class PlanFormComponent implements OnInit {
 
   removeTag(tag: any) {
     this.planTags = this.planTags.filter(t => t.id !== tag.id);
+    this.tagNames = this.tagNames.filter(t => t != tag.name);
   }
 
   setPrivacy() {

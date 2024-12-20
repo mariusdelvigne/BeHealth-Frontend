@@ -4,4 +4,5 @@ export interface PlanUpdateCommand {
   privacy: string ;
   description: string;
   durationInDays: number;
+  tagNames: string[];
 }
