@@ -21,8 +21,9 @@ export class ViewAllGlobalMessageComponent implements OnInit {
   }
 
   deleteGlobalMessages(id: number) {
-    this._globalMessagesService.deleteGlobalMessages(id).subscribe()
-    window.location.reload();
+    this._globalMessagesService.deleteGlobalMessages(id).subscribe({
+      next: () => window.location.reload(),
+    });
   }
 
   getDateTime(sendingDateTime: string): string {

@@ -48,8 +48,9 @@ export class ViewAllNotificationsComponent implements OnInit {
   }
 
   deleteNotification(id: number) {
-    this._notificationService.deleteNotification(id).subscribe();
-    window.location.reload();
+    this._notificationService.deleteNotification(id).subscribe({
+      next: () => window.location.reload(),
+    });
   }
 
   previousPage() {

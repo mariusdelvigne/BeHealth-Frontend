@@ -145,11 +145,11 @@ export class PlanFormComponent implements OnInit {
         await firstValueFrom(this._planService.updatePlanSleep(this._authService.getId(), this.planId, {sleep}));
       }
 
+      this._toastrService.success("Data added successfully");
+
       if (this.mode == "create") {
         window.location.reload();
       }
-
-      this._toastrService.success("Data added successfully");
     } catch (error: any) {
       this._toastrService.error("Error adding content");
     }
