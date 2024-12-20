@@ -68,47 +68,48 @@ export class PlanFormComponent implements OnInit {
   }
 
   async loadPlan() {
-    this.plan = await firstValueFrom(this._planService.getPlanById(this.planId));
-    var response = await firstValueFrom(this._planService.getTags(this.planId));
-    if (response && response.astPlansTags) {
-      this.planTags = response.astPlansTags.map((tagObj: any) => tagObj.tag);
-      this.tagNames.push(...this.planTags.map(p => p.name));
-    }
+      this.plan = await firstValueFrom(this._planService.getPlanById(this.planId));
 
-    this.form.patchValue({
-      name: this.plan.name,
-      privacy: this.plan.privacy,
-      category: this.plan.category,
-      durationInDays: this.plan.durationInDays,
-      description: this.plan.description,
-      planTags: this.planTags,
-    });
-
-    const pageSize = 20;
-    let pageNumber = 0;
-    let fetchQuantity: number = 0;
-
-    if (this.plan.category === 'sleep') {
-      const planContent = await firstValueFrom(this._planService.getContent(this.planId, 0, 10));
-      this.planSleep = {...planContent.sleep, startTime: planContent.sleep.startTime.substring(0, 5)};
-      return;
-    }
-
-    do {
-      const planContent = await firstValueFrom(this._planService.getContent(this.planId, pageNumber++, pageSize));
-
-      if (this.plan.category === 'sport') {
-        fetchQuantity = planContent.sports.length;
-        this.planSports.push(...planContent.sports.map((sport: any) => ({
-          ...sport, dayTime: sport.dayTime.substring(0, 5),
-        })));
-      } else if (this.plan.category === 'food') {
-        fetchQuantity = planContent.foods.length;
-        this.planFoods.push(...planContent.foods.map((food: any) => ({
-          ...food, dayTime: food.dayTime.substring(0, 5),
-        })));
+      var response = await firstValueFrom(this._planService.getTags(this.planId));
+      if (response && response.astPlansTags) {
+        this.planTags = response.astPlansTags.map((tagObj: any) => tagObj.tag);
+        this.tagNames.push(...this.planTags.map(p => p.name));
       }
-    } while (fetchQuantity === pageSize);
+
+      this.form.patchValue({
+        name: this.plan.name,
+        privacy: this.plan.privacy,
+        category: this.plan.category,
+        durationInDays: this.plan.durationInDays,
+        description: this.plan.description,
+        planTags: this.planTags,
+      });
+
+      const pageSize = 20;
+      let pageNumber = 0;
+      let fetchQuantity: number = 0;
+
+      if (this.plan.category === 'sleep') {
+        const planContent = await firstValueFrom(this._planService.getContent(this.planId, 0, 10));
+        this.planSleep = {...planContent.sleep, startTime: planContent.sleep.startTime.substring(0, 5)};
+        return;
+      }
+
+      do {
+        const planContent = await firstValueFrom(this._planService.getContent(this.planId, pageNumber++, pageSize));
+
+        if (this.plan.category === 'sport') {
+          fetchQuantity = planContent.sports.length;
+          this.planSports.push(...planContent.sports.map((sport: any) => ({
+            ...sport, dayTime: sport.dayTime.substring(0, 5),
+          })));
+        } else if (this.plan.category === 'food') {
+          fetchQuantity = planContent.foods.length;
+          this.planFoods.push(...planContent.foods.map((food: any) => ({
+            ...food, dayTime: food.dayTime.substring(0, 5),
+          })));
+        }
+      } while (fetchQuantity === pageSize);
   }
 
   async submit() {

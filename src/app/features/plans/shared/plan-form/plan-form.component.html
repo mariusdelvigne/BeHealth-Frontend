@@ -33,9 +33,13 @@
 
       <div class="col-12 col-md-4 mt-1">
         <label for="tagInput">Tags</label>
-        <input #tagInput class="form-control" type="text" list="tagList"
-             formControlName="tagInput"
-             (keydown.enter)="addTag(tagInput)" id="tagInput">
+        <div class="d-flex">
+          <input #tagInput class="form-control" type="text" list="tagList" formControlName="tagInput" id="tagInput">
+          <button type="button" (click)="addTag(tagInput)">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+
         <datalist id="tagList">
           @for (tag of tags; track tag.id) {
             <option [value]="tag.name"></option>
@@ -46,7 +50,7 @@
 
     <div class="overflow-auto d-flex pt-3" style="max-height: 20vh">
       @for (tag of planTags; track tag.id) {
-        <div class="rounded bg-dark-subtle d-flex justify-content-center pt-1 pb-1 ps-2">
+        <div class="rounded bg-dark-subtle d-flex justify-content-center pt-1 pb-1 ps-2 me-1">
             {{ tag.name }}
           <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="removeTag(tag)">
           </button>
