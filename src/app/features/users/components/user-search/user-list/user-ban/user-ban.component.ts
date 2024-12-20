@@ -39,6 +39,7 @@ export class UserBanComponent {
     if (this.userIsBanned) {
      this.openModal();
     }
+
   }
 
   openModal(){
