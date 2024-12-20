@@ -24,7 +24,7 @@ export class InsertSleepComponent {
   emitUserSleep() {
     this._userSleepService.create(this.form.value).subscribe({
       next: () => this._toastrService.success("Sleep created successfully."),
-      error: (error) => this._toastrService.error("Error creating the sleep + " + error.message),
+      error: () => this._toastrService.error("Error creating the sleep."),
     });
     this.form.reset();
   }

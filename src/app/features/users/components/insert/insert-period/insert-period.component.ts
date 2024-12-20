@@ -23,8 +23,8 @@ export class InsertPeriodComponent {
 
   emitUserPeriod() {
     this._userPeriodService.create(this.form.value).subscribe({
-      next: () => this._toastrService.success("Period created successfully"),
-      error: (error) => this._toastrService.error("Error creating the period : " + error.message),
+      next: () => this._toastrService.success("Period created successfully."),
+      error: () => this._toastrService.error("Error creating the period."),
     });
     this.form.reset();
   }

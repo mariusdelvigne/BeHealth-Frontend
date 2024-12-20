@@ -37,7 +37,7 @@ export class InsertFoodComponent implements OnInit {
   emitUserFood() {
     this._userFoodService.create(this.form.value).subscribe({
       next: () => this._toastrService.success("Created Food successfully."),
-      error: (error) => this._toastrService.error("Error creating the food : " + error.message)
+      error: () => this._toastrService.error("Error creating the food.")
     });
     this.form.reset();
   }
