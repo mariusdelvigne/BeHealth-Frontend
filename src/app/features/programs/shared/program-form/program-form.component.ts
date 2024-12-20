@@ -102,7 +102,7 @@ export class ProgramFormComponent implements OnInit {
       this._programService.create(this.form.value, this._authService.getId()).subscribe({
         next: () => {
           this._toastrService.success("Program created successfully");
-          this.form.reset();
+          window.location.reload();
         },
         error: (error) => {
           this._toastrService.error("Error creating the program : " + error.message);
