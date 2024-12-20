@@ -24,12 +24,12 @@ export class InsertPhysicalComponent {
   emitUserPhysical() {
     this._userWeightService.create(this.form.value.weight * 1000).subscribe({
       next: () => this._toastrService.success("Weight created successfully."),
-      error: (error) => this._toastrService.error("Error creating the weight + " + error.message),
+      error: (error) => this._toastrService.error("Error creating the weight"),
     });
 
     this._userHeightService.create(this.form.value.height).subscribe({
       next: () => this._toastrService.success("Height created successfully."),
-      error: (error) => this._toastrService.error("Error creating the height + " + error.message),
+      error: (error) => this._toastrService.error("Error creating the height"),
     });
 
     this.form.reset()

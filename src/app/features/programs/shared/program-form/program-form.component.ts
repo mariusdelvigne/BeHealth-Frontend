@@ -105,7 +105,7 @@ export class ProgramFormComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          this._toastrService.error("Error creating the program : " + error.message);
+          this._toastrService.error("Error creating the program");
         }
       });
     } else if (this.mode == "update") {
@@ -114,7 +114,7 @@ export class ProgramFormComponent implements OnInit {
           this._toastrService.success("Program updated successfully");
         },
         error: (error) => {
-          this._toastrService.error("Error updating the program : " + error.message);
+          this._toastrService.error("Error updating the program");
         }
       })
     }

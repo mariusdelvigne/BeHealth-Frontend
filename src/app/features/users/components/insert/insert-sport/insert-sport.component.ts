@@ -61,7 +61,7 @@ export class InsertSportComponent implements OnInit {
   emitUserSport() {
     this._userSportService.create(this.form.value).subscribe({
       next: () => this._toastrService.success("Created Sport successfully."),
-      error: (error) => this._toastrService.error("Error creating the sport : " + error.message),
+      error: (error) => this._toastrService.error("Error creating the sport"),
     });
     this.form.reset();
   }

@@ -60,7 +60,7 @@ export class UserListComponent implements OnInit, OnDestroy {
           this._toastrService.success(`User : ${user?.username} has been ${isBanned ? 'banned' : 'unbanned'}`)
         },
         error: (error) => {
-          this._toastrService.error("Error : " + error.message);
+          this._toastrService.error("Error banning user");
         }
       }
     );
@@ -79,7 +79,7 @@ export class UserListComponent implements OnInit, OnDestroy {
           this._toastrService.success(`All plans of ${user?.username} are deleted successfully`)
         },
         error: (error) => {
-          this._toastrService.error(`Unable to delete plan of ${user?.username}` + error.message);
+          this._toastrService.error(`Unable to delete plan of ${user?.username}`);
         }
       }
     )
@@ -94,7 +94,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         this._toastrService.success(`All programs of ${user?.username} are deleted successfully`)
       },
       error: (error) => {
-        this._toastrService.error(`Unable to delete programs of ${user?.username}` + error.message);
+        this._toastrService.error(`Unable to delete programs of ${user?.username}`);
       }
     })
   }
@@ -108,7 +108,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         this._toastrService.success(`All feedbacks of ${user?.username} are deleted successfully`)
       },
       error: (error) => {
-        this._toastrService.error(`Unable to delete feedbacks of ${user?.username}` + error.message);
+        this._toastrService.error(`Unable to delete feedbacks of ${user?.username}`);
       }
     })
   }

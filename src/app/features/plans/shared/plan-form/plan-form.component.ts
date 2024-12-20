@@ -131,17 +131,19 @@ export class PlanFormComponent implements OnInit {
       }
     } catch (error: any) {
       this.mode == "create"
-      ? this._toastrService.error("Error creating the plan : " + error.message)
-      : this._toastrService.error("Error updating the plan : " + error.message);
+      ? this._toastrService.error("Error creating the plan")
+      : this._toastrService.error("Error updating the plan");
       return;
     }
 
     try {
       if (this.form.getRawValue().category === 'sport') {
         const sports = this.planSports.map(sport => ({...sport, dayTime: sport.dayTime + ":00"}));
+        console.log(sports);
         await firstValueFrom(this._planService.updatePlanSports(this._authService.getId(), this.planId, {sports}));
       } else if (this.form.getRawValue().category === 'food') {
         const foods = this.planFoods.map(food => ({...food, dayTime: food.dayTime + ":00"}));
+        console.log(foods);
         await firstValueFrom(this._planService.updatePlanFoods(this._authService.getId(), this.planId, {foods}));
       } else {
         const sleep = {...this.planSleep, startTime: this.planSleep.startTime + ":00"};
@@ -154,6 +156,7 @@ export class PlanFormComponent implements OnInit {
         window.location.reload();
       }
     } catch (error: any) {
+      console.log(error);
       this._toastrService.error("Error adding content");
     }
   }

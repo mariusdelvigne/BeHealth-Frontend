@@ -56,7 +56,7 @@ export class PlanSearchMineComponent implements OnInit{
           this._toastrService.success("Plan deleted successfully.");
         },
         error: (error) => {
-          this._toastrService.error("Error deleting plan: " + error.message);
+          this._toastrService.error("Error deleting plan");
         }
       });
     }
@@ -93,7 +93,7 @@ export class PlanSearchMineComponent implements OnInit{
         this.plans = plans.plans;
       },
       error: (error) => {
-        this._toastrService.error("Error searching plans: " + error.message);
+        this._toastrService.error("Error searching plans");
       }
     });
   }

@@ -65,7 +65,7 @@ export class ProgramInfoComponent implements OnInit {
         this.tags = response.astPlansTags;
       },
       error: (error) => {
-        alert(error.message);
+        alert("Error loading tags");
       }
     });
   }

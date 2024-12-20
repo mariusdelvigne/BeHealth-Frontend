@@ -34,7 +34,7 @@ export class BmiCalculatorComponent {
         this.form.reset();
       },
       error: (error) => {
-        this._toastrService.error("BMI computing failed : " + error.message);
+        this._toastrService.error("BMI computing failed");
       }
     })
   }

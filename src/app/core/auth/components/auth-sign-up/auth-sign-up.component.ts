@@ -62,7 +62,7 @@ export class AuthSignUpComponent {
           });
       },
       error: (error) => {
-        this._toastrService.error("Error signing you up : " + error.message);
+        this._toastrService.error("Error signing you up");
       }
     });
   }

@@ -38,7 +38,7 @@ export class NotificationReadComponent implements OnInit {
             this.timeFromReceive = this.getTimeFromReceive(notifications.sendingDateTime);
           },
           error: (error) => {
-            this._toastrService.error("Error : " + error.message);
+            this._toastrService.error("Error retrieving notification");
           }
         })
       }
@@ -74,7 +74,7 @@ export class NotificationReadComponent implements OnInit {
         );
       },
       error: (error) => {
-        this._toastrService.error('Error updating notification: ' + error.message);
+        this._toastrService.error('Error updating notification:');
       },
     });
   }

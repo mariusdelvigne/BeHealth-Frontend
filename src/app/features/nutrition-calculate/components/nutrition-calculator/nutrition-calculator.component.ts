@@ -67,7 +67,7 @@ export class NutritionCalculatorComponent implements OnInit {
         this.form.reset();
       },
       error: (error) => {
-        this._toastrService.error("Nutrition computing failed : " + error.message)
+        this._toastrService.error("Nutrition computing failed")
       }
     })
   }

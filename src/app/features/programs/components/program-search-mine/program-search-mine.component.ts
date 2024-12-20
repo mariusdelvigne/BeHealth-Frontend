@@ -47,7 +47,7 @@ export class ProgramSearchMineComponent implements OnInit{
           this._toastrService.success("Program deleted successfully.");
         },
         error: (error) => {
-          this._toastrService.error("Error deleting program: " + error.message);
+          this._toastrService.error("Error deleting program");
         }
       });
     }

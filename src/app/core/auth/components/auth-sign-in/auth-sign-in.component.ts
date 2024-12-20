@@ -32,7 +32,7 @@ export class AuthSignInComponent {
         if (error.status === 403) {
           this._toastrService.error('User banned of the application');
         } else {
-          this._toastrService.error('Error signing in : ' + error.message);
+          this._toastrService.error('Error signing in');
         }
       }
     });

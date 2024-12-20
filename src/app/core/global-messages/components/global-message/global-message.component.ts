@@ -42,7 +42,7 @@ export class GlobalMessageComponent implements OnInit {
         this.nbGlobalMessages = this.globalMessage.length;
       },
       error: (error) => {
-        this._toastrService.error("Error : " + error.message);
+        this._toastrService.error("Error retrieving global messages");
       }
     });
   }

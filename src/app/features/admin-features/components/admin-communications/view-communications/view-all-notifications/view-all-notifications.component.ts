@@ -29,7 +29,7 @@ export class ViewAllNotificationsComponent implements OnInit {
         this.notifications[index].userName = user.username;
       },
       error: (error) => {
-        this._toastrService.error("Error : " + error.message);
+        this._toastrService.error("Error Retrieving user");
       }
     });
   }
@@ -73,7 +73,7 @@ export class ViewAllNotificationsComponent implements OnInit {
         });
       },
       error: (error) => {
-        this._toastrService.error("Error : " + error.message);
+        this._toastrService.error("Error retrieving notifications");
       }
     });
   }

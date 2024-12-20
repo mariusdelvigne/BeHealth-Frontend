@@ -23,7 +23,7 @@ export class AuthSignOutComponent {
         this._router.navigate(['/']);
       },
       error: (error) => {
-        this._toastrService.error("Error signing you out : " + error.message);
+        this._toastrService.error("Error signing you out");
       }
     });
   }

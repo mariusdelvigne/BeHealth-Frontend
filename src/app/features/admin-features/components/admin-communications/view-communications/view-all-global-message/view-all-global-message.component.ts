@@ -55,7 +55,7 @@ export class ViewAllGlobalMessageComponent implements OnInit {
         this.globalMessages = globalMessage.messages;
       },
       error: (error) => {
-        this._toastrService.error("Error : " + error.message);
+        this._toastrService.error("Error retrieving global messages");
       }
     })
   }

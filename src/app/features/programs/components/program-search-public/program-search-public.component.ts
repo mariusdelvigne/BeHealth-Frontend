@@ -98,7 +98,7 @@ export class ProgramSearchPublicComponent implements OnInit {
         relation == "favorite" ? this.loadFavorites() : this.loadSubscribed();
       },
       error: (error) => {
-        this._toastrService.error("Error deleting program: " + error.message);
+        this._toastrService.error("Error deleting program");
       }
     })
   }

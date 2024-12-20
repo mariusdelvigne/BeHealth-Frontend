@@ -36,7 +36,7 @@ export class NotificationsComponent {
         this.notifications = notifications.notifications;
       },
       error: (error) => {
-        this._toastrService.error('Error : ' + error.message);
+        this._toastrService.error('Error retrieving notifications');
       }
     });
   }

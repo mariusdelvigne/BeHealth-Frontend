@@ -32,7 +32,7 @@ export class AccountDeleteComponent {
         this._router.navigate(['']);
       },
       error: (error) => {
-        this._toastrService.error("Error deleting account : " + error.message);
+        this._toastrService.error("Error deleting account");
       }
     });
   }

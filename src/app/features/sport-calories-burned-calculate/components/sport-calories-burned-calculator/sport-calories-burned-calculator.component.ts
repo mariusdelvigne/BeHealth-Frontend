@@ -71,7 +71,7 @@ export class SportCaloriesBurnedCalculatorComponent {
         this.form.reset();
       },
       error: (error) => {
-        this._toastrService.error("Sport Calories Burned computing failed : " + error.message)
+        this._toastrService.error("Sport Calories Burned computing failed")
       }
     })
   }

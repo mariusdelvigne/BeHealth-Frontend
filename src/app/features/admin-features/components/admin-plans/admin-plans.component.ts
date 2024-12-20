@@ -38,7 +38,7 @@ export class AdminPlansComponent implements OnInit {
         this.plans[index].creatorName = user.username;
       },
       error: (error) => {
-        this._toastrService.error("Error : " + error.message);
+        this._toastrService.error("Error retrieving user");
       }
     });
   }
