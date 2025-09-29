@@ -1,27 +1,89 @@
-# Groupe3Frontend
+# BeHealth Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.9.
+# 📄 BeHealth Frontend
 
-## Development server
+## 🚀 Présentation
+**BeHealth Frontend** est l’interface utilisateur de l’application **BeHealth**, une plateforme de suivi de santé. Elle permet aux utilisateurs de suivre leur alimentation, leurs activités sportives, leur sommeil et leur cycle menstruel.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Grâce à une interface intuitive, les utilisateurs peuvent créer des programmes de santé personnalisés, suivre ceux d’autres membres et analyser leurs données via des graphiques.
 
-## Code scaffolding
+Ce projet est développé en **Angular 18** et se connecte directement au backend, à la base de donnée ainsi qu'à l'application android **BeHealth**.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 👥 L'équipe BeHealth
+Ce projet a été réalisé dans le cadre d’un projet de cours pour nos études, plus précisément pour le cours de **Technologie Internet** avec **Mr. Palermo**.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Delvigne Marius](https://github.com/mariusdelvigne)
+- [Reynart Robin](https://github.com/RobinRHELHa)
+- [Leroy Matteo](https://github.com/rococooooo)
+- [Malbecq Nathan](https://github.com/NathanHELHa)
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🛠️ Fonctionnalités principales
+- 🔹 Calcul de l’IMC et suivi du poids  
+- 🔹 Suivi des repas et apports nutritionnels (calories, protéines, sucres, cholestérol, etc.)  
+- 🔹 Suivi des activités sportives et calories dépensées  
+- 🔹 Suivi du sommeil et du cycle menstruel  
+- 🔹 Création et gestion de programmes et plans de santé  
+- 🔹 Abonnement aux programmes créés par d’autres utilisateurs  
+- 🔹 Visualisation des données via des graphiques  
+- 🔹 Notifications et messages globaux
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 📂 Installation & Développement
 
-## Further help
+### Pré-requis
+- [Node.js](https://nodejs.org/) (v18 ou +)  
+- [Angular CLI](https://angular.dev/)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Installation
+```bash
+git clone https://github.com/<organisation>/BeHealth-Frontend.git
+cd BeHealth-Frontend
+npm install
+```
+
+### Lancer le serveur de dev
+```bash
+ng serve
+```
+➡️ Rendez-vous sur [http://localhost:4200](http://localhost:4200)
+
+---
+
+## 🏗️ Build
+Pour générer une version de production :
+```bash
+ng build
+```
+Les artefacts seront disponibles dans le dossier `dist/`.
+
+---
+
+## 🧪 Tests
+- **Unit tests :**
+```bash
+ng test
+```
+- **End-to-end tests :**
+```bash
+ng e2e
+```
+*(nécessite l’ajout d’un package e2e compatible)*
+
+---
+
+## 🔗 Backend associé
+Le frontend communique avec le backend **BeHealth**, disponible ici :
+👉 [BeHealth Backend](https://github.com/mariusdelvigne/BeHealth-Backend)
+
+## 🔗 Database associé
+Le frontend communique avec la base de donnée **BeHealth**, disponible ici :
+👉 [BeHealth Database](https://github.com/mariusdelvigne/BeHealth-Database)
+
+## 🔗 Application Android associé
+Le frontend communique avec une application android **BeHealth**, disponible ici :
+👉 [BeHealth Android-App](https://github.com/mariusdelvigne/BeHealth-AndroidApp)
