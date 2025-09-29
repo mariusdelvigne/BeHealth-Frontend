@@ -15,7 +15,7 @@ Ce projet est développé en **Angular 18** et se connecte directement au backen
 Ce projet a été réalisé dans le cadre d’un projet de cours pour nos études, plus précisément pour le cours de **Technologie Internet** avec **Mr. Palermo**.
 
 - [Delvigne Marius](https://github.com/mariusdelvigne)
-- [Reynart Robin](https://github.com/RobinRHELHa)
+- [Reynaert Robin](https://github.com/RobinRHELHa)
 - [Leroy Matteo](https://github.com/rococooooo)
 - [Malbecq Nathan](https://github.com/NathanHELHa)
 
